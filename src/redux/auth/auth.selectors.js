@@ -1,10 +1,7 @@
-const isAuthenticated = (state) => state.auth.token;
+const getIsAuth = (state) => !!state.auth.token;
+const getAuthUserName = (state) => state.auth.user.username;
+const getIsRegistr = (state) => state.auth.isRegistrated;
 
-const getUserName = (state) => state.auth.user.username;
+const getAuthToken = (state) => state.auth.token;
 
-const getUserId = state => state.auth.user.id; // userData.id
-
-const getUserData = state => state.auth.user.userData;
-
-
-export { isAuthenticated, getUserName, getUserId, getUserData};
+export { getIsAuth, getAuthUserName, getAuthToken, getIsRegistr };

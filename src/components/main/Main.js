@@ -40,6 +40,12 @@ const Main = () => {
           />
           <Route
             exact
+            path="/registration"
+            component={RegisterPage}
+            restricted
+          />
+          <Route
+            exact
             path="/login"
             component={LoginPage}
             redirectTo="/report"
