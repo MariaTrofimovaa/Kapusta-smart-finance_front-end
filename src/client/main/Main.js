@@ -4,18 +4,18 @@ import { Switch } from "react-router";
 import { lazy } from "react";
 // import PrivateRoutes from "../../routes/PrivateRoutes";
 // import PublicRoutes from "../../routes/PublicRoutes";
-import AppLoader from "../../shared/loader/Loader";
+import AppLoader from "../../shared/components/loader/Loader";
 import NotFound from "../../pages/notFound/NotFound";
 import { Route } from "react-router-dom";
 import NavBar from "../NavBar";
 
 import styles from "./Main.module.css";
-import MainBtns from "../buttons/MainBtns";
+import MainBtns from "../../shared/components/buttons/MainBtns";
 
-const RegisterPage = lazy(() =>
-  import("../../pages/registerPage/RegisterPage")
-);
-const LoginPage = lazy(() => import("../../pages/loginPage/LoginPage"));
+// const RegisterPage = lazy(() =>
+//   import("../../pages/registerPage/RegisterPage")
+// );
+const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
 const ReportPage = lazy(() => import("../../pages/reportPage/ReportPage"));
 
 const Main = () => {
@@ -25,27 +25,27 @@ const Main = () => {
         <NavBar />
         {/* <MainBtns /> */}
         <Switch>
-          {/* <PublicRoutes
+          <Route
             exact
             path="/"
             component={HomePage}
             restricted
             redirectTo="/mainPage"
-          /> */}
-          <Route
+          />
+          {/* <Route
             exact
             path="/"
             component={RegisterPage}
             redirectTo="/login"
             restricted
-          />
-          <Route
+          /> */}
+          {/* <Route
             exact
             path="/login"
             component={LoginPage}
             redirectTo="/report"
             restricted
-          />
+          /> */}
 
           <Route path="/report" component={ReportPage} redirectTo="/" />
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ReactComponent as LogoutSvg } from "../../assets/icons/logout.svg";
+import { ReactComponent as LogoutSvg } from "../../../assets/icons/logout.svg";
 import styles from "./UserLogout.module.css";
 
 const UserLogout = () => {

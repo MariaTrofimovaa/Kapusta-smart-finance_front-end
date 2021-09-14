@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import LogoImg from "../../assets/images/kapusta_main_logo.png"
-import UserInfo from "../userInfo/UserInfo";
-import UserLogout from "../userLogout/UserLogout";
+import UserInfo from "./userInfo/UserInfo";
+import UserLogout from "./userLogout/UserLogout";
 
 const Header = () => {
     return (
