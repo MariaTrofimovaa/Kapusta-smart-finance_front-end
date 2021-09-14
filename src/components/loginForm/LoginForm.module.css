@@ -179,11 +179,11 @@
 }
 
 @media screen and (min-width: 768px) {
-  .form_title {
+  .form_paragraph {
     display: block;
   }
 
-  .form_control_container {
+  .form_container {
     display: block;
   }
 
@@ -200,7 +200,7 @@
     margin-bottom: 20px;
   }
 
-  .btn_container {
+  .button_container {
     display: block;
     margin-top: 60px;
   }
