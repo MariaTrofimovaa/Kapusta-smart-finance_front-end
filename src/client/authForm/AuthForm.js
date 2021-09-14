@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "../../redux/auth/auth.operations";
-import logo from "../../images/google-symbol 1.png";
+import logo from "../../assets/images/logo_google.png";
 ///////////////////////////////Formik, YUP /////////////////////////////////////////////////
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
