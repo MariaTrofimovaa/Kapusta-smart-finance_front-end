@@ -9,7 +9,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
-import rootReducer from "./root.reducer";
+import rootReducer from "./rootReducer";
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -21,7 +21,7 @@ const middleware = [
 
 const store = configureStore({
   reducer: rootReducer,
-    middleware,
+  middleware,
 });
 
 const persistor = persistStore(store);

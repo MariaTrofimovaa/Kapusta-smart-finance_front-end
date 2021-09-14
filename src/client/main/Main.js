@@ -17,6 +17,7 @@ import MainBtns from "../../shared/components/buttons/MainBtns";
 // );
 const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
 const ReportPage = lazy(() => import("../../pages/reportPage/ReportPage"));
+const AuthPage = lazy(() => import("../../pages/authPage/AuthPage"));
 
 const Main = () => {
   return (
@@ -32,6 +33,14 @@ const Main = () => {
             restricted
             redirectTo="/mainPage"
           />
+
+          <Route
+            exact
+            path="/auth"
+            component={AuthPage}
+            restricted
+            // redirectTo="/authPage"
+          />
           {/* <Route
             exact
             path="/"
@@ -40,6 +49,12 @@ const Main = () => {
             restricted
           /> */}
           {/* <Route
+            exact
+            path="/registration"
+            component={RegisterPage}
+            restricted
+          />
+          <Route
             exact
             path="/login"
             component={LoginPage}

@@ -6,13 +6,14 @@ const NavBar = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to="/" exact>Register</NavLink>
+          <NavLink to="/auth" exact>
+            Auth
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/login" exact>Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/report" exact>Report</NavLink>
+          <NavLink to="/report" exact>
+            Report
+          </NavLink>
         </li>
       </ul>
     </nav>
