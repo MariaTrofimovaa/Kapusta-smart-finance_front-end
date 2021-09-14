@@ -1,0 +1,26 @@
+@media screen and (min-width: 320px) {
+  .mainContainer {
+    max-width: 320px;
+    /* padding: 12px 19px 6px 19px; */
+
+    border: 1px solid #e53935;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mainContainer {
+    max-width: 768px;
+    padding: 0;
+
+    border: 1px solid #2a36b6;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .mainContainer {
+    max-width: 1200px;
+    padding: 0;
+
+    border: 1px solid #31c153;
+  }
+}

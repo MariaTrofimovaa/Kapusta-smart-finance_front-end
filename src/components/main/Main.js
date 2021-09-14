@@ -9,7 +9,8 @@ import NotFound from "../../pages/notFound/NotFound";
 import { Route } from "react-router-dom";
 import NavBar from "../NavBar";
 
-// const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
+import styles from "./Main.module.css";
+import MainBtns from "../buttons/MainBtns";
 
 const RegisterPage = lazy(() =>
   import("../../pages/registerPage/RegisterPage")
@@ -19,10 +20,10 @@ const ReportPage = lazy(() => import("../../pages/reportPage/ReportPage"));
 
 const Main = () => {
   return (
-    <div>
+    <div className={styles.main}>
       <Suspense fallback={<AppLoader />}>
         <NavBar />
-
+        {/* <MainBtns /> */}
         <Switch>
           {/* <PublicRoutes
             exact
