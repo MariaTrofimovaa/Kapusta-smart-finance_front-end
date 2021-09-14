@@ -4,10 +4,8 @@ import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth/auth.reducer";
 // import balance from "./balance/balance.reducer"
-// import tranzactions from "./tranzactions/tranzactions.reducer"
+// import transactions from "./transactions/transactions.reducer"
 // import report from "./report/report.reducer";
-import error from "./error/error.reducer";
-// import isLoading from "./isLoading/isLoading.reducer"
 
 const persistConfig = {
   key: "auth",
@@ -19,11 +17,9 @@ const persistAuthReducer = persistReducer(persistConfig, authReducer);
 
 const rootReducer = combineReducers({
   auth: persistAuthReducer,
-  // balance,
-  // tranzactions,
+
+  // transactions,
   // report,
-  error,
-  // isLoading,
 });
 
 export default rootReducer;

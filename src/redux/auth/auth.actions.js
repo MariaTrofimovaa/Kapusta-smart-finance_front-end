@@ -1,12 +1,16 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const registerRequest = createAction("auth/registerRequest");
-const registerSuccess = createAction("auth/registerSuccess");
-const registerError = createAction("auth/registerError");
+// const registerRequest = createAction("auth/registerRequest");
+// const registerSuccess = createAction("auth/registerSuccess");
+// const registerError = createAction("auth/registerError");
 
-const loginRequest = createAction("auth/loginRequest");
-const loginSuccess = createAction("auth/loginSuccess");
-const loginError = createAction("auth/loginError");
+// const loginRequest = createAction("auth/loginRequest");
+// const loginSuccess = createAction("auth/loginSuccess");
+// const loginError = createAction("auth/loginError");
+
+const authRequest = createAction("auth/ authRequest");
+const authSuccess = createAction("auth/ authSuccess");
+const authError = createAction("auth/ authError");
 
 const logoutRequest = createAction("auth/logoutRequest");
 const logoutSuccess = createAction("auth/logoutSuccess");
@@ -21,13 +25,18 @@ const getUserInfoSuccess = createAction("auth/getUserInfoSuccess");
 const getUserInfoError = createAction("auth/getUserInfoError");
 const goToRegistr = createAction("auth/goToRegistr");
 
+// updateBalance
+
 export {
-  registerRequest,
-  registerSuccess,
-  registerError,
-  loginRequest,
-  loginSuccess,
-  loginError,
+  // registerRequest,
+  // registerSuccess,
+  // registerError,
+  // loginRequest,
+  // loginSuccess,
+  // loginError,
+  authRequest,
+  authSuccess,
+  authError,
   logoutRequest,
   logoutSuccess,
   logoutError,

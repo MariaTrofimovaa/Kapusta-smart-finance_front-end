@@ -1,11 +1,14 @@
 import axios from "axios";
 import {
-  registerRequest,
-  registerSuccess,
-  registerError,
-  loginRequest,
-  loginSuccess,
-  loginError,
+  // registerRequest,
+  // registerSuccess,
+  // registerError,
+  // loginRequest,
+  // loginSuccess,
+  // loginError,
+  authRequest,
+  authSuccess,
+  authError,
   logoutRequest,
   logoutSuccess,
   logoutError,
@@ -26,33 +29,33 @@ const token = {
   },
 };
 
-const register = (registrationObject) => async (dispatch) => {
-  dispatch(registerRequest());
+// const register = (registrationObject) => async (dispatch) => {
+//   dispatch(registerRequest());
+
+//   try {
+//     const { data } = await axios.post("/auth/register", registrationObject);
+//     dispatch(registerSuccess(data));
+//     alertSuccess("Регистрация прошла успешно. Ввойдите в свою учетную запись.");
+//   } catch (error) {
+//     if (error.response?.status === 409) {
+//       alertError("Пользователь с тaкой почтой уже зарегистрирован");
+//     }
+//     dispatch(registerError(error.message));
+//   }
+// };
+
+const auth = (authObject) => async (dispatch) => {
+  dispatch(authRequest());
 
   try {
-    const { data } = await axios.post("/auth/register", registrationObject);
-    dispatch(registerSuccess(data));
-    alertSuccess("Регистрация прошла успешно. Ввойдите в свою учетную запись.");
-  } catch (error) {
-    if (error.response?.status === 409) {
-      alertError("Пользователь с тaкой почтой уже зарегистрирован");
-    }
-    dispatch(registerError(error.message));
-  }
-};
-
-const logIn = (loginObject) => async (dispatch) => {
-  dispatch(loginRequest());
-
-  try {
-    const { data } = await axios.post("/auth/login", loginObject);
-    dispatch(loginSuccess(data));
+    const { data } = await axios.post("/auth/auth", authObject);
+    dispatch(authSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
     if (error.response?.status === 403) {
       alertError("Неверный логин или пароль");
     }
-    dispatch(loginError(error.message));
+    dispatch(authError(error.message));
   }
 };
 
@@ -93,4 +96,4 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-export { token, register, logIn, logOut, getCurrentUser };
+export { token, auth, logOut, getCurrentUser };
