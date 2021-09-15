@@ -6,8 +6,9 @@ import PrivateRoutes from "../../routes/PrivateRoutes";
 // import PublicRoutes from "../../routes/PublicRoutes";
 import styles from "./Main.module.css";
 
-
 import NavBar from "../NavBar"; // раскомментировать при коммите
+
+// В этом компоненте стилизованы кнопки
 // import MainBtns from "../../shared/components/buttons/MainBtns";
 
 const Main = () => {
