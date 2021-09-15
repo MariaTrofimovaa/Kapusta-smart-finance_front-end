@@ -15,7 +15,6 @@ const Main = () => {
     <div className={styles.main}>
       <Suspense fallback={<AppLoader />}>
         {/* Навбар и кнопок здесь не будет */}
-        
         <NavBar />
         {/* <MainBtns /> */}
 
