@@ -1,21 +1,24 @@
 import axios from "axios";
-import NotificationError from "../../components/pnotify/Pnotify";
 import {
-  getCurrentUserError,
-  getCurrentUserRequest,
-  getCurrentUserSuccess,
-  loginError,
-  loginRequest,
-  loginSuccess,
-  logoutError,
+  // registerRequest,
+  // registerSuccess,
+  // registerError,
+  // loginRequest,
+  // loginSuccess,
+  // loginError,
+  authRequest,
+  authSuccess,
+  authError,
   logoutRequest,
   logoutSuccess,
-  registerError,
-  registerRequest,
-  registerSuccess,
+  logoutError,
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError,
 } from "./auth.actions";
+import { alertError, alertSuccess } from "../../shared/reactAlert";
 
-axios.defaults.baseURL = "https://slimmom-backend.goit.global/";
+axios.defaults.baseURL = "";
 
 const token = {
   set(token) {
@@ -26,66 +29,71 @@ const token = {
   },
 };
 
-export const register = (credentials) => async (dispatch) => {
-  dispatch(registerRequest());
+// const register = (registrationObject) => async (dispatch) => {
+//   dispatch(registerRequest());
+
+//   try {
+//     const { data } = await axios.post("/auth/register", registrationObject);
+//     dispatch(registerSuccess(data));
+//     alertSuccess("Регистрация прошла успешно. Ввойдите в свою учетную запись.");
+//   } catch (error) {
+//     if (error.response?.status === 409) {
+//       alertError("Пользователь с тaкой почтой уже зарегистрирован");
+//     }
+//     dispatch(registerError(error.message));
+//   }
+// };
+
+const auth = (authObject) => async (dispatch) => {
+  dispatch(authRequest());
+
   try {
-    const response = await axios.post("auth/register", credentials);
-
-    dispatch(registerSuccess(response.data));
-  } catch (error) {
-      if (error.response?.status === 409) {
-        NotificationError('Пользователь с таким логином уже зарегистрирован');
-      }
-      dispatch(registerError(error.message));
-    };
-};
-
-export const logIn = (credentials) => async (dispatch) => {
-  dispatch(loginRequest());
-  try {
-    const response = await axios.post("/auth/login", credentials);
-
-    token.set(response.data.accessToken);
-
-    dispatch(loginSuccess(response.data));
-    dispatch(getCurrentUser())
+    const { data } = await axios.post("/auth/auth", authObject);
+    dispatch(authSuccess(data));
+    alertSuccess("Добро пожаловать");
   } catch (error) {
     if (error.response?.status === 403) {
-      NotificationError("Неверный логин или пароль");
+      alertError("Неверный логин или пароль");
     }
-    dispatch(loginError(error.message));
+    dispatch(authError(error.message));
   }
 };
 
-export const logOut = () => async (dispatch, getState) => {
+const logOut = () => async (dispatch, getState) => {
   dispatch(logoutRequest());
+  const authToken = getState().auth.token;
   try {
-    // сохраняем токен
-    token.set(getState().auth.token);
-    const response = await axios.post("/auth/logout");
-
-    dispatch(logoutSuccess(response.data));
+    token.set(authToken);
+    const { data } = await axios.post("/auth/logout");
     token.unset();
-    window.location.reload();
+
+    dispatch(logoutSuccess(data));
   } catch (error) {
     dispatch(logoutError(error.message));
   }
 };
 
-
-export const getCurrentUser = () => async (dispatch, getState) => {
+const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
   } = getState();
+
   if (!persistedToken) {
     return;
   }
   token.set(persistedToken);
+
   dispatch(getCurrentUserRequest());
+
   try {
-    const response = await axios.get("/user");
-    dispatch(getCurrentUserSuccess(response.data));
+    const { data } = await axios.get("/user");
+    dispatch(getCurrentUserSuccess(data));
   } catch (error) {
+    if (error.response.status === 401) {
+      dispatch(logoutSuccess());
+    }
     dispatch(getCurrentUserError(error.message));
   }
 };
+
+export { token, auth, logOut, getCurrentUser };

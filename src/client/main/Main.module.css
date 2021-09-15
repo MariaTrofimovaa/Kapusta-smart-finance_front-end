@@ -1,0 +1,36 @@
+/* Стили бекграунда для регистрации/логинизации */
+
+/* Стили бекграунда для залогиненого пользователя */
+
+.main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+
+  background: url(../../assets/images/auth_bg320.png),
+    url(../../assets/images/authForm_bg320.png),
+    url(../../assets/images/rectangle_320.png);
+  background-repeat: no-repeat;
+  /* возможно изменятся:  */
+  background-position: 265px 104px, 35px 510px, 0px 0px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    /* высоту исправить: */
+    margin: 0 auto;
+    min-height: 1185px;
+    background: url(../../assets/images/rectangle768.png),
+      url(../../assets/images/kapusta_jump.png);
+    background-position: 0px 0px, 497px 920px;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main {
+    background: url(../../assets/background_img.png) no-repeat;
+    background-size: cover;
+  }
+}

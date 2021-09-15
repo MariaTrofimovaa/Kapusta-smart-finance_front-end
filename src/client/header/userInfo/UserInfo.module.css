@@ -1,0 +1,46 @@
+.userPage {
+  display: flex;
+  align-self: center;
+  margin-right: 20px;
+}
+
+.userName {
+  display: none;
+}
+
+.userPic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f6fa;
+  height: 32px;
+  width: 32px;
+  border-radius: 30px;
+  align-self: center;
+}
+
+.userPicLetter {
+  font-size: 12px;
+  color: var(--primary-color-text);
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+.userPage {
+  padding-right: 20px;
+  border-right: 1px solid #e0e5eb;
+  text-align: right;
+}
+
+  .userName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    color: var(--primary-color-text);
+  }
+}
+
+@media (min-width: 1280px) {
+}
