@@ -105,10 +105,10 @@ const deleteProfitOperation = (profit, jwt) => (dispatch) => {
     });
 };
 
-const setBalanceOperation = (data, jwt) => (dispatch) => {
+const setBalanceOperation = (balance, jwt) => (dispatch) => {
   dispatch(balanceActions.addBalanceRequest());
   axios
-    .patch(`${url}/balance`, data, {
+    .patch(`${url}/user`, {balance:balance}, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
@@ -125,7 +125,7 @@ const setBalanceOperation = (data, jwt) => (dispatch) => {
 const getBalanceOperation = (jwt) => (dispatch) => {
   dispatch(balanceActions.getBalanceRequest());
   axios
-    .get(`${url}/balance`, {
+    .get(`${url}/user`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
@@ -140,7 +140,7 @@ const getBalanceOperation = (jwt) => (dispatch) => {
     });
 };
 
-export default {
+const balanceOperations = {
   addCostOperation,
   deleteCostOperation,
   getDateCostCalendar,
@@ -150,3 +150,5 @@ export default {
   setBalanceOperation,
   getBalanceOperation,
 };
+
+export default balanceOperations;

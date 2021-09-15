@@ -32,7 +32,7 @@ const getBalanceRequest = createAction("costs/getBalanceRequest");
 const getBalanceSuccess = createAction("costs/getBalanceSuccess");
 const getBalanceError = createAction("costs/getBalanceError");
 
-export default {
+const balanceActions = {
   addCostRequest,
   addCostSuccess,
   addCostError,
@@ -58,3 +58,5 @@ export default {
   getBalanceSuccess,
   getBalanceError,
 };
+
+export default balanceActions;
