@@ -17,7 +17,7 @@ const App = () => {
 //   }, [dispatch]);
 
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.container}>
       <Header />
       <Main />
     </div>

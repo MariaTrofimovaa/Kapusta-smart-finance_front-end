@@ -1,70 +1,38 @@
 import React, { Suspense } from "react";
-
 import { Switch } from "react-router";
-import { lazy } from "react";
-// import PrivateRoutes from "../../routes/PrivateRoutes";
-// import PublicRoutes from "../../routes/PublicRoutes";
+import { mainRoutes } from "../../routes/mainRoutes";
 import AppLoader from "../../shared/components/loader/Loader";
-import NotFound from "../../pages/notFound/NotFound";
-import { Route } from "react-router-dom";
-import NavBar from "../NavBar";
-
+import PrivateRoutes from "../../routes/PrivateRoutes";
+// import PublicRoutes from "../../routes/PublicRoutes";
 import styles from "./Main.module.css";
-import MainBtns from "../../shared/components/buttons/MainBtns";
 
-// const RegisterPage = lazy(() =>
-//   import("../../pages/registerPage/RegisterPage")
-// );
-const HomePage = lazy(() => import("../../pages/homePage/HomePage"));
-const ReportPage = lazy(() => import("../../pages/reportPage/ReportPage"));
-const AuthPage = lazy(() => import("../../pages/authPage/AuthPage"));
+import NavBar from "../NavBar"; // раскомментировать при коммите
+
+// В этом компоненте стилизованы кнопки
+// import MainBtns from "../../shared/components/buttons/MainBtns";
 
 const Main = () => {
   return (
     <div className={styles.main}>
       <Suspense fallback={<AppLoader />}>
+        {/* Навбар и кнопок здесь не будет */}
         <NavBar />
         {/* <MainBtns /> */}
+
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={HomePage}
-            restricted
-            redirectTo="/mainPage"
-          />
+          {/* Когда будет готова авторизация, поменять перебор maiRoutes
+        Пока все роуты лежат в PrivateRoutes */}
+          {mainRoutes.map((route) => (
+            <PrivateRoutes />
+          ))}
 
-          <Route
-            exact
-            path="/auth"
-            component={AuthPage}
-            restricted
-            // redirectTo="/authPage"
-          />
-          {/* <Route
-            exact
-            path="/"
-            component={RegisterPage}
-            redirectTo="/login"
-            restricted
-          /> */}
-          {/* <Route
-            exact
-            path="/registration"
-            component={RegisterPage}
-            restricted
-          />
-          <Route
-            exact
-            path="/login"
-            component={LoginPage}
-            redirectTo="/report"
-            restricted
-          /> */}
-
-          <Route path="/report" component={ReportPage} redirectTo="/" />
-
-          <Route component={NotFound} />
+          {/* {mainRoutes.map((route) => 
+            route.isPrivate ? (
+              <PrivateRoutes {...route} isAuth={this.props.isAuth} />
+            ) : (
+              <PublicRoutes {...route} isAuth={this.props.isAuth} />
+            )
+          )} */}
         </Switch>
       </Suspense>
     </div>
