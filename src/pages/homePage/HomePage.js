@@ -1,6 +1,7 @@
 import React from "react";
 import Calendar from "../../client/enterForm/calendar/Calendar";
 import EnterForm from "../../client/enterForm/enterForm/EnterForm"
+import Balance from "../../client/balance/Balance"
 import styles from "./HomePage.module.css"
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
           </svg> */}
 
         <EnterForm />
+        <Balance />
       </div>
     </div>
   );
