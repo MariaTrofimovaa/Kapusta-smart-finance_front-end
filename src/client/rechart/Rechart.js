@@ -52,6 +52,10 @@ const data = [
     name: "Индейка",
     coast: 2780,
   },
+  {
+    name: "Индейка",
+    coast: 2780,
+  },
 ];
 
 const Rechart = ({ chartData }) => {
@@ -59,22 +63,14 @@ const Rechart = ({ chartData }) => {
   return width >= 768 ? (
     <div className={css.box}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          className={css.barChart}
-          margin={{
-            top: 20,
-            right: 20,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <Bar
-            dataKey="coast"
-            barSize={38}
-            className={css.bar}
-            radius={[10, 10, 0, 0]}
-          >
+        <BarChart data={data} className={css.barChart} minPointSize={5}>
+          <Bar dataKey="coast" barSize={35} radius={[10, 10, 0, 0]}>
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={index % 3 ? "#FFDAC0" : "#ff751d"}
+              />
+            ))}
             <LabelList
               dataKey="coast"
               position="top"
@@ -87,12 +83,19 @@ const Rechart = ({ chartData }) => {
             tickLine={false}
             className={css.x}
           />
+          {/* <YAxis
+              dataKey={false}
+              axisLine={false}
+              tickLine={false}
+              tickCount={9}
+            /> */}
+          ​
           <CartesianGrid vertical={false} opacity={0.3} />
         </BarChart>
       </ResponsiveContainer>
     </div>
   ) : (
-    <div className={css.box_mobile}>
+    <div className={css.box}>
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           layout="vertical"
@@ -105,21 +108,20 @@ const Rechart = ({ chartData }) => {
           }}
         >
           <XAxis type="number" axisLine={false} tickLine={false} />
-          {/* <YAxis dataKey="name" type="category" scale="band" /> */}
-
-          <Bar
-            dataKey="coast"
-            barSize={15}
-            className={css.bar}
-            radius={[0, 10, 10, 0]}
-          >
+          <YAxis dataKey="name" type="category" scale="band" />
+          <Bar dataKey="coast" barSize={15} label="right">
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={index % 2 ? "#ff751d" : "#FFDAC0"}
+              />
+            ))}
             <LabelList
               dataKey="coast"
               position="right"
               className={css.labelList}
             />
           </Bar>
-          <CartesianGrid horizontal={false} vertical={false} opacity={0.3} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>
