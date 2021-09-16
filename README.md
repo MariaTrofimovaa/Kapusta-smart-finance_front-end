@@ -20,6 +20,7 @@
 5. [Ссылка на файл с вопросами](https://docs.google.com/spreadsheets/d/1kg_0MNMUP-IGdMLby_jnW1Tn4eTNzXrATewl0VuCbe0/edit#gid=0)
 6. [Ссылка на Figma](https://www.figma.com/file/IHc8T3LE4yfMVp6c2CL1aP/%D0%A3%D1%87%D0%B5%D1%82-%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2?node-id=0%3A1)
 7. [Ссылка на тех.задание](https://docs.google.com/spreadsheets/d/1VybP9jgmNKSg0PEmBUgU8qNXRrPddxZTC5vzFFCjvQE/edit#gid=0)
+
 ## Файлы и папки:
 
 - Все компоненты должны лежать в папке `client` в соответствующих папках. Здесь должны находиться основные компоненты страницы

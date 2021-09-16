@@ -8,11 +8,12 @@ const UserInfo = () => {
   // const UserNameFirstLetter = UserName.toUpperCase().slice(0, 1);
   // const indexUN = UserName.indexOf("@");
   // const UserNameCut = UserName.slice(0, indexUN);
-
+  // придумать, откуда лучше брать картинку userImage: или из 
   return (
     <>
       <div className={styles.userPage}>
         <div className={styles.userPic}>
+          {/* <img src={userImage} alt="userImg" className={styles.userPic} /> */}
           <p className={styles.userPicLetter}>U</p>
           {/* <p className={s.userPicLetter}>{UserNameFirstLetter}</p> */}
         </div>
