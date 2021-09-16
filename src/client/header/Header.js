@@ -8,6 +8,8 @@ import UserInfo from "./userInfo/UserInfo";
 import UserLogout from "./userLogout/UserLogout";
 
 const Header = () => {
+  // Селекторы авторизации
+  // Селектор модалки
   // const isUserLoggedIn = useSelector((state) => state.isloggedIn);
   // const isModalLogout = useSelector((state) => state.global.isModalLogout);
 
