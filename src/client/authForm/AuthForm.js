@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+
 import { useDispatch } from "react-redux";
-import { auth } from "../../redux/auth/auth.operations";
+import { login, register } from "../../redux/auth/auth.operations";
 import logo from "../../assets/images/logo_google.png";
 ///////////////////////////////Formik, YUP /////////////////////////////////////////////////
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 import css from "./AuthForm.module.css";
-import { Link } from "react-router-dom";
 
 const initialForm = { email: "", password: "" };
 const url =
@@ -48,12 +48,17 @@ export const FormControl = ({ label, ...props }) => {
   );
 };
 
-const AuthForm = () => {
+export default function AuthForm() {
+  const [action, setAction] = useState("");
+  console.log(action);
   const dispatch = useDispatch();
-  const onAuth = (state) => dispatch(auth(state));
 
   const handleSubmit = (values) => {
-    onAuth(values);
+    if (action === "register") {
+      dispatch(register(values));
+    } else if (action === "login") {
+      dispatch(login(values));
+    }
   };
 
   return (
@@ -61,7 +66,7 @@ const AuthForm = () => {
       <Formik
         initialValues={initialForm}
         validationSchema={validationSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={handleSubmit}
       >
         <Form className={css.form} autoComplete="off">
           <p className={css.form_google_paragraph}>
@@ -84,20 +89,25 @@ const AuthForm = () => {
             <FormControl label="Электронная почта*" name="email" type="email" />
             <FormControl label="Пароль*" type="password" name="password" />
             <div className={css.form_buttons}>
-              <button type="submit" className={css.form_button}>
+              <button
+                type="submit"
+                className={css.form_button}
+                onClick={() => setAction("login")}
+              >
                 Войти
               </button>
-              <Link to="/registration" exact>
-                <button type="button" className={css.secondary_form_button}>
-                  Регистрация
-                </button>
-              </Link>
+
+              <button
+                type="submit"
+                className={css.form_button}
+                onClick={() => setAction("register")}
+              >
+                Регистрация
+              </button>
             </div>
           </div>
         </Form>
       </Formik>
     </div>
   );
-};
-
-export default AuthForm;
+}
