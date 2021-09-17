@@ -1,7 +1,8 @@
 import React from "react";
+import Brief from "../../client/brief/Brief";
 import Calendar from "../../client/enterForm/calendar/Calendar";
-import EnterForm from "../../client/enterForm/enterForm/EnterForm"
-import styles from "./HomePage.module.css"
+import EnterForm from "../../client/enterForm/enterForm/EnterForm";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
           </svg> */}
 
         <EnterForm />
+        <Brief />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { Route } from "react-router-dom";
 import NavBar from "../NavBar";
 
 import styles from "./Main.module.css";
-import MainBtns from "../../shared/components/buttons/MainBtns";
+// import MainBtns from "../../shared/components/buttons/MainBtns";
 
 // const RegisterPage = lazy(() =>
 //   import("../../pages/registerPage/RegisterPage")
