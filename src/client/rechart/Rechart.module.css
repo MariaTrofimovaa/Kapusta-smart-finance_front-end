@@ -1,0 +1,52 @@
+.barChart {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  fill: #52555f;
+}
+
+.bar {
+  fill: #ff751d;
+}
+
+.labelList {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  fill: #52555f;
+}
+
+.box {
+  width: 635px;
+  height: 422px;
+  padding: 14px;
+  background: #ffffff;
+
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 30px;
+}
+
+.box_mobile {
+  width: 250px;
+}
+
+@media (min-width: 1024px) {
+  .box {
+    width: 758px;
+    height: 422px;
+    padding-right: 150px;
+    padding-left: 150px;
+  }
+}
