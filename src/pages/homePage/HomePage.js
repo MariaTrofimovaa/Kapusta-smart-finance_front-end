@@ -1,4 +1,5 @@
 import React from "react";
+import Brief from "../../client/brief/Brief";
 import Calendar from "../../client/enterForm/calendar/Calendar";
 import EnterForm from "../../client/enterForm/enterForm/EnterForm";
 import Balance from "../../client/balance/Balance";
@@ -16,7 +17,11 @@ const HomePage = () => {
           </svg> */}
 
         <EnterForm />
+
+        <Brief />
+
         <Balance />
+
       </div>
       <div className="">
         <TableTransactions />

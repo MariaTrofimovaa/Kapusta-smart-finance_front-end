@@ -1,14 +1,11 @@
 import axios from "axios";
 import {
-  // registerRequest,
-  // registerSuccess,
-  // registerError,
-  // loginRequest,
-  // loginSuccess,
-  // loginError,
-  authRequest,
-  authSuccess,
-  authError,
+  registerRequest,
+  registerSuccess,
+  registerError,
+  loginRequest,
+  loginSuccess,
+  loginError,
   logoutRequest,
   logoutSuccess,
   logoutError,
@@ -18,7 +15,7 @@ import {
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "http://localhost:4000/api/v1/";
 
 const token = {
   set(token) {
@@ -29,33 +26,33 @@ const token = {
   },
 };
 
-// const register = (registrationObject) => async (dispatch) => {
-//   dispatch(registerRequest());
-
-//   try {
-//     const { data } = await axios.post("/auth/register", registrationObject);
-//     dispatch(registerSuccess(data));
-//     alertSuccess("Регистрация прошла успешно. Ввойдите в свою учетную запись.");
-//   } catch (error) {
-//     if (error.response?.status === 409) {
-//       alertError("Пользователь с тaкой почтой уже зарегистрирован");
-//     }
-//     dispatch(registerError(error.message));
-//   }
-// };
-
-const auth = (authObject) => async (dispatch) => {
-  dispatch(authRequest());
+const register = (registrationObject) => async (dispatch) => {
+  dispatch(registerRequest());
 
   try {
-    const { data } = await axios.post("/auth/auth", authObject);
-    dispatch(authSuccess(data));
+    const { data } = await axios.post("/auth/signup", registrationObject);
+    dispatch(registerSuccess(data));
+    alertSuccess("Регистрация прошла успешно. Войдите в свою учетную запись.");
+  } catch (error) {
+    if (error.response?.status === 409) {
+      alertError("Пользователь с тaкой почтой уже зарегистрирован");
+    }
+    dispatch(registerError(error.message));
+  }
+};
+
+const login = (loginObject) => async (dispatch) => {
+  dispatch(loginRequest());
+
+  try {
+    const { data } = await axios.post("/auth/signin", loginObject);
+    dispatch(loginSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
     if (error.response?.status === 403) {
       alertError("Неверный логин или пароль");
     }
-    dispatch(authError(error.message));
+    dispatch(loginError(error.message));
   }
 };
 
@@ -96,4 +93,4 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-export { token, auth, logOut, getCurrentUser };
+export { token, login, register, logOut, getCurrentUser };
