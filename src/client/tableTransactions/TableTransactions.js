@@ -10,14 +10,14 @@ const allIncomes = [
     category: "groceries",
     transactionType: "income",
   },
-  {
-    _id: "61426b4a4bba5923045a72cc",
-    date: "15.09.2021",
-    description: "vcvcvcvcv",
-    amount: 100,
-    category: "groceries",
-    transactionType: "income",
-  },
+  // {
+  //   _id: "61426b4a4bba5923045a72cc",
+  //   date: "15.09.2021",
+  //   description: "vcvcvcvcv",
+  //   amount: 100,
+  //   category: "groceries",
+  //   transactionType: "income",
+  // },
   {
     _id: "61426bb94bba5923045a72cf",
     date: "15.09.2021",
