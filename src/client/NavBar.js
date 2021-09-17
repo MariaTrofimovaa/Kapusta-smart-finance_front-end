@@ -7,14 +7,14 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to="/auth" exact>
-            Auth
+            Главная
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/report" exact>
             Report
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
