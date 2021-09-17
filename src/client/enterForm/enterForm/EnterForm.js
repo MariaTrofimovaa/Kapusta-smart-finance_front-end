@@ -1,7 +1,8 @@
+import transactionsOperations from "../../../redux/transactions/transactions.operations";
 import styles from "../enterForm/EnterForm.module.css";
 // import axios from "axios";
 // import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+ import { useDispatch, useSelector } from "react-redux";
 // import { isAuthenticated } from "../../redux/auth/auth.selectors";
 // import { addProduct } from "../../redux/products/products.operations";
 // import { getSelectedDate } from "../../redux/products/products.selectors";
@@ -16,7 +17,7 @@ const EnterForm = () => {
   // const [selected, setSelected] = useState(null);
   // const [foundProducts, setFoundProducts] = useState([]);
 
-  // const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
   // const isWide = useMedia({ minWidth: "768px" });
 
@@ -68,14 +69,29 @@ const EnterForm = () => {
   //   setSelected(null);
   // };
 
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    
+    const transactionData = {
+      date: new  Intl.DateTimeFormat('en-GB').format(new Date()), // пока данные календаря недоступны в редакс сторе - будем ставить текущую дату
+      category: e.target.category.value,
+      description: e.target.description.value,
+      amount: e.target.cost.value,
+      transactionType: "expense"
+    }
+    
+    dispatch(transactionsOperations.addTransactionOperation(transactionData));
+
+  }
+
   return (
     <div>
       {/* <form className={styles.productForm} onSubmit={handleSubmit}> */}
-      <form className={styles.productForm}>
+      <form className={styles.productForm} onSubmit={onFormSubmit}>
         <input
           placeholder="Описание товара"
           type="text"
-          name="searchWord"
+          name="description"
           className={styles.productInput}
           autoComplete="off"
           autoFocus
@@ -103,8 +119,8 @@ const EnterForm = () => {
             ))}
         </ul> */}
 
-        <select name="products" id="products">
-          <option value="" disabled selected>
+        <select name="category" id="products">
+          <option value="" disabled>
             Категория товара
           </option>
           {/* <option value="0" selected="selected">
@@ -126,13 +142,11 @@ const EnterForm = () => {
             className={styles.weightInput}
             placeholder="0.00"
             type="number"
-            name={"weight"}
-            // value={fields.weight}
-            // onChange={handleChange}
+            name="cost"
           />
         </label>
         <button type="submit">Ввод</button>
-        <button type="submit">Очистить</button>
+        <button type="reset">Очистить</button>
       </form>
     </div>
   );
