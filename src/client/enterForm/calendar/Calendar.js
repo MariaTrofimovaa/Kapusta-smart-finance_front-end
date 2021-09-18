@@ -28,7 +28,7 @@ const Calendar = () => {
           onChange={(date) => setStartDate(date)}
         />
       </label>
-      <EnterForm startDate={startDate} />
+      <EnterForm startDate={startDate.toISOString().slice(0, 10)} />
     </div>
   );
 };

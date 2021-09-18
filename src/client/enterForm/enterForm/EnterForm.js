@@ -13,10 +13,10 @@ const EnterForm = ({ startDate }) => {
   // const selectedDate = useSelector(getSelectedDate);
   console.log(startDate);
   const [fields, setFields] = useState({
-    date: "",
     description: "",
     amount: "",
     category: "",
+    transactionType: "",
   });
   const [selected, setSelected] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -30,6 +30,12 @@ const EnterForm = ({ startDate }) => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+
+  // const handleCategoryChange = (event) =>
+  //   setFields((prevState) => ({
+  //     ...prevState,
+  //     [event.target.name]: event.target.value,
+  //   }));
 
   const searchCategories = (event) => {
     // handleChange(event);
@@ -53,7 +59,6 @@ const EnterForm = ({ startDate }) => {
     event.preventDefault();
 
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
     // const date = this.props.selectedDate;
 
     dispatch(
@@ -61,10 +66,11 @@ const EnterForm = ({ startDate }) => {
         startDate,
         fields.description,
         fields.amount,
-        fields.category
+        fields.category,
+        fields.transactionType
       )
     );
-
+    console.log(fields.description);
     // dispatch(getCurrentUser());
 
     // if (!isWide) {
@@ -79,10 +85,9 @@ const EnterForm = ({ startDate }) => {
     <div>
       <form className={styles.productForm} onSubmit={handleSubmit}>
         <input
-          placeholder="Описание расхода"
+          placeholder="Описание товара"
           type="text"
           name="description"
-          a
           className={styles.productInput}
           autoComplete="off"
           autoFocus
@@ -110,9 +115,11 @@ const EnterForm = ({ startDate }) => {
                 key={item._id}
                 onClick={() => {
                   setSelected(item);
-                  setFields({
+                  setFields((prevstate) => ({
+                    ...prevstate,
                     category: item.category,
-                  });
+                    transactionType: item.transactionType,
+                  }));
                   setCategories([]);
                 }}
               >
@@ -120,22 +127,6 @@ const EnterForm = ({ startDate }) => {
               </li>
             ))}
         </ul>
-
-        {/* <select name="products" id="products">
-          <option value="" disabled selected>
-            Категория товара
-          </option>
-          
-          <option value="transportation">Транспорт</option>
-          <option value="groceries">Продукты</option>
-          <option value="fun">Развлечения</option>
-          <option value="home">Все для дома</option>
-          <option value="hifi">Техника</option>
-          <option value="utilities">Коммуналка, связь</option>
-          <option value="sportsHobby">Спорт, хобби</option>
-          <option value="education">Образование</option>
-          <option value="other">Прочее</option>
-        </select> */}
 
         <label className={styles.productLabel}>
           <input
@@ -148,7 +139,18 @@ const EnterForm = ({ startDate }) => {
           />
         </label>
         <button type="submit">Ввод</button>
-        <button type="submit">Очистить</button>
+        <button
+          type="button"
+          onClick={() => {
+            setFields({
+              description: "",
+              amount: "",
+              category: "",
+            });
+          }}
+        >
+          Очистить
+        </button>
       </form>
     </div>
   );
