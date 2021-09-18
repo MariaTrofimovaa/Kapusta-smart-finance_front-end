@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBrief } from "../../redux/transactions/tranzactionsOperations";
 
-import { getBrief } from "../../redux/transactions/tranzactionsSelectors";
+// import fetchBrief from "../../redux/transactions/transactions.operations";
 
+// import getBrief from "../../redux/transactions/transactions.selectors";
+
+// console.log(fetchBrief);
 const Brief = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const transactions = useSelector(getBrief);
+  // const transactions = useSelector(getBrief);
 
-  const sum = transactions.reduce((acc, item) => (acc += item.amount), 0);
+  // const sum = transactions.reduce((acc, item) => (acc += item.amount), 0);
 
   const filter = {
     // type: "income",
@@ -18,9 +20,9 @@ const Brief = () => {
     finishdate: "31.12.2021",
   };
 
-  useEffect(() => {
-    dispatch(fetchBrief(filter));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchBrief(filter));
+  // }, [dispatch]);
 
   const months = [];
   for (let i = 0; i < 6; ++i) {
@@ -33,14 +35,14 @@ const Brief = () => {
     <div>
       <div>Сводка</div>
       <ul>
-        {transactions &&
+        {/* {transactions &&
           transactions.map(({ amount, transactionType, _id }) => (
             <li key={_id}>
               {amount} {transactionType}
             </li>
-          ))}
+          ))} */}
       </ul>
-      {transactions && <span>сумма {sum}</span>}
+      {/* {transactions && <span>сумма {sum}</span>} */}
     </div>
   );
 };
