@@ -6,6 +6,7 @@ import Balance from "../../client/balance/Balance";
 import styles from "./HomePage.module.css";
 import TableTransactions from "../../client/tableTransactions/TableTransactions";
 
+
 const HomePage = () => {
   return (
     <div>
@@ -21,7 +22,6 @@ const HomePage = () => {
         <Brief />
 
         <Balance />
-
       </div>
       <div className="">
         <TableTransactions />
