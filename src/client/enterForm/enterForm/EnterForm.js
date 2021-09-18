@@ -1,91 +1,109 @@
 import styles from "../enterForm/EnterForm.module.css";
-// import axios from "axios";
-// import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 // import { isAuthenticated } from "../../redux/auth/auth.selectors";
-// import { addProduct } from "../../redux/products/products.operations";
+import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
 // import { getSelectedDate } from "../../redux/products/products.selectors";
 // import { getCurrentUser } from "../../redux/auth/auth.operations";
 // import useMedia from "use-media";
 
-const EnterForm = () => {
+const EnterForm = ({ startDate }) => {
   // const token = useSelector(isAuthenticated);
   // const selectedDate = useSelector(getSelectedDate);
+  console.log(startDate);
+  const [fields, setFields] = useState({
+    date: "",
+    description: "",
+    amount: "",
+    category: "",
+  });
+  const [selected, setSelected] = useState(null);
+  const [categories, setCategories] = useState([]);
 
-  // const [fields, setFields] = useState({ searchWord: "", weight: "" });
-  // const [selected, setSelected] = useState(null);
-  // const [foundProducts, setFoundProducts] = useState([]);
-
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const isWide = useMedia({ minWidth: "768px" });
 
-  // const handleChange = (event) =>
-  //   setFields((prevState) => ({
-  //     ...prevState,
-  //     [event.target.name]: event.target.value,
-  //   }));
+  const handleChange = (event) =>
+    setFields((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
 
-  // const searchProducts = (event) => {
-  //   handleChange(event);
-  //   if (event.target.value.length > 0) {
-  //     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  //     axios
-  //       .get(
-  //         `https://slimmom-backend.goit.global/product?search=${event.target.value}`
-  //       )
-  //       .then(({ data }) => {
-  //         setFoundProducts(() => {
-  //           return event.target.value.length > 0 ? data : [];
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         setFoundProducts([]);
-  //         setSelected(null);
-  //       });
-  //   } else {
-  //     setFoundProducts([]);
-  //     setSelected(null);
-  //   }
-  // };
+  const searchCategories = (event) => {
+    // handleChange(event);
+    // if (event.target.value.length > 0) {
+    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios
+      .get(`http://localhost:4000/api/v1/categories/expense-categories`)
+      .then(({ data }) => {
+        console.log(data.data.result);
+        setCategories(() => {
+          return data.data.result;
+        });
+      })
+      .catch((error) => {
+        setCategories([]);
+        setSelected(null);
+      });
+  };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-  //   const date = selectedDate;
+    // const date = this.props.selectedDate;
 
-  //   dispatch(addProduct(...date, selected?._id, fields?.weight));
+    dispatch(
+      addTransaction(
+        startDate,
+        fields.description,
+        fields.amount,
+        fields.category
+      )
+    );
 
-  //   dispatch(getCurrentUser());
+    // dispatch(getCurrentUser());
 
-  //   if (!isWide) {
-  //     closeModal();
-  //   }
-  //   setFields({ searchWord: "", weight: "" });
-  //   setFoundProducts([]);
-  //   setSelected(null);
-  // };
+    // if (!isWide) {
+    //   closeModal();
+    // }
+    setFields({ description: "", amount: "", category: "" });
+    setCategories([]);
+    setSelected(null);
+  };
 
   return (
     <div>
-      {/* <form className={styles.productForm} onSubmit={handleSubmit}> */}
-      <form className={styles.productForm}>
+      <form className={styles.productForm} onSubmit={handleSubmit}>
         <input
-          placeholder="Описание товара"
+          placeholder="Описание расхода"
           type="text"
-          name="searchWord"
+          name="description"
+          a
           className={styles.productInput}
           autoComplete="off"
           autoFocus
-          // value={fields.searchWord}
-          // onChange={searchProducts}
+          value={fields.description}
+          onChange={handleChange}
         />
-        {/* <ul className={styles.productResultList} id="products">
-          {!!foundProducts.length &&
-            !selected &&
-            foundProducts.map((item) => (
+
+        <input
+          placeholder="Категория товара"
+          type="text"
+          name="category"
+          className={styles.productInput}
+          autoComplete="off"
+          autoFocus
+          value={fields.category}
+          onClick={searchCategories}
+        />
+
+        <ul className={styles.productResultList} id="categories">
+          {!!categories.length &&
+            categories.map((item) => (
               <li
                 className={styles.productResultListItem}
                 id={item._id}
@@ -93,23 +111,21 @@ const EnterForm = () => {
                 onClick={() => {
                   setSelected(item);
                   setFields({
-                    searchWord: item.title.ru,
-                    weight: item.weight,
+                    category: item.category,
                   });
+                  setCategories([]);
                 }}
               >
-                {item.title.ru}
+                {item.category}
               </li>
             ))}
-        </ul> */}
+        </ul>
 
-        <select name="products" id="products">
+        {/* <select name="products" id="products">
           <option value="" disabled selected>
             Категория товара
           </option>
-          {/* <option value="0" selected="selected">
-            Категория товара
-          </option> */}
+          
           <option value="transportation">Транспорт</option>
           <option value="groceries">Продукты</option>
           <option value="fun">Развлечения</option>
@@ -119,16 +135,16 @@ const EnterForm = () => {
           <option value="sportsHobby">Спорт, хобби</option>
           <option value="education">Образование</option>
           <option value="other">Прочее</option>
-        </select>
+        </select> */}
 
         <label className={styles.productLabel}>
           <input
             className={styles.weightInput}
             placeholder="0.00"
             type="number"
-            name={"weight"}
-            // value={fields.weight}
-            // onChange={handleChange}
+            name="amount"
+            value={fields.amount}
+            onChange={handleChange}
           />
         </label>
         <button type="submit">Ввод</button>

@@ -1,9 +1,9 @@
 import React from "react";
 import Brief from "../../client/brief/Brief";
 import Calendar from "../../client/enterForm/calendar/Calendar";
-import EnterForm from "../../client/enterForm/enterForm/EnterForm"
-import Balance from "../../client/balance/Balance"
-import styles from "./HomePage.module.css"
+// import EnterForm from "../../client/enterForm/enterForm/EnterForm";
+import Balance from "../../client/balance/Balance";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   return (
@@ -15,12 +15,11 @@ const HomePage = () => {
             <use href="./symbol-defs.svg.svg#calendar"></use>
           </svg> */}
 
-        <EnterForm />
+        {/* <EnterForm /> */}
 
         <Brief />
 
         <Balance />
-
       </div>
     </div>
   );
