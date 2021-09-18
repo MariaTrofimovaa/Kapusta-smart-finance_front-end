@@ -1,4 +1,6 @@
 const getTransactions = (state) => state.transactions;
 
-const selectors = {getTransactions} 
+const getBrief = (state) => state.transactions.brief;
+
+const selectors = { getTransactions, getBrief };
 export default selectors;
