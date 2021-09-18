@@ -4,6 +4,8 @@ import Calendar from "../../client/enterForm/calendar/Calendar";
 import EnterForm from "../../client/enterForm/enterForm/EnterForm";
 import Balance from "../../client/balance/Balance";
 import styles from "./HomePage.module.css";
+import TableTransactions from "../../client/tableTransactions/TableTransactions";
+
 
 const HomePage = () => {
   return (
@@ -20,6 +22,9 @@ const HomePage = () => {
         <Brief />
 
         <Balance />
+      </div>
+      <div className="">
+        <TableTransactions />
       </div>
     </div>
   );
