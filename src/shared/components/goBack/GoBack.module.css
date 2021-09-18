@@ -1,0 +1,36 @@
+  .goBack {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #9b9faa;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
+  .arrowSvg {
+    display: flex;
+    width: 16px;
+    height: 16px;
+  }
+  @media screen and (min-width: 768px) {
+    .userContainer {
+      padding: 0;
+      margin-right: 50px;
+      background-color: transparent;
+    }
+  }
+  @media screen and (min-width: 1280px) {
+    .userContainer {
+      max-height: 100%;
+      background-color: #f0f1f3;
+    }
+    .arrowSvg {
+      display: flex;
+      fill: #b5b5b6;
+      width: 16px;
+      height: 16px;
+    }
+} 
