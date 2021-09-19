@@ -1,4 +1,4 @@
-const getTransactions = (state) => state.transactions;
+const getTransactions = (state) => state.transactions.transactionsReducer;
 
 const getBrief = (state) => state.transactions.brief;
 

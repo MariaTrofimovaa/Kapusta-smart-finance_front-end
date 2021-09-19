@@ -1,8 +1,9 @@
 import axios from "axios";
 import transactionsActions from "./transactions.actions";
 
-const url = "http://localhost:3001/api/v1/transactions";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs';
+const url = "http://localhost:4000/api/v1/transactions";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
 
 axios.default.baseURL = url;
 
@@ -11,7 +12,8 @@ const addTransactionOperation = (transactionData) => (dispatch) => {
 
   dispatch(transactionsActions.addTransactionRequest());
 
-  const addTransactionEndpoint = transactionData.transactionType === 'income' ? 'income' : 'expense';
+  const addTransactionEndpoint =
+    transactionData.transactionType === "income" ? "income" : "expense";
 
   axios
     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
@@ -30,7 +32,7 @@ const addTransactionOperation = (transactionData) => (dispatch) => {
 
 const getTransactionsOperation = (date) => (dispatch) => {
   //const token=store.getState().auth.token;
-  
+
   dispatch(transactionsActions.getTransactionsRequest());
   axios
     .get(`${url}/user`, {
@@ -45,6 +47,17 @@ const getTransactionsOperation = (date) => (dispatch) => {
     .catch((error) => {
       dispatch(transactionsActions.getTranasctionsError(error));
     });
+};
+
+const deleteTransaction = (objId) => (dispatch) => {
+  dispatch(transactionsActions.deleteTransactionRequest());
+
+  axios
+    .delete(`${url}/:${objId}`)
+    .then(() => dispatch(transactionsActions.deleteTransactionSuccess(objId)))
+    .catch((error) =>
+      dispatch(transactionsActions.deleteTransactionError(error.message))
+    );
 };
 
 const fetchBrief =
@@ -74,6 +87,7 @@ const fetchBrief =
 const transactionsOperations = {
   addTransactionOperation,
   getTransactionsOperation,
+  deleteTransaction,
   fetchBrief,
 };
 

@@ -6,6 +6,10 @@ const transactionsReducer = createReducer([], {
   [actions.addTransactionSuccess]: (state, { payload }) => {
     return { ...state, transactions: payload.transactions, date: payload.date };
   },
+  [actions.deleteTransactionSuccess]: (state, { payload }) => {
+    return state.filter(({ _id }) => _id !== payload);
+  },
+
   [actions.getTransactionsSuccess]: (state, { payload }) => {
     return { ...state, transactions: payload.transactions, date: payload.date };
   },

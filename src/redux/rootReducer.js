@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   auth: persistAuthReducer,
   balance: balanceReducer,
   // transactions,
-
+  // selectedDate:
   transactions: transactionsReducer,
 
   // report,
