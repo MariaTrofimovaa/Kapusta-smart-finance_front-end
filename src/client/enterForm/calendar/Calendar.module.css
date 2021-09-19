@@ -5,6 +5,10 @@
   position: relative; */
 }
 
+.box {
+  display: flex;
+}
+
 .datePicker {
   text-align: left;
   border-color: transparent;
