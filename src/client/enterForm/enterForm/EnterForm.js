@@ -1,7 +1,9 @@
+import transactionsOperations from "../../../redux/transactions/transactions.operations";
 import styles from "../enterForm/EnterForm.module.css";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+
 // import { isAuthenticated } from "../../redux/auth/auth.selectors";
 import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
 // import { getSelectedDate } from "../../redux/products/products.selectors";
@@ -81,9 +83,30 @@ const EnterForm = ({ startDate }) => {
     setSelected(null);
   };
 
+  {
+    /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
+  }
+  // const onFormSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const transactionData = {
+  //     date: new  Intl.DateTimeFormat('en-GB').format(new Date()), // пока данные календаря недоступны в редакс сторе - будем ставить текущую дату
+  //     category: e.target.category.value,
+  //     description: e.target.description.value,
+  //     amount: e.target.cost.value,
+  //     transactionType: "expense"
+  //   }
+
+  //   dispatch(transactionsOperations.addTransactionOperation(transactionData));
+
+  // }
+
   return (
     <div>
       <form className={styles.productForm} onSubmit={handleSubmit}>
+        {/* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/}
+        {/* <form className={styles.productForm} onSubmit={onFormSubmit}> */}
+
         <input
           placeholder="Описание товара"
           type="text"

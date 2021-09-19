@@ -15,7 +15,7 @@ import {
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "http://localhost:4000/api/v1/";
 
 const token = {
   set(token) {

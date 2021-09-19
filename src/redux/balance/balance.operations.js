@@ -5,8 +5,6 @@ import {store} from "../store";
 const url = "http://localhost:3001/api/v1";
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs';
 
-
-
 axios.default.baseURL = url;
 
 const setBalanceOperation = (balance) => (dispatch) => {
