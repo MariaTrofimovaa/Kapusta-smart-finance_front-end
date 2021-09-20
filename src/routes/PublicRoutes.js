@@ -1,19 +1,16 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { isAuthenticated } from "../redux/auth/auth.selectors";
+import { getIsAuth } from "../redux/auth/auth.selectors";
 
 const PublicRoute = ({ component: Component, redirectTo, ...routeProps }) => {
-  const isAuth = useSelector(isAuthenticated);
+  const isAuth = useSelector(getIsAuth);
+  console.log("isAuthPublic", isAuth);
   return (
     <Route
       {...routeProps}
       render={(props) =>
-        isAuth && routeProps.restricted ? (
-          <Redirect to="/calculator" />
-        ) : (
-          <Component {...props} />
-        )
+        !isAuth ? <Component {...props} /> : <Redirect to="/homePage" />
       }
     />
   );

@@ -14,14 +14,15 @@ import {
 
 const initialUserState = {
   email: null,
-  username: null,
   id: null,
-  userData: null,
 };
 
 const user = createReducer(initialUserState, {
   [registerSuccess]: (_, { payload }) => payload.user,
-  [loginSuccess]: (_, { payload }) => payload.user,
+  [loginSuccess]: (_, { payload }) => ({
+    email: payload.email,
+    id: payload.id,
+  }),
   [logoutSuccess]: () => initialUserState,
   [getCurrentUserSuccess]: (_, { payload }) => payload,
 });
