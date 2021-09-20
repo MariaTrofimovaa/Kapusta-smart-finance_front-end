@@ -2,11 +2,11 @@ import IconDelete from "../../shared/iconDelete/IconDelete";
 import styles from "./TableTransactions.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import transactions from "../../redux/transactions/transactions.selectors";
+import { getTransactionsSelector } from "../../redux/transactions/transactions.selectors";
 import transactionsOperations from "../../redux/transactions/transactions.operations";
 
 const TableTransactions = () => {
-  const tableTransactions = useSelector(transactions.getTransactions);
+  const tableTransactions = useSelector(getTransactionsSelector);
   const dispatch = useDispatch();
   console.log(tableTransactions);
 

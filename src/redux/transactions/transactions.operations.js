@@ -69,7 +69,7 @@ const addTransaction =
     dispatch(transactionsActions.addTransactionRequest());
 
     axios
-      .post("/", transaction)
+      .post("http://localhost:4000/api/v1/transactions/", transaction)
       .then((response) => {
         dispatch(
           transactionsActions.addTransactionSuccess(

@@ -27,6 +27,27 @@ export const fethcBriefApi = ({ type, year }) => {
 
 // Транзакции
 
+export const addTransactionApi = (
+  startDate,
+  { description, amount, category, transactionType }
+) => {
+  // console.log("ok");
+  const transaction = {
+    startDate,
+    description,
+    amount,
+    category,
+    transactionType,
+  };
+
+  return axios
+    .post("transactions/", transaction)
+    .then(({ data }) => ({ [data]: data.data.addedTransaction }))
+    .catch((error) => {
+      throw error;
+    });
+};
+
 // Баланс
 
-// Отчеты 
+// Отчеты
