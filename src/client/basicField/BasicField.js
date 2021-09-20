@@ -12,8 +12,9 @@ const BasicField = () => {
   const isPageWideLaptop = useMediaQuery("(min-width: 1280px)");
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
+
   const location = useLocation().pathname;
-  console.log(location);
+
   return (
     <>
       {isPageWideLaptop && (

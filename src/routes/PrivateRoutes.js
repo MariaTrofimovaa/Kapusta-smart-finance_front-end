@@ -5,7 +5,7 @@ import { getIsAuth } from "../redux/auth/auth.selectors";
 
 const PrivateRoute = ({ component: Component, redirectTo, ...routeProps }) => {
   const isAuth = useSelector(getIsAuth); // возможно поменяется селектор. Обратить внимание
-  console.log("isAuth", isAuth);
+  // console.log("isAuth", isAuth);
   return (
     <Route
       {...routeProps}

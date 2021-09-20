@@ -1,6 +1,12 @@
 import axios from "axios";
-import { fethcBriefApi } from "../../shared/services/api";
+import {
+  addTransactionApi,
+  deleteTransactionApi,
+  fethcBriefApi,
+} from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
+
+const url = "http://localhost:4000/api/v1/transactions";
 
 // const url = "http://localhost:3001/api/v1/transactions";
 // const token =
@@ -50,9 +56,40 @@ import transactionsActions from "./transactions.actions";
 //     });
 // };
 
+// const addTransaction =
+//   // сделать {}, чтобы не привязываться к последовательности параметров
+//   // ({date, description, amount, category, transactionType})
+//   (date, description, amount, category, transactionType) => (dispatch) => {
+//     const transaction = {
+//       date,
+//       description,
+//       amount,
+//       category,
+//       transactionType,
+//     };
+//     console.log(transaction);
+
+//     dispatch(transactionsActions.addTransactionRequest());
+
+//     axios
+//       .post("http://localhost:4000/api/v1/transactions/", transaction)
+//       .then((response) => {
+//         console.log("response", response);
+//         dispatch(
+//           transactionsActions.addTransactionSuccess(
+//             response.data.data.addedTransaction
+//           )
+//         );
+//       })
+//       .catch((error) =>
+//         dispatch(transactionsActions.addTransactionError(error.message))
+//       );
+//   };
+
 const addTransaction =
   // сделать {}, чтобы не привязываться к последовательности параметров
   // ({date, description, amount, category, transactionType})
+
   (date, description, amount, category, transactionType) => (dispatch) => {
     const transaction = {
       date,
@@ -61,24 +98,34 @@ const addTransaction =
       category,
       transactionType,
     };
+    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 
-    axios
-      .post("/", transaction)
-      .then((response) => {
-        console.log("..........");
-        console.log(response);
-        dispatch(
-          transactionsActions.addTransactionSuccess(
-            response.data.data.addedTransaction
-          )
-        );
+    addTransactionApi(transaction)
+      .then((payload) => {
+        console.log("payload :>> ", payload);
+        dispatch(transactionsActions.addTransactionSuccess(payload));
       })
       .catch((error) =>
         dispatch(transactionsActions.addTransactionError(error.message))
       );
   };
+
+const deleteTransaction = (objId) => (dispatch) => {
+  // console.log('objId :>> ', objId);
+  dispatch(transactionsActions.deleteTransactionRequest());
+
+  // axios
+  //   .delete(`${url}/:${objId}`)
+  deleteTransactionApi(objId)
+    .then(() => {
+      dispatch(transactionsActions.deleteTransactionSuccess(objId));
+    })
+    .catch((error) =>
+      dispatch(transactionsActions.deleteTransactionError(error.message))
+    );
+};
 
 const fetchBrief =
   ({ type, year }) =>
@@ -95,6 +142,7 @@ const fetchBrief =
   };
 
 const transactionsOperations = {
+  deleteTransaction,
   // addBalanceOperation,
   // getBalanceOperation,
   addTransaction,
