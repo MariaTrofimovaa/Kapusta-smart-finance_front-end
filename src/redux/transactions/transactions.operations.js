@@ -1,53 +1,89 @@
 import axios from "axios";
+import { fethcBriefApi } from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
 
 const url = "http://localhost:4000/api/v1/transactions";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
 
-axios.default.baseURL = url;
+// const url = "http://localhost:3001/api/v1/transactions";
+// const token =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
 
-const addTransactionOperation = (transactionData) => (dispatch) => {
-  //const token=store.getState().auth.token;
+// axios.defaults.baseURL = url;
 
-  dispatch(transactionsActions.addTransactionRequest());
+// const addBalanceOperation = (transactionData) => (dispatch) => {
+//   //const token=store.getState().auth.token;
 
-  const addTransactionEndpoint =
-    transactionData.transactionType === "income" ? "income" : "expense";
+//   dispatch(transactionsActions.addBalanceRequest());
 
-  axios
-    .post(`${url}/${addTransactionEndpoint}`, transactionData, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => {
-      dispatch(transactionsActions.addTransactionSuccess(data));
-    })
-    .catch((error) => {
-      dispatch(transactionsActions.addTransactionError(error));
-    });
-};
+//   const addTransactionEndpoint =
+//     transactionData.transactionType === "income" ? "income" : "expense";
 
-const getTransactionsOperation = (date) => (dispatch) => {
-  //const token=store.getState().auth.token;
 
-  dispatch(transactionsActions.getTransactionsRequest());
-  axios
-    .get(`${url}/user`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => {
-      dispatch(transactionsActions.getTransactionsSuccess(data));
-    })
-    .catch((error) => {
-      dispatch(transactionsActions.getTranasctionsError(error));
-    });
-};
+//   axios
+//     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
+//     .then(({ data }) => {
+//       dispatch(transactionsActions.addBalanceSuccess(data));
+//     })
+//     .catch((error) => {
+//       dispatch(transactionsActions.addBalanceError(error));
+//     });
+// };
+
+
+// const getBalanceOperation = (date) => (dispatch) => {
+//   //const token=store.getState().auth.token;
+
+//   dispatch(transactionsActions.getBalanceRequest());
+//   axios
+//     .get(`${url}/user`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
+//     .then(({ data }) => {
+//       dispatch(transactionsActions.getBalanceSuccess(data));
+//     })
+//     .catch((error) => {
+//       dispatch(transactionsActions.getBalanceError(error));
+//     });
+// };
+
+const addTransaction =
+  // сделать {}, чтобы не привязываться к последовательности параметров
+  // ({date, description, amount, category, transactionType})
+  (date, description, amount, category, transactionType) => (dispatch) => {
+    const transaction = {
+      date,
+      description,
+      amount,
+      category,
+      transactionType,
+    };
+
+    dispatch(transactionsActions.addTransactionRequest());
+
+    axios
+      .post("/", transaction)
+      .then((response) => {
+        console.log("..........");
+        console.log(response);
+        dispatch(
+          transactionsActions.addTransactionSuccess(
+            response.data.data.addedTransaction
+          )
+        );
+      })
+      .catch((error) =>
+        dispatch(transactionsActions.addTransactionError(error.message))
+      );
+  };
+
 
 const deleteTransaction = (objId) => (dispatch) => {
   dispatch(transactionsActions.deleteTransactionRequest());
@@ -61,33 +97,25 @@ const deleteTransaction = (objId) => (dispatch) => {
 };
 
 const fetchBrief =
-  ({ type, startdate, finishdate }) =>
-  // (data) =>
+  ({ type, year }) =>
   (dispatch) => {
     dispatch(transactionsActions.fetchBriefRequest());
 
-    return (
-      axios
-        // .get("http://localhost:3000/api/v1/transactions/brief", data)
-        // .get(
-        // `http://localhost:3000/api/v1/transactions/brief/?type=${type}&startdate=${startdate}&finishdate=${finishdate}`
-        //)
-        .get(`http://localhost:3000/api/v1/transactions/brief/?type=${type}`)
-        .then((data) =>
-          dispatch(
-            transactionsActions.fetchBriefSuccess(data.data.data.allIncomes)
-          )
-        )
-        .catch((error) =>
-          dispatch(transactionsActions.fetchBriefError(error.message))
-        )
-    );
+    fethcBriefApi({ type, year })
+      .then((payload) => {
+        dispatch(transactionsActions.fetchBriefSuccess(payload));
+      })
+      .catch((error) =>
+        dispatch(transactionsActions.fetchBriefError(error.message))
+      );
   };
 
 const transactionsOperations = {
-  addTransactionOperation,
-  getTransactionsOperation,
+
   deleteTransaction,
+  // addBalanceOperation,
+  // getBalanceOperation,
+  addTransaction,
   fetchBrief,
 };
 
