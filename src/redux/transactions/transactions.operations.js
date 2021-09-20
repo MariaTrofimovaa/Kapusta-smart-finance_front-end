@@ -1,5 +1,9 @@
 import axios from "axios";
-import { fethcBriefApi } from "../../shared/services/api";
+import {
+  addTransactionApi,
+  deleteTransactionApi,
+  fethcBriefApi,
+} from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
 
 const url = "http://localhost:4000/api/v1/transactions";
@@ -18,7 +22,6 @@ const url = "http://localhost:4000/api/v1/transactions";
 //   const addTransactionEndpoint =
 //     transactionData.transactionType === "income" ? "income" : "expense";
 
-
 //   axios
 //     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
 //       headers: {
@@ -33,7 +36,6 @@ const url = "http://localhost:4000/api/v1/transactions";
 //       dispatch(transactionsActions.addBalanceError(error));
 //     });
 // };
-
 
 // const getBalanceOperation = (date) => (dispatch) => {
 //   //const token=store.getState().auth.token;
@@ -54,9 +56,40 @@ const url = "http://localhost:4000/api/v1/transactions";
 //     });
 // };
 
+// const addTransaction =
+//   // сделать {}, чтобы не привязываться к последовательности параметров
+//   // ({date, description, amount, category, transactionType})
+//   (date, description, amount, category, transactionType) => (dispatch) => {
+//     const transaction = {
+//       date,
+//       description,
+//       amount,
+//       category,
+//       transactionType,
+//     };
+//     console.log(transaction);
+
+//     dispatch(transactionsActions.addTransactionRequest());
+
+//     axios
+//       .post("http://localhost:4000/api/v1/transactions/", transaction)
+//       .then((response) => {
+//         console.log("response", response);
+//         dispatch(
+//           transactionsActions.addTransactionSuccess(
+//             response.data.data.addedTransaction
+//           )
+//         );
+//       })
+//       .catch((error) =>
+//         dispatch(transactionsActions.addTransactionError(error.message))
+//       );
+//   };
+
 const addTransaction =
   // сделать {}, чтобы не привязываться к последовательности параметров
   // ({date, description, amount, category, transactionType})
+
   (date, description, amount, category, transactionType) => (dispatch) => {
     const transaction = {
       date,
@@ -65,30 +98,30 @@ const addTransaction =
       category,
       transactionType,
     };
+    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 
-    axios
-      .post("http://localhost:4000/api/v1/transactions/", transaction)
-      .then((response) => {
-        dispatch(
-          transactionsActions.addTransactionSuccess(
-            response.data.data.addedTransaction
-          )
-        );
+    addTransactionApi(transaction)
+      .then((payload) => {
+        console.log("payload :>> ", payload);
+        dispatch(transactionsActions.addTransactionSuccess(payload));
       })
       .catch((error) =>
         dispatch(transactionsActions.addTransactionError(error.message))
       );
   };
 
-
 const deleteTransaction = (objId) => (dispatch) => {
+  // console.log('objId :>> ', objId);
   dispatch(transactionsActions.deleteTransactionRequest());
 
-  axios
-    .delete(`${url}/:${objId}`)
-    .then(() => dispatch(transactionsActions.deleteTransactionSuccess(objId)))
+  // axios
+  //   .delete(`${url}/:${objId}`)
+  deleteTransactionApi(objId)
+    .then(() => {
+      dispatch(transactionsActions.deleteTransactionSuccess(objId));
+    })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))
     );
@@ -109,7 +142,6 @@ const fetchBrief =
   };
 
 const transactionsOperations = {
-
   deleteTransaction,
   // addBalanceOperation,
   // getBalanceOperation,

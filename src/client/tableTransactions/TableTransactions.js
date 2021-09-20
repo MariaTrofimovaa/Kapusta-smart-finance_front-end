@@ -7,8 +7,9 @@ import transactionsOperations from "../../redux/transactions/transactions.operat
 
 const TableTransactions = () => {
   const tableTransactions = useSelector(getTransactionsSelector);
+
   const dispatch = useDispatch();
-  console.log(tableTransactions);
+  // console.log(tableTransactions);
 
   return (
     <div>
@@ -22,10 +23,8 @@ const TableTransactions = () => {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-
           {tableTransactions && !tableTransactions.length && null}
           {tableTransactions.map((item) => (
-
             <tr key={item._id} className={styles.tableTr}>
               <td className={styles.tableDate}>{item.date}</td>
               <td className={styles.tableDescription}>{item.description}</td>
