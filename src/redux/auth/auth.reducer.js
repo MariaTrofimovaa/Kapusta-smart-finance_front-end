@@ -35,7 +35,7 @@ const todaySummaryInfo = createReducer(null, {
 
 const token = createReducer(null, {
   [registerSuccess]: () => null,
-  [loginSuccess]: (_, { payload }) => payload.accessToken,
+  [loginSuccess]: (_, { payload }) => payload.token,
   [logoutSuccess]: () => null,
 });
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Calendar from "../enterForm/calendar/Calendar";
-import EnterForm from "../enterForm/enterForm/EnterForm";
+// import EnterForm from "../enterForm/enterForm/EnterForm";
 import TableTransactions from "../tableTransactions/TableTransactions";
 import Brief from "../brief/Brief";
 
@@ -35,7 +35,7 @@ const BasicField = () => {
               <div className={styles.dataField}>
                 <div className={styles.dataWrapper}>
                   <Calendar />
-                  <EnterForm />
+                  {/* <EnterForm /> */}
                 </div>
                 <div className={styles.dataWrapper}>
                   <TableTransactions />
@@ -72,7 +72,7 @@ const BasicField = () => {
               </div>
               <div className={styles.dataField}>
                 <Calendar />
-                <EnterForm />
+                {/* <EnterForm /> */}
 
                 <div className={styles.dataWrapper}>
                   <TableTransactions />

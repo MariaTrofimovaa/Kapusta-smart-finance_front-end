@@ -46,7 +46,8 @@ const login = (loginObject) => async (dispatch) => {
 
   try {
     const { data } = await axios.post("/auth/signin", loginObject);
-    dispatch(loginSuccess(data));
+    // console.log(data.data);
+    dispatch(loginSuccess(data.data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
     if (error.response?.status === 403) {

@@ -1,6 +1,9 @@
-const getTransactions = (state) => state.transactions;
+// const getTransactions = (state) => state.transactions;
+
+const getTransactionsSelector = (state) => state.transactions;
 
 const getBrief = (state) => state.transactions.brief;
 
-const selectors = { getTransactions, getBrief };
+const selectors = { getTransactionsSelector, getBrief };
+
 export default selectors;

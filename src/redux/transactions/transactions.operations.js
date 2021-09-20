@@ -1,16 +1,17 @@
 import axios from "axios";
+import { url } from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
 
-const url = "http://localhost:3001/api/v1/transactions";
+// const url = "http://localhost:3001/api/v1/transactions";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
 
-axios.default.baseURL = url;
+axios.defaults.baseURL = url;
 
-const addTransactionOperation = (transactionData) => (dispatch) => {
+const addBalanceOperation = (transactionData) => (dispatch) => {
   //const token=store.getState().auth.token;
 
-  dispatch(transactionsActions.addTransactionRequest());
+  dispatch(transactionsActions.addBalanceRequest());
 
   const addTransactionEndpoint =
     transactionData.transactionType === "income" ? "income" : "expense";
@@ -23,17 +24,17 @@ const addTransactionOperation = (transactionData) => (dispatch) => {
       },
     })
     .then(({ data }) => {
-      dispatch(transactionsActions.addTransactionSuccess(data));
+      dispatch(transactionsActions.addBalanceSuccess(data));
     })
     .catch((error) => {
-      dispatch(transactionsActions.addTransactionError(error));
+      dispatch(transactionsActions.addBalanceError(error));
     });
 };
 
-const getTransactionsOperation = (date) => (dispatch) => {
+const getBalanceOperation = (date) => (dispatch) => {
   //const token=store.getState().auth.token;
 
-  dispatch(transactionsActions.getTransactionsRequest());
+  dispatch(transactionsActions.getBalanceRequest());
   axios
     .get(`${url}/user`, {
       headers: {
@@ -42,12 +43,40 @@ const getTransactionsOperation = (date) => (dispatch) => {
       },
     })
     .then(({ data }) => {
-      dispatch(transactionsActions.getTransactionsSuccess(data));
+      dispatch(transactionsActions.getBalanceSuccess(data));
     })
     .catch((error) => {
-      dispatch(transactionsActions.getTranasctionsError(error));
+      dispatch(transactionsActions.getBalanceError(error));
     });
 };
+
+const addTransaction =
+  (date, description, amount, category, transactionType) => (dispatch) => {
+    const transaction = {
+      date,
+      description,
+      amount,
+      category,
+      transactionType,
+    };
+
+    dispatch(transactionsActions.addTransactionRequest());
+
+    axios
+      .post("/", transaction)
+      .then((response) => {
+        console.log("..........");
+        console.log(response);
+        dispatch(
+          transactionsActions.addTransactionSuccess(
+            response.data.data.addedTransaction
+          )
+        );
+      })
+      .catch((error) =>
+        dispatch(transactionsActions.addTransactionError(error.message))
+      );
+  };
 
 const fetchBrief =
   ({ type, year }) =>
@@ -75,8 +104,9 @@ const fetchBrief =
   };
 
 const transactionsOperations = {
-  addTransactionOperation,
-  getTransactionsOperation,
+  addBalanceOperation,
+  getBalanceOperation,
+  addTransaction,
   fetchBrief,
 };
 

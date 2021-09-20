@@ -5,7 +5,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // import { isAuthenticated } from "../../redux/auth/auth.selectors";
-import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
+// import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
+
+// import { addTransaction } from "../../../redux/transactions/transactions.operations";
+
 // import { getSelectedDate } from "../../redux/products/products.selectors";
 // import { getCurrentUser } from "../../redux/auth/auth.operations";
 // import useMedia from "use-media";
@@ -64,7 +67,7 @@ const EnterForm = ({ startDate }) => {
     // const date = this.props.selectedDate;
 
     dispatch(
-      addTransaction(
+      transactionsOperations.addTransaction(
         startDate,
         fields.description,
         fields.amount,
@@ -97,7 +100,7 @@ const EnterForm = ({ startDate }) => {
   //     transactionType: "expense"
   //   }
 
-  //   dispatch(transactionsOperations.addTransactionOperation(transactionData));
+  //   dispatch(transactionsOperations.addBalanceOperation(transactionData));
 
   // }
 
