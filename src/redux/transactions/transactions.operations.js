@@ -71,8 +71,6 @@ const addTransaction =
     axios
       .post("/", transaction)
       .then((response) => {
-        console.log("..........");
-        console.log(response);
         dispatch(
           transactionsActions.addTransactionSuccess(
             response.data.data.addedTransaction

@@ -1,5 +1,6 @@
 import IconDelete from "../../shared/iconDelete/IconDelete";
 import styles from "./TableTransactions.module.css";
+
 import { useSelector, useDispatch } from "react-redux";
 import transactions from "../../redux/transactions/transactions.selectors";
 import transactionsOperations from "../../redux/transactions/transactions.operations";
@@ -8,6 +9,7 @@ const TableTransactions = () => {
   const tableTransactions = useSelector(transactions.getTransactions);
   const dispatch = useDispatch();
   console.log(tableTransactions);
+
   return (
     <div>
       <table className={styles.table}>
@@ -20,8 +22,10 @@ const TableTransactions = () => {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
+
           {tableTransactions && !tableTransactions.length && null}
           {tableTransactions.map((item) => (
+
             <tr key={item._id} className={styles.tableTr}>
               <td className={styles.tableDate}>{item.date}</td>
               <td className={styles.tableDescription}>{item.description}</td>
