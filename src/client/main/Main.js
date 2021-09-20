@@ -8,6 +8,7 @@ import styles from "./Main.module.css";
 
 import NavBar from "../NavBar"; // раскомментировать при коммите
 import GoBack from "../../shared/components/goBack/GoBack";
+import UserCount1 from "../userCount/UserCount1";
 
 // В этом компоненте стилизованы кнопки
 // import MainBtns from "../../shared/components/buttons/MainBtns";
@@ -18,7 +19,8 @@ const Main = () => {
       <Suspense fallback={<AppLoader />}>
         {/* Навбар и кнопок здесь не будет */}
         <NavBar />
-        <GoBack/>
+        <GoBack />
+        <UserCount1 />
         {/* <MainBtns /> */}
 
         <Switch>

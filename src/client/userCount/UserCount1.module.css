@@ -6,6 +6,10 @@
   padding: 0 15px;
   background-color: #eff1f3;
 }
+button:disabled{
+  opacity: 0.2;
+  cursor: not-allowed;
+}
 .userCount {
   display: flex;
   width: 290px;
