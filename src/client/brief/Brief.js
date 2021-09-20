@@ -1,35 +1,33 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import fetchBrief from "../../redux/transactions/transactions.operations";
+import operation from "../../redux/transactions/transactions.operations";
 
-// import getBrief from "../../redux/transactions/transactions.selectors";
+import selector from "../../redux/transactions/transactions.selectors";
 
-// console.log(fetchBrief);
 const Brief = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const transactions = useSelector(getBrief);
+  // const transactions = useSelector(selector.getBrief);
 
   // const sum = transactions.reduce((acc, item) => (acc += item.amount), 0);
 
   const filter = {
     // type: "income",
     type: "expense",
-    startdate: "01.01.2021",
-    finishdate: "31.12.2021",
+    year: "2021",
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchBrief(filter));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(operation.fetchBrief(filter));
+  }, [dispatch]);
 
-  const months = [];
-  for (let i = 0; i < 6; ++i) {
-    let month = new Date();
-    month.setMonth(month.getMonth() - i);
-    months.push(month.toLocaleDateString("ru", { month: "long" }));
-  }
+  // const months = [];
+  // for (let i = 0; i < 6; ++i) {
+  //   let month = new Date();
+  //   month.setMonth(month.getMonth() - i);
+  //   months.push(month.toLocaleDateString("ru", { month: "long" }));
+  // }
 
   return (
     <div>
