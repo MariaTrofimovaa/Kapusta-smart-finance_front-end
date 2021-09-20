@@ -2,8 +2,8 @@ import axios from "axios";
 import balanceActions from "./balance.actions";
 import {store} from "../store";
 
-const url = "http://localhost:3001/api/v1";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs';
+const url = "http://localhost:4000/api/v1";
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDRkMWY3YTlmMTA0NDNiNmViMjMwYyIsImlhdCI6MTYzMTkwMDE4Mn0.3FZIs9F8G5jgt9Ygme93vlbctkryNpzIGkq7bmxWbrE';
 
 axios.default.baseURL = url;
 
@@ -19,6 +19,7 @@ const setBalanceOperation = (balance) => (dispatch) => {
       },
     })
     .then(({ data }) => {
+      console.log(data.balance);
       dispatch(balanceActions.addBalanceSuccess(data.balance));
     })
     .catch((error) => {
