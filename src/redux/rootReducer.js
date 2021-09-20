@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
   auth: persistAuthReducer,
   balance: balanceReducer,
   transactions,
+
   // report,
 });
 

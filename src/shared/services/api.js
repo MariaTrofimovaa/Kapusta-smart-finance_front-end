@@ -1,1 +1,32 @@
-export const url = "http://localhost:4000/api/v1/transactions";
+import axios from "axios";
+
+const BASE_URL = "http://localhost:4000/api/v1/";
+
+// Этот url использовался в addBalanceOperation в transactions.operations
+// Чей он и где используется? Давайте его удалим. (Маша)
+// export const url = "http://localhost:4000/api/v1/transactions";
+
+axios.defaults.baseURL = BASE_URL;
+
+const setParams = (params) => (axios.defaults.params = params);
+
+// Нужно сюда вынести все запросы по примеру fethcBriefApi
+
+// Авторизация
+
+// Сводка
+export const fethcBriefApi = ({ type, year }) => {
+  setParams({ type, year });
+  return axios
+    .get(`transactions/brief/`)
+    .then(({ data }) => ({ [type]: data.data.allIncomes }))
+    .catch((error) => {
+      throw error;
+    });
+};
+
+// Транзакции
+
+// Баланс
+
+// Отчеты 
