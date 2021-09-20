@@ -2,6 +2,8 @@ import axios from "axios";
 import { fethcBriefApi } from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
 
+const url = "http://localhost:4000/api/v1/transactions";
+
 // const url = "http://localhost:3001/api/v1/transactions";
 // const token =
 //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
@@ -15,6 +17,7 @@ import transactionsActions from "./transactions.actions";
 
 //   const addTransactionEndpoint =
 //     transactionData.transactionType === "income" ? "income" : "expense";
+
 
 //   axios
 //     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
@@ -30,6 +33,7 @@ import transactionsActions from "./transactions.actions";
 //       dispatch(transactionsActions.addBalanceError(error));
 //     });
 // };
+
 
 // const getBalanceOperation = (date) => (dispatch) => {
 //   //const token=store.getState().auth.token;
@@ -80,6 +84,18 @@ const addTransaction =
       );
   };
 
+
+const deleteTransaction = (objId) => (dispatch) => {
+  dispatch(transactionsActions.deleteTransactionRequest());
+
+  axios
+    .delete(`${url}/:${objId}`)
+    .then(() => dispatch(transactionsActions.deleteTransactionSuccess(objId)))
+    .catch((error) =>
+      dispatch(transactionsActions.deleteTransactionError(error.message))
+    );
+};
+
 const fetchBrief =
   ({ type, year }) =>
   (dispatch) => {
@@ -95,6 +111,8 @@ const fetchBrief =
   };
 
 const transactionsOperations = {
+
+  deleteTransaction,
   // addBalanceOperation,
   // getBalanceOperation,
   addTransaction,

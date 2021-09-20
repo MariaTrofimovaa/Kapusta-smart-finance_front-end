@@ -2,6 +2,20 @@ import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import actions from "./transactions.actions";
 
+
+// const transactionsReducer = createReducer([], {
+//   [actions.addTransactionSuccess]: (state, { payload }) => {
+//     return { ...state, transactions: payload.transactions, date: payload.date };
+//   },
+//   [actions.deleteTransactionSuccess]: (state, { payload }) => {
+//     return state.filter(({ _id }) => _id !== payload);
+//   },
+
+//   [actions.getTransactionsSuccess]: (state, { payload }) => {
+//     return { ...state, transactions: payload.transactions, date: payload.date };
+//   },
+// });
+
 // const balanceReducer = createReducer([], {
 //   [actions.addBalanceRequest]: (state, { payload }) => {
 //     return { ...state, transactions: payload.transactions, date: payload.date };
@@ -10,6 +24,7 @@ import actions from "./transactions.actions";
 //     return { ...state, transactions: payload.transactions, date: payload.date };
 //   },
 // });
+
 
 const transactionsReducer = createReducer(
   { transactions: [] },
@@ -29,8 +44,11 @@ const transactionsReducer = createReducer(
         ...state,
         transactions: [...state.transactions, payload],
       };
+      
     },
-
+  [actions.deleteTransactionSuccess]: (state, { payload }) => {
+    return state.filter(({ _id }) => _id !== payload);
+  },
     // [actions.deleteProductSuccess]: (state, { payload }) => ({
     //   ...state,
     //   eatenProducts: state.eatenProducts.filter(
