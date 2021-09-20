@@ -11,11 +11,17 @@ const transactionsReducer = createReducer([], {
   },
 });
 
-const brief = createReducer([], {
-  // [actions.fetchBriefRequest]: () => false,
-  [actions.fetchBriefSuccess]: (_, { payload }) => payload,
-  [actions.fetchBriefError]: () => false,
-});
+const brief = createReducer(
+  {},
+  // { income: [], expence: [] },
+  {
+    // [actions.fetchBriefRequest]: () => false,
+    [actions.fetchBriefSuccess]: (state, { payload }) => payload,
+    // [actions.fetchBriefSuccess]: (state, { payload }) =>
+    //   Object.assign(state, payload),
+    // [actions.fetchBriefError]: () => false,
+  }
+);
 
 export default combineReducers({
   transactionsReducer,
