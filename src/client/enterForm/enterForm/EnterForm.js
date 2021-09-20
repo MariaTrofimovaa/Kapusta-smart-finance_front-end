@@ -2,7 +2,8 @@ import transactionsOperations from "../../../redux/transactions/transactions.ope
 import styles from "../enterForm/EnterForm.module.css";
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthToken } from "../../../redux/auth/auth.selectors";
 
 // import { isAuthenticated } from "../../redux/auth/auth.selectors";
 // import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
@@ -14,7 +15,7 @@ import { useDispatch } from "react-redux";
 // import useMedia from "use-media";
 
 const EnterForm = ({ startDate }) => {
-  // const token = useSelector(isAuthenticated);
+  const token = useSelector(getAuthToken);
   // const selectedDate = useSelector(getSelectedDate);
   console.log(startDate);
   const [fields, setFields] = useState({
@@ -61,9 +62,12 @@ const EnterForm = ({ startDate }) => {
   };
 
   const handleSubmit = (event) => {
+    console.log("handleSubmit");
     event.preventDefault();
 
-    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    console.log(token);
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
     // const date = this.props.selectedDate;
 
     dispatch(

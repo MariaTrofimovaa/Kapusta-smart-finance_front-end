@@ -71,6 +71,8 @@ const allIncomes = [
 // ];
 
 const TableTransactions = () => {
+  // const transactionsForTable = useSelector(getAuthToken);
+
   return (
     <div>
       <table className={styles.table}>
