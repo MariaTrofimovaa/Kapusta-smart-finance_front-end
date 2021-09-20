@@ -1,48 +1,52 @@
 import IconDelete from "../../shared/iconDelete/IconDelete";
 import styles from "./TableTransactions.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactionsSelector } from "../../redux/transactions/transactions.selectors";
+import { useState } from "react";
+import React, { useEffect } from "react";
 
-const allIncomes = [
-  {
-    _id: "61426889e1f44a09b01d6d88",
-    date: "15.09.2021",
-    description: "loo",
-    amount: 100,
-    category: "groceries",
-    transactionType: "income",
-  },
-  // {
-  //   _id: "61426b4a4bba5923045a72cc",
-  //   date: "15.09.2021",
-  //   description: "vcvcvcvcv",
-  //   amount: 100,
-  //   category: "groceries",
-  //   transactionType: "income",
-  // },
-  {
-    _id: "61426bb94bba5923045a72cf",
-    date: "15.09.2021",
-    description: "bounty",
-    amount: 100,
-    category: "groceries",
-    transactionType: "income",
-  },
-  {
-    _id: "61426c104bba5923045a72d2",
-    date: "15.09.2021",
-    description: "mars",
-    amount: 100,
-    category: "groceries",
-    transactionType: "income",
-  },
-  {
-    _id: "61426c570b6acd43b47f5794",
-    date: "15.09.2021",
-    description: "mars",
-    amount: 100,
-    category: "groceries",
-    transactionType: "income",
-  },
-];
+// const allIncomes = [
+//   {
+//     _id: "61426889e1f44a09b01d6d88",
+//     date: "15.09.2021",
+//     description: "loo",
+//     amount: 100,
+//     category: "groceries",
+//     transactionType: "income",
+//   },
+//   // {
+//   //   _id: "61426b4a4bba5923045a72cc",
+//   //   date: "15.09.2021",
+//   //   description: "vcvcvcvcv",
+//   //   amount: 100,
+//   //   category: "groceries",
+//   //   transactionType: "income",
+//   // },
+//   {
+//     _id: "61426bb94bba5923045a72cf",
+//     date: "15.09.2021",
+//     description: "bounty",
+//     amount: 100,
+//     category: "groceries",
+//     transactionType: "income",
+//   },
+//   {
+//     _id: "61426c104bba5923045a72d2",
+//     date: "15.09.2021",
+//     description: "mars",
+//     amount: 100,
+//     category: "groceries",
+//     transactionType: "income",
+//   },
+//   {
+//     _id: "61426c570b6acd43b47f5794",
+//     date: "15.09.2021",
+//     description: "mars",
+//     amount: 100,
+//     category: "groceries",
+//     transactionType: "income",
+//   },
+// ];
 // const allExpenses = [
 //   {
 //     _id: "61426889e1f44a09b01d6d88",
@@ -71,7 +75,8 @@ const allIncomes = [
 // ];
 
 const TableTransactions = () => {
-  // const transactionsForTable = useSelector(getAuthToken);
+  const transactionsForTable = useSelector(getTransactionsSelector);
+  console.log(transactionsForTable);
 
   return (
     <div>
@@ -85,8 +90,8 @@ const TableTransactions = () => {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {allIncomes && !allIncomes.length && null}
-          {allIncomes.map((item) => (
+          {transactionsForTable && !transactionsForTable.length && null}
+          {transactionsForTable.map((item) => (
             <tr key={item._id} className={styles.tableTr}>
               <td className={styles.tableDate}>{item.date}</td>
               <td className={styles.tableDescription}>{item.description}</td>

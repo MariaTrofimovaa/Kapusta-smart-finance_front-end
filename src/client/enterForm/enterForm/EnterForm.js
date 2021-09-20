@@ -5,19 +5,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
 
-// import { isAuthenticated } from "../../redux/auth/auth.selectors";
-// import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
-
-// import { addTransaction } from "../../../redux/transactions/transactions.operations";
-
-// import { getSelectedDate } from "../../redux/products/products.selectors";
-// import { getCurrentUser } from "../../redux/auth/auth.operations";
-// import useMedia from "use-media";
-
 const EnterForm = ({ startDate }) => {
   const token = useSelector(getAuthToken);
-  // const selectedDate = useSelector(getSelectedDate);
-  console.log(startDate);
   const [fields, setFields] = useState({
     description: "",
     amount: "",
@@ -28,8 +17,6 @@ const EnterForm = ({ startDate }) => {
   const [categories, setCategories] = useState([]);
 
   const dispatch = useDispatch();
-
-  // const isWide = useMedia({ minWidth: "768px" });
 
   const handleChange = (event) =>
     setFields((prevState) => ({
@@ -44,7 +31,6 @@ const EnterForm = ({ startDate }) => {
   //   }));
 
   const searchCategories = (event) => {
-    // handleChange(event);
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
@@ -68,8 +54,6 @@ const EnterForm = ({ startDate }) => {
     console.log(token);
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-    // const date = this.props.selectedDate;
-
     dispatch(
       transactionsOperations.addTransaction(
         startDate,
@@ -79,12 +63,7 @@ const EnterForm = ({ startDate }) => {
         fields.transactionType
       )
     );
-    console.log(fields.description);
-    // dispatch(getCurrentUser());
 
-    // if (!isWide) {
-    //   closeModal();
-    // }
     setFields({ description: "", amount: "", category: "" });
     setCategories([]);
     setSelected(null);
