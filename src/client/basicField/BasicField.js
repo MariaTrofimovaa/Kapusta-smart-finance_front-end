@@ -14,9 +14,9 @@ const BasicField = () => {
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
   const [income, setIncome] = useState(false);
-  console.log("isPageWideLaptop", isPageWideLaptop);
-  console.log("isPageWideMobile", isPageWideMobile);
-  console.log("isPageWideTablet", isPageWideTablet);
+  // console.log("isPageWideLaptop", isPageWideLaptop);
+  // console.log("isPageWideMobile", isPageWideMobile);
+  // console.log("isPageWideTablet", isPageWideTablet);
 
   return (
     <>

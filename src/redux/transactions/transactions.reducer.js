@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import actions from "./transactions.actions";
 
-
 // const transactionsReducer = createReducer([], {
 //   [actions.addTransactionSuccess]: (state, { payload }) => {
 //     return { ...state, transactions: payload.transactions, date: payload.date };
@@ -25,50 +24,38 @@ import actions from "./transactions.actions";
 //   },
 // });
 
+const transactionsReducer = createReducer([], {
+  [actions.addTransactionRequest]: (state) => {
+    return state;
+  },
+  [actions.addTransactionSuccess]: (state, { payload }) => {
+    return [...state, payload]
+  },
 
-const transactionsReducer = createReducer(
-  { transactions: [] },
-  {
-    [actions.addTransactionSuccess]: (state, { payload }) => {
-      console.log(payload);
-      // const transactions = [...state.transactions, payload.addedExpense];
-
-      //   if ("newDay" in payload) {
-      //     return {
-      //       ...state,
-      //       id: payload.newDay.id,
-      //       eatenProducts,
-      //     };
-      //   }
-      return {
-        ...state,
-        transactions: [...state.transactions, payload],
-      };
-      
-    },
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
+    // console.log(payload);
+    // console.log(state);
     return state.filter(({ _id }) => _id !== payload);
   },
-    // [actions.deleteProductSuccess]: (state, { payload }) => ({
-    //   ...state,
-    //   eatenProducts: state.eatenProducts.filter(
-    //     (product) => product.id !== payload.eatenProductId
-    //   ),
-    // }),
+  // [actions.deleteProductSuccess]: (state, { payload }) => ({
+  //   ...state,
+  //   eatenProducts: state.eatenProducts.filter(
+  //     (product) => product.id !== payload.eatenProductId
+  //   ),
+  // }),
 
-    // [actions.getDayInfoSuccess]: (state, { payload }) => {
-    //   if (typeof payload.eatenProducts === "undefined") {
-    //     return {...state, eatenProducts: []};
-    //   }
+  // [actions.getDayInfoSuccess]: (state, { payload }) => {
+  //   if (typeof payload.eatenProducts === "undefined") {
+  //     return {...state, eatenProducts: []};
+  //   }
 
-    //   return {
-    //     ...state,
-    //     eatenProducts: payload.eatenProducts,
-    //     id: payload.id,
-    //   };
-    // },
-  }
-);
+  //   return {
+  //     ...state,
+  //     eatenProducts: payload.eatenProducts,
+  //     id: payload.id,
+  //   };
+  // },
+});
 
 const brief = createReducer(
   {},
@@ -84,6 +71,6 @@ const brief = createReducer(
 
 export default combineReducers({
   // balanceReducer,
-  transactionsReducer,
+  list: transactionsReducer,
   brief,
 });

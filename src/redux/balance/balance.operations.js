@@ -11,6 +11,7 @@ const setBalanceOperation = (balance) => (dispatch) => {
   //const token=store.getState().auth.token;
 
   dispatch(balanceActions.addBalanceRequest());
+
   axios
     .patch(`${url}/user`, {balance:balance}, {
       headers: {
@@ -24,6 +25,8 @@ const setBalanceOperation = (balance) => (dispatch) => {
     .catch((error) => {
       dispatch(balanceActions.addBalanceError(error));
     });
+  
+  
 };
 
 const getBalanceOperation = () => (dispatch) => {
