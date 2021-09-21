@@ -30,6 +30,14 @@ const deleteTransactionError = createAction(
   "transactions/deleteTransactionError"
 );
 
+const getExpenseOfDayRequest = createAction(
+  "transactions/getExpenseOfDayRequest"
+);
+const getExpenseOfDaySuccess = createAction(
+  "transactions/getExpenseOfDaySuccess"
+);
+const getExpenseOfDayError = createAction("transactions/getExpenseOfDayError");
+
 const transactionsActions = {
   addBalanceRequest,
   addBalanceSuccess,
@@ -46,5 +54,8 @@ const transactionsActions = {
   deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
+  getExpenseOfDayRequest,
+  getExpenseOfDaySuccess,
+  getExpenseOfDayError,
 };
 export default transactionsActions;
