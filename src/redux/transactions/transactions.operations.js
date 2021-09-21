@@ -97,6 +97,7 @@ const fetchBrief =
   (dispatch) => {
     dispatch(transactionsActions.fetchBriefRequest());
 
+
     fethcBriefApi({ type, year })
       .then((payload) => {
         dispatch(transactionsActions.fetchBriefSuccess(payload));
