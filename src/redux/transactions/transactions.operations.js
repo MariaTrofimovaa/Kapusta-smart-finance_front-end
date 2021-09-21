@@ -1,8 +1,12 @@
-import axios from "axios";
-import { fethcBriefApi } from "../../shared/services/api";
+import {
+  addTransactionApi,
+  deleteTransactionApi,
+  fethcBriefApi,
+} from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
+import axios from "axios";
 
-const url = "http://localhost:4000/api/v1/transactions";
+// const url = "http://localhost:4000/api/v1/transactions";
 
 // const url = "http://localhost:3001/api/v1/transactions";
 // const token =
@@ -18,7 +22,6 @@ const url = "http://localhost:4000/api/v1/transactions";
 //   const addTransactionEndpoint =
 //     transactionData.transactionType === "income" ? "income" : "expense";
 
-
 //   axios
 //     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
 //       headers: {
@@ -33,7 +36,6 @@ const url = "http://localhost:4000/api/v1/transactions";
 //       dispatch(transactionsActions.addBalanceError(error));
 //     });
 // };
-
 
 // const getBalanceOperation = (date) => (dispatch) => {
 //   //const token=store.getState().auth.token;
@@ -55,8 +57,6 @@ const url = "http://localhost:4000/api/v1/transactions";
 // };
 
 const addTransaction =
-  // сделать {}, чтобы не привязываться к последовательности параметров
-  // ({date, description, amount, category, transactionType})
   (date, description, amount, category, transactionType) => (dispatch) => {
     const transaction = {
       date,
@@ -65,56 +65,86 @@ const addTransaction =
       category,
       transactionType,
     };
+    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 
-    axios
-      .post("http://localhost:4000/api/v1/transactions/", transaction)
-      .then((response) => {
-        dispatch(
-          transactionsActions.addTransactionSuccess(
-            response.data.data.addedTransaction
-          )
-        );
+    addTransactionApi(transaction)
+      .then((payload) => {
+        dispatch(transactionsActions.addTransactionSuccess(payload));
       })
       .catch((error) =>
         dispatch(transactionsActions.addTransactionError(error.message))
       );
   };
 
+const expense = "expense";
+
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = "";
+  },
+};
+
+const getAllExpenseOfDate = (date) => async (dispatch, getState) => {
+  dispatch(transactionsActions.getExpenseOfDayRequest());
+  const authToken = getState().auth.token; /// когда будет готов аутх
+  try {
+    token.set(authToken); /// когда будет готов аутх
+    // token.set(
+    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDliYjZjMTliNTkwMjQwNDc2M2JmOSIsImlhdCI6MTYzMjIzNTUxOH0.UNeWBg6A3mxCnwLik1Hv6XACLvlX69UxrneQXQj5foA"
+    // );
+    const { data } = await axios.get(
+      `http://localhost:4000/api/v1/transactions/day/${expense}/${date}`
+    );
+
+    dispatch(transactionsActions.getExpenseOfDaySuccess(data));
+    // alertSuccess("данные report.expense обновились");
+  } catch (error) {
+    // alertError(error.message);
+    dispatch(transactionsActions.getExpenseOfDayError(error));
+  }
+};
 
 const deleteTransaction = (objId) => (dispatch) => {
+  // console.log('objId :>> ', objId);
   dispatch(transactionsActions.deleteTransactionRequest());
 
-  axios
-    .delete(`${url}/:${objId}`)
-    .then(() => dispatch(transactionsActions.deleteTransactionSuccess(objId)))
+  // axios
+  //   .delete(`${url}/:${objId}`)
+  deleteTransactionApi(objId)
+    .then(() => {
+      dispatch(transactionsActions.deleteTransactionSuccess(objId));
+    })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))
     );
 };
 
-const fetchBrief =
-  ({ type, year }) =>
-  (dispatch) => {
-    dispatch(transactionsActions.fetchBriefRequest());
+const fetchBrief = (filter) => (dispatch) => {
+  dispatch(transactionsActions.fetchBriefRequest());
 
-    fethcBriefApi({ type, year })
-      .then((payload) => {
-        dispatch(transactionsActions.fetchBriefSuccess(payload));
-      })
-      .catch((error) =>
-        dispatch(transactionsActions.fetchBriefError(error.message))
-      );
-  };
+
+  fethcBriefApi(filter)
+    .then((payload) => {
+      dispatch(transactionsActions.fetchBriefSuccess(payload));
+    })
+    .catch((error) =>
+      dispatch(transactionsActions.fetchBriefError(error.message))
+    );
+};
+
 
 const transactionsOperations = {
-
   deleteTransaction,
   // addBalanceOperation,
   // getBalanceOperation,
   addTransaction,
   fetchBrief,
+  getAllExpenseOfDate,
 };
 
 export default transactionsOperations;

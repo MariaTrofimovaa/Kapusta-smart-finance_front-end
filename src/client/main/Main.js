@@ -7,16 +7,19 @@ import PublicRoutes from "../../routes/PublicRoutes";
 import styles from "./Main.module.css";
 
 const Main = (props) => {
-  console.log(props);
   return (
     <div className={styles.main}>
       <Suspense fallback={<AppLoader />}>
         <Switch>
           {mainRoutes.map((route) =>
             route.isPrivate ? (
-              <PrivateRoutes {...route} isAuth={props.isAuth} />
+              <PrivateRoutes
+                {...route}
+                isAuth={props.isAuth}
+                key={route.name}
+              />
             ) : (
-              <PublicRoutes {...route} isAuth={props.isAuth} />
+              <PublicRoutes {...route} isAuth={props.isAuth} key={route.name} />
             )
           )}
         </Switch>

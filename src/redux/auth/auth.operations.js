@@ -43,13 +43,14 @@ const register = (registrationObject) => async (dispatch) => {
 
 const login = (loginObject) => async (dispatch, getState) => {
   dispatch(loginRequest());
-  // const authToken = getState().auth.token;
+  const authToken = getState().auth.token;
   try {
-    const { data } = await axios.post("/auth/signin", loginObject);
-    // console.log(data.data);
-    // setToken добавить
-    // token.set(authToken);
-    dispatch(loginSuccess(data.data));
+    const {
+      data: { data },
+    } = await axios.post("/auth/signin", loginObject);
+    token.set(authToken);
+    console.log(authToken);
+    dispatch(loginSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
     if (error.response?.status === 403) {
@@ -58,16 +59,17 @@ const login = (loginObject) => async (dispatch, getState) => {
     dispatch(loginError(error.message));
   }
 };
+const resetParams = () => (axios.defaults.params = {});
 
-const logOut = () => async (dispatch, getState) => {
+const logOut = () => async (dispatch) => {
   dispatch(logoutRequest());
-  const authToken = getState().auth.token;
+
   try {
-    token.set(authToken);
-    const { data } = await axios.post("/auth/logout");
+    resetParams();
+    await axios.get("/auth/logout");
     token.unset();
 
-    dispatch(logoutSuccess(data));
+    dispatch(logoutSuccess());
   } catch (error) {
     dispatch(logoutError(error.message));
   }
@@ -86,7 +88,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(getCurrentUserRequest());
 
   try {
-    const { data } = await axios.get("/user");
+    const { data } = await axios.get("/current");
     dispatch(getCurrentUserSuccess(data));
   } catch (error) {
     if (error.response.status === 401) {

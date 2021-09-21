@@ -1,7 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Calendar from "../enterForm/calendar/Calendar";
-// import EnterForm from "../enterForm/enterForm/EnterForm";
 import TableTransactions from "../tableTransactions/TableTransactions";
 import Brief from "../brief/Brief";
 
@@ -13,86 +12,51 @@ const BasicField = () => {
   const isPageWideLaptop = useMediaQuery("(min-width: 1280px)");
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
-  const [income, setIncome] = useState(false);
-  console.log("isPageWideLaptop", isPageWideLaptop);
-  console.log("isPageWideMobile", isPageWideMobile);
-  console.log("isPageWideTablet", isPageWideTablet);
+
+  const location = useLocation().pathname;
 
   return (
     <>
       {isPageWideLaptop && (
         <div>
-          {!income ? (
-            <>
-              <div className={styles.btnWrapper}>
-                <BasicFieldTab text={"Расход"} active={true} />
-                <BasicFieldTab
-                  text={"Доход"}
-                  active={false}
-                  tabToggle={() => setIncome(!income)}
-                />
-              </div>
-              <div className={styles.dataField}>
-                <div className={styles.dataWrapper}>
-                  <Calendar />
-                  {/* <EnterForm /> */}
-                </div>
-                <div className={styles.dataWrapper}>
-                  <TableTransactions />
-                  <Brief />
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className={styles.btnWrapper}>
-                <BasicFieldTab
-                  text={"Расход"}
-                  active={false}
-                  tabToggle={() => setIncome(!income)}
-                />
-                <BasicFieldTab text={"Доход"} active={true} />
-              </div>
-              <div className={styles.dataField}></div>
-            </>
-          )}
+          <div className={styles.btnWrapper}>
+            <BasicFieldTab text={"Расход"} link={"/expences"} key="Расход" />
+            <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
+          </div>
+          <div className={styles.dataField}>
+            <div className={styles.dataWrapper}>
+              <Calendar currentLocation={location} />
+            </div>
+            <div className={styles.dataWrapper}>
+              <TableTransactions />
+              <Brief />
+            </div>
+          </div>
         </div>
       )}
       {isPageWideTablet && (
         <div>
-          {!income ? (
-            <>
-              <div className={styles.btnWrapper}>
-                <BasicFieldTab text={"Расход"} active={true} />
-                <BasicFieldTab
-                  text={"Доход"}
-                  active={false}
-                  tabToggle={() => setIncome(!income)}
-                />
-              </div>
-              <div className={styles.dataField}>
-                <Calendar />
-                {/* <EnterForm /> */}
-
-                <div className={styles.dataWrapper}>
-                  <TableTransactions />
-                </div>
-              </div>
-              <Brief />
-            </>
-          ) : (
-            <>
-              <div className={styles.btnWrapper}>
-                <BasicFieldTab
-                  text={"Расход"}
-                  active={false}
-                  tabToggle={() => setIncome(!income)}
-                />
-                <BasicFieldTab text={"Доход"} active={true} />
-              </div>
-              <div className={styles.dataField}></div>
-            </>
-          )}
+          <div className={styles.btnWrapper}>
+            <BasicFieldTab
+              text={"Расход"}
+              active={true}
+              link={"/expences"}
+              key="Расход"
+            />
+            <BasicFieldTab
+              text={"Доход"}
+              active={false}
+              link={"/income"}
+              key="Доход"
+            />
+          </div>
+          <div className={styles.dataField}>
+            <Calendar currentLocation={location} />
+            <div className={styles.dataWrapper}>
+              <TableTransactions />
+            </div>
+          </div>
+          <Brief />
         </div>
       )}
     </>

@@ -10,44 +10,76 @@ axios.defaults.baseURL = BASE_URL;
 
 const setParams = (params) => (axios.defaults.params = params);
 
+// const resetParams = () => (axios.defaults.params = {});
+
 // Нужно сюда вынести все запросы по примеру fethcBriefApi
 
-// Авторизация
+// // Регистрация
+// export const registerApi = (registrationObject) => {
+//   return axios
+//     .post("/auth/signup", registrationObject)
+//     .then()
+//     .catch((error) => {
+//       throw error;
+//     });
+// };
 
-// Сводка
-export const fethcBriefApi = ({ type, year }) => {
-  setParams({ type, year });
+// // Логинизация
+// export const logInApi = (loginObject) => {
+//   return axios
+//     .post("/auth/signin", loginObject)
+//     .then()
+//     .catch((error) => {
+//       throw error;
+//     });
+// };
+
+// // Логаут
+// export const logoutApi = () => {
+//   return axios
+//     .post("/auth/logout")
+//     .then()
+//     .catch((error) => {
+//       throw error;
+//     });
+// };
+
+// Сводка - Таня
+export const fethcBriefApi = (filter) => {
+  setParams(filter);
   return axios
     .get(`transactions/brief/`)
-    .then(({ data }) => ({ [type]: data.data.allIncomes }))
+    .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
     .catch((error) => {
       throw error;
     });
 };
 
-// Транзакции
+// Транзакции - добавление - Алена
+export const addTransactionApi = async (transaction) => {
+  const { data } = await axios.post("transactions/", transaction);
+  console.log("data :>> ", data.data.addedTransaction);
+  return data.data.addedTransaction;
+};
 
-export const addTransactionApi = (
-  startDate,
-  { description, amount, category, transactionType }
-) => {
-  // console.log("ok");
-  const transaction = {
-    startDate,
-    description,
-    amount,
-    category,
-    transactionType,
-  };
-
+// Транзакции - удаление - Руслан
+export const deleteTransactionApi = (objId) => {
   return axios
-    .post("transactions/", transaction)
-    .then(({ data }) => ({ [data]: data.data.addedTransaction }))
+    .delete(`transactions/${objId}`)
+    .then()
     .catch((error) => {
       throw error;
     });
 };
 
-// Баланс
+// Баланс - Света
+export const fetchBalanceApi = (balance) => {
+  axios
+    .patch(`/user`, { balance: balance })
+    .then(({ data }) => ({ [data]: data.balance }))
+    .catch((error) => {
+      throw error;
+    });
+};
 
 // Отчеты

@@ -36,7 +36,7 @@ const EnterForm = ({ startDate }) => {
     axios
       .get(`http://localhost:4000/api/v1/categories/expense-categories`)
       .then(({ data }) => {
-        console.log(data.data.result);
+        // console.log(data.data.result);
         setCategories(() => {
           return data.data.result;
         });
@@ -48,11 +48,13 @@ const EnterForm = ({ startDate }) => {
   };
 
   const handleSubmit = (event) => {
-    console.log("handleSubmit");
+    // console.log("handleSubmit");
     event.preventDefault();
 
-    console.log(token);
+    // console.log(token);
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    // dispatch(transactionsOperations.addTransaction(startDate, fields));
 
     dispatch(
       transactionsOperations.addTransaction(
@@ -69,9 +71,9 @@ const EnterForm = ({ startDate }) => {
     setSelected(null);
   };
 
-  {
+  
     /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
-  }
+  
   // const onFormSubmit = (e) => {
   //   e.preventDefault();
 
