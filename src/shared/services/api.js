@@ -10,6 +10,8 @@ axios.defaults.baseURL = BASE_URL;
 
 const setParams = (params) => (axios.defaults.params = params);
 
+// const resetParams = () => (axios.defaults.params = {});
+
 // Нужно сюда вынести все запросы по примеру fethcBriefApi
 
 // // Регистрация
