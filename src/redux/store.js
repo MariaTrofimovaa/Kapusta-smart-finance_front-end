@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-// import { configureStore } from "@reduxjs/toolkit";
+
 import {
   FLUSH,
   REHYDRATE,
@@ -8,6 +8,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+
 import persistStore from "redux-persist/es/persistStore";
 import rootReducer from "./rootReducer";
 

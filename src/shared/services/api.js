@@ -10,6 +10,8 @@ axios.defaults.baseURL = BASE_URL;
 
 const setParams = (params) => (axios.defaults.params = params);
 
+// const resetParams = () => (axios.defaults.params = {});
+
 // Нужно сюда вынести все запросы по примеру fethcBriefApi
 
 // // Регистрация
@@ -43,11 +45,11 @@ const setParams = (params) => (axios.defaults.params = params);
 // };
 
 // Сводка - Таня
-export const fethcBriefApi = ({ type, year }) => {
-  setParams({ type, year });
+export const fethcBriefApi = (filter) => {
+  setParams(filter);
   return axios
     .get(`transactions/brief/`)
-    .then(({ data }) => ({ [type]: data.data.allIncomes }))
+    .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
     .catch((error) => {
       throw error;
     });
@@ -56,7 +58,7 @@ export const fethcBriefApi = ({ type, year }) => {
 // Транзакции - добавление - Алена
 export const addTransactionApi = async (transaction) => {
   const { data } = await axios.post("transactions/", transaction);
-  // console.log("data :>> ", data.data.addedTransaction);
+  console.log("data :>> ", data.data.addedTransaction);
   return data.data.addedTransaction;
 };
 

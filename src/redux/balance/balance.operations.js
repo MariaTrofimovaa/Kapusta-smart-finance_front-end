@@ -1,16 +1,15 @@
 import axios from "axios";
 import balanceActions from "./balance.actions";
-// import {store} from "../store";
+import {store} from "../store";
 
 const url = "http://localhost:4000/api/v1";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDRkMWY3YTlmMTA0NDNiNmViMjMwYyIsImlhdCI6MTYzMTkwMDE4Mn0.3FZIs9F8G5jgt9Ygme93vlbctkryNpzIGkq7bmxWbrE';
 
 axios.default.baseURL = url;
 
 const setBalanceOperation = (balance) => (dispatch) => {
-  //const token=store.getState().auth.token;
+  const token=store.getState().auth.token;
 
-  dispatch(balanceActions.addBalanceRequest());
+  dispatch(balanceActions.setBalanceRequest());
 
   axios
     .patch(`${url}/user`, {balance:balance}, {
@@ -20,18 +19,17 @@ const setBalanceOperation = (balance) => (dispatch) => {
       },
     })
     .then(({ data }) => {
-      console.log(data.balance);
-      dispatch(balanceActions.addBalanceSuccess(data.balance));
+       dispatch(balanceActions.setBalanceSuccess(data.balance));
     })
     .catch((error) => {
-      dispatch(balanceActions.addBalanceError(error));
+      dispatch(balanceActions.setBalanceError(error));
     });
   
   
 };
 
 const getBalanceOperation = () => (dispatch) => {
-  //const token=store.getState().auth.token;
+  const token=store.getState().auth.token;
   
   dispatch(balanceActions.getBalanceRequest());
   axios

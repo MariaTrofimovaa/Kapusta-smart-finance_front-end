@@ -124,19 +124,19 @@ const deleteTransaction = (objId) => (dispatch) => {
     );
 };
 
-const fetchBrief =
-  ({ type, year }) =>
-  (dispatch) => {
-    dispatch(transactionsActions.fetchBriefRequest());
+const fetchBrief = (filter) => (dispatch) => {
+  dispatch(transactionsActions.fetchBriefRequest());
 
-    fethcBriefApi({ type, year })
-      .then((payload) => {
-        dispatch(transactionsActions.fetchBriefSuccess(payload));
-      })
-      .catch((error) =>
-        dispatch(transactionsActions.fetchBriefError(error.message))
-      );
-  };
+
+  fethcBriefApi(filter)
+    .then((payload) => {
+      dispatch(transactionsActions.fetchBriefSuccess(payload));
+    })
+    .catch((error) =>
+      dispatch(transactionsActions.fetchBriefError(error.message))
+    );
+};
+
 
 const transactionsOperations = {
   deleteTransaction,

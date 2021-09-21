@@ -29,17 +29,14 @@ function Balance() {
     const newBalance = e.target.balance.value.split(" ")[0]; // отрежем UAH и вообще все что после первого пробела. валидация в принципе не нужна, т.к. в onBalanceInputChange мы убеждаемся, что значение баланса всегда будет "цифра UAH"
     dispatch(balanceOperations.setBalanceOperation(newBalance));
   };
-
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
-        {/* Переместила reportsLink (Маша) */}
         <div>
           <Link to="/report" className={styles.reportsLink}>
             Перейти к отчетам
           </Link>
         </div>
-
         <form className={styles.balanceContainer} onSubmit={updateBalance}>
           <p className={styles.balanceName}>Баланс:</p>
           <div className={styles.inputButtonContainer}>
@@ -54,7 +51,7 @@ function Balance() {
                 type="text"
                 defaultValue={
                   parseFloat(
-                    balanceFromStore && typeof balanceFromStore === "Number"
+                    balanceFromStore && typeof balanceFromStore === "number"
                       ? balanceFromStore
                       : 0
                   ).toFixed(2) + " UAH"
@@ -70,7 +67,6 @@ function Balance() {
         </form>
       </div>
     </div>
-    // </div>
   );
 }
 
