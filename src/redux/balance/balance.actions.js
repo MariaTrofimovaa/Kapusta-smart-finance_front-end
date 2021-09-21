@@ -1,17 +1,17 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const addBalanceRequest = createAction("costs/addBalanceRequest");
-const addBalanceSuccess = createAction("costs/addBalanceSuccess");
-const addBalanceError = createAction("costs/addBalanceError");
+const setBalanceRequest = createAction("balance/setBalanceRequest");
+const setBalanceSuccess = createAction("balance/setBalanceSuccess");
+const setBalanceError = createAction("balance/setBalanceError");
 
-const getBalanceRequest = createAction("costs/getBalanceRequest");
-const getBalanceSuccess = createAction("costs/getBalanceSuccess");
-const getBalanceError = createAction("costs/getBalanceError");
+const getBalanceRequest = createAction("balance/getBalanceRequest");
+const getBalanceSuccess = createAction("balance/getBalanceSuccess");
+const getBalanceError = createAction("balance/getBalanceError");
 
 const balanceActions = {
-  addBalanceRequest,
-  addBalanceSuccess,
-  addBalanceError,
+  setBalanceRequest,
+  setBalanceSuccess,
+  setBalanceError,
   getBalanceRequest,
   getBalanceSuccess,
   getBalanceError,
