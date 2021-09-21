@@ -5,7 +5,7 @@ import styles from "./Brief.module.css";
 
 import operation from "../../redux/transactions/transactions.operations";
 
-// import selector from "../../redux/transactions/transactions.selectors";
+import { getBrief } from "../../redux/transactions/transactions.selectors";
 
 const Brief = () => {
   const date = new Date();
@@ -25,7 +25,7 @@ const Brief = () => {
 
   const dispatch = useDispatch();
 
-  const transactions = useSelector(selector.getBrief)[filter.type];
+  const transactions = useSelector(getBrief)[filter.type];
 
   useEffect(() => {
     dispatch(operation.fetchBrief(filter));
