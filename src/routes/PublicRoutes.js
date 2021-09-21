@@ -10,7 +10,7 @@ const PublicRoute = ({ component: Component, redirectTo, ...routeProps }) => {
     <Route
       {...routeProps}
       render={(props) =>
-        !isAuth ? <Component {...props} /> : <Redirect to="/homePage" />
+        !isAuth ? <Component {...props} /> : <Redirect to="/expences" />
       }
     />
   );

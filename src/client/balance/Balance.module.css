@@ -1,3 +1,24 @@
+
+.reportsLink {
+  display: flex;
+  align-items: flex-end;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: right;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+  margin: 0;
+}
+.reportsLink::after {
+  content: "";
+  background-image: url(../../assets/icons/bar-chart.svg);
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+}
+
 .container { 
     position: relative; 
     width: 320px; 
@@ -149,3 +170,4 @@
       margin-right: 205px; 
     } 
   }
+

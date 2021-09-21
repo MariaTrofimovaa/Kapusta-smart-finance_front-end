@@ -1,30 +1,25 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
+
 import styles from "./BasicFieldTab.module.css";
 
-const BasicFieldTab = ({ text, active, tabToggle }) => {
+const BasicFieldTab = ({ text, link }) => {
+  // const activeLin = { ...styles.link, ...styles.activeLink };
+  const currentLocation = useLocation();
+  // console.log("CheckLocation", currentLocation);
+  const activeCheck = link === currentLocation.pathname;
   return (
     <>
-      {active ? (
-        <button className={styles.activeBtn} type="button">
+      {activeCheck ? (
+        <Link to={link} className={styles.activeLink}>
           {text}
-        </button>
+        </Link>
       ) : (
-        <button
-          className={styles.notActiveBtn}
-          type="button"
-          onClick={() => tabToggle()}
-        >
+        <Link to={link} className={styles.notActiveLink}>
           {text}
-        </button>
+        </Link>
       )}
     </>
-    //   className={styles.linkActive}
-    //   href="https://html5book.ru/css-shrifty/#about-color"
-    // >
-    //   <div className={styles.linksWrapperActive}>
-    //     <p>{text}</p>
-    //   </div>
-    // </т>
   );
 };
 
