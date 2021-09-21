@@ -41,11 +41,16 @@ const register = (registrationObject) => async (dispatch) => {
   }
 };
 
-const login = (loginObject) => async (dispatch) => {
+const login = (loginObject) => async (dispatch, getState) => {
   dispatch(loginRequest());
-
+  // const authToken = getState().auth.token;
   try {
-    const { data } = await axios.post("/auth/signin", loginObject);
+    const {
+      data: { data },
+    } = await axios.post("/auth/signin", loginObject);
+    // console.log(data.data);
+    // setToken добавить
+    // token.set(authToken);
     dispatch(loginSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {

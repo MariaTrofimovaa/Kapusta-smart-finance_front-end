@@ -1,3 +1,3 @@
-const getTransactionsSelector = (state) => state.transactions;
+// const getTransactionsSelector = (state) => state.transactions;
 
-export { getTransactionsSelector };
+// export { getTransactionsSelector };

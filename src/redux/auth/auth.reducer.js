@@ -14,14 +14,15 @@ import {
 
 const initialUserState = {
   email: null,
-  username: null,
   id: null,
-  userData: null,
 };
 
 const user = createReducer(initialUserState, {
   [registerSuccess]: (_, { payload }) => payload.user,
-  [loginSuccess]: (_, { payload }) => payload.user,
+  [loginSuccess]: (_, { payload }) => ({
+    email: payload.email,
+    id: payload.id,
+  }),
   [logoutSuccess]: () => initialUserState,
   [getCurrentUserSuccess]: (_, { payload }) => payload,
 });
@@ -35,7 +36,7 @@ const todaySummaryInfo = createReducer(null, {
 
 const token = createReducer(null, {
   [registerSuccess]: () => null,
-  [loginSuccess]: (_, { payload }) => payload.accessToken,
+  [loginSuccess]: (_, { payload }) => payload.token,
   [logoutSuccess]: () => null,
 });
 

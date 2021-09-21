@@ -6,11 +6,11 @@ import { authReducer } from "./auth/auth.reducer";
 import balanceReducer from "./balance/balance.reducers";
 import reportReducer from "./report/report.reducer";
 
-// ================ !!!!!!! Проверить что чье. Строка ниже вроде Алены
+// ================ Все вынесли в transactions
 // import { transactionsReducer } from "./transactions/tranzactions.reducer";
 
 // ================ !!!!!!! Проверить что чье. Строка ниже вроде не Алены
-// import transactionsReducer from "./transactions/transactions.reducer";
+import transactions from "./transactions/transactions.reducer";
 
 const persistConfig = {
   key: "auth",
@@ -24,15 +24,7 @@ const rootReducer = combineReducers({
   auth: persistAuthReducer,
   balance: balanceReducer,
   report: reportReducer,
-
-  // ================ !!!!!!! Проверить что чье. Строка ниже вроде Алены
-  // transactions: transactionsReducer,
-
-  // ================ !!!!!!! Проверить что чье. Строка ниже вроде не Алены
-
-  // transactions: transactionsReducer,
-
-  // report,
+  transactions,
 });
 
 export default rootReducer;

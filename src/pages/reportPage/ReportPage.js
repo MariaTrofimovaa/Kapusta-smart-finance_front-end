@@ -5,9 +5,8 @@ import Rechart from "../../client/rechart/Rechart";
 const ReportPage = () => {
   return (
     <div>
-      <h2>ReportPage</h2>
       <CategoriesList />
-      {/* <Rechart/> */}
+      <Rechart/>
     </div>
   );
 };

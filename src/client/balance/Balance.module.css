@@ -1,0 +1,173 @@
+
+.reportsLink {
+  display: flex;
+  align-items: flex-end;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: right;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+  margin: 0;
+}
+.reportsLink::after {
+  content: "";
+  background-image: url(../../assets/icons/bar-chart.svg);
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+}
+
+.container { 
+    position: relative; 
+    width: 320px; 
+    margin: 0 auto; 
+    padding-top: 35px; 
+    padding-left: 19px; 
+    padding-right: 19px; 
+    text-align: center; 
+  } 
+  .formContainer { 
+    margin: 0 auto; 
+  } 
+   
+  .inputButtonContainer { 
+    display: flex; 
+    position: relative;
+  } 
+   
+  .balanceName { 
+    margin: auto; 
+    margin-bottom: 6px; 
+    font-family: Roboto; 
+    font-style: normal; 
+    font-weight: 500; 
+    font-size: 12px; 
+    line-height: 1.16; 
+    align-items: center; 
+    text-align: center; 
+    letter-spacing: 0.02em; 
+    color: rgba(82, 85, 95, 0.7); 
+  } 
+  .inputField { 
+    width: 125px; 
+    height: 44px; 
+    padding: 0px 17px 0px 0px;
+    font-family: Roboto; 
+    font-style: normal; 
+    font-weight: bold; 
+    font-size: 12px; 
+    line-height: 1.16; 
+    align-items: center; 
+    text-align: right; 
+    letter-spacing: 0.02em; 
+    text-transform: uppercase; 
+   
+    border: 2px solid var(--white-color); 
+    border-radius: 22px 0 0 22px; 
+    color: var(--title-color-text); 
+    background-color: transparent; 
+    cursor: pointer; 
+    outline: none; 
+  } 
+  .inputField::before { 
+    margin: 0;
+  } 
+  .inputField::placeholder { 
+    color: var(--title-color-text); 
+  } 
+  .submitBtn { 
+    width: 125px; 
+    height: 44px; 
+   
+    font-family: Roboto; 
+    font-style: normal; 
+    font-weight: normal; 
+    font-size: 12px; 
+    align-items: center; 
+    letter-spacing: 0.02em; 
+    text-transform: uppercase; 
+   
+    border: 2px solid var(--white-color); 
+    box-sizing: border-box; 
+    border-radius: 0px 22px 22px 0px; 
+    color: rgba(82, 85, 95, 0.7); 
+    background-color: transparent; 
+    cursor: pointer; 
+    outline: none; 
+  } 
+   
+  .submitBtn:hover { 
+    color: var(--white-color); 
+    background-color: var(--accent-color-orange); 
+  } 
+   
+  @media screen and (max-width: 767px) { 
+    .container { 
+      position: static; 
+    } 
+   
+    .formContainer { 
+      width: 282px; 
+      margin: 0 auto; 
+    } 
+   
+    .balanceContainer { 
+      padding-top: 35px; 
+    } 
+   
+    .inputField { 
+      border-right: 0; 
+    } 
+  } 
+   
+  @media screen and (min-width: 768px) { 
+    .container { 
+      top: 60px; 
+      width: 768px; 
+      margin: 0 auto; 
+      padding: 40px 20px 58px 20px; 
+    } 
+    .formContainer { 
+      display: flex; 
+      flex-direction: row-reverse; 
+      align-items: baseline; 
+      width: 634px; 
+      margin: 0 auto; 
+    } 
+    .balanceContainer { 
+      display: flex; 
+      align-items: center; 
+    } 
+    .balanceName { 
+      margin: auto; 
+      margin-right: 21px; 
+    } 
+    .inputField { 
+      margin-right: 15px; 
+      border-radius: 16px; 
+    } 
+    .submitBtn { 
+      margin-right: 111px; 
+      border-radius: 16px; 
+    } 
+  } 
+  @media screen and (min-width: 1280px) { 
+    .container { 
+      width: 1280px; 
+      /* padding-left: 375px; */ 
+      margin: 0; 
+    } 
+    .formContainer { 
+      display: flex; 
+      align-items: baseline; 
+      flex-direction: row-reverse; 
+      width: 700px; 
+      margin: 0 auto; 
+    } 
+    .submitBtn { 
+      margin-right: 205px; 
+    } 
+  }
+
