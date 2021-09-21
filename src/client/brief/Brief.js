@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import styles from "./Brief.module.css";
-
 
 import operation from "../../redux/transactions/transactions.operations";
 
 import { getBrief } from "../../redux/transactions/transactions.selectors";
+import { getUserID } from "../../redux/auth/auth.selectors";
 
 const Brief = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   const date = new Date();
   const [currentDate, setYear] = useState({
     year: date.getFullYear(),
@@ -16,14 +20,16 @@ const Brief = () => {
 
   const [monthsTotal, setMonthes] = useState([]);
 
-  console.log(monthsTotal);
-  const filter = {
-    type: "income",
-    // type: "expense",
-    year: currentDate.year,
-  };
+  // const userID = useSelector(getUserID);
+  const user = "6144ddead400134d14916c99";
+  // const userID = "6145de27811e86286c2dfbed";
 
-  const dispatch = useDispatch();
+  const filter = {
+    // type: "income",
+    type: "expense",
+    year: currentDate.year,
+    user,
+  };
 
   const transactions = useSelector(getBrief)[filter.type];
 
@@ -54,7 +60,6 @@ const Brief = () => {
     });
 
     setMonthes(monthesSum);
-    // console.log(months);
   }, [transactions]);
 
   // const changeYear = () => {};

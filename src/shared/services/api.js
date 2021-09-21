@@ -43,11 +43,11 @@ const setParams = (params) => (axios.defaults.params = params);
 // };
 
 // Сводка - Таня
-export const fethcBriefApi = ({ type, year }) => {
-  setParams({ type, year });
+export const fethcBriefApi = (filter) => {
+  setParams(filter);
   return axios
     .get(`transactions/brief/`)
-    .then(({ data }) => ({ [type]: data.data.allIncomes }))
+    .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
     .catch((error) => {
       throw error;
     });
