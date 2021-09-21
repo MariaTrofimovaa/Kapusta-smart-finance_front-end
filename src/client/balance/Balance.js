@@ -14,7 +14,8 @@ function Balance() {
 
   const onBalanceInputChange = (e) => {
     let inputValue = e.target.value;
-    e.target.value = inputValue.replace(/[^\d.-]/g, "") + " UAH"; // при редактировании баланса мы убираем все введенные нецифровые символы и добавляем UAH
+
+    e.target.value = inputValue.replace(/[^\d.-]/g, '').replace(/^0+(?!$)/g, '') + " UAH"; // при редактировании баланса мы убираем все введенные нецифровые символы и добавляем UAH 
   };
 
   useEffect(() => {
@@ -29,37 +30,41 @@ function Balance() {
   };
 
   return (
-    <div className="container">
-      <div className={styles.container}>
-        {!balanceFromStore && balanceFromStore !== 0 ? <Tooltip /> : ""}
-        <div className={styles.tabletBox}>
-          <form className={styles.balanceBox} onSubmit={updateBalance}>
-            <p className={styles.balance}>Баланс:</p>
-            <div
-              key={
-                balanceFromStore /*это небольшой трюк, чтобы поле баланс обновлялось после изменения balanceFromStore несмотря на то, что оно uncontrollable*/
-              }
-            >
-              <input
-                className={styles.moneyInput}
-                name="balance"
-                type="text"
-                defaultValue={parseFloat(balanceFromStore).toFixed(2) + " UAH"}
-                onChange={onBalanceInputChange}
-              />
-            </div>
-            <button type="submit" className={styles.confirmBtn}>
-              Подтвердить
-            </button>
-          </form>
-        </div>
+
+<div className={styles.container}> 
+
+      <div className={styles.formContainer}> 
+        <form className={styles.balanceContainer} onSubmit={updateBalance}> 
+          <p className={styles.balanceName}>Баланс:</p> 
+          <div className={styles.inputButtonContainer}> 
+            <div 
+              key={ 
+                balanceFromStore /*это небольшой трюк, чтобы поле баланс обновлялось после изменения balanceFromStore несмотря на то, что оно uncontrollable*/ 
+              } 
+            > 
+              <input 
+                className={styles.inputField} 
+                name="balance" 
+                type="text" 
+                defaultValue={parseFloat( (balanceFromStore && typeof balanceFromStore === 'Number') ? balanceFromStore : 0).toFixed(2) + ' UAH'} 
+                onChange={onBalanceInputChange} 
+              /> 
+              {!balanceFromStore && balanceFromStore !== 0 ? <Tooltip /> : ''} 
+            </div> 
+            <button type="submit" className={styles.submitBtn}> 
+              Подтвердить 
+            </button> 
+          </div> 
+        </form> 
+      </div> 
         <div>
           <Link to="/report" className={styles.reportsLink}>
             Перейти к отчетам
           </Link>
         </div>
-      </div>
-    </div>
+    </div> 
+    // </div> 
+
   );
 }
 
