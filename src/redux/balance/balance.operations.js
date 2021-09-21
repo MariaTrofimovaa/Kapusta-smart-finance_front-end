@@ -1,6 +1,6 @@
 import axios from "axios";
 import balanceActions from "./balance.actions";
-// import {store} from "../store";
+import {store} from "../store";
 
 const url = "http://localhost:4000/api/v1";
 

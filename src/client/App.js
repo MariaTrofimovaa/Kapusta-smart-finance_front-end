@@ -2,7 +2,7 @@
 
 import Header from "./header/Header";
 import Main from "./main/Main";
-import styles from "./App.module.css";
+import styles from "../stylesheet/main.scss";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

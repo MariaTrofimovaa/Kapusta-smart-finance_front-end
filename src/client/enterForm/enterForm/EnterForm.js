@@ -71,9 +71,9 @@ const EnterForm = ({ startDate }) => {
     setSelected(null);
   };
 
-  {
+  
     /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
-  }
+  
   // const onFormSubmit = (e) => {
   //   e.preventDefault();
 
