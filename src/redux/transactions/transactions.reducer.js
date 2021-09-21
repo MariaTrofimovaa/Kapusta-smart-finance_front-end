@@ -53,13 +53,14 @@ const transactionsReducer = createReducer(
 );
 
 const brief = createReducer(
-  {},
-  // { income: [], expence: [] },
+  { income: [], expense: [] },
   {
     // [actions.fetchBriefRequest]: () => false,
-    [actions.fetchBriefSuccess]: (state, { payload }) => payload,
-    // [actions.fetchBriefSuccess]: (state, { payload }) =>
-    //   Object.assign(state, payload),
+    [actions.fetchBriefSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload,
+    }),
+
     // [actions.fetchBriefError]: () => false,
   }
 );

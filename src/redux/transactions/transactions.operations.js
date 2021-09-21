@@ -94,8 +94,6 @@ const fetchBrief =
       )
       .then(({ data }) => {
         const payload = { [type]: data.data.allIncomes };
-        const qqq = type;
-        console.log(payload);
         dispatch(transactionsActions.fetchBriefSuccess(payload));
       })
       .catch((error) =>
