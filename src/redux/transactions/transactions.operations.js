@@ -1,54 +1,59 @@
-import axios from "axios";
-import { url } from "../../shared/services/api";
+import {
+  addTransactionApi,
+  deleteTransactionApi,
+  fethcBriefApi,
+} from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
 
+// const url = "http://localhost:4000/api/v1/transactions";
+
 // const url = "http://localhost:3001/api/v1/transactions";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
+// const token =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
 
-axios.defaults.baseURL = url;
+// axios.defaults.baseURL = url;
 
-const addBalanceOperation = (transactionData) => (dispatch) => {
-  //const token=store.getState().auth.token;
+// const addBalanceOperation = (transactionData) => (dispatch) => {
+//   //const token=store.getState().auth.token;
 
-  dispatch(transactionsActions.addBalanceRequest());
+//   dispatch(transactionsActions.addBalanceRequest());
 
-  const addTransactionEndpoint =
-    transactionData.transactionType === "income" ? "income" : "expense";
+//   const addTransactionEndpoint =
+//     transactionData.transactionType === "income" ? "income" : "expense";
 
-  axios
-    .post(`${url}/${addTransactionEndpoint}`, transactionData, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => {
-      dispatch(transactionsActions.addBalanceSuccess(data));
-    })
-    .catch((error) => {
-      dispatch(transactionsActions.addBalanceError(error));
-    });
-};
+//   axios
+//     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
+//     .then(({ data }) => {
+//       dispatch(transactionsActions.addBalanceSuccess(data));
+//     })
+//     .catch((error) => {
+//       dispatch(transactionsActions.addBalanceError(error));
+//     });
+// };
 
-const getBalanceOperation = (date) => (dispatch) => {
-  //const token=store.getState().auth.token;
+// const getBalanceOperation = (date) => (dispatch) => {
+//   //const token=store.getState().auth.token;
 
-  dispatch(transactionsActions.getBalanceRequest());
-  axios
-    .get(`${url}/user`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => {
-      dispatch(transactionsActions.getBalanceSuccess(data));
-    })
-    .catch((error) => {
-      dispatch(transactionsActions.getBalanceError(error));
-    });
-};
+//   dispatch(transactionsActions.getBalanceRequest());
+//   axios
+//     .get(`${url}/user`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
+//     .then(({ data }) => {
+//       dispatch(transactionsActions.getBalanceSuccess(data));
+//     })
+//     .catch((error) => {
+//       dispatch(transactionsActions.getBalanceError(error));
+//     });
+// };
 
 const addTransaction =
   (date, description, amount, category, transactionType) => (dispatch) => {
@@ -59,41 +64,42 @@ const addTransaction =
       category,
       transactionType,
     };
+    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 
-    axios
-      .post("/", transaction)
-      .then((response) => {
-        console.log("..........");
-        console.log(response);
-        dispatch(
-          transactionsActions.addTransactionSuccess(
-            response.data.data.addedTransaction
-          )
-        );
+    addTransactionApi(transaction)
+      .then((payload) => {
+        dispatch(transactionsActions.addTransactionSuccess(payload));
       })
       .catch((error) =>
         dispatch(transactionsActions.addTransactionError(error.message))
       );
   };
 
+const deleteTransaction = (objId) => (dispatch) => {
+  // console.log('objId :>> ', objId);
+  dispatch(transactionsActions.deleteTransactionRequest());
+
+  // axios
+  //   .delete(`${url}/:${objId}`)
+  deleteTransactionApi(objId)
+    .then(() => {
+      dispatch(transactionsActions.deleteTransactionSuccess(objId));
+    })
+    .catch((error) =>
+      dispatch(transactionsActions.deleteTransactionError(error.message))
+    );
+};
+
 const fetchBrief =
   ({ type, year }) =>
   (dispatch) => {
     dispatch(transactionsActions.fetchBriefRequest());
-    return axios
-      .get(
-        `http://localhost:4000/api/v1/transactions/brief/?type=${type}&year=${year}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then(({ data }) => {
-        const payload = { [type]: data.data.allIncomes };
+
+
+    fethcBriefApi({ type, year })
+      .then((payload) => {
         dispatch(transactionsActions.fetchBriefSuccess(payload));
       })
       .catch((error) =>
@@ -102,8 +108,9 @@ const fetchBrief =
   };
 
 const transactionsOperations = {
-  addBalanceOperation,
-  getBalanceOperation,
+  deleteTransaction,
+  // addBalanceOperation,
+  // getBalanceOperation,
   addTransaction,
   fetchBrief,
 };

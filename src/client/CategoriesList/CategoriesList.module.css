@@ -1,11 +1,11 @@
+.list_wraper {
+  display: block;
+}
+
 .list {
   display: flex;
-  align-self: center;
-  flex-flow: row wrap;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  width: 67%;
+  flex-wrap: wrap;
 }
 
 .item {
@@ -32,7 +32,7 @@
   color: #52555f;
 }
 
-.btn {
+.svg_box {
   width: 59px;
   height: 46px;
 
@@ -40,8 +40,8 @@
   border-radius: 20px;
 }
 
-.activeBtn {
-  background-color: #FF751D;
+.svg_box:hover {
+  background-color: rgb(255, 117, 29, 0.3);
 }
 
 .icon {

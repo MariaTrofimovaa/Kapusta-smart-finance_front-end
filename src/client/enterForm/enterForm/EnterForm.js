@@ -2,21 +2,11 @@ import transactionsOperations from "../../../redux/transactions/transactions.ope
 import styles from "../enterForm/EnterForm.module.css";
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-
-// import { isAuthenticated } from "../../redux/auth/auth.selectors";
-// import { addTransaction } from "../../../redux/transactions/tranzactions.operations";
-
-// import { addTransaction } from "../../../redux/transactions/transactions.operations";
-
-// import { getSelectedDate } from "../../redux/products/products.selectors";
-// import { getCurrentUser } from "../../redux/auth/auth.operations";
-// import useMedia from "use-media";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthToken } from "../../../redux/auth/auth.selectors";
 
 const EnterForm = ({ startDate }) => {
-  // const token = useSelector(isAuthenticated);
-  // const selectedDate = useSelector(getSelectedDate);
-  console.log(startDate);
+  const token = useSelector(getAuthToken);
   const [fields, setFields] = useState({
     description: "",
     amount: "",
@@ -27,8 +17,6 @@ const EnterForm = ({ startDate }) => {
   const [categories, setCategories] = useState([]);
 
   const dispatch = useDispatch();
-
-  // const isWide = useMedia({ minWidth: "768px" });
 
   const handleChange = (event) =>
     setFields((prevState) => ({
@@ -43,13 +31,12 @@ const EnterForm = ({ startDate }) => {
   //   }));
 
   const searchCategories = (event) => {
-    // handleChange(event);
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
       .get(`http://localhost:4000/api/v1/categories/expense-categories`)
       .then(({ data }) => {
-        console.log(data.data.result);
+        // console.log(data.data.result);
         setCategories(() => {
           return data.data.result;
         });
@@ -61,10 +48,13 @@ const EnterForm = ({ startDate }) => {
   };
 
   const handleSubmit = (event) => {
+    // console.log("handleSubmit");
     event.preventDefault();
 
-    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    // const date = this.props.selectedDate;
+    // console.log(token);
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    // dispatch(transactionsOperations.addTransaction(startDate, fields));
 
     dispatch(
       transactionsOperations.addTransaction(
@@ -75,12 +65,7 @@ const EnterForm = ({ startDate }) => {
         fields.transactionType
       )
     );
-    console.log(fields.description);
-    // dispatch(getCurrentUser());
 
-    // if (!isWide) {
-    //   closeModal();
-    // }
     setFields({ description: "", amount: "", category: "" });
     setCategories([]);
     setSelected(null);

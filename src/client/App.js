@@ -3,23 +3,31 @@
 import Header from "./header/Header";
 import Main from "./main/Main";
 import styles from "./App.module.css";
-
-
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import { useDispatch } from "react-redux";
 // import { getCurrentUser } from "../redux/auth/auth.operations";
 
 const App = () => {
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     dispatch(getCurrentUser());
-//   }, [dispatch]);
+  //   useEffect(() => {
+  //     dispatch(getCurrentUser());
+  //   }, [dispatch]);
 
   return (
     <div className={styles.container}>
       <Header />
       <Main />
+      <ToastContainer
+        transition={Zoom}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

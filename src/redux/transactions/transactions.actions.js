@@ -20,6 +20,16 @@ const fetchBriefRequest = createAction("transaction/brief/fetchBriefRequest");
 const fetchBriefSuccess = createAction("transaction/brief/fetchBriefSuccess");
 const fetchBriefError = createAction("transaction/brief/fetchBriefError");
 
+const deleteTransactionRequest = createAction(
+  "transactions/deleteTransactionRequest"
+);
+const deleteTransactionSuccess = createAction(
+  "transactions/deleteTransactionSuccess"
+);
+const deleteTransactionError = createAction(
+  "transactions/deleteTransactionError"
+);
+
 const transactionsActions = {
   addBalanceRequest,
   addBalanceSuccess,
@@ -33,5 +43,8 @@ const transactionsActions = {
   fetchBriefRequest,
   fetchBriefSuccess,
   fetchBriefError,
+  deleteTransactionRequest,
+  deleteTransactionSuccess,
+  deleteTransactionError,
 };
 export default transactionsActions;

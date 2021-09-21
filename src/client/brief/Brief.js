@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Brief.module.css";
 
+
 import operation from "../../redux/transactions/transactions.operations";
 
-import selector from "../../redux/transactions/transactions.selectors";
+// import selector from "../../redux/transactions/transactions.selectors";
 
 const Brief = () => {
   const date = new Date();
