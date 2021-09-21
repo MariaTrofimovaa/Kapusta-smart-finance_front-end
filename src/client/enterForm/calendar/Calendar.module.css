@@ -12,9 +12,18 @@
 .datePicker {
   text-align: left;
   border-color: transparent;
-  font-weight: 700;
-  font-size: 18px;
-  width: 125px;
+  width: 80px;
+  height: 40px;
+
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #52555f;
 }
 
 .datePickerLogo {

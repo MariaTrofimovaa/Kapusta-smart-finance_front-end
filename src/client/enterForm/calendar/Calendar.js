@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { ReactComponent as CalendarLogo } from "./svg/calendar.svg";
+import { ReactComponent as CalendarLogo } from "../../../assets/icons/calendar.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./Calendar.module.css";
 import EnterForm from "../../../client/enterForm/enterForm/EnterForm";
@@ -11,6 +11,9 @@ import EnterForm from "../../../client/enterForm/enterForm/EnterForm";
 const Calendar = () => {
   // const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
+
+  const date = startDate.toISOString().slice(0, 10);
+  const formattedDate = date.split("-").reverse().join(".");
 
   // useEffect(() => {
   //   dispatch(getSelectedDay(startDate.toISOString().slice(0, 10)));
@@ -28,7 +31,7 @@ const Calendar = () => {
           onChange={(date) => setStartDate(date)}
         />
       </label>
-      <EnterForm startDate={startDate.toISOString().slice(0, 10)} />
+      <EnterForm startDate={formattedDate} />
     </div>
   );
 };

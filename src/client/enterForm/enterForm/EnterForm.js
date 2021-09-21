@@ -7,6 +7,7 @@ import { getAuthToken } from "../../../redux/auth/auth.selectors";
 
 const EnterForm = ({ startDate }) => {
   const token = useSelector(getAuthToken);
+  console.log(startDate);
   const [fields, setFields] = useState({
     description: "",
     amount: "",
@@ -71,9 +72,8 @@ const EnterForm = ({ startDate }) => {
     setSelected(null);
   };
 
-  
-    /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
-  
+  /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
+
   // const onFormSubmit = (e) => {
   //   e.preventDefault();
 
@@ -92,14 +92,11 @@ const EnterForm = ({ startDate }) => {
   return (
     <div>
       <form className={styles.productForm} onSubmit={handleSubmit}>
-        {/* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/}
-        {/* <form className={styles.productForm} onSubmit={onFormSubmit}> */}
-
         <input
           placeholder="Описание товара"
           type="text"
           name="description"
-          className={styles.productInput}
+          className={styles.productDescription}
           autoComplete="off"
           autoFocus
           value={fields.description}
@@ -110,7 +107,7 @@ const EnterForm = ({ startDate }) => {
           placeholder="Категория товара"
           type="text"
           name="category"
-          className={styles.productInput}
+          className={styles.productCategory}
           autoComplete="off"
           autoFocus
           value={fields.category}
@@ -139,9 +136,9 @@ const EnterForm = ({ startDate }) => {
             ))}
         </ul>
 
-        <label className={styles.productLabel}>
+        <label className={styles.productAmountLabel}>
           <input
-            className={styles.weightInput}
+            className={styles.productAmountInput}
             placeholder="0.00"
             type="number"
             name="amount"
@@ -149,8 +146,13 @@ const EnterForm = ({ startDate }) => {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Ввод</button>
+        <br />
+
+        <button type="submit" className={styles.btnSubmit}>
+          Ввод
+        </button>
         <button
+          className={styles.btnClear}
           type="button"
           onClick={() => {
             setFields({
