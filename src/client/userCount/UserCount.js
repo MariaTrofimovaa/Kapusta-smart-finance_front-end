@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const UserCount1 = () => {
+const UserCount = () => {
 const [date, setDate] = useState(new Date());
 const changeMonth = (action) => {
     const value = action === 'prev' ? -1 : 1;
@@ -26,4 +26,4 @@ const month = date.toLocaleDateString("ru", { month: "long" });
     );
 }
 
-export default UserCount1;
+export default UserCount;
