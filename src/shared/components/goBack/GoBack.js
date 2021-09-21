@@ -1,6 +1,7 @@
-import css from "./GoBack.module.css";
 import {ReactComponent as Arrow} from "../../../assets/icons/goBack.svg";
+import css from "./GoBack.module.css";
 import { useHistory } from 'react-router';
+
 
 const GoBack = () => {
   const history = useHistory();
