@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   addTransactionApi,
   deleteTransactionApi,
@@ -6,7 +5,7 @@ import {
 } from "../../shared/services/api";
 import transactionsActions from "./transactions.actions";
 
-const url = "http://localhost:4000/api/v1/transactions";
+// const url = "http://localhost:4000/api/v1/transactions";
 
 // const url = "http://localhost:3001/api/v1/transactions";
 // const token =
@@ -56,40 +55,7 @@ const url = "http://localhost:4000/api/v1/transactions";
 //     });
 // };
 
-// const addTransaction =
-//   // сделать {}, чтобы не привязываться к последовательности параметров
-//   // ({date, description, amount, category, transactionType})
-//   (date, description, amount, category, transactionType) => (dispatch) => {
-//     const transaction = {
-//       date,
-//       description,
-//       amount,
-//       category,
-//       transactionType,
-//     };
-//     console.log(transaction);
-
-//     dispatch(transactionsActions.addTransactionRequest());
-
-//     axios
-//       .post("http://localhost:4000/api/v1/transactions/", transaction)
-//       .then((response) => {
-//         console.log("response", response);
-//         dispatch(
-//           transactionsActions.addTransactionSuccess(
-//             response.data.data.addedTransaction
-//           )
-//         );
-//       })
-//       .catch((error) =>
-//         dispatch(transactionsActions.addTransactionError(error.message))
-//       );
-//   };
-
 const addTransaction =
-  // сделать {}, чтобы не привязываться к последовательности параметров
-  // ({date, description, amount, category, transactionType})
-
   (date, description, amount, category, transactionType) => (dispatch) => {
     const transaction = {
       date,
@@ -104,7 +70,6 @@ const addTransaction =
 
     addTransactionApi(transaction)
       .then((payload) => {
-        console.log("payload :>> ", payload);
         dispatch(transactionsActions.addTransactionSuccess(payload));
       })
       .catch((error) =>

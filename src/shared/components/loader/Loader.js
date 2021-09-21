@@ -5,7 +5,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const AppLoader = () => {
   return (
-    <div className={styles.Loader}>
+    <div className={styles.loader}>
       <Loader
         style={styles}
         type="Circles"

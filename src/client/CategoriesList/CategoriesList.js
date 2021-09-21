@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getAllExpenseOfMonth,
   getAllIncomeOfMonth,
 } from "../../redux/report/report.operations";
 
-import {
-  allIncomeOfMonth,
-  allexpenseOfMonth,
-} from "../../redux/report/report.selectors";
+// import {
+//   allIncomeOfMonth,
+//   allexpenseOfMonth,
+// } from "../../redux/report/report.selectors";
 
 import sprite from "../../assets/icons/sprite_categories.svg";
 import css from "./CategoriesList.module.css";
@@ -19,7 +19,7 @@ const CategoriesList = () => {
   useEffect(() => {
     dispatch(getAllExpenseOfMonth(month));
     dispatch(getAllIncomeOfMonth(month));
-  }, []); // добавить изменение по дате
+  }, [dispatch]); // добавить изменение по дате
   // let categories = [];
   // const array = useSelector(allexpenseOfMonth);
   // console.log(array);

@@ -11,7 +11,7 @@ import {
   getAllForMonthIncomeError,
 } from "./report.actions";
 
-import { alertError, alertSuccess } from "../../shared/reactAlert";
+// import { alertError, alertSuccess } from "../../shared/reactAlert";
 
 const expense = "Расходы";
 
