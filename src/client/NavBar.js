@@ -10,11 +10,11 @@ const NavBar = () => {
             Главная
           </NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink to="/report" exact>
             Report
           </NavLink>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );

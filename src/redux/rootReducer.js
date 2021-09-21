@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth/auth.reducer";
 import balanceReducer from "./balance/balance.reducers";
+import reportReducer from "./report/report.reducer";
 
 // ================ !!!!!!! Проверить что чье. Строка ниже вроде Алены
 // import { transactionsReducer } from "./transactions/tranzactions.reducer";
@@ -22,6 +23,7 @@ const persistAuthReducer = persistReducer(persistConfig, authReducer);
 const rootReducer = combineReducers({
   auth: persistAuthReducer,
   balance: balanceReducer,
+  report: reportReducer,
 
   // ================ !!!!!!! Проверить что чье. Строка ниже вроде Алены
   // transactions: transactionsReducer,
