@@ -10,6 +10,8 @@ axios.defaults.baseURL = BASE_URL;
 
 const setParams = (params) => (axios.defaults.params = params);
 
+// const resetParams = () => (axios.defaults.params = {});
+
 // Нужно сюда вынести все запросы по примеру fethcBriefApi
 
 // Регистрация
@@ -62,7 +64,6 @@ export const addTransactionApi = async (transaction) => {
 
 // Транзакции - удаление - Руслан
 export const deleteTransactionApi = (objId) => {
-
   return axios
     .delete(`transactions/${objId}`)
     .then()
