@@ -14,7 +14,9 @@ function Balance() {
 
   const onBalanceInputChange = (e) => {
     let inputValue = e.target.value;
+
     e.target.value = inputValue.replace(/[^\d.-]/g, '').replace(/^0+(?!$)/g, '') + " UAH"; // при редактировании баланса мы убираем все введенные нецифровые символы и добавляем UAH 
+
   };
 
   useEffect(() => {
@@ -29,8 +31,14 @@ function Balance() {
   };
   return (
 
+
 <div className={styles.container}> 
       <div className={styles.formContainer}> 
+                <div>
+          <Link to="/report" className={styles.reportsLink}>
+            Перейти к отчетам
+          </Link>
+        </div>
         <form className={styles.balanceContainer} onSubmit={updateBalance}> 
           <p className={styles.balanceName}>Баланс:</p> 
           <div className={styles.inputButtonContainer}> 
@@ -53,14 +61,6 @@ function Balance() {
           </div> 
         </form> 
       </div> 
-        <div>
-          <Link to="/report" className={styles.reportsLink}>
-            Перейти к отчетам
-          </Link>
-        </div>
-    </div> 
-    // </div> 
-
   );
 }
 

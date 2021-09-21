@@ -55,7 +55,7 @@ const EnterForm = ({ startDate }) => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
     // dispatch(transactionsOperations.addTransaction(startDate, fields));
-    
+
     dispatch(
       transactionsOperations.addTransaction(
         startDate,

@@ -20,7 +20,7 @@
   .main {
     /* высоту исправить: */
     margin: 0 auto;
-    min-height: 1185px;
+    /* min-height: 1185px; */
     background: url(../../assets/images/rectangle768.png),
       url(../../assets/images/kapusta_jump.png);
     background-position: 0px 0px, 497px 920px;

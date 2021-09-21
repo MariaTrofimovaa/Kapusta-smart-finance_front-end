@@ -26,17 +26,16 @@ import actions from "./transactions.actions";
 
 const transactionsReducer = createReducer([], {
   [actions.addTransactionRequest]: (state) => {
-    return state;
+    return state
   },
   [actions.addTransactionSuccess]: (state, { payload }) => {
-    return [...state, payload]
+    return [...state, payload];
   },
 
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
-    // console.log(payload);
-    // console.log(state);
     return state.filter(({ _id }) => _id !== payload);
   },
+
   // [actions.deleteProductSuccess]: (state, { payload }) => ({
   //   ...state,
   //   eatenProducts: state.eatenProducts.filter(
@@ -58,13 +57,14 @@ const transactionsReducer = createReducer([], {
 });
 
 const brief = createReducer(
-  {},
-  // { income: [], expence: [] },
+  { income: [], expense: [] },
   {
     // [actions.fetchBriefRequest]: () => false,
-    [actions.fetchBriefSuccess]: (state, { payload }) => payload,
-    // [actions.fetchBriefSuccess]: (state, { payload }) =>
-    //   Object.assign(state, payload),
+    [actions.fetchBriefSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload,
+    }),
+
     // [actions.fetchBriefError]: () => false,
   }
 );
