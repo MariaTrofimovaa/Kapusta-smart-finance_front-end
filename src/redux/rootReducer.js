@@ -5,7 +5,8 @@ import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/auth.reducer";
 import balanceReducer from "./balance/balance.reducers";
 import reportReducer from "./report/report.reducer";
-import selectedDateReducer from "./transactions/transactions.reducer";
+import selectedDateReducer from "./date/dateReducer";
+// import selectedDateReducer from "./transactions/transactions.reducer";
 // ================ Все вынесли в transactions
 // import { transactionsReducer } from "./transactions/tranzactions.reducer";
 

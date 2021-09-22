@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
-import { getSelectedDate } from "../../../redux/transactions/transactions.selectors";
+import { getSelectedDate } from "../../../redux/date/date.selectors";
 
 const EnterForm = () => {
   const token = useSelector(getAuthToken);
