@@ -44,7 +44,6 @@ axios.defaults.baseURL = BASE_URL;
 
 // Сводка - Таня
 export const fethcBriefApi = (filter) => {
-
   return axios
     .get(`transactions/brief`, { params: filter })
     .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
