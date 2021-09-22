@@ -92,7 +92,6 @@ const getAllExpenseOfDate = (date) => async (dispatch, getState) => {
   const authToken = getState().auth.token;
   try {
     token.set(authToken);
-    // token.set("");
     const { data } = await axios.get(
       `http://localhost:4000/api/v1/transactions/day/expense/${date}`
     );
@@ -107,7 +106,6 @@ const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
   const authToken = getState().auth.token;
   try {
     token.set(authToken);
-    // token.set("");
     const { data } = await axios.get(
       `http://localhost:4000/api/v1/transactions/day/income/${date}`
     );

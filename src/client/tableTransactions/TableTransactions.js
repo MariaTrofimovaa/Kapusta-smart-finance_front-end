@@ -17,22 +17,26 @@ const TableTransactions = () => {
 
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
-
+  console.log(currentLocation.pathname);
   const dispatch = useDispatch();
 
-  // const date = "2021-09-21";
-
-  // const expenseOfDay = useEffect(() => {
-  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  // }, []);
-
-  // const incomeOfDay = useEffect(() => {
+  const date = "2021-09-21";
+  // useEffect(() => {
   //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
   // }, []);
 
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  }, []);
+
+  // const getTransaction = () => {
+  //   if (activeCheck === "/expences")
+  //     return transactionsOperations.getAllExpenseOfDate(date);
+  //   return transactionsOperations.getAllIncomeOfDate(date);
+  // };
+
   return (
     <div>
-      {/* {activeCheck === "/expences" ? expenseOfDay : incomeOfDay} */}
       <table className={styles.table}>
         <thead className={styles.tableHead}>
           <tr className={styles.tableHeadTr}>
@@ -43,54 +47,50 @@ const TableTransactions = () => {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {/* {tableTransactionsExpense && !tableTransactionsExpense.length && null} */}
-          {activeCheck === "/expences"
-            ? tableTransactionsExpense.map((item) => (
-                <tr key={item._id} className={styles.tableTr}>
-                  <td className={styles.tableDate}>{item.date}</td>
-                  <td className={styles.tableDescription}>
-                    {item.description}
-                  </td>
-                  <td className={styles.tableCategory}>{item.category}</td>
-                  <td className={styles.tableAmount}>{item.amount}</td>
-                  <td className={styles.tableDelete}>
-                    <button
-                      className={styles.deleteBtn}
-                      type="button"
-                      onClick={() =>
-                        dispatch(
-                          transactionsOperations.deleteTransaction(item._id)
-                        )
-                      }
-                    >
-                      <IconDelete />
-                    </button>
-                  </td>
-                </tr>
-              ))
-            : tableTransactionsIncome.map((item) => (
-                <tr key={item._id} className={styles.tableTr}>
-                  <td className={styles.tableDate}>{item.date}</td>
-                  <td className={styles.tableDescription}>
-                    {item.description}
-                  </td>
-                  <td className={styles.tableCategory}>{item.category}</td>
-                  <td className={styles.tableAmount}>{item.amount}</td>
-                  <td className={styles.tableDelete}>
-                    <button
-                      className={styles.deleteBtn}
-                      type="button"
-                      onClick={() =>
-                        dispatch(
-                          transactionsOperations.deleteTransaction(item._id)
-                        )
-                      }
-                    >
-                      <IconDelete />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+          {activeCheck === "/expences" &&
+            tableTransactionsExpense.map((item) => (
+              <tr key={item._id} className={styles.tableTr}>
+                <td className={styles.tableDate}>{item.date}</td>
+                <td className={styles.tableDescription}>{item.description}</td>
+                <td className={styles.tableCategory}>{item.category}</td>
+                <td className={styles.tableAmount}>{item.amount}</td>
+                <td className={styles.tableDelete}>
+                  <button
+                    className={styles.deleteBtn}
+                    type="button"
+                    onClick={() =>
+                      dispatch(
+                        transactionsOperations.deleteTransaction(item._id)
+                      )
+                    }
+                  >
+                    <IconDelete />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          {activeCheck === "/income" &&
+            tableTransactionsIncome.map((item) => (
+              <tr key={item._id} className={styles.tableTr}>
+                <td className={styles.tableDate}>{item.date}</td>
+                <td className={styles.tableDescription}>{item.description}</td>
+                <td className={styles.tableCategory}>{item.category}</td>
+                <td className={styles.tableAmount}>{item.amount}</td>
+                <td className={styles.tableDelete}>
+                  <button
+                    className={styles.deleteBtn}
+                    type="button"
+                    onClick={() =>
+                      dispatch(
+                        transactionsOperations.deleteTransaction(item._id)
+                      )
+                    }
+                  >
+                    <IconDelete />
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
