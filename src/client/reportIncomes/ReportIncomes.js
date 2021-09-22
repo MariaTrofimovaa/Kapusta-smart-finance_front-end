@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllIncomeOfMonth } from "../../redux/report/report.operations";
 
 import { allIncomeOfMonth } from "../../redux/report/report.selectors";
-import CategoriesList from "../categoriesList/CategoriesList";
+import CategoriesList from "../CategoriesList/CategoriesList";
 
 const ReportIncomes = () => {
   const dispatch = useDispatch();
