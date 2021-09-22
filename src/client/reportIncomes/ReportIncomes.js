@@ -9,7 +9,7 @@ const ReportIncomes = () => {
   const dispatch = useDispatch();
 
   const incomes = useSelector(allIncomeOfMonth);
-  const month = "2021-09";
+  const month = "09.2021";
   useEffect(() => {
     dispatch(getAllIncomeOfMonth(month));
   }, []); // добавить изменение по дате
