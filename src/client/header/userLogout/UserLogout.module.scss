@@ -1,0 +1,57 @@
+@import "../../../stylesheet/base.scss";
+
+.logoutBtn {
+  background: transparent;
+  border: none;
+}
+
+.logoutSvg {
+  fill: #b5b5b6;
+  width: 16px;
+  height: 16px;
+
+  // display: flex; Вместо этого, пишу это:
+  @include flex(space-between, center);
+
+  @include tablet() {
+    display: none;
+  }
+}
+
+.logoutSvg:hover {
+  cursor: pointer;
+}
+
+.logoutText {
+  display: none;
+
+  @include tablet() {
+    // display: none;
+    // display: flex;
+    @include flex(space-between, center);
+    font-size: 12px;
+    color: $primary-text-color;
+  }
+}
+
+.logoutText:hover {
+  @include tablet() {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+// @media (min-width: 768px) {
+//   .logoutSvg {
+//     display: none;
+//   }
+//   .logoutText {
+//     display: flex;
+//     font-size: 12px;
+//     color: $primary-text-color;
+//   }
+//   .logoutText:hover {
+//     text-decoration: underline;
+//     cursor: pointer;
+//   }
+// }

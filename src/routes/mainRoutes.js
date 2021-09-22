@@ -10,6 +10,7 @@ export const mainRoutes = [
     redirectTo: "/expense",
     // isRestricted: false,
   },
+  
   {
     name: "Expense",
     path: "/expense",
@@ -18,6 +19,7 @@ export const mainRoutes = [
     isPrivate: true,
     // isRestricted: true,
   },
+  
   {
     name: "Income",
     path: "/income",
@@ -32,16 +34,16 @@ export const mainRoutes = [
     path: "/report",
     component: lazy(() => import("../pages/reportPage/ReportPage")),
     redirectTo: "/expense",
-    exact: true,
+    exact: false,
     isPrivate: true,
     // isRestricted: true,
   },
-  {
-    name: "NotFound",
-    path: "",
-    component: lazy(() => import("../pages/notFound/NotFound")),
-    exact: true,
-    isPrivate: false,
-    // isRestricted: false, не помню, зачем он
-  },
+  // {
+  //   name: "NotFound",
+  //   path: "",
+  //   component: lazy(() => import("../pages/notFound/NotFound")),
+  //   exact: true,
+  //   isPrivate: false,
+  //   // isRestricted: false,
+  // },
 ];

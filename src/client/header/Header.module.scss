@@ -1,0 +1,82 @@
+@import "../../stylesheet/base.scss";
+
+.header {
+  width: 100vw;
+  width: 320px;
+  height: 56px;
+  padding: 0 20px;
+  background-color: #fff;
+
+  &Container {
+    @include flex(space-between, center);
+    height: 100%;
+  }
+
+  @include tablet {
+    width: 768px;
+    padding: 0 26px;
+  }
+
+  @include desktop {
+    width: 1280px;
+    padding: 0 44px 0 26px;
+  }
+}
+
+// .headerContainer {
+//   display: flex;
+//   justify-content: space-between;
+
+//   padding: 0 20px;
+
+//   @include tablet() {
+//     width: 768px;
+//     padding: 0 26px;
+//   }
+
+//   @include desktop() {
+//     width: 1280px;
+//     padding: 0 44px 0 26px;
+//   }
+// }
+
+.logoLink,
+.logoImg {
+  margin: 0;
+  height: 33px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.userInfo {
+  margin: 0;
+  flex-flow: row;
+  align-self: center;
+
+  @include flex(space-between, center);
+  // display: flex;
+  // justify-content: space-between;
+
+  @include tablet {
+    width: fit-content;
+    // justify-content: space-between;
+  }
+}
+
+// @media (min-width: 768px) {
+//   .headerContainer {
+//     padding: 0 26px;
+//   }
+
+//   .userInfo {
+//     width: fit-content;
+//     justify-content: space-between;
+//   }
+// }
+
+// @media (min-width: 1280px) {
+//   .headerContainer {
+//     /* max-width: 1280px; */
+//     padding: 0 44px 0 26px;
+//   }
+// }

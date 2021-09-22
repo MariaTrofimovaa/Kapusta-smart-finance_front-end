@@ -1,13 +1,15 @@
-$white-color: #ffffff;
-$secondary_bg-color: #f2f5fc;
-$title-color-text: #000000;
-$primary-color-text: #52555f;
-$primary-color-text-transparent: #52555f 70%;
-$icon-dark: #091e3f;
-$button-hover: #0c2346;
+// bg-color
+$primary-bg-color: #e5e5e5;
+$secondary-bg-color: #f6f7fb;
+
+// text-color
+$primary-text-color: #52555f;
+
+// report icon color
+$icon-dark: #071f41;
+
+// accent color
 $accent-color-orange: #ff751d;
-$accent-color-red: #e53935;
-$accent-color-green: #407946;
 
 $mobile: 320px;
 $tablet: 768px;
