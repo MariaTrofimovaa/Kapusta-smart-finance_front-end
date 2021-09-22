@@ -4,10 +4,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
+import { getSelectedDate } from "../../../redux/transactions/transactions.selectors";
 
-const EnterForm = ({ startDate }) => {
+const EnterForm = () => {
   const token = useSelector(getAuthToken);
-  console.log(startDate);
+  const selectedDate = useSelector(getSelectedDate);
+
   const [fields, setFields] = useState({
     description: "",
     amount: "",
@@ -59,7 +61,7 @@ const EnterForm = ({ startDate }) => {
 
     dispatch(
       transactionsOperations.addTransaction(
-        startDate,
+        selectedDate,
         fields.description,
         fields.amount,
         fields.category,

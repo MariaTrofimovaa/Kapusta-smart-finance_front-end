@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { ReactComponent as CalendarLogo } from "../../../assets/icons/calendar.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./Calendar.module.css";
 import EnterForm from "../../../client/enterForm/enterForm/EnterForm";
-// import { useDispatch } from "react-redux";
-// import { getSelectedDay } from "../../redux/products/products.actions";
-// import { getDayInfo } from "../../redux/products/products.operations";
+import { useSelector, useDispatch } from "react-redux";
+import transactionsActions from "../../../redux/transactions/transactions.actions";
+// import transactionsOperations from "../../../redux/transactions/transactions.operations";
 
 const Calendar = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
 
-  const date = startDate.toISOString().slice(0, 10);
-  const formattedDate = date.split("-").reverse().join(".");
-
-  // useEffect(() => {
-  //   dispatch(getSelectedDay(startDate.toISOString().slice(0, 10)));
-  //   dispatch(getDayInfo(startDate.toISOString().slice(0, 10)));
-  // }, [dispatch, startDate]);
+  useEffect(() => {
+    dispatch(
+      transactionsActions.getSelectedDate(
+        startDate.toISOString().slice(0, 10).split("-").reverse().join(".")
+      )
+    );
+    // dispatch(getDayInfo(formattedDate));
+  }, [dispatch, startDate]);
 
   return (
     <div className={styles.box}>
@@ -31,7 +32,7 @@ const Calendar = () => {
           onChange={(date) => setStartDate(date)}
         />
       </label>
-      <EnterForm startDate={formattedDate} />
+      <EnterForm startDate={startDate} />
     </div>
   );
 };

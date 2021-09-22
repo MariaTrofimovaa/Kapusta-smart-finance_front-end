@@ -26,7 +26,7 @@ import actions from "./transactions.actions";
 
 const transactionsReducer = createReducer([], {
   [actions.addTransactionRequest]: (state) => {
-    return state
+    return state;
   },
   [actions.addTransactionSuccess]: (state, { payload }) => {
     return [...state, payload];
@@ -69,8 +69,18 @@ const brief = createReducer(
   }
 );
 
+const selectedDateReducer = createReducer(
+  { selectedDate: "" },
+  {
+    [actions.getSelectedDate]: (state, { payload }) => {
+      return { selectedDate: payload };
+    },
+  }
+);
+
 export default combineReducers({
   // balanceReducer,
   list: transactionsReducer,
   brief,
+  selectedDate: selectedDateReducer,
 });

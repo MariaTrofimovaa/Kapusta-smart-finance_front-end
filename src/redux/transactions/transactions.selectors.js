@@ -4,4 +4,6 @@ const getTransactionsSelector = (state) => state.transactions.list;
 
 const getBrief = (state) => state.transactions.brief;
 
-export { getTransactionsSelector, getBrief, getTransactions };
+const getSelectedDate = (state) => state.transactions.selectedDate;
+
+export { getTransactionsSelector, getBrief, getTransactions, getSelectedDate };
