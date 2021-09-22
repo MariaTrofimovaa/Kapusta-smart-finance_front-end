@@ -1,0 +1,58 @@
+@import "../../../stylesheet/base.scss";
+
+.user {
+  &Page {
+    // display: flex;
+    @include flex(space-between, center);
+    // align-self: center;
+    margin-right: 20px;
+
+    @include desktop() {
+      padding-right: 20px;
+      border-right: 1px solid #e0e5eb;
+      text-align: right;
+    }
+  }
+
+  &Info {
+    // display: flex;
+    // justify-content: center;
+    @include flex(space-between, center);
+    // align-items: center;
+  }
+
+  &Pic {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    background-color: #f5f6fa;
+    border-radius: 30px;
+    height: 32px;
+    width: 32px;
+    align-self: center;
+  }
+
+  &PicLetter {
+    font-size: 12px;
+    color: $primary-text-color;
+    font-weight: bold;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &NameFull {
+    display: none;
+    color: $primary-text-color;
+
+    @include tablet {
+      @include flex(space-between, center);
+      padding-left: 10px;
+      // justify-self: center;
+      // align-self: center;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+  }
+}

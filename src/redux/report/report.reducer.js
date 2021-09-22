@@ -20,10 +20,64 @@ const error = createReducer(null, {
 });
 
 const expenseOfMonth = createReducer([], {
-  [getAllForMonthExpenseSuccess]: (state, { payload }) => payload.data,
+  [getAllForMonthExpenseSuccess]: (state, { payload }) =>
+    payload.data.reduce((acc, { category, description, amount }) => {
+      const curCategory = acc.find((el) => el.category === category);
+
+      if (!curCategory) {
+        acc.push({
+          category: category,
+          categorySum: amount,
+          types: [
+            {
+              description: description,
+              amount: amount,
+            },
+          ],
+        });
+        return acc;
+      }
+
+      if (curCategory) {
+        const idx = acc.findIndex((el) => el.category === category);
+        acc[idx].categorySum += amount;
+        acc[idx].types.push({
+          description: description,
+          amount: amount,
+        });
+        return acc;
+      }
+    }, []),
 });
 const incomeOfMonth = createReducer([], {
-  [getAllForMonthIncomeSuccess]: (state, { payload }) => payload.data,
+  [getAllForMonthIncomeSuccess]: (state, { payload }) =>
+    payload.data.reduce((acc, { category, description, amount }) => {
+      const curCategory = acc.find((el) => el.category === category);
+
+      if (!curCategory) {
+        acc.push({
+          category: category,
+          categorySum: amount,
+          types: [
+            {
+              description: description,
+              amount: amount,
+            },
+          ],
+        });
+        return acc;
+      }
+
+      if (curCategory) {
+        const idx = acc.findIndex((el) => el.category === category);
+        acc[idx].categorySum += amount;
+        acc[idx].types.push({
+          description: description,
+          amount: amount,
+        });
+        return acc;
+      }
+    }, []),
 });
 
 export default combineReducers({
