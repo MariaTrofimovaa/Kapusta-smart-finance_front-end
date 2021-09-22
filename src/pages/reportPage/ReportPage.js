@@ -30,7 +30,11 @@ const ReportPage = () => {
           </Link>
         </li>
         <li className={css.item}>
-          {location.pathname === "/report" ? <h3 className={css.title}>Расходы</h3> : <h3 className={css.title}>Доходы</h3>}
+          {location.pathname === "/report" ? (
+            <h3 className={css.title}>Расходы</h3>
+          ) : (
+            <h3 className={css.title}>Доходы</h3>
+          )}
         </li>
         <li className={css.item}>
           <Link to={`${match.url}/incomes`}>
@@ -44,9 +48,7 @@ const ReportPage = () => {
         <Route exact path={`${match.path}`} component={ReportExpense} />
         <Route exact path={`${match.path}/incomes`} component={ReportIncomes} />
       </Switch>
-
-      {/* <Rechart/> */}
-
+    </div>
   );
 };
 
