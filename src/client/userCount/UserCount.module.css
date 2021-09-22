@@ -1,44 +1,50 @@
-/* .userContainer {
+.dataContainer {
   display: flex;
+  position: relative;
+  top: 40px;
   align-items: center;
-  max-width: 767px;
+  /* max-width: 134px; */
   height: 40px;
-  padding: 0 15px;
-  background-color: #eff1f3;
-}
-button:disabled{
-  opacity: 0.2;
-  cursor: not-allowed;
-}
-.userCount {
-  display: flex;
-  width: 290px;
-  align-items: center;
-  justify-content: flex-end;
+  background-color:transparent;
   margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
 }
-.name {
-  font-family: Gotham Pro;
-  font-style: normal;
-  font-weight: bold;
+.button{
+margin-right: 15px;
+}
+.button1{
+  margin-left: 15px;
+  }
+.countText {
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: "Roboto";
+  margin-bottom: 5px;
+}
+.data {
+  font-style: "Roboto";
+  font-weight: 700;
   font-size: 14px;
-  color: #212121;
-  margin-right: 15px;
+  color: #071F41;
+  text-transform: uppercase;
+
 }
 
-@media screen and (min-width: 768px) {
-  .userContainer {
+/* @media screen and (min-width: 768px) {
+  .dataContainer {
     padding: 0;
     margin-right: 50px;
     background-color: transparent;
   }
 }
 @media screen and (min-width: 1280px) {
-  .userContainer {
+  .dataContainer {
     max-height: 100%;
     background-color: #f0f1f3;
   }
-  .name {
+  .data {
     margin-right: 22px;
   }
   .userInfo {

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import css from "./UserCount.module.css";
+import sprite from "../../assets/icons/sprite_categories.svg";
 
 const UserCount = () => {
 const [date, setDate] = useState(new Date());
@@ -15,11 +17,15 @@ const year = date.getFullYear();
 const month = date.toLocaleDateString("ru", { month: "long" });
 
     return (
-        <div>
-            <p>Текущий период :</p>
-            <div><span onClick={() => changeMonth("prev")}>&lt; 
+        <div className={css.dataContainer}>
+            <p className={css.countText}>Текущий период :</p>
+            <div className={css.data}><span className={css.button} onClick={() => changeMonth("prev")}> <svg width="8" height="15">
+              <use xlinkHref={`${sprite}#icon-arrow-left`} />
+            </svg> 
                 </span>{month} {year}
-                <span onClick={() => changeMonth("next")}>&gt;
+                <span className={css.button1} onClick={() => changeMonth("next")}> <svg width="8" height="15">
+              <use xlinkHref={`${sprite}#icon-arrow-right`} />
+            </svg>
                 </span>
             </div>
         </div>
