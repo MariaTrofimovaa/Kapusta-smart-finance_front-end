@@ -9,7 +9,7 @@ const ReportExpense = () => {
   const dispatch = useDispatch();
 
   const expenses = useSelector(allexpenseOfMonth);
-  const month = "2021-09";
+  const month = "09.2021";
   useEffect(() => {
     dispatch(getAllExpenseOfMonth(month));
   }, []); // добавить изменение по дате
