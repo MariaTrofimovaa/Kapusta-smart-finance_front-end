@@ -49,9 +49,8 @@
   border-radius: 20px;
   margin-bottom: 7px;
 }
-
 .svg_box:hover {
-  background-color: rgb(255, 218, 192);
+  background-color: #ffdac0;
 }
 
 .icon {
@@ -66,6 +65,26 @@
 
 .icon:hover {
   fill: #ff751d;
+}
+
+.iconActive {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  fill: #ff751d;
+
+  /* width: 84px;
+  height: 56px; */
+}
+.svg_boxActive {
+  width: 59px;
+  height: 46px;
+  position: relative;
+  background-color: rgb(255, 218, 192);
+  border-radius: 20px;
+  margin-bottom: 7px;
 }
 
 .title {
