@@ -25,9 +25,24 @@ const expenseOfMonth = createReducer([], {
       const curCategory = acc.find((el) => el.category === category);
 
       if (!curCategory) {
+        if (acc.length >= 1) {
+          acc.push({
+            category: category,
+            categorySum: amount,
+            isActive: false,
+            types: [
+              {
+                description: description,
+                amount: amount,
+              },
+            ],
+          });
+          return acc;
+        }
         acc.push({
           category: category,
           categorySum: amount,
+          isActive: true,
           types: [
             {
               description: description,
@@ -41,6 +56,9 @@ const expenseOfMonth = createReducer([], {
       if (curCategory) {
         const idx = acc.findIndex((el) => el.category === category);
         acc[idx].categorySum += amount;
+        // acc[idx].isActive = false;
+        // acc[0].isActive = true;
+
         acc[idx].types.push({
           description: description,
           amount: amount,
@@ -55,9 +73,24 @@ const incomeOfMonth = createReducer([], {
       const curCategory = acc.find((el) => el.category === category);
 
       if (!curCategory) {
+        if (acc.length >= 1) {
+          acc.push({
+            category: category,
+            categorySum: amount,
+            isActive: false,
+            types: [
+              {
+                description: description,
+                amount: amount,
+              },
+            ],
+          });
+          return acc;
+        }
         acc.push({
           category: category,
           categorySum: amount,
+          isActive: true,
           types: [
             {
               description: description,
