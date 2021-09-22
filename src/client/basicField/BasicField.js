@@ -7,6 +7,7 @@ import Brief from "../brief/Brief";
 import styles from "./BasicField.module.css";
 import BasicFieldTab from "./BasicFieldTab";
 import { useMediaQuery } from "../../shared/hooks/mediaRulesHook";
+import EnterForm from "../enterForm/enterForm/EnterForm";
 
 const BasicField = () => {
   const isPageWideLaptop = useMediaQuery("(min-width: 1280px)");
@@ -20,12 +21,13 @@ const BasicField = () => {
       {isPageWideLaptop && (
         <div>
           <div className={styles.btnWrapper}>
-            <BasicFieldTab text={"Расход"} link={"/expences"} key="Расход" />
+            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
           <div className={styles.dataField}>
             <div className={styles.dataWrapper}>
-              <Calendar currentLocation={location} />
+              <Calendar />
+              <EnterForm currentLocation={location} />
             </div>
             <div className={styles.dataWrapper}>
               <TableTransactions />
@@ -40,7 +42,7 @@ const BasicField = () => {
             <BasicFieldTab
               text={"Расход"}
               active={true}
-              link={"/expences"}
+              link={"/expense"}
               key="Расход"
             />
             <BasicFieldTab
@@ -51,7 +53,8 @@ const BasicField = () => {
             />
           </div>
           <div className={styles.dataField}>
-            <Calendar currentLocation={location} />
+            <Calendar />
+            <EnterForm currentLocation={location} />
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>

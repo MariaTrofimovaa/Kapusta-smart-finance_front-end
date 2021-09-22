@@ -65,7 +65,6 @@ const addTransaction =
       category,
       transactionType,
     };
-    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 

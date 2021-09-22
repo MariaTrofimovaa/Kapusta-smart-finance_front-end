@@ -15,7 +15,7 @@ const PublicRoute = ({
     <Route
       {...routeProps}
       render={(props) =>
-        isAuth ? <Redirect to="/expences" /> : <Component {...props} />
+        isAuth ? <Redirect to="/expense" /> : <Component {...props} />
       }
     />
   );
