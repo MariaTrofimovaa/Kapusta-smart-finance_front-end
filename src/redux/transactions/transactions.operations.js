@@ -78,8 +78,6 @@ const addTransaction =
       );
   };
 
-const expense = "expense";
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -91,30 +89,37 @@ const token = {
 
 const getAllExpenseOfDate = (date) => async (dispatch, getState) => {
   dispatch(transactionsActions.getExpenseOfDayRequest());
-  const authToken = getState().auth.token; /// когда будет готов аутх
+  const authToken = getState().auth.token;
   try {
-    token.set(authToken); /// когда будет готов аутх
-    // token.set(
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDliYjZjMTliNTkwMjQwNDc2M2JmOSIsImlhdCI6MTYzMjIzNTUxOH0.UNeWBg6A3mxCnwLik1Hv6XACLvlX69UxrneQXQj5foA"
-    // );
+    token.set(authToken);
+    // token.set("");
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/day/${expense}/${date}`
+      `http://localhost:4000/api/v1/transactions/day/expense/${date}`
     );
-
     dispatch(transactionsActions.getExpenseOfDaySuccess(data));
-    // alertSuccess("данные report.expense обновились");
   } catch (error) {
-    // alertError(error.message);
     dispatch(transactionsActions.getExpenseOfDayError(error));
   }
 };
 
+const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
+  dispatch(transactionsActions.getIncomeOfDayRequest());
+  const authToken = getState().auth.token;
+  try {
+    token.set(authToken);
+    // token.set("");
+    const { data } = await axios.get(
+      `http://localhost:4000/api/v1/transactions/day/income/${date}`
+    );
+    dispatch(transactionsActions.getIncomeOfDaySuccess(data));
+  } catch (error) {
+    dispatch(transactionsActions.getIncomeOfDayError(error));
+  }
+};
+
 const deleteTransaction = (objId) => (dispatch) => {
-  // console.log('objId :>> ', objId);
   dispatch(transactionsActions.deleteTransactionRequest());
 
-  // axios
-  //   .delete(`${url}/:${objId}`)
   deleteTransactionApi(objId)
     .then(() => {
       dispatch(transactionsActions.deleteTransactionSuccess(objId));
@@ -127,7 +132,6 @@ const deleteTransaction = (objId) => (dispatch) => {
 const fetchBrief = (filter) => (dispatch) => {
   dispatch(transactionsActions.fetchBriefRequest());
 
-
   fethcBriefApi(filter)
     .then((payload) => {
       dispatch(transactionsActions.fetchBriefSuccess(payload));
@@ -137,7 +141,6 @@ const fetchBrief = (filter) => (dispatch) => {
     );
 };
 
-
 const transactionsOperations = {
   deleteTransaction,
   // addBalanceOperation,
@@ -145,6 +148,7 @@ const transactionsOperations = {
   addTransaction,
   fetchBrief,
   getAllExpenseOfDate,
+  getAllIncomeOfDate,
 };
 
 export default transactionsOperations;
