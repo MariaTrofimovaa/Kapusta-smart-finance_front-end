@@ -8,8 +8,6 @@ const BASE_URL = "http://localhost:4000/api/v1/";
 
 axios.defaults.baseURL = BASE_URL;
 
-const setParams = (params) => (axios.defaults.params = params);
-
 // const resetParams = () => (axios.defaults.params = {});
 
 // Нужно сюда вынести все запросы по примеру fethcBriefApi
@@ -46,10 +44,9 @@ const setParams = (params) => (axios.defaults.params = params);
 
 // Сводка - Таня
 export const fethcBriefApi = (filter) => {
-  console.log(filter);
-  setParams(filter);
+
   return axios
-    .get(`transactions/brief`)
+    .get(`transactions/brief`, { params: filter })
     .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
     .catch((error) => {
       throw error;

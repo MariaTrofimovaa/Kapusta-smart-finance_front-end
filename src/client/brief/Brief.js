@@ -6,7 +6,6 @@ import styles from "./Brief.module.css";
 import operation from "../../redux/transactions/transactions.operations";
 
 import { getBrief } from "../../redux/transactions/transactions.selectors";
-import { getUserID } from "../../redux/auth/auth.selectors";
 
 const Brief = () => {
   const dispatch = useDispatch();
@@ -20,15 +19,10 @@ const Brief = () => {
 
   const [monthsTotal, setMonthes] = useState([]);
 
-  const user = useSelector(getUserID);
-  // const user = "6144ddead400134d14916c99";
-  // const user = "6145de27811e86286c2dfbed";
-
   const filter = {
     // type: "income",
-    type: "expense",
+    type: location.pathname.slice(1),
     year: currentDate.year,
-    user,
   };
 
   const transactions = useSelector(getBrief)[filter.type];
@@ -42,7 +36,7 @@ const Brief = () => {
     let month = new Date();
     const monthesSum = Array(currentDate.month + 1)
       .fill("")
-      .map((el, idx) => ({
+      .map((_, idx) => ({
         currentMonth: idx,
         currentAmount: transactions.reduce((acc, { date, amount }) => {
           const actualMonth = +date.split(".")[1];
