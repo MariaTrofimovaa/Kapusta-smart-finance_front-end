@@ -20,7 +20,7 @@ const BasicField = () => {
       {isPageWideLaptop && (
         <div>
           <div className={styles.btnWrapper}>
-            <BasicFieldTab text={"Расход"} link={"/expences"} key="Расход" />
+            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
           <div className={styles.dataField}>
@@ -40,7 +40,7 @@ const BasicField = () => {
             <BasicFieldTab
               text={"Расход"}
               active={true}
-              link={"/expences"}
+              link={"/expense"}
               key="Расход"
             />
             <BasicFieldTab
