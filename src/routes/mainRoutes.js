@@ -8,7 +8,7 @@ export const mainRoutes = [
     exact: true,
     isPrivate: false,
     redirectTo: "/expences",
-    // isRestricted: true,
+    isRestricted: true,
   },
   {
     name: "Expences",
@@ -16,6 +16,7 @@ export const mainRoutes = [
     component: lazy(() => import("../pages/homePage/HomePage")),
     exact: true,
     isPrivate: true,
+    // redirectTo: "/expences",
     // isRestricted: true,
   },
   {

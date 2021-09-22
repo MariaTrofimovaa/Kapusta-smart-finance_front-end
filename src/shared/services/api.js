@@ -58,7 +58,7 @@ export const fethcBriefApi = (filter) => {
 // Транзакции - добавление - Алена
 export const addTransactionApi = async (transaction) => {
   const { data } = await axios.post("transactions/", transaction);
-  console.log("data :>> ", data.data.addedTransaction);
+  // console.log("data :>> ", data.data.addedTransaction);
   return data.data.addedTransaction;
 };
 

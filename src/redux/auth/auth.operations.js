@@ -30,7 +30,10 @@ const register = (registrationObject) => async (dispatch) => {
   dispatch(registerRequest());
 
   try {
-    const { data } = await axios.post("/auth/signup", registrationObject);
+    const {
+      data: { data },
+    } = await axios.post("/auth/signup", registrationObject);
+    console.log(data);
     dispatch(registerSuccess(data));
     alertSuccess("Регистрация прошла успешно. Войдите в свою учетную запись.");
   } catch (error) {
@@ -49,7 +52,7 @@ const login = (loginObject) => async (dispatch, getState) => {
       data: { data },
     } = await axios.post("/auth/signin", loginObject);
     token.set(authToken);
-    console.log(authToken);
+
     dispatch(loginSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
@@ -88,7 +91,8 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(getCurrentUserRequest());
 
   try {
-    const { data } = await axios.get("/current");
+    const { data } = await axios.get("/auth/current");
+
     dispatch(getCurrentUserSuccess(data));
   } catch (error) {
     if (error.response.status === 401) {

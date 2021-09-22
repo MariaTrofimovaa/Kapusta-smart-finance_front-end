@@ -36,8 +36,10 @@ export {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+
   // getUserInfoRequest,
   // getUserInfoSuccess,
   // getUserInfoError,
+
   // goToRegistr,
 };
