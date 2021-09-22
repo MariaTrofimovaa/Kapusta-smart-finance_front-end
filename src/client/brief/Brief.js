@@ -20,9 +20,9 @@ const Brief = () => {
 
   const [monthsTotal, setMonthes] = useState([]);
 
-  // const userID = useSelector(getUserID);
-  const user = "6144ddead400134d14916c99";
-  // const userID = "6145de27811e86286c2dfbed";
+  const user = useSelector(getUserID);
+  // const user = "6144ddead400134d14916c99";
+  // const user = "6145de27811e86286c2dfbed";
 
   const filter = {
     // type: "income",

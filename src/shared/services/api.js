@@ -46,9 +46,10 @@ const setParams = (params) => (axios.defaults.params = params);
 
 // Сводка - Таня
 export const fethcBriefApi = (filter) => {
+  console.log(filter);
   setParams(filter);
   return axios
-    .get(`transactions/brief/`)
+    .get(`transactions/brief`)
     .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
     .catch((error) => {
       throw error;
