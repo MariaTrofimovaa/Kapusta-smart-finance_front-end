@@ -1,4 +1,4 @@
-@media (min-width: 320px) {
+/* @media (min-width: 320px) {
   .productInput {
     width: 290px;
     border-color: transparent;
@@ -7,8 +7,6 @@
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
-
-    /* border-bottom: 1px solid #e0e0e0; */
 
     margin-bottom: 30px;
     padding-bottom: 10px;
@@ -77,29 +75,117 @@
 }
 .productResultListItem:hover {
   background-color: dimgray;
-}
+} */
 
 @media (min-width: 768px) {
-  .productForm {
-    display: block;
+  .productDescription {
+    border: 2px solid #f5f6fb;
+    border-right: transparent;
+
+    border-radius: 16px 0px 0px 0px;
+    width: 170px;
+    height: 40px;
+    padding-left: 20px;
+    margin-right: 0;
+    margin-left: 0;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+
+    color: #c7ccdc;
   }
 
-  .productLabel {
-    margin-right: 30px;
+  .productCategory {
+    border: 2px solid #f5f6fb;
+    border-right: transparent;
+
+    width: 170px;
+    height: 40px;
+    padding-left: 20px;
+    margin-right: 0;
+    margin-left: 0;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+
+    color: #c7ccdc;
   }
 
-  .productInput {
+  .productAmountLabel {
+    border: 2px solid #f5f6fb;
+    border-right: transparent;
+    border-radius: 0px 16px 16px 0px;
+
+    width: 74px;
+    height: 40px;
+    padding-left: 20px;
+    margin-right: 0;
+    margin-left: 0;
+
+    color: #c7ccdc;
+  }
+
+  .productAmountInput {
     border: transparent;
-    /* border-bottom: 1px solid #e0e0e0; */
-    width: 240px;
-    padding-bottom: 19px;
-    margin-bottom: 60px;
-    margin-right: 30px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    height: 40px;
+    background-color: transparent;
+  }
+
+  .productForm {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .btnSubmit {
+    padding-right: 35px;
+    padding-left: 35px;
+    padding-top: 15px;
+    padding-bottom: 14px;
+    width: 125px;
+    height: 44px;
+    background-color: var(--accent-color-orange);
+    color: var(--white-color);
+    border-radius: 16px;
+    border: var(--accent-color-orange);
+    font-size: 12px;
+
+    outline: none;
+    text-transform: uppercase;
+  }
+
+  /* 
+  Кнопка "очистить"
+  Кнопка "нет" 
+  */
+
+  .btnClear {
+    padding: 12px 25px 12px 25px;
+
+    width: 125px;
+    height: 44px;
+    background-color: var(--white-color);
+    color: var(--primary-color-text);
+    border-radius: 17px;
+    border: none;
+    font-size: 12px;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 30px 30px;
+
+    outline: none;
+    text-transform: uppercase;
   }
 
   .weightInput {
     border: transparent;
-    /* border-bottom: 1px solid #e0e0e0; */
+
     padding-bottom: 19px;
     width: 104px;
     text-align: right;
