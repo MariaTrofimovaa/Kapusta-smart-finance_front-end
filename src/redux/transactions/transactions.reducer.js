@@ -69,18 +69,8 @@ const brief = createReducer(
   }
 );
 
-// const selectedDateReducer = createReducer(
-//   { selectedDate: "" },
-//   {
-//     [actions.getSelectedDate]: (state, { payload }) => {
-//       return { selectedDate: payload };
-//     },
-//   }
-// );
-
 export default combineReducers({
   // balanceReducer,
   list: transactionsReducer,
   brief,
-  // selectedDate: selectedDateReducer,
 });

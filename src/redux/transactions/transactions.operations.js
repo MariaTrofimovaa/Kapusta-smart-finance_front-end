@@ -64,7 +64,6 @@ const addTransaction =
       category,
       transactionType,
     };
-    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 
@@ -96,7 +95,6 @@ const fetchBrief =
   ({ type, year }) =>
   (dispatch) => {
     dispatch(transactionsActions.fetchBriefRequest());
-
 
     fethcBriefApi({ type, year })
       .then((payload) => {

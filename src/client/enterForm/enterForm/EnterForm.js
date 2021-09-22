@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
 import { getSelectedDate } from "../../../redux/date/date.selectors";
 
-const EnterForm = () => {
+const EnterForm = ({ currentLocation }) => {
   const token = useSelector(getAuthToken);
   const selectedDate = useSelector(getSelectedDate);
 
@@ -27,17 +27,13 @@ const EnterForm = () => {
       [event.target.name]: event.target.value,
     }));
 
-  // const handleCategoryChange = (event) =>
-  //   setFields((prevState) => ({
-  //     ...prevState,
-  //     [event.target.name]: event.target.value,
-  //   }));
 
-  const searchCategories = (event) => {
+  const searchCategories = () => {
+    console.log(currentLocation);
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
-      .get(`http://localhost:4000/api/v1/categories/expense-categories`)
+      .get(`http://localhost:4000/api/v1/categories${currentLocation}`)
       .then(({ data }) => {
         // console.log(data.data.result);
         setCategories(() => {
@@ -51,13 +47,10 @@ const EnterForm = () => {
   };
 
   const handleSubmit = (event) => {
-    // console.log("handleSubmit");
     event.preventDefault();
 
-    // console.log(token);
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-    // dispatch(transactionsOperations.addTransaction(startDate, fields));
 
     dispatch(
       transactionsOperations.addTransaction(

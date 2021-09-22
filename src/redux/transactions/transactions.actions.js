@@ -30,8 +30,6 @@ const deleteTransactionError = createAction(
   "transactions/deleteTransactionError"
 );
 
-// const getSelectedDate = createAction("transactions/getSelectedDate");
-
 const transactionsActions = {
   addBalanceRequest,
   addBalanceSuccess,
@@ -48,6 +46,5 @@ const transactionsActions = {
   deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
-  // getSelectedDate,
 };
 export default transactionsActions;
