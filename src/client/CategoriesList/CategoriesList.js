@@ -2,7 +2,6 @@ import sprite from "../../assets/icons/sprite_categories.svg";
 import css from "./CategoriesList.module.css";
 
 const CategoriesList = ({ transactionType }) => {
-  console.log(transactionType)
   return (
     <ul className={css.list}>
       {transactionType.length === 0 ? <h3 className={css.title_message}>По данном месяцу категорий не найдено.</h3> : transactionType.map((obj, idx) => (

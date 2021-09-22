@@ -55,7 +55,7 @@ const EnterForm = ({ startDate }) => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
     // dispatch(transactionsOperations.addTransaction(startDate, fields));
-    
+
     dispatch(
       transactionsOperations.addTransaction(
         startDate,
@@ -71,9 +71,9 @@ const EnterForm = ({ startDate }) => {
     setSelected(null);
   };
 
-  {
+  
     /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
-  }
+  
   // const onFormSubmit = (e) => {
   //   e.preventDefault();
 

@@ -2,14 +2,21 @@ import IconDelete from "../../shared/iconDelete/IconDelete";
 import styles from "./TableTransactions.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getTransactionsSelector } from "../../redux/transactions/transactions.selectors";
+import React, { useEffect } from "react";
+import { getTransactionOfDaySelector } from "../../redux/transactions/transactions.selectors";
 import transactionsOperations from "../../redux/transactions/transactions.operations";
 
 const TableTransactions = () => {
-  const tableTransactions = useSelector(getTransactionsSelector);
+  const tableTransactions = useSelector(getTransactionOfDaySelector);
 
   const dispatch = useDispatch();
-  // console.log(tableTransactions);
+
+  const date = "2021-09-21";
+
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllExpenseOfDate(date));
+    // dispatch(getAllIncomeOfMonth(month));
+  }, []); //добавить дату из селектора Алены
 
   return (
     <div>

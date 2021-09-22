@@ -11,13 +11,16 @@ import sprite from "../../assets/icons/sprite_categories.svg";
 import ReportExpense from "../../client/reportExpense/ReportExpense";
 import css from "./ReportPage.module.css";
 import ReportIncomes from "../../client/reportIncomes/ReportIncomes";
+import UserCount from "../../client/userCount/UserCount";
+import GoBack from "../../shared/components/goBack/GoBack";
 
 const ReportPage = () => {
   const match = useRouteMatch();
   const location = useLocation();
   return (
     <div div className={css.list_wraper}>
-      {/* <CategoriesList /> */}
+      <GoBack />
+      <UserCount />
       <ul className={css.list}>
         <li className={css.item}>
           <Link to={`${match.url}`}>
@@ -43,7 +46,7 @@ const ReportPage = () => {
       </Switch>
 
       {/* <Rechart/> */}
-    </div>
+
   );
 };
 

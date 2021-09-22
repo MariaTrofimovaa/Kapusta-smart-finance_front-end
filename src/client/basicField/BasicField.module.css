@@ -17,6 +17,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    /* Добавила margin-top, чтобы оттолкнуться от баланса */
+    margin-top: 93px;
   }
 
   .dataWrapper {

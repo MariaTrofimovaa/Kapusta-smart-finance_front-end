@@ -1,6 +1,6 @@
 import { useWindowSize } from "../../shared/windowSize/windowSize";
 import {
-  Area,
+  // Area,
   BarChart,
   ComposedChart,
   Bar,
@@ -8,8 +8,8 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend,
+  // Tooltip,
+  // Legend,
   ResponsiveContainer,
   LabelList,
 } from "recharts";

@@ -29,14 +29,13 @@ const transactionsReducer = createReducer([], {
     return state;
   },
   [actions.addTransactionSuccess]: (state, { payload }) => {
-    return [...state, payload]
+    return [...state, payload];
   },
 
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
-    // console.log(payload);
-    // console.log(state);
     return state.filter(({ _id }) => _id !== payload);
   },
+
   // [actions.deleteProductSuccess]: (state, { payload }) => ({
   //   ...state,
   //   eatenProducts: state.eatenProducts.filter(
@@ -58,19 +57,28 @@ const transactionsReducer = createReducer([], {
 });
 
 const brief = createReducer(
-  {},
-  // { income: [], expence: [] },
+  { income: [], expense: [] },
   {
     // [actions.fetchBriefRequest]: () => false,
-    [actions.fetchBriefSuccess]: (state, { payload }) => payload,
-    // [actions.fetchBriefSuccess]: (state, { payload }) =>
-    //   Object.assign(state, payload),
+    [actions.fetchBriefSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload,
+    }),
+
     // [actions.fetchBriefError]: () => false,
   }
 );
+
+const expenseOfDay = createReducer([], {
+  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
+  [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
+  [actions.deleteTransactionSuccess]: (state, { payload }) =>
+    state.filter(({ _id }) => _id !== payload),
+});
 
 export default combineReducers({
   // balanceReducer,
   list: transactionsReducer,
   brief,
+  expenseOfDay,
 });
