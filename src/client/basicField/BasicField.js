@@ -7,6 +7,7 @@ import Brief from "../brief/Brief";
 import styles from "./BasicField.module.css";
 import BasicFieldTab from "./BasicFieldTab";
 import { useMediaQuery } from "../../shared/hooks/mediaRulesHook";
+import EnterForm from "../enterForm/enterForm/EnterForm";
 
 const BasicField = () => {
   const isPageWideLaptop = useMediaQuery("(min-width: 1280px)");
@@ -25,7 +26,8 @@ const BasicField = () => {
           </div>
           <div className={styles.dataField}>
             <div className={styles.dataWrapper}>
-              <Calendar currentLocation={location} />
+              <Calendar />
+              <EnterForm currentLocation={location} />
             </div>
             <div className={styles.dataWrapper}>
               <TableTransactions />
@@ -51,7 +53,8 @@ const BasicField = () => {
             />
           </div>
           <div className={styles.dataField}>
-            <Calendar currentLocation={location} />
+            <Calendar />
+            <EnterForm currentLocation={location} />
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
