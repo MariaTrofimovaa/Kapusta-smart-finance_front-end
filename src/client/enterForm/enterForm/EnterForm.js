@@ -27,7 +27,6 @@ const EnterForm = ({ currentLocation }) => {
       [event.target.name]: event.target.value,
     }));
 
-
   const searchCategories = () => {
     console.log(currentLocation);
     // if (event.target.value.length > 0) {
@@ -50,7 +49,6 @@ const EnterForm = ({ currentLocation }) => {
     event.preventDefault();
 
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
 
     dispatch(
       transactionsOperations.addTransaction(
