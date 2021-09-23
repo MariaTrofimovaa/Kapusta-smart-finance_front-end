@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useLocation } from "react-router-dom";
 import styles from "./TableTransactions.module.css";
 import TableTransactionsExpense from "./TableTransactionsExpense";
@@ -7,6 +6,7 @@ import TableTransactionsIncome from "./TableTransactionsIncome";
 const TableTransactions = () => {
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
+  console.log(activeCheck);
 
   // const getTransaction = () => {
   //   if (activeCheck === "/expences")
@@ -26,7 +26,7 @@ const TableTransactions = () => {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {activeCheck === "/expences" ? (
+          {activeCheck === "/expense" ? (
             <TableTransactionsExpense />
           ) : (
             <TableTransactionsIncome />

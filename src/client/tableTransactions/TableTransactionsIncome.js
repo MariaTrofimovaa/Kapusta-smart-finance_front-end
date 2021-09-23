@@ -3,15 +3,17 @@ import styles from "./TableTransactions.module.css";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
+import { getSelectedDate } from "../../redux/date/date.selectors";
 import { getIncomeOfDaySelector } from "../../redux/transactions/transactions.selectors";
 
 const TableTransactionsIncome = () => {
-  const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
   const dispatch = useDispatch();
-  const date = "2022-09-21";
+  const date = useSelector(getSelectedDate);
+  const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
+
   useEffect(() => {
     dispatch(transactionsOperations.getAllIncomeOfDate(date));
-  }, []);
+  }, [date]);
 
   return tableTransactionsIncome.map((item) => (
     <tr key={item._id} className={styles.tableTr}>
