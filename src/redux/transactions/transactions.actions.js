@@ -38,6 +38,14 @@ const getExpenseOfDaySuccess = createAction(
 );
 const getExpenseOfDayError = createAction("transactions/getExpenseOfDayError");
 
+const getIncomeOfDayRequest = createAction(
+  "transactions/getIncomeOfDayRequest"
+);
+const getIncomeOfDaySuccess = createAction(
+  "transactions/getIncomeOfDaySuccess"
+);
+const getIncomeOfDayError = createAction("transactions/getIncomeOfDayError");
+
 const transactionsActions = {
   addBalanceRequest,
   addBalanceSuccess,
@@ -57,5 +65,8 @@ const transactionsActions = {
   getExpenseOfDayRequest,
   getExpenseOfDaySuccess,
   getExpenseOfDayError,
+  getIncomeOfDayRequest,
+  getIncomeOfDaySuccess,
+  getIncomeOfDayError,
 };
 export default transactionsActions;
