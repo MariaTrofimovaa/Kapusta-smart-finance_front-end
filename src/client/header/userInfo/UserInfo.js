@@ -1,5 +1,6 @@
 import React from "react";
 import defaultAvatar from "../../../assets/icons/default-avatar.png";
+
 import { useSelector } from "react-redux";
 import { getAuthUserName } from "../../../redux/auth/auth.selectors";
 
@@ -10,6 +11,7 @@ const UserInfo = () => {
   // прописать корректный путь и вынести селекторы
   const UserName = useSelector(getAuthUserName);
   const UserNameFirstLetter = UserName.toUpperCase().slice(0, 1);
+
   const UserNameCut = UserName.substring(0, UserName.indexOf("@"));
 
   // придумать, откуда лучше брать картинку userImage: или из
