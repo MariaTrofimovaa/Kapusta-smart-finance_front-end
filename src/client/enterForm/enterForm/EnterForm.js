@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
 import { getSelectedDate } from "../../../redux/date/date.selectors";
 
+// texts
+
 const EnterForm = ({ transType }) => {
   const token = useSelector(getAuthToken);
   const selectedDate = useSelector(getSelectedDate);
