@@ -48,9 +48,9 @@ export const addTransactionApi = async (transaction) => {
 };
 
 // Транзакции - удаление - Руслан
-export const deleteTransactionApi = (objId) => {
+export const deleteTransactionApi = (id) => {
   return axios
-    .delete(`transactions/${objId}`)
+    .delete(`transactions/${id}`)
     .then()
     .catch((error) => {
       throw error;

@@ -20,7 +20,7 @@ const TableTransactionsIncome = () => {
       <td className={styles.tableDate}>{item.date}</td>
       <td className={styles.tableDescription}>{item.description}</td>
       <td className={styles.tableCategory}>{item.category}</td>
-      <td className={styles.tableAmount}>{item.amount}</td>
+      <td className={styles.tableAmountIncome}>{item.amount}</td>
       <td className={styles.tableDelete}>
         <button
           className={styles.deleteBtn}
