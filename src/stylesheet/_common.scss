@@ -17,26 +17,21 @@ html {
 
 // Повторяющиеся классы из разных секций и компонентов
 
-@media screen and (min-width: 320px) {
-  .container {
-    max-width: 320px;
-    padding: 0;
-    /* padding: 12px 19px 6px 19px; */
+.mainContainer {
+  @include flex(space-between, center);
+  max-width: 320px;
+  padding: 0;
 
-    border: 1px solid #e53935;
-  }
-}
+  border: 1px solid #e53935;
+  // background-color: #7588e6;
 
-@media screen and (min-width: 768px) {
-  .container {
+  @include tablet() {
     max-width: 768px;
 
     border: 1px solid #2a36b6;
   }
-}
 
-@media screen and (min-width: 1280px) {
-  .container {
+  @include desktop() {
     max-width: 1280px;
 
     border: 1px solid #31c153;

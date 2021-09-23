@@ -7,18 +7,21 @@ export const mainRoutes = [
     component: lazy(() => import("../pages/authPage/AuthPage")),
     exact: true,
     isPrivate: false,
-    redirectTo: "/expences",
+    redirectTo: "/expense",
     isRestricted: true,
+
   },
+
   {
-    name: "Expences",
-    path: "/expences",
+    name: "Expense",
+    path: "/expense",
     component: lazy(() => import("../pages/homePage/HomePage")),
     exact: true,
     isPrivate: true,
-    // redirectTo: "/expences",
+    // redirectTo: "/expense",
     // isRestricted: true,
   },
+
   {
     name: "Income",
     path: "/income",
@@ -32,8 +35,8 @@ export const mainRoutes = [
     name: "Report",
     path: "/report",
     component: lazy(() => import("../pages/reportPage/ReportPage")),
-    redirectTo: "/expences",
-    exact: true,
+    redirectTo: "/expense",
+    exact: false,
     isPrivate: true,
     // isRestricted: true,
   },

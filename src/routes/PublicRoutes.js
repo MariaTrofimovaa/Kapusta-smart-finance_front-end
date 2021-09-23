@@ -20,6 +20,7 @@ const PublicRoute = ({
         ) : (
           <Component {...props} />
         )
+//         isAuth ? <Redirect to="/expense" /> : <Component {...props} />
       }
     />
   );
