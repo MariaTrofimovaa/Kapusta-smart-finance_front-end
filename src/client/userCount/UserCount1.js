@@ -16,7 +16,7 @@ const month = date.toLocaleDateString("ru", { month: "long" });
 
     return (
         <div>
-            <p>Текущий период :</p>
+            <p>Текущий период : </p>
             <div><span onClick={() => changeMonth("prev")}>&lt; 
                 </span>{month} {year}
                 <span onClick={() => changeMonth("next")}>&gt;
