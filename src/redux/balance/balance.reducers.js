@@ -1,7 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
 import initState from "./balance.initstate";
 import actions from "./balance.actions";
-// import { getCurrentUserSuccess, loginSuccess } from "../auth/auth.actions";
+import transactionsActions from "../transactions/transactions.actions";
+
 
 const balanceReducer = createReducer(initState, {  
   [actions.addBalanceSuccess]: (state, { payload }) => {
@@ -10,14 +11,13 @@ const balanceReducer = createReducer(initState, {
   [actions.getBalanceSuccess]: (state, { payload }) => {
     return { ...state, balance: payload };
   },
-/*   [getCurrentUserSuccess]: (state, { payload }) => {
-    console.log('login success, payload:', payload);
-    return { ...state, loginData: payload };
+  // баланс в сторе обновляется так же при добавлении/удалении транзакций
+   [transactionsActions.addTransactionSuccess]: (state, { payload }) => {
+    return { ...state, balance: payload.updatedBalance.balance};
   },
-  [loginSuccess]: (state, { payload }) => {
-    console.log('login success, payload:', payload);
-    return { ...state, loginData: payload };
-  }, */
+  [transactionsActions.deleteTransactionSuccess]: (state, { payload }) => {
+    return { ...state, balance: payload.updatedBalance.balance };
+  }, 
 });
 
 export default balanceReducer;
