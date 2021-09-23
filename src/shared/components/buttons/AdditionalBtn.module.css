@@ -1,0 +1,24 @@
+.addBtn {
+  padding: 0 auto;
+  font-family: "Roboto Bold Italic", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  width: 125px;
+  height: 44px;
+  color: var(--primary-color-text);
+  background-color: var(--white-color);
+
+  border: 2px solid #f6f7fc;
+  border-radius: 16px;
+  /* box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2); */
+  outline: none;
+}
+
+.addBtn:hover,
+.addBtn:focus {
+  background-color: var(--accent-color-orange);
+  color: var(--white-color);
+  border: var(--accent-color-orange);
+}
