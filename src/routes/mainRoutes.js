@@ -2,36 +2,38 @@ import { lazy } from "react";
 
 export const mainRoutes = [
   {
-    name: "Home",
-    path: "/",
-    component: lazy(() => import("../pages/homePage/HomePage")),
-    exact: true,
-    // isPrivate: true,
-    isRestricted: true,
-  },
-  {
     name: "Auth",
-    path: "/auth",
+    path: "/",
     component: lazy(() => import("../pages/authPage/AuthPage")),
     exact: true,
-    // isPrivate: false,
-    isRestricted: false,
+    isPrivate: false,
+    redirectTo: "/homePage",
+    // isRestricted: false,
   },
+  {
+    name: "Home",
+    path: "/homePage",
+    component: lazy(() => import("../pages/homePage/HomePage")),
+    exact: true,
+    isPrivate: true,
+    // isRestricted: true,
+  },
+
   {
     name: "Report",
     path: "/report",
     component: lazy(() => import("../pages/reportPage/ReportPage")),
-    redirectTo: "/",
-    // exact: true,
-    // isPrivate: true,
-    isRestricted: true,
+    redirectTo: "/homePage",
+    exact: true,
+    isPrivate: true,
+    // isRestricted: true,
   },
   {
     name: "NotFound",
-    // path: "/",
+    path: "",
     component: lazy(() => import("../pages/notFound/NotFound")),
-    // exact: true,
-    // isPrivate: true,
+    exact: true,
+    isPrivate: false,
     // isRestricted: false, не помню, зачем он
   },
 ];
