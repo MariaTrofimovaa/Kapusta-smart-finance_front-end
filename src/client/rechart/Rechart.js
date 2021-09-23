@@ -1,3 +1,15 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllExpenseOfMonth,
+  setActiveCategori,
+} from "../../redux/report/report.operations";
+import { useLocation } from "react-router-dom";
+import {
+  allexpenseOfMonth,
+  allIncomeOfMonth,
+} from "../../redux/report/report.selectors";
+
 import { useWindowSize } from "../../shared/windowSize/windowSize";
 import {
   // Area,
@@ -59,7 +71,31 @@ const data = [
 ];
 
 const Rechart = ({ chartData }) => {
+  const currentLocation = useLocation();
+  const activeCheck = currentLocation.pathname;
+  const expenses = useSelector(allexpenseOfMonth);
+  const incomes = useSelector(allIncomeOfMonth);
+  const curTypeOfPage = activeCheck === "/report" ? expenses : incomes;
   const { width } = useWindowSize();
+
+  const activeData = curTypeOfPage.reduce((acc , obj) => {
+    if (obj.isActive) {
+      // console.log(obj.types);
+      acc.push(obj.types)
+      return acc;
+    }
+  },[]);
+  
+  const activeData2 =  curTypeOfPage.find((obj) => {
+    if (obj.isActive) {
+      // console.log(obj.types);
+      return obj.types;
+    }
+  })
+
+  // console.log(activeData)
+  // console.log(activeData2)
+
   return width >= 768 ? (
     <div className={css.box}>
       <ResponsiveContainer width="100%" height="100%">
@@ -72,7 +108,7 @@ const Rechart = ({ chartData }) => {
               />
             ))}
             <LabelList
-              dataKey="coast"
+              dataKey="amount"
               position="top"
               className={css.labelList}
             />

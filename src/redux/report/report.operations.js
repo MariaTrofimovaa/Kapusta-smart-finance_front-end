@@ -6,6 +6,7 @@ import {
   getAllForMonthIncomeRequest,
   getAllForMonthIncomeSuccess,
   getAllForMonthIncomeError,
+  setActiveAction
 } from "./report.actions";
 
 const expense = "Расходы";
@@ -50,4 +51,8 @@ const getAllIncomeOfMonth = (month) => async (dispatch, getState) => {
   }
 };
 
-export { getAllExpenseOfMonth, getAllIncomeOfMonth };
+const setActiveCategori = (data) => (dispatch) => {
+  dispatch(setActiveAction(data));
+}
+
+export { getAllExpenseOfMonth, getAllIncomeOfMonth, setActiveCategori };

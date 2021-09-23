@@ -9,16 +9,16 @@ const CategoriesList = ({ transactionType, onClick }) => {
           По данном месяцу категорий не найдено.
         </h3>
       ) : (
-        transactionType.map((obj, idx) => (
-          <li key={idx} className={css.item}>
+        transactionType.map((obj) => (
+          <li key={obj.category} className={css.item}>
             <p className={css.text}>{obj.categorySum} </p>
             <div className={obj.isActive ? css.svg_boxActive : css.svg_box}>
               <svg
                 width="58"
                 height="58"
                 className={obj.isActive ? css.iconActive : css.icon}
-                onClick={onClick}
                 id={obj.category}
+                onClick={onClick}
               >
                 <use xlinkHref={`${sprite}#icon-${obj.category}`} />
               </svg>
