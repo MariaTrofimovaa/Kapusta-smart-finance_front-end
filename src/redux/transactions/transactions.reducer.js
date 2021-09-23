@@ -31,6 +31,7 @@ const transactionsReducer = createReducer([], {
   [actions.addTransactionSuccess]: (state, { payload }) => {
     return [...state, payload];
   },
+  // transactions: payload.transactions.brief.expense.data,
 
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
     return state.filter(({ _id }) => _id !== payload);

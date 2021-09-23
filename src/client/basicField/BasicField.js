@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Calendar from "../enterForm/calendar/Calendar";
 import TableTransactions from "../tableTransactions/TableTransactions";
 import Brief from "../brief/Brief";
@@ -14,7 +14,8 @@ const BasicField = () => {
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
 
-  const location = useLocation().pathname;
+  // const location = useLocation().pathname;
+   const { transType } = useParams();
 
   return (
     <>
@@ -27,7 +28,7 @@ const BasicField = () => {
           <div className={styles.dataField}>
             <div className={styles.dataWrapper}>
               <Calendar />
-              <EnterForm currentLocation={location} />
+              <EnterForm transType={transType} />
             </div>
             <div className={styles.dataWrapper}>
               <TableTransactions />
@@ -54,7 +55,7 @@ const BasicField = () => {
           </div>
           <div className={styles.dataField}>
             <Calendar />
-            <EnterForm currentLocation={location} />
+            <EnterForm transType={transType} />
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>

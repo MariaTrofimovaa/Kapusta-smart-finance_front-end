@@ -32,29 +32,29 @@ const Brief = () => {
     // eslint-disable-next-line
   }, [dispatch]);
 
-  useEffect(() => {
-    let month = new Date();
-    const monthesSum = Array(currentDate.month + 1)
-      .fill("")
-      .map((_, idx) => ({
-        currentMonth: idx,
-        currentAmount: transactions.reduce((acc, { date, amount }) => {
-          const actualMonth = +date.split(".")[1];
+  // useEffect(() => {
+  //   let month = new Date();
+  //   const monthesSum = Array(currentDate.month + 1)
+  //     .fill("")
+  //     .map((_, idx) => ({
+  //       currentMonth: idx,
+  //       currentAmount: transactions.reduce((acc, { date, amount }) => {
+  //         const actualMonth = +date.split(".")[1];
 
-          if (actualMonth - 1 === idx) {
-            acc += amount;
-          }
-          return acc;
-        }, 0),
-      }));
+  //         if (actualMonth - 1 === idx) {
+  //           acc += amount;
+  //         }
+  //         return acc;
+  //       }, 0),
+  //     }));
 
-    monthesSum.forEach((data) => {
-      month.setMonth(data.currentMonth);
-      data.currentMonth = month.toLocaleDateString("ru", { month: "long" });
-    });
+  //   monthesSum.forEach((data) => {
+  //     month.setMonth(data.currentMonth);
+  //     data.currentMonth = month.toLocaleDateString("ru", { month: "long" });
+  //   });
 
-    setMonthes(monthesSum);
-  }, [transactions]);
+  //   setMonthes(monthesSum);
+  // }, [transactions]);
 
   // const changeYear = () => {};
 
