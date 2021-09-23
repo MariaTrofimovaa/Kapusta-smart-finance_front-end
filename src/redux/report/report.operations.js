@@ -6,7 +6,7 @@ import {
   getAllForMonthIncomeRequest,
   getAllForMonthIncomeSuccess,
   getAllForMonthIncomeError,
-  setActiveAction
+  setActiveAction,
 } from "./report.actions";
 
 const expense = "Расходы";
@@ -29,7 +29,6 @@ const getAllExpenseOfMonth = (month) => async (dispatch, getState) => {
     const { data } = await axios.get(
       `http://localhost:4000/api/v1/transactions/expense/${month}`
     );
-console.log(data)
     dispatch(getAllForMonthExpenseSuccess(data));
   } catch (error) {
     dispatch(getAllForMonthExpenseError(error));
@@ -44,7 +43,6 @@ const getAllIncomeOfMonth = (month) => async (dispatch, getState) => {
     const { data } = await axios.get(
       `http://localhost:4000/api/v1/transactions/income/${month}`
     );
-
     dispatch(getAllForMonthIncomeSuccess(data));
   } catch (error) {
     dispatch(getAllForMonthIncomeError(error));
@@ -53,6 +51,6 @@ const getAllIncomeOfMonth = (month) => async (dispatch, getState) => {
 
 const setActiveCategori = (data) => (dispatch) => {
   dispatch(setActiveAction(data));
-}
+};
 
 export { getAllExpenseOfMonth, getAllIncomeOfMonth, setActiveCategori };

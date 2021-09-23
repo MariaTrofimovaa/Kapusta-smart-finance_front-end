@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import Rechart from "../../client/rechart/Rechart";
 import {
   Route,
@@ -8,11 +8,16 @@ import {
   useLocation,
 } from "react-router-dom";
 import sprite from "../../assets/icons/sprite_categories.svg";
-import ReportExpense from "../../client/reportExpense/ReportExpense";
 import css from "./ReportPage.module.css";
-import ReportIncomes from "../../client/reportIncomes/ReportIncomes";
 import UserCount from "../../client/userCount/UserCount";
 import GoBack from "../../shared/components/goBack/GoBack";
+
+const ReportExpense = lazy(() =>
+  import("../../client/reportExpense/ReportExpense")
+);
+const ReportIncomes = lazy(() =>
+  import("../../client/reportIncomes/ReportIncomes")
+);
 
 const ReportPage = () => {
   const match = useRouteMatch();

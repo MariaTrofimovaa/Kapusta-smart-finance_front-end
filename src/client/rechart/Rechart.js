@@ -72,35 +72,46 @@ const data = [
 
 const Rechart = ({ chartData }) => {
   const currentLocation = useLocation();
-  const activeCheck = currentLocation.pathname;
+  const curLocation = currentLocation.pathname;
   const expenses = useSelector(allexpenseOfMonth);
   const incomes = useSelector(allIncomeOfMonth);
-  const curTypeOfPage = activeCheck === "/report" ? expenses : incomes;
+  const curTypeOfPage = curLocation === "/report" ? expenses : incomes;
   const { width } = useWindowSize();
 
-  const activeData = curTypeOfPage.reduce((acc , obj) => {
-    if (obj.isActive) {
-      // console.log(obj.types);
-      acc.push(obj.types)
+  const activeData =
+    curTypeOfPage?.length > 0
+      ? curTypeOfPage.find((obj) => obj.isActive).types
+      : [];
+
+  // function byField(field) {
+  //   return (a, b) => (a[field] < b[field] ? 1 : -1);
+  // }
+  // console.log(data.sort(byField("coast")));
+  // console.log(activeData.sort(byField("amount")));
+
+  // console.log(activeData);
+  const awdadw = activeData.reduce((acc, { description, amount }) => {
+    const desc = acc.find((el) => el.description === amount);
+    if (!desc) {
+      acc.push({ description, amount });
       return acc;
     }
-  },[]);
-  
-  const activeData2 =  curTypeOfPage.find((obj) => {
-    if (obj.isActive) {
-      // console.log(obj.types);
-      return obj.types;
+    if (desc) {
+      const idx = acc.findIndex((el) => el.description === amount);
+      acc[idx].description = description;
+      acc[idx].amount += amount;
+      return acc;
     }
-  })
 
-  // console.log(activeData)
-  // console.log(activeData2)
+    return acc;
+  }, []);
+  console.log(awdadw);
 
   return width >= 768 ? (
     <div className={css.box}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} className={css.barChart} minPointSize={5}>
-          <Bar dataKey="coast" barSize={35} radius={[10, 10, 0, 0]}>
+        <BarChart data={activeData} className={css.barChart} minPointSize={5}>
+          <Bar dataKey="amount" barSize={35} radius={[10, 10, 0, 0]}>
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
@@ -114,7 +125,7 @@ const Rechart = ({ chartData }) => {
             />
           </Bar>
           <XAxis
-            dataKey="name"
+            dataKey="description"
             axisLine={false}
             tickLine={false}
             className={css.x}

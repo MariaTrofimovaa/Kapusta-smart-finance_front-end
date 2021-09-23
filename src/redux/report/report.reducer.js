@@ -67,10 +67,10 @@ const expenseOfMonth = createReducer([], {
     }, []),
 });
 const incomeOfMonth = createReducer([], {
+  [setActiveAction]: (state, { payload }) => payload,
   [getAllForMonthIncomeSuccess]: (state, { payload }) =>
     payload.data.reduce((acc, { category, description, amount }) => {
       const curCategory = acc.find((el) => el.category === category);
-
       if (!curCategory) {
         if (acc.length >= 1) {
           acc.push({
@@ -103,10 +103,22 @@ const incomeOfMonth = createReducer([], {
       if (curCategory) {
         const idx = acc.findIndex((el) => el.category === category);
         acc[idx].categorySum += amount;
-        acc[idx].types.push({
-          description: description,
-          amount: amount,
-        });
+
+        const idxTypes = acc[idx].types.findIndex(
+          (el) => el.description === description
+        );
+        console.log(idxTypes);
+        if (idxTypes === -1) {
+          acc[idx].types.push({
+            description: description,
+            amount: amount,
+          });
+        }
+        if (idxTypes === 0 && idxTypes ) {
+          acc[idx].types[idxTypes].amount += amount;
+          acc[idx].types[idxTypes].description = description;
+        }
+
         return acc;
       }
     }, []),

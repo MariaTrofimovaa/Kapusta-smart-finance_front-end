@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllExpenseOfMonth,
@@ -11,7 +11,6 @@ import setActive from "../../shared/setActive/setActive";
 
 const ReportExpense = () => {
   const dispatch = useDispatch();
-  const [categoryState, setCategoryState] = useState("");
 
   const expenses = useSelector(allexpenseOfMonth);
   const month = "09.2021";
@@ -20,13 +19,9 @@ const ReportExpense = () => {
     dispatch(getAllExpenseOfMonth(month));
   }, []); // добавить изменение по дате
 
-  const handleOnClick = async (e) => {
-    const id = await e.target.id;
-    await console.log(id);
-    await setCategoryState(id);
-    const newExpense = await setActive(expenses, categoryState);
-    console.log(newExpense);
-    // dispatch(setActiveCategori(newExpense));
+  const handleOnClick = (category) => {
+    const newExpense = setActive(expenses, category);
+    dispatch(setActiveCategori(newExpense));
   };
 
   return <CategoriesList transactionType={expenses} onClick={handleOnClick} />;

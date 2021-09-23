@@ -1,6 +1,5 @@
 const setActive = (array, curCategory) => {
-  return array.map((obj) => {
-    // console.log(obj.isActive)
+  const setAllFalse = array.map((obj) => {
     if (obj.isActive) {
       return {
         category: obj.category,
@@ -9,7 +8,21 @@ const setActive = (array, curCategory) => {
         types: obj.types,
       };
     }
-    console.log(curCategory);
+    return obj;
+  });
+
+  const setCategoriFalse = setAllFalse.map((obj) => {
+    if (obj.category !== curCategory) {
+      return {
+        category: obj.category,
+        categorySum: obj.categorySum,
+        isActive: false,
+        types: obj.types,
+      };
+    }
+    return obj;
+  });
+  const setCurrentTrue = setCategoriFalse.map((obj) => {
     if (obj.category === curCategory) {
       return {
         category: obj.category,
@@ -20,54 +33,8 @@ const setActive = (array, curCategory) => {
     }
     return obj;
   });
+
+  return setCurrentTrue;
 };
-
-// const setActive = (array, curCategory) => {
-//   return array.reduce((acc, obj) => {
-//     // console.log(obj.isActive)
-//     if (obj.isActive) {
-//       acc.push({
-//         category: obj.category,
-//         categorySum: obj.amount,
-//         isActive: false,
-//         types: [
-//           {
-//             description: obj.description,
-//             amount: obj.amount,
-//           },
-//         ],
-//       });
-//       return acc;
-//     }
-//     // console.log(curCategory)
-//     if (obj.category === curCategory) {
-//       acc.push({
-//         category: obj.category,
-//         categorySum: obj.amount,
-//         isActive: true,
-//         types: [
-//           {
-//             description: obj.description,
-//             amount: obj.amount,
-//           },
-//         ],
-//       })
-//       return acc;
-//     }
-//     acc.push({
-//       category: obj.category,
-//       categorySum: obj.amount,
-//       isActive: false,
-//       types: [
-//         {
-//           description: obj.description,
-//           amount: obj.amount,
-//         },
-//       ],
-//     })
-
-//     return acc;
-//   },[]);
-// };
 
 export default setActive;
