@@ -32,7 +32,8 @@ const EnterForm = ({ transType }) => {
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
-      .get(`http://localhost:4000/api/v1/categories${transType}`)
+
+      .get(`http://localhost:4000/api/v1/categories/${transType}`)
       .then(({ data }) => {
         // console.log(data.data.result);
         setCategories(() => {

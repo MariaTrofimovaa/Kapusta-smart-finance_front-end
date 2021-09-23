@@ -1,4 +1,5 @@
   .goBack {
+    position: relative;
     align-items: center;
     font-family: "Roboto";
     font-style: normal;
@@ -10,9 +11,8 @@
     cursor: pointer;
     margin: 0;
     padding: 0;
-    position: absolute;
-    top: 77px;
-    left: -41px
+    top: 21px;
+    left: -33px
   }
   .arrowSvg {
     display: flex;
@@ -24,11 +24,11 @@
   }
   @media screen and (min-width: 768px) {
     .goBack {
-      position: absolute;
+      position: relative;
       display: flex;
       width: 153px;
-      top: 113px;
-      left: 15px;
+      top: 37px;
+      left: 0px;
     }
     .arrowText {
     visibility: visible;
@@ -39,10 +39,9 @@
   @media screen and (min-width: 1280px) {
     .goBack {
       max-height: 100%;
-      position: absolute;
+      position: relative;
       display: flex;
-      top: 113px;
-      left: 91px;
+      left: -127px;
     }
     .arrowText {
       visibility: visible

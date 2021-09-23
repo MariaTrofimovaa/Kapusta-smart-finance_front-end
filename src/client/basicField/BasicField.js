@@ -15,7 +15,7 @@ const BasicField = () => {
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
 
   // const location = useLocation().pathname;
-   const { transType } = useParams();
+  const { transType } = useParams();
 
   return (
     <>
@@ -40,18 +40,24 @@ const BasicField = () => {
       {isPageWideTablet && (
         <div>
           <div className={styles.btnWrapper}>
-            <BasicFieldTab
-              text={"Расход"}
-              active={true}
-              link={"/expense"}
-              key="Расход"
-            />
-            <BasicFieldTab
-              text={"Доход"}
-              active={false}
-              link={"/income"}
-              key="Доход"
-            />
+            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
+            <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
+          </div>
+          <div className={styles.dataField}>
+            <Calendar />
+            <EnterForm transType={transType} />
+            <div className={styles.dataWrapper}>
+              <TableTransactions />
+            </div>
+          </div>
+          <Brief />
+        </div>
+      )}
+      {isPageWideMobile && (
+        <div>
+          <div className={styles.btnWrapper}>
+            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
+            <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
           <div className={styles.dataField}>
             <Calendar />

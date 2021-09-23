@@ -75,6 +75,14 @@
   padding-left: 20px;
   width: 20%;
   text-align: right;
+  color: #e7192e;
+  font-weight: 700;
+}
+
+.tableAmountIncome {
+  padding-left: 20px;
+  width: 20%;
+  text-align: right;
   color: #407946;
   font-weight: 700;
 }

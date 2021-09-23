@@ -13,6 +13,7 @@ export const mainRoutes = [
 
   {
     name: "HomePage",
+    // path: "/expense",
     path: "/:transType",
     component: lazy(() => import("../pages/homePage/HomePage")),
     exact: false,
@@ -43,6 +44,7 @@ export const mainRoutes = [
   // },
 
   // {
+
   //   name: "Income",
   //   path: "/income",
   //   component: lazy(() => import("../pages/homePage/HomePage")),
