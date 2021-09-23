@@ -6,12 +6,14 @@ import { authReducer } from "./auth/auth.reducer";
 import balanceReducer from "./balance/balance.reducers";
 import reportReducer from "./report/report.reducer";
 import selectedDateReducer from "./date/dateReducer";
+
 // import selectedDateReducer from "./transactions/transactions.reducer";
 // ================ Все вынесли в transactions
 // import { transactionsReducer } from "./transactions/tranzactions.reducer";
 
 // ================ !!!!!!! Проверить что чье. Строка ниже вроде не Алены
 import transactions from "./transactions/transactions.reducer";
+import changeMonthReducer from "./monthDate/monthReducer";
 
 const persistConfig = {
   key: "auth",
@@ -27,6 +29,7 @@ const rootReducer = combineReducers({
   report: reportReducer,
   transactions,
   selectedDate: selectedDateReducer,
+  changeMonth: changeMonthReducer,
 });
 
 export default rootReducer;
