@@ -1,10 +1,11 @@
 import transactionsOperations from "../../redux/transactions/transactions.operations";
 import styles from "./TableTransactions.module.css";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
 import { getSelectedDate } from "../../redux/date/date.selectors";
 import { getIncomeOfDaySelector } from "../../redux/transactions/transactions.selectors";
+import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
 const TableTransactionsIncome = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,16 @@ const TableTransactionsIncome = () => {
   useEffect(() => {
     dispatch(transactionsOperations.getAllIncomeOfDate(date));
   }, [date]);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleModalClose = (e) => {
+    setModalOpen(false);
+  };
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
 
   return tableTransactionsIncome.map((item) => (
     <tr key={item._id} className={styles.tableTr}>
@@ -25,12 +36,19 @@ const TableTransactionsIncome = () => {
         <button
           className={styles.deleteBtn}
           type="button"
-          onClick={() =>
-            dispatch(transactionsOperations.deleteTransaction(item._id))
-          }
+          onClick={handleModalOpen}
         >
           <IconDelete />
         </button>
+        {isModalOpen && (
+          <ModalWindow
+            text={"Вы уверены?"}
+            onCancel={handleModalClose}
+            onSubmit={() => {
+              dispatch(transactionsOperations.deleteTransaction(item._id));
+            }}
+          />
+        )}
       </td>
     </tr>
   ));

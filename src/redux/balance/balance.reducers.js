@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import initState from "./balance.initstate";
 import actions from "./balance.actions";
-import { getCurrentUserSuccess, loginSuccess } from "../auth/auth.actions";
+// import { getCurrentUserSuccess, loginSuccess } from "../auth/auth.actions";
 
 const balanceReducer = createReducer(initState, {  
   [actions.addBalanceSuccess]: (state, { payload }) => {
