@@ -1,6 +1,3 @@
-// http://localhost:4000/api/v1/transactions/Расходы/09.2021
-// http://localhost:4000/api/v1/transactions/Доходы/09.2021
-
 import axios from "axios";
 import {
   getAllForMonthExpenseRequest,
@@ -11,9 +8,8 @@ import {
   getAllForMonthIncomeError,
 } from "./report.actions";
 
-// import { alertError, alertSuccess } from "../../shared/reactAlert";
-
 const expense = "Расходы";
+const income = "Доходы";
 
 const token = {
   set(token) {
@@ -26,40 +22,30 @@ const token = {
 
 const getAllExpenseOfMonth = (month) => async (dispatch, getState) => {
   dispatch(getAllForMonthExpenseRequest());
-  //   const authToken = getState().auth.token; /// когда будет готов аутх
+  const authToken = getState().auth.token; /// когда будет готов аутх
   try {
-    // token.set(authToken);  /// когда будет готов аутх
-    token.set(
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDcwNDZjNGI1ZDE0MmNjYzE3MWNjMCIsImlhdCI6MTYzMjA0NDE0OH0.IB09YIw4a7HUrrOMQ3HOyhFOTp3wz6kPox-nh2-4v_c"
-    );
+    token.set(authToken); /// когда будет готов аутх
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/${expense}/${month}`
+      `http://localhost:4000/api/v1/transactions/expense/${month}`
     );
-
+console.log(data)
     dispatch(getAllForMonthExpenseSuccess(data));
-    // alertSuccess("данные report.expense обновились");
   } catch (error) {
-    // alertError(error.message);
     dispatch(getAllForMonthExpenseError(error));
   }
 };
 
-const getAllIncomeOfMonth = (month) => async (dispatch) => {
+const getAllIncomeOfMonth = (month) => async (dispatch, getState) => {
   dispatch(getAllForMonthIncomeRequest());
-  //   const authToken = getState().auth.token; /// когда будет готов аутх
+  const authToken = getState().auth.token; /// когда будет готов аутх
   try {
-    // token.set(authToken);  /// когда будет готов аутх
-    token.set(
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDcwNDZjNGI1ZDE0MmNjYzE3MWNjMCIsImlhdCI6MTYzMjA0NDE0OH0.IB09YIw4a7HUrrOMQ3HOyhFOTp3wz6kPox-nh2-4v_c"
-    );
+    token.set(authToken); /// когда будет готов аутх
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/Доходы/${month}`
+      `http://localhost:4000/api/v1/transactions/income/${month}`
     );
 
     dispatch(getAllForMonthIncomeSuccess(data));
-    // alertSuccess("данные report.income обновились");
   } catch (error) {
-    // alertError(error.message);
     dispatch(getAllForMonthIncomeError(error));
   }
 };

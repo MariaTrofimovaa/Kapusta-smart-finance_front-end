@@ -1,20 +1,27 @@
-.list_wraper {
-  display: block;
-}
-
 .list {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100px;
   height: 140px;
+}
+
+.title_message {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 17px;
+
+  color: #52555f;
+  padding-bottom: 30px;
 }
 
 .text {
@@ -30,24 +37,54 @@
   text-transform: uppercase;
 
   color: #52555f;
+
+  margin-bottom: 15px;
 }
 
 .svg_box {
   width: 59px;
   height: 46px;
-
+  position: relative;
   background-color: #f5f6fb;
   border-radius: 20px;
+  margin-bottom: 7px;
 }
-
 .svg_box:hover {
-  background-color: rgb(255, 117, 29, 0.3);
+  background-color: #ffdac0;
 }
 
 .icon {
-  width: 50px;
-  height: 50px;
-  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  /* width: 84px;
+  height: 56px; */
+}
+
+.icon:hover {
+  fill: #ff751d;
+}
+
+.iconActive {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateX(-50%);
+  fill: #ff751d;
+
+  /* width: 84px;
+  height: 56px; */
+}
+.svg_boxActive {
+  width: 59px;
+  height: 46px;
+  position: relative;
+  background-color: rgb(255, 218, 192);
+  border-radius: 20px;
+  margin-bottom: 7px;
 }
 
 .title {
@@ -65,34 +102,12 @@
   color: #52555f;
 }
 
-.buttonAll,
-.buttonAllIsActive {
-  font-size: 14px;
-  color: #52555f;
-  font-weight: 700;
-  text-transform: uppercase;
-  height: 50px;
-  border: none;
-  border-radius: 20px;
-  background-color: rgb(244, 246, 251);
-}
-
-.buttonAllOrange {
-  composes: buttonAll;
-  background-color: rgb(255, 217, 192);
-}
-
-@media (max-width: 1279px) {
+@media screen and (min-width: 768px) {
   .list {
-    width: 100%;
+    width: 670px;
   }
-}
 
-@media (max-width: 767px) {
-  .list {
-    width: 100%;
-    padding: 0;
-    height: auto;
-    border-radius: 0;
+  .item {
+    margin: 0 10px 0 0;
   }
 }

@@ -4,9 +4,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
+import { getSelectedDate } from "../../../redux/date/date.selectors";
 
-const EnterForm = ({ startDate }) => {
+const EnterForm = ({ currentLocation }) => {
   const token = useSelector(getAuthToken);
+  const selectedDate = useSelector(getSelectedDate);
+
   const [fields, setFields] = useState({
     description: "",
     amount: "",
@@ -24,17 +27,12 @@ const EnterForm = ({ startDate }) => {
       [event.target.name]: event.target.value,
     }));
 
-  // const handleCategoryChange = (event) =>
-  //   setFields((prevState) => ({
-  //     ...prevState,
-  //     [event.target.name]: event.target.value,
-  //   }));
-
-  const searchCategories = (event) => {
+  const searchCategories = () => {
+    console.log(currentLocation);
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
-      .get(`http://localhost:4000/api/v1/categories/expense-categories`)
+      .get(`http://localhost:4000/api/v1/categories${currentLocation}`)
       .then(({ data }) => {
         // console.log(data.data.result);
         setCategories(() => {
@@ -48,17 +46,13 @@ const EnterForm = ({ startDate }) => {
   };
 
   const handleSubmit = (event) => {
-    // console.log("handleSubmit");
     event.preventDefault();
 
-    // console.log(token);
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
-    // dispatch(transactionsOperations.addTransaction(startDate, fields));
 
     dispatch(
       transactionsOperations.addTransaction(
-        startDate,
+        selectedDate,
         fields.description,
         fields.amount,
         fields.category,
@@ -71,9 +65,8 @@ const EnterForm = ({ startDate }) => {
     setSelected(null);
   };
 
-  
-    /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
-  
+  /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
+
   // const onFormSubmit = (e) => {
   //   e.preventDefault();
 
@@ -92,14 +85,11 @@ const EnterForm = ({ startDate }) => {
   return (
     <div>
       <form className={styles.productForm} onSubmit={handleSubmit}>
-        {/* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/}
-        {/* <form className={styles.productForm} onSubmit={onFormSubmit}> */}
-
         <input
           placeholder="Описание товара"
           type="text"
           name="description"
-          className={styles.productInput}
+          className={styles.productDescription}
           autoComplete="off"
           autoFocus
           value={fields.description}
@@ -110,7 +100,7 @@ const EnterForm = ({ startDate }) => {
           placeholder="Категория товара"
           type="text"
           name="category"
-          className={styles.productInput}
+          className={styles.productCategory}
           autoComplete="off"
           autoFocus
           value={fields.category}
@@ -139,9 +129,9 @@ const EnterForm = ({ startDate }) => {
             ))}
         </ul>
 
-        <label className={styles.productLabel}>
+        <label className={styles.productAmountLabel}>
           <input
-            className={styles.weightInput}
+            className={styles.productAmountInput}
             placeholder="0.00"
             type="number"
             name="amount"
@@ -149,8 +139,13 @@ const EnterForm = ({ startDate }) => {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Ввод</button>
+        <br />
+
+        <button type="submit" className={styles.btnSubmit}>
+          Ввод
+        </button>
         <button
+          className={styles.btnClear}
           type="button"
           onClick={() => {
             setFields({

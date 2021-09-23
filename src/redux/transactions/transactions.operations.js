@@ -65,7 +65,6 @@ const addTransaction =
       category,
       transactionType,
     };
-    // console.log(transaction);
 
     dispatch(transactionsActions.addTransactionRequest());
 
@@ -127,8 +126,11 @@ const deleteTransaction = (objId) => (dispatch) => {
     );
 };
 
-const fetchBrief = (filter) => (dispatch) => {
+const fetchBrief = (filter) => (dispatch, getState) => {
   dispatch(transactionsActions.fetchBriefRequest());
+
+  const authToken = getState().auth.token;
+  token.set(authToken);
 
   fethcBriefApi(filter)
     .then((payload) => {

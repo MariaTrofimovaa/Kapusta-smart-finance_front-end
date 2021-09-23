@@ -20,10 +20,12 @@ const TableTransactions = () => {
   console.log(currentLocation.pathname);
   const dispatch = useDispatch();
 
-  const date = "2021-09-21";
+
+  const date = "21.09.2021";
   // useEffect(() => {
   //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
   // }, []);
+
 
   useEffect(() => {
     dispatch(transactionsOperations.getAllExpenseOfDate(date));

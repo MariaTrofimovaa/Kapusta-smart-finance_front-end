@@ -2,53 +2,38 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:4000/api/v1/";
 
-// Этот url использовался в addBalanceOperation в transactions.operations
-// Чей он и где используется? Давайте его удалим. (Маша)
-// export const url = "http://localhost:4000/api/v1/transactions";
-
 axios.defaults.baseURL = BASE_URL;
 
-const setParams = (params) => (axios.defaults.params = params);
-
-// const resetParams = () => (axios.defaults.params = {});
-
-// Нужно сюда вынести все запросы по примеру fethcBriefApi
-
-// // Регистрация
-// export const registerApi = (registrationObject) => {
-//   return axios
-//     .post("/auth/signup", registrationObject)
-//     .then()
-//     .catch((error) => {
-//       throw error;
-//     });
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = "";
+//   },
 // };
 
-// // Логинизация
-// export const logInApi = (loginObject) => {
-//   return axios
-//     .post("/auth/signin", loginObject)
-//     .then()
-//     .catch((error) => {
-//       throw error;
-//     });
-// };
+// Сюда нужно вынести все запросы
 
-// // Логаут
-// export const logoutApi = () => {
-//   return axios
-//     .post("/auth/logout")
-//     .then()
-//     .catch((error) => {
-//       throw error;
-//     });
-// };
+// // Регистрация (это набросок)
+// export const registerAPI = async (registrationObject) =>
+//   (await axios.post("/auth/signup", registrationObject)).data.data;
+
+// // Логинизация (это набросок)
+// export const logInApi = async (loginObject) =>
+//   (await axios.post("/auth/login", loginObject)).data.data;
+
+// // Логаут (это набросок)
+// export const logoutApi = async (credentials) =>
+//   (await axios.post("/auth/logout", credentials)).data.data;
+
+// Данные о пользователе (это набросок)
+// export const getCurrentUserApi = () => {}
 
 // Сводка - Таня
 export const fethcBriefApi = (filter) => {
-  setParams(filter);
   return axios
-    .get(`transactions/brief/`)
+    .get(`transactions/brief`, { params: filter })
     .then(({ data }) => ({ [filter.type]: data.data.allIncomes }))
     .catch((error) => {
       throw error;
@@ -72,14 +57,17 @@ export const deleteTransactionApi = (objId) => {
     });
 };
 
-// Баланс - Света
-export const fetchBalanceApi = (balance) => {
-  axios
-    .patch(`/user`, { balance: balance })
-    .then(({ data }) => ({ [data]: data.balance }))
-    .catch((error) => {
-      throw error;
-    });
-};
+// Баланс - Света (это набросок)
+// export const fetchBalanceApi = (balance) => {
+//   axios
+//     .patch(`/user`, { balance: balance })
+//     .then(({ data }) => ({ [data]: data.balance }))
+//     .catch((error) => {
+//       throw error;
+//     });
+// };
 
-// Отчеты
+// export const getBalanceOperationApi = () => {}
+
+// Отчеты Максим  (это набросок)
+//  export const getAllExpensesOfMonthApi =() => {}
