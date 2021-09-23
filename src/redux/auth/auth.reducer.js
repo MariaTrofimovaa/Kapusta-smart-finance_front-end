@@ -31,12 +31,6 @@ const user = createReducer(initialUserState, {
   [getCurrentUserSuccess]: (_, { payload }) => payload,
 });
 
-// const todaySummaryInfo = createReducer(null, {
-//   [registerSuccess]: (_, { payload }) => payload.todaySummary,
-//   [loginSuccess]: (_, { payload }) => payload.todaySummary,
-
-//   [logoutSuccess]: () => null,
-// });
 
 const token = createReducer(null, {
   [registerSuccess]: () => null,

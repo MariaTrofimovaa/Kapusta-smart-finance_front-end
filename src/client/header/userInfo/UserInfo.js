@@ -10,6 +10,7 @@ const UserInfo = () => {
   // const UserName = useSelector((state) => state.user.userData.email);
   // прописать корректный путь и вынести селекторы
   const UserName = useSelector(getAuthUserName);
+
   const UserNameFirstLetter = UserName.toUpperCase().slice(0, 1);
 
   const UserNameCut = UserName.substring(0, UserName.indexOf("@"));
