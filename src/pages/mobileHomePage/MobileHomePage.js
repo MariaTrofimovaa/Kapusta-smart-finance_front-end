@@ -1,12 +1,12 @@
 import React from "react";
-import Balance from "../../client/balance/Balance";
+// import Balance from "../../client/balance/Balance";
 // import BasicField from "../../client/basicField/BasicField";
-import EnterForm from "../../client/enterForm/enterForm/EnterForm";
-import Calendar from "../../client/enterForm/calendar/Calendar";
-import TableTransactions from "../../client/tableTransactions/TableTransactions";
+// import EnterForm from "../../client/enterForm/enterForm/EnterForm";
+// import Calendar from "../../client/enterForm/calendar/Calendar";
+// import TableTransactions from "../../client/tableTransactions/TableTransactions";
 
 import styles from "./MobileHomePage.module.css";
-import BasicFieldTab from "../../client/basicField/BasicFieldTab";
+// import BasicFieldTab from "../../client/basicField/BasicFieldTab";
 
 const MobileHomePage = () => {
   return (
@@ -15,7 +15,7 @@ const MobileHomePage = () => {
         {/* <Balance /> */}
         {/* <BasicField /> */}
 
-        <div className={styles.dataFieldMobile}>
+        {/* <div className={styles.dataFieldMobile}>
           <div className={styles.btnWrapper}>
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
@@ -24,7 +24,7 @@ const MobileHomePage = () => {
           <Calendar />
           <EnterForm />
           <TableTransactions />
-        </div>
+        </div> */}
       </div>
     </div>
   );

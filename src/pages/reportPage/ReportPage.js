@@ -18,6 +18,10 @@ import UserMount from "../../client/userMount/UserMount";
 const ReportPage = () => {
   const match = useRouteMatch();
   const location = useLocation();
+
+  const activeLocation = location.pathname;
+  console.log(activeLocation);
+
   return (
     <div>
       <GoBack />
