@@ -11,7 +11,7 @@ const GoBack = () => {
   return (
     <button type="button" className={css.goBack} onClick={handleGoBack}>
       <Arrow className={css.arrowSvg}/>
-       <p>Вернуться на главную</p>
+       <p className = {css.arrowText}>Вернуться на главную</p>
     </button>
   );
 }
