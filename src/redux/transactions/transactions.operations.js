@@ -114,12 +114,12 @@ const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
   }
 };
 
-const deleteTransaction = (objId) => (dispatch) => {
+const deleteTransaction = (id) => (dispatch) => {
   dispatch(transactionsActions.deleteTransactionRequest());
 
-  deleteTransactionApi(objId)
+  deleteTransactionApi(id)
     .then(() => {
-      dispatch(transactionsActions.deleteTransactionSuccess(objId));
+      dispatch(transactionsActions.deleteTransactionSuccess(id));
     })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))

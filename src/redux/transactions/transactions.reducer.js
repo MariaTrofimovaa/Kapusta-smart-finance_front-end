@@ -31,7 +31,6 @@ const transactionsReducer = createReducer([], {
   [actions.addTransactionSuccess]: (state, { payload }) => {
     return [...state, payload];
   },
-
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
     return state.filter(({ _id }) => _id !== payload);
   },
