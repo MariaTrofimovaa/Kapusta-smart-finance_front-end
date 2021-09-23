@@ -9,7 +9,6 @@ import {
   logoutError,
   getCurrentUserSuccess,
   getCurrentUserError,
-  // goToRegistr,
 } from "./auth.actions";
 
 const initialUserState = {
@@ -18,21 +17,20 @@ const initialUserState = {
 };
 
 const user = createReducer(initialUserState, {
-  [registerSuccess]: (_, { payload }) => payload.user,
+  [registerSuccess]: (_, { payload }) => ({
+    email: payload.email,
+    verifyToken: payload.verifyToken,
+  }),
+
   [loginSuccess]: (_, { payload }) => ({
     email: payload.email,
     id: payload.id,
+    token: payload.token,
   }),
   [logoutSuccess]: () => initialUserState,
   [getCurrentUserSuccess]: (_, { payload }) => payload,
 });
 
-// const todaySummaryInfo = createReducer(null, {
-//   [registerSuccess]: (_, { payload }) => payload.todaySummary,
-//   [loginSuccess]: (_, { payload }) => payload.todaySummary,
-
-//   [logoutSuccess]: () => null,
-// });
 
 const token = createReducer(null, {
   [registerSuccess]: () => null,
@@ -58,20 +56,22 @@ const error = createReducer(null, {
   [getCurrentUserError]: (_, { payload }) => payload,
 });
 
-const isAuthenticated = createReducer(false, {
+const isRegistrated = createReducer(false, {
   [registerSuccess]: () => true,
+});
+
+const isAuthenticated = createReducer(false, {
+  [isRegistrated]: () => true,
   [loginSuccess]: () => true,
   [getCurrentUserSuccess]: () => true,
   [registerError]: () => false,
   [loginError]: () => false,
   [getCurrentUserError]: () => false,
   [logoutSuccess]: () => false,
-  // [goToRegistr]: () => false,
 });
 
 const authReducer = combineReducers({
   user,
-
   token,
   loading,
   isAuthenticated,

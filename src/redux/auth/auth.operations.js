@@ -30,8 +30,17 @@ const register = (registrationObject) => async (dispatch) => {
   dispatch(registerRequest());
 
   try {
-    const { data } = await axios.post("/auth/signup", registrationObject);
+    const {
+      data: { data },
+    } = await axios.post("/auth/signup", registrationObject);
+    console.log(data);
+
+    // Вызываем функцию registerAPI и передаем в нее registrationObject
+    // const user = await registerAPI(registrationObject); - импортировать из services/api
+    //     const { data } = await axios.post("/auth/signup", registrationObject);
+
     dispatch(registerSuccess(data));
+    // dispatch(registerSuccess(user));
     alertSuccess("Регистрация прошла успешно. Войдите в свою учетную запись.");
   } catch (error) {
     if (error.response?.status === 409) {
@@ -44,12 +53,16 @@ const register = (registrationObject) => async (dispatch) => {
 const login = (loginObject) => async (dispatch, getState) => {
   dispatch(loginRequest());
   const authToken = getState().auth.token;
+
   try {
+    // const { email, password } = loginObject;
+    // const data = await api.logInApi({ email, password }); - импортировать из services/api
     const {
       data: { data },
     } = await axios.post("/auth/signin", loginObject);
+
     token.set(authToken);
-    console.log(authToken);
+
     dispatch(loginSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
@@ -66,6 +79,7 @@ const logOut = () => async (dispatch) => {
 
   try {
     resetParams();
+    // await logoutApi(); - импортировать из services/api
     await axios.get("/auth/logout");
     token.unset();
 
@@ -88,12 +102,14 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(getCurrentUserRequest());
 
   try {
-    const { data } = await axios.get("/current");
+    const { data } = await axios.get("/auth/current");
+
     dispatch(getCurrentUserSuccess(data));
   } catch (error) {
-    if (error.response.status === 401) {
-      dispatch(logoutSuccess());
-    }
+    console.log("error type", error);
+    // if (error.data.status === 401) {
+    //   dispatch(logoutSuccess());
+    // }
     dispatch(getCurrentUserError(error.message));
   }
 };

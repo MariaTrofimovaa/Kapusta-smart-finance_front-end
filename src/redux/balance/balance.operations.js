@@ -2,7 +2,9 @@ import axios from "axios";
 import balanceActions from "./balance.actions";
 import {store} from "../store";
 
-const url = "http://localhost:4000/api/v1";
+const url = "http://localhost:4000/api/v1/user";
+const getRoute = "current";
+const patchRoute = "balance";
 
 axios.default.baseURL = url;
 
@@ -12,7 +14,7 @@ const setBalanceOperation = (balance) => (dispatch) => {
   dispatch(balanceActions.setBalanceRequest());
 
   axios
-    .patch(`${url}/user`, {balance:balance}, {
+    .patch(`${url}/${patchRoute}`, {balance:balance}, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -33,7 +35,7 @@ const getBalanceOperation = () => (dispatch) => {
   
   dispatch(balanceActions.getBalanceRequest());
   axios
-    .get(`${url}/user`, {
+    .get(`${url}/${getRoute}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
