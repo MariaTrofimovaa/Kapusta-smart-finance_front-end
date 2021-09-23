@@ -20,11 +20,11 @@ const month = date.toLocaleDateString("ru", { month: "long" });
         <div className={css.dataContainer}>
             <p className={css.countText}>Текущий период :</p>
             <div className={css.data}><span className={css.button} onClick={() => changeMonth("prev")}> <svg width="8" height="15">
-              <use xlinkHref={`${sprite}#icon-arrow-left`} />
+            <use xlinkHref={`${sprite}#icon-arrow-left`} />
             </svg> 
                 </span>{month} {year}
                 <span className={css.button1} onClick={() => changeMonth("next")}> <svg width="8" height="15">
-              <use xlinkHref={`${sprite}#icon-arrow-right`} />
+            <use xlinkHref={`${sprite}#icon-arrow-right`} />
             </svg>
                 </span>
             </div>

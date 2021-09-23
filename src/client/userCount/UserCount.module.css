@@ -1,53 +1,45 @@
 .dataContainer {
   display: flex;
   position: relative;
-  top: 40px;
+  top: 16px;
   align-items: center;
-  /* max-width: 134px; */
   height: 40px;
   background-color:transparent;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 0;
   flex-direction: column;
+  max-width: content;
 }
 .button{
 margin-right: 15px;
 }
 .button1{
-  margin-left: 15px;
-  }
+margin-left: 15px;
+}
 .countText {
-  align-items: center;
   font-size: 12px;
   font-weight: 400;
   font-style: "Roboto";
   margin-bottom: 5px;
 }
 .data {
+  align-items: center;
   font-style: "Roboto";
   font-weight: 700;
   font-size: 14px;
   color: #071F41;
   text-transform: uppercase;
-
 }
 
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .dataContainer {
-    padding: 0;
-    margin-right: 50px;
-    background-color: transparent;
+  position: relative;
+  margin-left: 500px;
   }
 }
 @media screen and (min-width: 1280px) {
-  .dataContainer {
-    max-height: 100%;
-    background-color: #f0f1f3;
-  }
-  .data {
-    margin-right: 22px;
-  }
-  .userInfo {
-  margin: 0;
-  }
-} */
+.dataContainer {
+  position:fixed;
+  margin-left: 785px;
+  top: 100px;
+}
+}
