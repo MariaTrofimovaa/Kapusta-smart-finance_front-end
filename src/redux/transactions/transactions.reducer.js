@@ -33,7 +33,7 @@ const transactionsReducer = createReducer([], {
                                                  // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
   },
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
-    return state.filter(({ _id }) => _id !== payload);
+    return state.filter(({ _id }) => _id !== payload.transaction._id);
   },
 
   // [actions.deleteProductSuccess]: (state, { payload }) => ({
@@ -71,16 +71,16 @@ const brief = createReducer(
 
 const expenseOfDay = createReducer([], {
   [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
-  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
+  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload.addedTransaction],
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload),
+    state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 const incomeOfDay = createReducer([], {
   [actions.getIncomeOfDaySuccess]: (state, { payload }) => payload.data,
-  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
+  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload.addedTransaction],
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload),
+    state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 export default combineReducers({

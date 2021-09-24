@@ -21,37 +21,17 @@ const setBalanceOperation = (balance) => (dispatch) => {
       },
     })
     .then(({ data }) => {
-       dispatch(balanceActions.setBalanceSuccess(data.balance));
+       dispatch(balanceActions.setBalanceSuccess(parseFloat(data.balance)));
     })
     .catch((error) => {
       dispatch(balanceActions.setBalanceError(error));
-    });
-  
+    });  
   
 };
 
-const getBalanceOperation = () => (dispatch) => {
-  const token=store.getState().auth.token;
-  
-  dispatch(balanceActions.getBalanceRequest());
-  axios
-    .get(`${url}/${getRoute}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(({ data }) => {
-      dispatch(balanceActions.getBalanceSuccess(data.balance));
-    })
-    .catch((error) => {
-      dispatch(balanceActions.getBalanceError(error));
-    });
-};
 
 const balanceOperations = {
-  setBalanceOperation,
-  getBalanceOperation,
+  setBalanceOperation
 };
 
 export default balanceOperations;
