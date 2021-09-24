@@ -11,7 +11,7 @@ const TableTransactions = () => {
 
   const dispatch = useDispatch();
 
-  const date = "2021-09-21";
+  const date = "23.09.2021";
 
   useEffect(() => {
     dispatch(transactionsOperations.getAllExpenseOfDate(date));

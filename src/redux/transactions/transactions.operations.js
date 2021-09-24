@@ -115,8 +115,8 @@ const deleteTransaction = (objId) => (dispatch) => {
   // axios
   //   .delete(`${url}/:${objId}`)
   deleteTransactionApi(objId)
-    .then(() => {
-      dispatch(transactionsActions.deleteTransactionSuccess(objId));
+    .then(({ data }) => {
+      dispatch(transactionsActions.deleteTransactionSuccess(data.data));
     })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))

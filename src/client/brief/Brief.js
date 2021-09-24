@@ -1,40 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import styles from "./Brief.module.css";
+
+import sprite from "../../assets/icons/sprite_categories.svg";
+
+import styles from "./Brief.module.scss";
 
 import operation from "../../redux/transactions/transactions.operations";
 
-import { getBrief } from "../../redux/transactions/transactions.selectors";
+import action from "../../redux/transactions/transactions.actions";
+
+import {
+  getBrief,
+  getYear,
+} from "../../redux/transactions/transactions.selectors";
 
 const Brief = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation().pathname;
 
   const date = new Date();
-  const [currentDate, setYear] = useState({
-    year: date.getFullYear(),
-    month: date.getMonth(),
-  });
 
+  const [currentYear, setYear] = useState(date.getFullYear());
   const [monthsTotal, setMonthes] = useState([]);
 
   const filter = {
-    // type: "income",
-    type: location.pathname.slice(1),
-    year: currentDate.year,
+    type: location.slice(1),
+    year: currentYear,
   };
 
   const transactions = useSelector(getBrief)[filter.type];
+  const stateYear = useSelector(getYear);
 
   useEffect(() => {
-    dispatch(operation.fetchBrief(filter));
-    // eslint-disable-next-line
-  }, [dispatch]);
+    dispatch(action.changeActualYearForBrief(currentYear));
+  }, [dispatch, currentYear]);
+
+  useEffect(() => {
+    if (
+      (filter.type === "income" && !transactions.length) ||
+      (filter.type === "expense" && !transactions.length)
+    )
+      dispatch(operation.fetchBrief(filter));
+  }, [dispatch, stateYear]);
 
   useEffect(() => {
     let month = new Date();
-    const monthesSum = Array(currentDate.month + 1)
+
+    if (!transactions.length) {
+      const monthesSum = [];
+      setMonthes(monthesSum);
+      return;
+    }
+    const monthesSum = Array(date.getMonth() + 1)
       .fill("")
       .map((_, idx) => ({
         currentMonth: idx,
@@ -56,19 +74,51 @@ const Brief = () => {
     setMonthes(monthesSum);
   }, [transactions]);
 
-  // const changeYear = () => {};
-
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Сводка {currentDate.year}</div>
-      <ul className={styles.list}>
-        {monthsTotal.length > 0 &&
+      <div className={styles.titleBlock}>
+        <div className={styles.titleCont}>
+          <button
+            className={styles.btn}
+            onClick={() => {
+              setYear(currentYear - 1);
+            }}
+          >
+            <svg width="10" height="15">
+              <use xlinkHref={`${sprite}#icon-arrow-left`} />
+            </svg>
+          </button>
+          <div>
+            Сводка
+            <p>{currentYear}</p>
+          </div>
+
+          {currentYear < date.getFullYear() && (
+            <button
+              className={styles.btn}
+              onClick={() => {
+                setYear(currentYear + 1);
+              }}
+            >
+              <svg width="10" height="15">
+                <use xlinkHref={`${sprite}#icon-arrow-right`} />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+
+      <ul>
+        {monthsTotal.length > 0 ? (
           monthsTotal.map(({ currentMonth, currentAmount }) => (
             <li key={currentMonth} className={styles.monthPoint}>
-              <p>{currentMonth}</p>
-              <p>{currentAmount}</p>
+              <p className={styles.monthPointText}>{currentMonth}</p>
+              <p className={styles.monthPointText}>{currentAmount}</p>
             </li>
-          ))}
+          ))
+        ) : (
+          <div className={styles.list}> </div>
+        )}
       </ul>
     </div>
   );
@@ -80,7 +130,7 @@ export default Brief;
 //  useEffect(() => {
 //    const monthesSum = [];
 //    let month = new Date();
-//    for (let i = 0; i <= currentDate.month; ++i) {
+//    for (let i = 0; i <= date.getMonth(); ++i) {
 //      month.setMonth(i);
 //      monthesSum.push({
 //        currentMonth: month.toLocaleDateString("ru", { month: "long" }),

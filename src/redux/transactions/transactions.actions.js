@@ -20,6 +20,10 @@ const fetchBriefRequest = createAction("transaction/brief/fetchBriefRequest");
 const fetchBriefSuccess = createAction("transaction/brief/fetchBriefSuccess");
 const fetchBriefError = createAction("transaction/brief/fetchBriefError");
 
+const changeActualYearForBrief = createAction(
+  "transaction/brief/changeActualYear"
+);
+
 const deleteTransactionRequest = createAction(
   "transactions/deleteTransactionRequest"
 );
@@ -51,6 +55,7 @@ const transactionsActions = {
   fetchBriefRequest,
   fetchBriefSuccess,
   fetchBriefError,
+  changeActualYearForBrief,
   deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
