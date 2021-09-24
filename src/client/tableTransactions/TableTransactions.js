@@ -4,16 +4,9 @@ import TableTransactionsExpense from "./TableTransactionsExpense";
 import TableTransactionsIncome from "./TableTransactionsIncome";
 
 const TableTransactions = () => {
-
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
   // console.log(activeCheck);
-
-  // const getTransaction = () => {
-  //   if (activeCheck === "/expences")
-  //     return transactionsOperations.getAllExpenseOfDate(date);
-  //   return transactionsOperations.getAllIncomeOfDate(date);
-  // };
 
   return (
     <div>

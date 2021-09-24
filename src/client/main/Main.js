@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Switch } from "react-router";
 import { useLocation } from "react-router-dom";
 import { mainRoutes } from "../../routes/mainRoutes";
@@ -7,6 +7,8 @@ import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
 
 import styles from "./Main.module.scss";
+import { useDispatch } from "react-redux";
+import setSelectedDate from "../../redux/date/date.actions";
 
 const Main = (props) => {
   // console.log(props)
@@ -17,6 +19,17 @@ const Main = (props) => {
   const location = useLocation();
   const isRegisterPage = location.pathname === "/";
   const classes = isRegisterPage ? styles.registerWrapper : styles.mainWrapper;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const refreshDate = new Date();
+    dispatch(
+      setSelectedDate(
+        refreshDate.toISOString().slice(0, 10).split("-").reverse().join(".")
+      )
+    );
+  }, []);
 
   return (
     <>

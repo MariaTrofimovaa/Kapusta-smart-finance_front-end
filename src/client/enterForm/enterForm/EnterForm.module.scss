@@ -91,11 +91,11 @@
   @include tablet {
     width: 768px;
     margin: 0 auto;
-    padding-top: 35px;
+    padding-top: 0;
     padding-left: 0px;
     padding-right: 0px;
     text-align: center;
-    margin-bottom: 48px;
+    // margin-bottom: 48px;
   }
 
   &Description {
@@ -241,6 +241,10 @@
     position: relative;
     @include tablet {
       display: flex;
+      flex-wrap: wrap;
+      margin-left: 33px;
+
+      width: 600px;
     }
   }
 }
@@ -255,6 +259,10 @@
 
   align-items: center !important;
   padding-left: 50px;
+
+  @include tablet {
+    padding-left: 0;
+  }
 }
 
 .calculatorLogoContainer {

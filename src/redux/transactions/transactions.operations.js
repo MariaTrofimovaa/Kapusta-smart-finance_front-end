@@ -70,7 +70,9 @@ const addTransaction =
 
     addTransactionApi(transaction)
       .then((payload) => {
-        dispatch(transactionsActions.addTransactionSuccess(payload));
+        dispatch(
+          transactionsActions.addTransactionSuccess(payload.addedTransaction)
+        );
       })
       .catch((error) =>
         dispatch(transactionsActions.addTransactionError(error.message))
@@ -117,11 +119,9 @@ const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
 const deleteTransaction = (id) => (dispatch) => {
   dispatch(transactionsActions.deleteTransactionRequest());
 
-
   deleteTransactionApi(id)
-    .then(({data}) => {
-     console.log('delete transaction operation, payload:', data)
-      dispatch(transactionsActions.deleteTransactionSuccess(data.data));
+    .then(({ data }) => {
+      dispatch(transactionsActions.deleteTransactionSuccess(data));
     })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))

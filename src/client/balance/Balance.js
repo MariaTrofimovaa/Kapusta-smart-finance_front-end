@@ -9,9 +9,6 @@ import balanceOperations from "../../redux/balance/balance.operations";
 import balanceSelectors from "../../redux/balance/balance.selectors";
 
 function Balance() {
-  // const currentLocation = useLocation();
-  // const activeCheck = currentLocation.pathname;
-  // console.log(activeCheck);
 
   const dispatch = useDispatch();
   let balanceFromStore = useSelector(balanceSelectors.getBalance); // эта переменная получает баланс из стора
@@ -58,7 +55,7 @@ function Balance() {
                 }
                 onChange={onBalanceInputChange}
               />
-              {!balanceFromStore && balanceFromStore !== 0 ? <Tooltip /> : ""}
+              {!balanceFromStore ? <Tooltip /> : ""}
             </div>
             <button type="submit" className={styles.submitBtn}>
               Подтвердить
