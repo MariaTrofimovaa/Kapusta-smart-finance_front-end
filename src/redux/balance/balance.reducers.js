@@ -6,10 +6,7 @@ import {getCurrentUserSuccess} from "../auth/auth.actions"
 
 const balanceReducer = createReducer(initState, {  
   [actions.setBalanceSuccess]: (state, { payload }) => {
-    return { ...state, balance: payload };
-  },
-  [actions.getBalanceSuccess]: (state, { payload }) => {
-    return { ...state, balance: payload };
+    return { ...state, balance: payload.updatedBalance };
   },
   // баланс в сторе появляется после успешной авторизации и получения данных пользователя
   [getCurrentUserSuccess]: (state, { payload }) => {
