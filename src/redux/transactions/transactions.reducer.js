@@ -3,6 +3,8 @@ import { createReducer } from "@reduxjs/toolkit";
 import actions from "./transactions.actions";
 import balanceActions from "../balance/balance.actions";
 
+import { logoutSuccess } from "../auth/auth.actions";
+
 // const transactionsReducer = createReducer([], {
 //   [actions.addTransactionSuccess]: (state, { payload }) => {
 //     return { ...state, transactions: payload.transactions, date: payload.date };
@@ -30,7 +32,6 @@ const transactionsReducer = createReducer([], {
     return state;
   },
   [actions.addTransactionSuccess]: (state, { payload }) => {
-    console.log(">>>>", payload);
     return [...state, payload.addedTransaction]; // Света: так как после обновления транзакции в payload к нам приходят и транзакция и обновленный баланс,
     // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
   },
@@ -74,14 +75,22 @@ const brief = createReducer(
     },
 
     [actions.deleteTransactionSuccess]: (state, { payload }) => {
-      if (state.currentYear === +payload.transaction.date.slice(6))
-        state[payload.transaction.transactionType].filter(({ _id }) => _id !== payload.transaction._id);
+      state[payload.transactionType] = state[payload.transactionType].filter(
+        ({ _id }) => _id !== payload._id
+      );
+
     },
 
     [actions.changeActualYearForBrief]: (_, { payload }) => ({
       income: [],
       expense: [],
       currentYear: payload,
+    }),
+
+    [logoutSuccess]: (_, __) => ({
+      income: [],
+      expense: [],
+      currentYear: "",
     }),
     // [actions.fetchBriefError]: () => false,
   }
@@ -97,6 +106,7 @@ const expenseOfDay = createReducer([], {
 
   [balanceActions.setBalanceSuccess]: (state, { payload }) => 
         (payload.addedTransaction.transactionType === 'expense') ? [...state, payload.addedTransaction] : [...state],
+
 
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
         state.filter(({ _id }) => _id !== payload.transaction._id),

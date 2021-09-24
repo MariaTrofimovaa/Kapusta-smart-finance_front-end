@@ -33,20 +33,13 @@ const Brief = () => {
 
   const stateYear = useSelector(getYear);
 
-
   useEffect(() => {
     dispatch(action.changeActualYearForBrief(currentYear));
   }, [dispatch, currentYear]);
 
   useEffect(() => {
-    if (
-      (filter.type === "income" && !transactions.length) ||
-      (filter.type === "expense" && !transactions.length)
-    )
-      dispatch(operation.fetchBrief(filter));
+    !transactions.length && dispatch(operation.fetchBrief(filter));
   }, [dispatch, stateYear]);
-
-
 
   useEffect(() => {
     let month = new Date();
@@ -77,7 +70,6 @@ const Brief = () => {
 
     setMonthes(monthesSum);
   }, [transactions]);
-
 
   return (
     <div className={styles.container}>
