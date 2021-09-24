@@ -69,6 +69,34 @@ const BasicField = () => {
           <Brief />
         </div>
       )}
+
+      {/* Алена. Пробное размещене компонента формы на моб.разрешении */}
+      {isPageWideMobile && (
+        <div>
+          {/* <div className={styles.btnWrapper}>
+            <BasicFieldTab
+              text={"Расход"}
+              active={true}
+              link={"/expense"}
+              key="Расход"
+            />
+            <BasicFieldTab
+              text={"Доход"}
+              active={false}
+              link={"/income"}
+              key="Доход"
+            />
+          </div> */}
+          <div className={styles.dataField}>
+            {/* <Calendar /> */}
+            <EnterForm currentLocation={location} />
+            {/* <div className={styles.dataWrapper}>
+              <TableTransactions />
+            </div> */}
+          </div>
+          {/* <Brief /> */}
+        </div>
+      )}
     </>
   );
 };
