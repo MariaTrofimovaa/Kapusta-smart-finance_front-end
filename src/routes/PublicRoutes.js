@@ -14,13 +14,14 @@ const PublicRoute = ({
   return (
     <Route
       {...routeProps}
-      render={(props) =>
-        isAuth && routeProps.isRestricted ? (
-          <Redirect to={redirectTo} />
-        ) : (
-          <Component {...props} />
-        )
-//         isAuth ? <Redirect to="/expense" /> : <Component {...props} />
+      render={
+        (props) =>
+          isAuth && routeProps.isRestricted ? (
+            <Redirect to={redirectTo} />
+          ) : (
+            <Component {...props} />
+          )
+        //         isAuth ? <Redirect to="/expense" /> : <Component {...props} />
       }
     />
   );

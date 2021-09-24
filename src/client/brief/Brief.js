@@ -26,6 +26,7 @@ const Brief = () => {
   };
 
   const transactions = useSelector(getBrief)[filter.type];
+  console.log(filter.type);
 
   useEffect(() => {
     dispatch(operation.fetchBrief(filter));
@@ -56,7 +57,7 @@ const Brief = () => {
   //   setMonthes(monthesSum);
   // }, [transactions]);
 
-  // const changeYear = () => {};
+  const changeYear = () => {};
 
   return (
     <div className={styles.container}>
