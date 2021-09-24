@@ -1,5 +1,5 @@
 .table {
-  width: 605px;
+  width: 320px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -10,6 +10,22 @@
   line-height: 14px;
   align-items: center;
   letter-spacing: 0.04em;
+}
+
+@media screen and (min-width: 768px) {
+  .table {
+    width: 605px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    align-items: center;
+    letter-spacing: 0.04em;
+  }
 }
 
 .tableHead {
