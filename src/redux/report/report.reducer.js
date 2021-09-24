@@ -103,24 +103,35 @@ const incomeOfMonth = createReducer([], {
       if (curCategory) {
         const idx = acc.findIndex((el) => el.category === category);
         acc[idx].categorySum += amount;
-
-        const idxTypes = acc[idx].types.findIndex(
-          (el) => el.description === description
-        );
-        console.log(idxTypes);
-        if (idxTypes === -1) {
-          acc[idx].types.push({
-            description: description,
-            amount: amount,
-          });
-        }
-        if (idxTypes === 0 && idxTypes ) {
-          acc[idx].types[idxTypes].amount += amount;
-          acc[idx].types[idxTypes].description = description;
-        }
-
+        acc[idx].types.push({
+          description: description,
+          amount: amount,
+        });
         return acc;
       }
+
+
+      // if (curCategory) {
+      //   const idx = acc.findIndex((el) => el.category === category);
+      //   acc[idx].categorySum += amount;
+
+      //   const idxTypes = acc[idx].types.findIndex(
+      //     (el) => el.description === description
+      //   );
+      //   console.log(idxTypes);
+      //   if (idxTypes === -1) {
+      //     acc[idx].types.push({
+      //       description: description,
+      //       amount: amount,
+      //     });
+      //   }
+      //   if (idxTypes === 0 && idxTypes ) {
+      //     acc[idx].types[idxTypes].amount += amount;
+      //     acc[idx].types[idxTypes].description = description;
+      //   }
+
+      //   return acc;
+      // }
     }, []),
 });
 

@@ -90,22 +90,23 @@ const Rechart = ({ chartData }) => {
   // console.log(activeData.sort(byField("amount")));
 
   // console.log(activeData);
-  const awdadw = activeData.reduce((acc, { description, amount }) => {
-    const desc = acc.find((el) => el.description === amount);
-    if (!desc) {
-      acc.push({ description, amount });
-      return acc;
-    }
-    if (desc) {
-      const idx = acc.findIndex((el) => el.description === amount);
-      acc[idx].description = description;
-      acc[idx].amount += amount;
-      return acc;
-    }
 
-    return acc;
-  }, []);
-  console.log(awdadw);
+  // const awdadw = activeData.reduce((acc, { description, amount }) => {
+  //   const desc = acc.find((el) => el.description === amount);
+  //   if (!desc) {
+  //     acc.push({ description, amount });
+  //     return acc;
+  //   }
+  //   if (desc) {
+  //     const idx = acc.findIndex((el) => el.description === amount);
+  //     acc[idx].description = description;
+  //     acc[idx].amount += amount;
+  //     return acc;
+  //   }
+
+  //   return acc;
+  // }, []);
+  // console.log(awdadw);
 
   return width >= 768 ? (
     <div className={css.box}>
