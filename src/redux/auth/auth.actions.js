@@ -16,12 +16,9 @@ const getCurrentUserRequest = createAction("auth/getCurrentUserRequest");
 const getCurrentUserSuccess = createAction("auth/getCurrentUserSuccess");
 const getCurrentUserError = createAction("auth/getCurrentUserError");
 
-// const getUserInfoRequest = createAction("auth/getUserInfoRequest");
-// const getUserInfoSuccess = createAction("auth/getUserInfoSuccess");
-// const getUserInfoError = createAction("auth/getUserInfoError");
-// const goToRegistr = createAction("auth/goToRegistr");
-
-// updateBalance
+const getResponseGoogleRequest = createAction("auth/getResponseGoogleRequest");
+const getResponseGoogleSuccess = createAction("auth/getResponseGoogleSuccess");
+const getResponseGoogleError = createAction("auth/getResponseGoogleError");
 
 export {
   registerRequest,
@@ -36,8 +33,7 @@ export {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
-  // getUserInfoRequest,
-  // getUserInfoSuccess,
-  // getUserInfoError,
-  // goToRegistr,
+  getResponseGoogleRequest,
+  getResponseGoogleSuccess,
+  getResponseGoogleError,
 };

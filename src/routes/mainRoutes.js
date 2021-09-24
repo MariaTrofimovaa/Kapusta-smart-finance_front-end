@@ -8,26 +8,40 @@ export const mainRoutes = [
     exact: true,
     isPrivate: false,
     redirectTo: "/expense",
-    // isRestricted: false,
+    isRestricted: true,
   },
 
   {
     name: "Expense",
-    path: "/expense",
+    // path: "/expense",
+    path: "/:transType",
     component: lazy(() => import("../pages/homePage/HomePage")),
-    exact: true,
+    exact: false,
     isPrivate: true,
+    // redirectTo: "/expense",
     // isRestricted: true,
   },
 
   {
-    name: "Income",
-    path: "/income",
+    name: "MobileHome",
+    // path: "/expense",
+    path: "/",
     component: lazy(() => import("../pages/homePage/HomePage")),
     exact: true,
     isPrivate: true,
+    isMobile: true,
+    // redirectTo: "/expense",
     // isRestricted: true,
   },
+
+  // {
+  //   name: "Income",
+  //   path: "/income",
+  //   component: lazy(() => import("../pages/homePage/HomePage")),
+  //   exact: true,
+  //   isPrivate: true,
+  //   // isRestricted: true,
+  // },
 
   {
     name: "Report",

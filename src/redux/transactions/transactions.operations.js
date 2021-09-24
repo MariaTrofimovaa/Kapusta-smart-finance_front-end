@@ -77,8 +77,6 @@ const addTransaction =
       );
   };
 
-const expense = "expense";
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -90,32 +88,39 @@ const token = {
 
 const getAllExpenseOfDate = (date) => async (dispatch, getState) => {
   dispatch(transactionsActions.getExpenseOfDayRequest());
-  const authToken = getState().auth.token; /// когда будет готов аутх
+  const authToken = getState().auth.token;
   try {
-    token.set(authToken); /// когда будет готов аутх
-    // token.set(
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDliYjZjMTliNTkwMjQwNDc2M2JmOSIsImlhdCI6MTYzMjIzNTUxOH0.UNeWBg6A3mxCnwLik1Hv6XACLvlX69UxrneQXQj5foA"
-    // );
+    token.set(authToken);
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/day/${expense}/${date}`
+      `http://localhost:4000/api/v1/transactions/day/expense/${date}`
     );
-
     dispatch(transactionsActions.getExpenseOfDaySuccess(data));
-    // alertSuccess("данные report.expense обновились");
   } catch (error) {
-    // alertError(error.message);
     dispatch(transactionsActions.getExpenseOfDayError(error));
   }
 };
 
-const deleteTransaction = (objId) => (dispatch) => {
-  // console.log('objId :>> ', objId);
+const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
+  dispatch(transactionsActions.getIncomeOfDayRequest());
+  const authToken = getState().auth.token;
+  try {
+    token.set(authToken);
+    const { data } = await axios.get(
+      `http://localhost:4000/api/v1/transactions/day/income/${date}`
+    );
+    dispatch(transactionsActions.getIncomeOfDaySuccess(data));
+  } catch (error) {
+    dispatch(transactionsActions.getIncomeOfDayError(error));
+  }
+};
+
+const deleteTransaction = (id) => (dispatch) => {
   dispatch(transactionsActions.deleteTransactionRequest());
 
-  // axios
-  //   .delete(`${url}/:${objId}`)
-  deleteTransactionApi(objId)
-    .then(({ data }) => {
+
+  deleteTransactionApi(id)
+    .then(({data}) => {
+     console.log('delete transaction operation, payload:', data)
       dispatch(transactionsActions.deleteTransactionSuccess(data.data));
     })
     .catch((error) =>
@@ -125,8 +130,10 @@ const deleteTransaction = (objId) => (dispatch) => {
 
 const fetchBrief = (filter) => (dispatch, getState) => {
   dispatch(transactionsActions.fetchBriefRequest());
+
   const authToken = getState().auth.token;
   token.set(authToken);
+
   fethcBriefApi(filter)
     .then((payload) => {
       dispatch(transactionsActions.fetchBriefSuccess(payload));
@@ -143,6 +150,7 @@ const transactionsOperations = {
   addTransaction,
   fetchBrief,
   getAllExpenseOfDate,
+  getAllIncomeOfDate,
 };
 
 export default transactionsOperations;

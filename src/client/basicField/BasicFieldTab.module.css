@@ -35,7 +35,7 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  color: var(--accent-color-orange);
+  color: #ff751d;
   background-color: #fefefe;
 }
 
@@ -57,6 +57,6 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  color: var(--title-color-text);
+  color: #000000;
   background-color: #fafbfd;
 }

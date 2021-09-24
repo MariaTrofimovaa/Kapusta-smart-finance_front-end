@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
 import { getSelectedDate } from "../../../redux/date/date.selectors";
 
-const EnterForm = ({ currentLocation }) => {
+// texts
+
+const EnterForm = ({ transType }) => {
   const token = useSelector(getAuthToken);
   const selectedDate = useSelector(getSelectedDate);
 
@@ -27,13 +29,12 @@ const EnterForm = ({ currentLocation }) => {
       [event.target.name]: event.target.value,
     }));
 
-
   const searchCategories = () => {
-    console.log(currentLocation);
+    console.log(transType);
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
-      .get(`http://localhost:4000/api/v1/categories${currentLocation}`)
+      .get(`http://localhost:4000/api/v1/categories/${transType}`)
       .then(({ data }) => {
         // console.log(data.data.result);
         setCategories(() => {
@@ -50,7 +51,6 @@ const EnterForm = ({ currentLocation }) => {
     event.preventDefault();
 
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
 
     dispatch(
       transactionsOperations.addTransaction(

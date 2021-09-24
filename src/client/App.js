@@ -7,10 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../redux/auth/auth.operations";
-
 import "../stylesheet/main.scss";
 
-const App = () => {
+export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +30,4 @@ const App = () => {
       />
     </div>
   );
-};
-
-export default App;
+}

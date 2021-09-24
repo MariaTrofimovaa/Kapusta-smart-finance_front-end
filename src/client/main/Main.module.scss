@@ -4,8 +4,8 @@
   display: block;
   justify-content: center;
   width: 100%;
-  min-height: calc(100vh - 60px);
 
+  min-height: calc(100vh - 60px);
   background: url(../../assets/images/kapusta_logo_reg.png),
     url(../../assets/images/auth_bg320.png),
     url(../../assets/images/authForm_bg320.png),
@@ -15,7 +15,7 @@
   background-position: 49px 86px, 265px 104px, 35px 780px, 0px 0px;
 
   @include tablet {
-    margin: 0 auto;
+    // margin: 0 auto;
     /* высоту исправить: */
     /* min-height: 1185px; */
     background: url(../../assets/images/kapusta_logo_reg_768.png),
@@ -40,6 +40,10 @@
 .mainWrapper {
   display: block;
   justify-content: center;
+
+  // position: relative;
+  // top: 0;
+
   width: 100%;
   min-height: calc(100vh - 60px);
 
@@ -52,8 +56,10 @@
 
   @include tablet {
     margin: 0 auto;
-    /* высоту исправить: */
-    /* min-height: 1185px; */
+
+    // position: absolute;
+    // z-index: -100;
+
     background: url(../../assets/images/rectangle768.png),
       url(../../assets/images/kapusta_jump.png);
     background-position: 0px 0px, 497px 920px;
@@ -61,26 +67,9 @@
   }
 
   @include desktop {
+    max-width: 1280px;
+
     background: url(../../assets/background_img.png) no-repeat;
     background-size: cover;
   }
 }
-
-// @media (min-width: 768px) {
-//   .main {
-//     /* высоту исправить: */
-//     margin: 0 auto;
-//     /* min-height: 1185px; */
-//     background: url(../../assets/images/rectangle768.png),
-//       url(../../assets/images/kapusta_jump.png);
-//     background-position: 0px 0px, 497px 920px;
-//     background-repeat: no-repeat;
-//   }
-// }
-
-// @media (min-width: 1280px) {
-//   .main {
-//     background: url(../../assets/background_img.png) no-repeat;
-//     background-size: cover;
-//   }
-// }
