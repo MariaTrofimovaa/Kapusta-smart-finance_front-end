@@ -1,12 +1,17 @@
-.сalendar {
-  display: flex;
-  /* flex-direction: row;
-  align-items: center;
-  position: relative; */
-}
+@import "../../../stylesheet/base";
+
+// .сalendar {
+//   display: flex;
+//   /* flex-direction: row;
+//   align-items: center;
+//   position: relative; */
+// }
 
 .box {
-  display: flex;
+  @include tablet {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 .datePicker {
@@ -24,6 +29,10 @@
   text-transform: uppercase;
 
   color: #52555f;
+  @include tablet {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 .datePickerLogo {

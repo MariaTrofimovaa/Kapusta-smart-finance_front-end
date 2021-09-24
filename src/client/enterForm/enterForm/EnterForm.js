@@ -1,10 +1,12 @@
 import transactionsOperations from "../../../redux/transactions/transactions.operations";
-import styles from "../enterForm/EnterForm.module.css";
+import styles from "../enterForm/EnterForm.module.scss";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
 import { getSelectedDate } from "../../../redux/date/date.selectors";
+import { ReactComponent as CalculatorLogo } from "../../../assets/icons/calculator.svg";
+import { ReactComponent as ArrowDown } from "../../../assets/icons/Arrow-down.svg";
 
 const EnterForm = ({ currentLocation }) => {
   const token = useSelector(getAuthToken);
@@ -27,7 +29,6 @@ const EnterForm = ({ currentLocation }) => {
       [event.target.name]: event.target.value,
     }));
 
-
   const searchCategories = () => {
     console.log(currentLocation);
     // if (event.target.value.length > 0) {
@@ -46,11 +47,22 @@ const EnterForm = ({ currentLocation }) => {
       });
   };
 
+  // Чтобы закрыть дропдаун меню
+  const catMenu = useRef(null);
+  const [openSlide, setopenSlide] = useState("");
+
+  const closeOpenMenus = (e) => {
+    if (catMenu.current && openSlide && !catMenu.current.contains(e.target)) {
+      setopenSlide(false);
+    }
+  };
+
+  document.addEventListener("mousedown", closeOpenMenus);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
 
     dispatch(
       transactionsOperations.addTransaction(
@@ -85,8 +97,14 @@ const EnterForm = ({ currentLocation }) => {
   // }
 
   return (
-    <div>
-      <form className={styles.productForm} onSubmit={handleSubmit}>
+    <div className={styles.product}>
+      {/* <img src="../../assets/icons/arrow-left.svg" alt="Кот" width="18" /> */}
+
+      <form
+        ref={catMenu}
+        className={styles.productForm}
+        onSubmit={handleSubmit}
+      >
         <input
           placeholder="Описание товара"
           type="text"
@@ -96,6 +114,7 @@ const EnterForm = ({ currentLocation }) => {
           autoFocus
           value={fields.description}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -107,9 +126,11 @@ const EnterForm = ({ currentLocation }) => {
           autoFocus
           value={fields.category}
           onClick={searchCategories}
+          required
         />
 
         <ul className={styles.productResultList} id="categories">
+          {!categories.length && <ArrowDown className={styles.arrowDown} />}
           {!!categories.length &&
             categories.map((item) => (
               <li
@@ -130,17 +151,22 @@ const EnterForm = ({ currentLocation }) => {
               </li>
             ))}
         </ul>
-
-        <label className={styles.productAmountLabel}>
-          <input
-            className={styles.productAmountInput}
-            placeholder="0.00"
-            type="number"
-            name="amount"
-            value={fields.amount}
-            onChange={handleChange}
-          />
-        </label>
+        <div className={styles.productAmountLabelBox}>
+          <label className={styles.productAmountLabel}>
+            <input
+              className={styles.productAmountInput}
+              placeholder="00.00 UAH"
+              type="number"
+              name="amount"
+              value={fields.amount}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <div className={styles.calculatorLogoContainer}>
+            <CalculatorLogo className={styles.calculatorLogo} />
+          </div>
+        </div>
         <br />
 
         <button type="submit" className={styles.btnSubmit}>
