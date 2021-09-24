@@ -4,17 +4,15 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
 import { getSelectedDate } from "../../redux/date/date.selectors";
-import { getIncomeOfDaySelector } from "../../redux/transactions/transactions.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
-const TableTransactionsIncome = () => {
+const TableTransactionsIncome = ({ tableTransactionsIncome }) => {
   const dispatch = useDispatch();
   const date = useSelector(getSelectedDate);
-  const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalClose = (e) => {
+  const handleModalClose = () => {
     setModalOpen(false);
   };
 

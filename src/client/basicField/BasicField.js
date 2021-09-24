@@ -56,7 +56,7 @@ const BasicField = () => {
           <Brief />
         </div>
       )}
-      {/* {isPageWideMobile && (
+      {isPageWideMobile && (
         <div>
           <div className={styles.btnWrapper}>
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
@@ -71,8 +71,7 @@ const BasicField = () => {
           </div>
           <Brief />
         </div>
-
-      )} */}
+      )}
 
       {/* )} */}
     </>
