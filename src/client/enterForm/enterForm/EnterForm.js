@@ -1,138 +1,191 @@
-import styles from "../enterForm/EnterForm.module.css";
-// import axios from "axios";
-// import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { isAuthenticated } from "../../redux/auth/auth.selectors";
-// import { addProduct } from "../../redux/products/products.operations";
-// import { getSelectedDate } from "../../redux/products/products.selectors";
-// import { getCurrentUser } from "../../redux/auth/auth.operations";
-// import useMedia from "use-media";
+import transactionsOperations from "../../../redux/transactions/transactions.operations";
+import styles from "../enterForm/EnterForm.module.scss";
+import axios from "axios";
+import { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthToken } from "../../../redux/auth/auth.selectors";
+import { getSelectedDate } from "../../../redux/date/date.selectors";
+import { ReactComponent as CalculatorLogo } from "../../../assets/icons/calculator.svg";
+import { ReactComponent as ArrowDown } from "../../../assets/icons/Arrow-down.svg";
 
-const EnterForm = () => {
-  // const token = useSelector(isAuthenticated);
-  // const selectedDate = useSelector(getSelectedDate);
+const EnterForm = ({ transType }) => {
+  const token = useSelector(getAuthToken);
+  const selectedDate = useSelector(getSelectedDate);
 
-  // const [fields, setFields] = useState({ searchWord: "", weight: "" });
-  // const [selected, setSelected] = useState(null);
-  // const [foundProducts, setFoundProducts] = useState([]);
+  const [fields, setFields] = useState({
+    description: "",
+    amount: "",
+    category: "",
+    transactionType: "",
+  });
+  const [selected, setSelected] = useState(null);
+  const [categories, setCategories] = useState([]);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const isWide = useMedia({ minWidth: "768px" });
+  const handleChange = (event) =>
+    setFields((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
 
-  // const handleChange = (event) =>
-  //   setFields((prevState) => ({
-  //     ...prevState,
-  //     [event.target.name]: event.target.value,
-  //   }));
+  const searchCategories = () => {
+    console.log(transType);
+    // if (event.target.value.length > 0) {
+    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios
 
-  // const searchProducts = (event) => {
-  //   handleChange(event);
-  //   if (event.target.value.length > 0) {
-  //     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  //     axios
-  //       .get(
-  //         `https://slimmom-backend.goit.global/product?search=${event.target.value}`
-  //       )
-  //       .then(({ data }) => {
-  //         setFoundProducts(() => {
-  //           return event.target.value.length > 0 ? data : [];
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         setFoundProducts([]);
-  //         setSelected(null);
-  //       });
-  //   } else {
-  //     setFoundProducts([]);
-  //     setSelected(null);
+      .get(`http://localhost:4000/api/v1/categories/${transType}`)
+      .then(({ data }) => {
+        // console.log(data.data.result);
+        setCategories(() => {
+          return data.data.result;
+        });
+      })
+      .catch((error) => {
+        setCategories([]);
+        setSelected(null);
+      });
+  };
+
+  // Чтобы закрыть дропдаун меню
+  const catMenu = useRef(null);
+  const [openSlide, setopenSlide] = useState("");
+
+  const closeOpenMenus = (e) => {
+    if (catMenu.current && openSlide && !catMenu.current.contains(e.target)) {
+      setopenSlide(false);
+    }
+  };
+
+  document.addEventListener("mousedown", closeOpenMenus);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    dispatch(
+      transactionsOperations.addTransaction(
+        selectedDate,
+        fields.description,
+        fields.amount,
+        fields.category,
+        fields.transactionType
+      )
+    );
+
+    setFields({ description: "", amount: "", category: "" });
+    setCategories([]);
+    setSelected(null);
+  };
+
+  /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
+
+  // const onFormSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const transactionData = {
+  //     date: new  Intl.DateTimeFormat('en-GB').format(new Date()), // пока данные календаря недоступны в редакс сторе - будем ставить текущую дату
+  //     category: e.target.category.value,
+  //     description: e.target.description.value,
+  //     amount: e.target.cost.value,
+  //     transactionType: "expense"
   //   }
-  // };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
+  //   dispatch(transactionsOperations.addBalanceOperation(transactionData));
 
-  //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
-  //   const date = selectedDate;
-
-  //   dispatch(addProduct(...date, selected?._id, fields?.weight));
-
-  //   dispatch(getCurrentUser());
-
-  //   if (!isWide) {
-  //     closeModal();
-  //   }
-  //   setFields({ searchWord: "", weight: "" });
-  //   setFoundProducts([]);
-  //   setSelected(null);
-  // };
+  // }
 
   return (
-    <div>
-      {/* <form className={styles.productForm} onSubmit={handleSubmit}> */}
-      <form className={styles.productForm}>
+    <div className={styles.product}>
+      {/* <img src="../../assets/icons/arrow-left.svg" alt="Кот" width="18" /> */}
+
+      <form
+        ref={catMenu}
+        className={styles.productForm}
+        onSubmit={handleSubmit}
+      >
         <input
           placeholder="Описание товара"
           type="text"
-          name="searchWord"
-          className={styles.productInput}
+          name="description"
+          className={styles.productDescription}
           autoComplete="off"
           autoFocus
-          // value={fields.searchWord}
-          // onChange={searchProducts}
+          value={fields.description}
+          onChange={handleChange}
+          required
         />
-        {/* <ul className={styles.productResultList} id="products">
-          {!!foundProducts.length &&
-            !selected &&
-            foundProducts.map((item) => (
+
+        <input
+          placeholder="Категория товара"
+          type="text"
+          name="category"
+          className={styles.productCategory}
+          autoComplete="off"
+          autoFocus
+          value={fields.category}
+          onClick={searchCategories}
+          required
+        />
+
+        <ul className={styles.productResultList} id="categories">
+          {!categories.length && <ArrowDown className={styles.arrowDown} />}
+          {!!categories.length &&
+            categories.map((item) => (
               <li
                 className={styles.productResultListItem}
                 id={item._id}
                 key={item._id}
                 onClick={() => {
                   setSelected(item);
-                  setFields({
-                    searchWord: item.title.ru,
-                    weight: item.weight,
-                  });
+                  setFields((prevstate) => ({
+                    ...prevstate,
+                    category: item.category,
+                    transactionType: item.transactionType,
+                  }));
+                  setCategories([]);
                 }}
               >
-                {item.title.ru}
+                {item.category}
               </li>
             ))}
-        </ul> */}
+        </ul>
+        <div className={styles.productAmountLabelBox}>
+          <label className={styles.productAmountLabel}>
+            <input
+              className={styles.productAmountInput}
+              placeholder="00.00 UAH"
+              type="number"
+              name="amount"
+              value={fields.amount}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <div className={styles.calculatorLogoContainer}>
+            <CalculatorLogo className={styles.calculatorLogo} />
+          </div>
+        </div>
+        <br />
 
-        <select name="products" id="products">
-          <option value="" disabled selected>
-            Категория товара
-          </option>
-          {/* <option value="0" selected="selected">
-            Категория товара
-          </option> */}
-          <option value="transportation">Транспорт</option>
-          <option value="groceries">Продукты</option>
-          <option value="fun">Развлечения</option>
-          <option value="home">Все для дома</option>
-          <option value="hifi">Техника</option>
-          <option value="utilities">Коммуналка, связь</option>
-          <option value="sportsHobby">Спорт, хобби</option>
-          <option value="education">Образование</option>
-          <option value="other">Прочее</option>
-        </select>
-
-        <label className={styles.productLabel}>
-          <input
-            className={styles.weightInput}
-            placeholder="0.00"
-            type="number"
-            name={"weight"}
-            // value={fields.weight}
-            // onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Ввод</button>
-        <button type="submit">Очистить</button>
+        <button type="submit" className={styles.btnSubmit}>
+          Ввод
+        </button>
+        <button
+          className={styles.btnClear}
+          type="button"
+          onClick={() => {
+            setFields({
+              description: "",
+              amount: "",
+              category: "",
+            });
+          }}
+        >
+          Очистить
+        </button>
       </form>
     </div>
   );

@@ -1,24 +1,24 @@
 import axios from "axios";
 import {
-  // registerRequest,
-  // registerSuccess,
-  // registerError,
-  // loginRequest,
-  // loginSuccess,
-  // loginError,
-  authRequest,
-  authSuccess,
-  authError,
+  registerRequest,
+  registerSuccess,
+  registerError,
+  loginRequest,
+  loginSuccess,
+  loginError,
   logoutRequest,
   logoutSuccess,
   logoutError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+  getResponseGoogleRequest,
+  getResponseGoogleSuccess,
+  getResponseGoogleError,
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "http://localhost:4000/api/v1/";
 
 const token = {
   set(token) {
@@ -29,45 +29,64 @@ const token = {
   },
 };
 
-// const register = (registrationObject) => async (dispatch) => {
-//   dispatch(registerRequest());
-
-//   try {
-//     const { data } = await axios.post("/auth/register", registrationObject);
-//     dispatch(registerSuccess(data));
-//     alertSuccess("Регистрация прошла успешно. Ввойдите в свою учетную запись.");
-//   } catch (error) {
-//     if (error.response?.status === 409) {
-//       alertError("Пользователь с тaкой почтой уже зарегистрирован");
-//     }
-//     dispatch(registerError(error.message));
-//   }
-// };
-
-const auth = (authObject) => async (dispatch) => {
-  dispatch(authRequest());
+const register = (registrationObject) => async (dispatch) => {
+  dispatch(registerRequest());
 
   try {
-    const { data } = await axios.post("/auth/auth", authObject);
-    dispatch(authSuccess(data));
+    const {
+      data: { data },
+    } = await axios.post("/auth/signup", registrationObject);
+    console.log(data);
+
+    // Вызываем функцию registerAPI и передаем в нее registrationObject
+    // const user = await registerAPI(registrationObject); - импортировать из services/api
+//     const { data } = await axios.post("/auth/signup", registrationObject);
+
+    dispatch(registerSuccess(data));
+    // dispatch(registerSuccess(user));
+    alertSuccess("Регистрация прошла успешно. Войдите в свою учетную запись.");
+  } catch (error) {
+    if (error.response?.status === 409) {
+      alertError("Пользователь с тaкой почтой уже зарегистрирован");
+    }
+    dispatch(registerError(error.message));
+  }
+};
+
+const login = (loginObject) => async (dispatch, getState) => {
+  dispatch(loginRequest());
+  const authToken = getState().auth.token;
+
+  try {
+    // const { email, password } = loginObject;
+    // const data = await api.logInApi({ email, password }); - импортировать из services/api
+    const {
+      data: { data },
+    } = await axios.post("/auth/signin", loginObject);
+
+    token.set(authToken);
+
+    dispatch(loginSuccess(data));
     alertSuccess("Добро пожаловать");
   } catch (error) {
     if (error.response?.status === 403) {
       alertError("Неверный логин или пароль");
     }
-    dispatch(authError(error.message));
+    dispatch(loginError(error.message));
   }
 };
+const resetParams = () => (axios.defaults.params = {});
 
-const logOut = () => async (dispatch, getState) => {
+const logOut = () => async (dispatch) => {
   dispatch(logoutRequest());
-  const authToken = getState().auth.token;
+
   try {
-    token.set(authToken);
-    const { data } = await axios.post("/auth/logout");
+    resetParams();
+    // await logoutApi(); - импортировать из services/api
+    await axios.get("/auth/logout");
     token.unset();
 
-    dispatch(logoutSuccess(data));
+    dispatch(logoutSuccess());
   } catch (error) {
     dispatch(logoutError(error.message));
   }
@@ -86,7 +105,8 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(getCurrentUserRequest());
 
   try {
-    const { data } = await axios.get("/user");
+    const { data } = await axios.get("/auth/current");
+
     dispatch(getCurrentUserSuccess(data));
   } catch (error) {
     if (error.response.status === 401) {
@@ -96,4 +116,4 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-export { token, auth, logOut, getCurrentUser };
+export { token, login, register, logOut, getCurrentUser };

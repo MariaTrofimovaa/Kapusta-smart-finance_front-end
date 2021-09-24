@@ -1,16 +1,16 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+
 import { useDispatch } from "react-redux";
-import { auth } from "../../redux/auth/auth.operations";
-import logo from "../../assets/images/logo_google.png";
+import { login, register } from "../../redux/auth/auth.operations";
+// import logo from "../../assets/images/logo_google.png";
 ///////////////////////////////Formik, YUP /////////////////////////////////////////////////
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 import css from "./AuthForm.module.css";
-import { Link } from "react-router-dom";
+import GoogleLogin from "react-google-login";
+import axios from "axios";
 
 const initialForm = { email: "", password: "" };
-const url =
-  "https://Kapusta-smart-finanse_front-end.goit.com.ua/api/v1/auth/google";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
     .required("*это обязательное поле"),
   password: Yup.string()
     .required("*это обязательное поле")
-    .min(3, "* Минимум 3 символа")
+    .min(5, "* Минимум 6 символов")
     .max(20, "* Максимум 20 символов"),
 });
 
@@ -48,12 +48,30 @@ export const FormControl = ({ label, ...props }) => {
   );
 };
 
-const AuthForm = () => {
+export default function AuthForm() {
+  const [action, setAction] = useState("");
+  console.log(action);
   const dispatch = useDispatch();
-  const onAuth = (state) => dispatch(auth(state));
 
   const handleSubmit = (values) => {
-    onAuth(values);
+    if (action === "register") {
+      dispatch(register(values));
+    } else if (action === "login") {
+      dispatch(login(values));
+    }
+  };
+  const responseSuccessGoogle = (response) => {
+    console.log(response);
+    axios({
+      method: "POST",
+      url: "http://localhost:4000/api/v1/auth/googlelogin",
+      data: { tokenId: response.tokenId },
+    }).then((response) => {
+      console.log("Google login success", response);
+    });
+  };
+  const responseErrorGoogle = (response) => {
+    console.log(response);
   };
 
   return (
@@ -61,14 +79,22 @@ const AuthForm = () => {
       <Formik
         initialValues={initialForm}
         validationSchema={validationSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={handleSubmit}
       >
         <Form className={css.form} autoComplete="off">
-          <p className={css.form_google_paragraph}>
+          {/* <p className={css.form_google_paragraph}>
             Вы можете авторизироваться с помощью <br />
             Google Account:
-          </p>
-          <a className={css.form_google_link} href={url}>
+          </p> */}
+          <GoogleLogin
+            clientId="98081212290-o5ci4422o4omppgvkqc2q6e9jd13ioso.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseSuccessGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={"single_host_origin"}
+            className={css.form_google_container}
+          />
+          {/* <a className={css.form_google_link} href={url}>
             <img
               className={css.form_google_logo}
               src={logo}
@@ -79,25 +105,30 @@ const AuthForm = () => {
           <p className={css.form_paragraph}>
             Или зайти в приложение с помощью e-mail и пароля, <br />
             сперва зарегистрировавшись:
-          </p>
+          </p> */}
           <div className={css.form_input_area}>
             <FormControl label="Электронная почта*" name="email" type="email" />
             <FormControl label="Пароль*" type="password" name="password" />
             <div className={css.form_buttons}>
-              <button type="submit" className={css.form_button}>
+              <button
+                type="submit"
+                className={css.form_button}
+                onClick={() => setAction("login")}
+              >
                 Войти
               </button>
-              <Link to="/registration" exact>
-                <button type="button" className={css.secondary_form_button}>
-                  Регистрация
-                </button>
-              </Link>
+
+              <button
+                type="submit"
+                className={css.form_button}
+                onClick={() => setAction("register")}
+              >
+                Регистрация
+              </button>
             </div>
           </div>
         </Form>
       </Formik>
     </div>
   );
-};
-
-export default AuthForm;
+}

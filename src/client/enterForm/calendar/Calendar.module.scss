@@ -1,0 +1,51 @@
+@import "../../../stylesheet/base";
+
+// .сalendar {
+//   display: flex;
+//   /* flex-direction: row;
+//   align-items: center;
+//   position: relative; */
+// }
+
+.box {
+  @include tablet {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: flex;
+  }
+}
+
+.datePicker {
+  text-align: left;
+  border-color: transparent;
+  width: 80px;
+  height: 40px;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #52555f;
+  @include tablet {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.datePickerLogo {
+  // width: 20px;
+  padding-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 0 !important;
+}
+
+/* .datePickerLogo {
+  align-items: center;
+  position: absolute;
+  top: 4px;
+  left: 125px;
+} */

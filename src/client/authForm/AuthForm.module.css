@@ -15,6 +15,11 @@
   }
 }
 
+.form_google_container {
+  align-items: center;
+  margin-left: 100px;
+}
+
 .form_google_paragraph {
   font-family: Roboto;
   font-style: normal;
@@ -143,39 +148,18 @@
   text-transform: uppercase;
   border-radius: 17px;
   text-align: center;
-  color: #ffffff;
-  background-color: #ff751d;
+  color: #52555f;
+  background-color: #ffff;
 }
 
 .form_button:hover {
-  background-color: #fff;
-  color: #52555f;
+  background-color: #ff751d;
+  color: #ffffff;
   transition: 0.2s ease-in-out;
 }
 
 .form_button:first-child {
   margin-bottom: 20px;
-}
-
-.secondary_form_button {
-  width: 125px;
-  height: 45px;
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
-  border: none;
-  border-radius: 17px;
-  background-color: #f4f6fb;
-  text-align: center;
-  color: #52555f;
-  font-size: 11px;
-
-  text-transform: uppercase;
-  transition: 0.2s ease-in-out;
-}
-
-.secondary_form_button:hover {
-  background-color: #ff751d;
-  color: #f5f6fb;
-  transition: 0.2s ease-in-out;
 }
 
 @media screen and (min-width: 768px) {

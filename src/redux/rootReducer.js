@@ -4,9 +4,16 @@ import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth/auth.reducer";
 import balanceReducer from "./balance/balance.reducers";
-// import balance from "./balance/balance.reducer"
-// import transactions from "./transactions/transactions.reducer"
-// import report from "./report/report.reducer";
+import reportReducer from "./report/report.reducer";
+import selectedDateReducer from "./date/dateReducer";
+
+// import selectedDateReducer from "./transactions/transactions.reducer";
+// ================ Все вынесли в transactions
+// import { transactionsReducer } from "./transactions/tranzactions.reducer";
+
+// ================ !!!!!!! Проверить что чье. Строка ниже вроде не Алены
+import transactions from "./transactions/transactions.reducer";
+import changeMonthReducer from "./monthDate/monthReducer";
 
 const persistConfig = {
   key: "auth",
@@ -18,10 +25,11 @@ const persistAuthReducer = persistReducer(persistConfig, authReducer);
 
 const rootReducer = combineReducers({
   auth: persistAuthReducer,
-  balance: balanceReducer
-
-  // transactions,
-  // report,
+  balance: balanceReducer,
+  report: reportReducer,
+  transactions,
+  selectedDate: selectedDateReducer,
+  changeMonth: changeMonthReducer,
 });
 
 export default rootReducer;

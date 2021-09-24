@@ -1,32 +1,37 @@
-import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { ReactComponent as CalendarLogo } from "./svg/calendar.svg";
+import { ReactComponent as CalendarLogo } from "../../../assets/icons/calendar.svg";
 import "react-datepicker/dist/react-datepicker.css";
-import styles from "./Calendar.module.css";
-// import { useDispatch } from "react-redux";
-// import { getSelectedDay } from "../../redux/products/products.actions";
-// import { getDayInfo } from "../../redux/products/products.operations";
+import styles from "./Calendar.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+import setSelectedDate from "../../../redux/date/date.actions";
+import { getSelectedDate } from "../../../redux/date/date.selectors";
 
 const Calendar = () => {
-  // const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getSelectedDay(startDate.toISOString().slice(0, 10)));
-  //   dispatch(getDayInfo(startDate.toISOString().slice(0, 10)));
-  // }, [dispatch, startDate]);
+  const date = useSelector(getSelectedDate);
+
+  const handleChangeDate = (date) => {
+    dispatch(
+      setSelectedDate(
+        date.toISOString().slice(0, 10).split("-").reverse().join(".")
+      )
+    );
+  };
 
   return (
-    <div>
-      <label className={styles.сalendar}>
-        <CalendarLogo className={styles.datePickerLogo} />
-        <DatePicker
-          className={styles.datePicker}
-          selected={startDate}
-          dateFormat="dd.MM.yyyy"
-          onChange={(date) => setStartDate(date)}
-        />
-      </label>
+    <div className={styles.box}>
+      <div className={styles.datePickerLogo}>
+        <CalendarLogo />
+      </div>
+      <DatePicker
+        className={styles.datePicker}
+        selected={
+          date ? new Date(date.split(".").reverse().join("-")) : new Date()
+        }
+        dateFormat="dd.MM.yyyy"
+        onChange={handleChangeDate}
+      />
     </div>
   );
 };

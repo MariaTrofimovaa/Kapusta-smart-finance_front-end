@@ -1,0 +1,42 @@
+@media screen and (min-width: 768px) {
+  .dataField {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 580px;
+    padding: 33px 20px 35px;
+    background-color: #fff;
+
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 30px 30px;
+  }
+
+  .btnWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    /* Добавила margin-top, чтобы оттолкнуться от баланса */
+    margin-top: 93px;
+  }
+
+  .dataWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .enterFormWrapper {
+    display: flex;
+
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dataWrapper {
+    flex-direction: row;
+  }
+}
