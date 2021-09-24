@@ -9,7 +9,7 @@ export {
   getTransactionsSelector,
   getBrief,
   getTransactions,
-  getTransactionOfDaySelector,
+  // getTransactionOfDaySelector,
   getYear,
   getExpenseOfDaySelector,
   getIncomeOfDaySelector,

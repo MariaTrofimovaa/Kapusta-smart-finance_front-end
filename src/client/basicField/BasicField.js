@@ -14,8 +14,8 @@ const BasicField = () => {
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
 
-  // const location = useLocation().pathname;
-  const { transType } = useParams();
+  const location = useLocation().pathname;
+  // const { transType } = useParams();
 
   return (
     <>
@@ -28,7 +28,8 @@ const BasicField = () => {
           <div className={styles.dataField}>
             <div className={styles.dataWrapper}>
               <Calendar />
-              <EnterForm transType={transType} />
+              {/* <EnterForm transType={transType} /> */}
+              <EnterForm transType={location} />
             </div>
             <div className={styles.dataWrapper}>
               <TableTransactions />
@@ -45,7 +46,8 @@ const BasicField = () => {
           </div>
           <div className={styles.dataField}>
             <Calendar />
-            <EnterForm transType={transType} />
+            {/* <EnterForm transType={transType} /> */}
+            <EnterForm transType={location} />
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
@@ -61,7 +63,8 @@ const BasicField = () => {
           </div>
           <div className={styles.dataField}>
             <Calendar />
-            <EnterForm transType={transType} />
+            {/* <EnterForm transType={transType} /> */}
+            <EnterForm transType={location} />
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
@@ -89,7 +92,8 @@ const BasicField = () => {
           </div> */}
           <div className={styles.dataField}>
             {/* <Calendar /> */}
-            <EnterForm currentLocation={location} />
+            {/* <EnterForm transType={transType} /> */}
+            <EnterForm transType={location} />
             {/* <div className={styles.dataWrapper}>
               <TableTransactions />
             </div> */}

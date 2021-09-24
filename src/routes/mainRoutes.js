@@ -55,7 +55,7 @@ export const mainRoutes = [
     name: "Report",
     path: "/report",
     component: lazy(() => import("../pages/reportPage/ReportPage")),
-    redirectTo: "/expense",
+    // redirectTo: "/expense",
     exact: false,
     isPrivate: true,
     // isRestricted: true,
