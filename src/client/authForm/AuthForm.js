@@ -2,15 +2,15 @@ import React, { useMemo, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { login, register } from "../../redux/auth/auth.operations";
-import logo from "../../assets/images/logo_google.png";
+// import logo from "../../assets/images/logo_google.png";
 ///////////////////////////////Formik, YUP /////////////////////////////////////////////////
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 import css from "./AuthForm.module.css";
+import GoogleLogin from "react-google-login";
+import axios from "axios";
 
 const initialForm = { email: "", password: "" };
-const url =
-  "https://Kapusta-smart-finanse_front-end.goit.com.ua/api/v1/auth/google";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -60,6 +60,19 @@ export default function AuthForm() {
       dispatch(login(values));
     }
   };
+  const responseSuccessGoogle = (response) => {
+    console.log(response);
+    axios({
+      method: "POST",
+      url: "http://localhost:4000/api/v1/auth/googlelogin",
+      data: { tokenId: response.tokenId },
+    }).then((response) => {
+      console.log("Google login success", response);
+    });
+  };
+  const responseErrorGoogle = (response) => {
+    console.log(response);
+  };
 
   return (
     <div className={css.form_container}>
@@ -69,11 +82,19 @@ export default function AuthForm() {
         onSubmit={handleSubmit}
       >
         <Form className={css.form} autoComplete="off">
-          <p className={css.form_google_paragraph}>
+          {/* <p className={css.form_google_paragraph}>
             Вы можете авторизироваться с помощью <br />
             Google Account:
-          </p>
-          <a className={css.form_google_link} href={url}>
+          </p> */}
+          <GoogleLogin
+            clientId="98081212290-o5ci4422o4omppgvkqc2q6e9jd13ioso.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseSuccessGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={"single_host_origin"}
+            className={css.form_google_container}
+          />
+          {/* <a className={css.form_google_link} href={url}>
             <img
               className={css.form_google_logo}
               src={logo}
@@ -84,7 +105,7 @@ export default function AuthForm() {
           <p className={css.form_paragraph}>
             Или зайти в приложение с помощью e-mail и пароля, <br />
             сперва зарегистрировавшись:
-          </p>
+          </p> */}
           <div className={css.form_input_area}>
             <FormControl label="Электронная почта*" name="email" type="email" />
             <FormControl label="Пароль*" type="password" name="password" />

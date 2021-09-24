@@ -15,6 +15,11 @@
   }
 }
 
+.form_google_container {
+  align-items: center;
+  margin-left: 100px;
+}
+
 .form_google_paragraph {
   font-family: Roboto;
   font-style: normal;

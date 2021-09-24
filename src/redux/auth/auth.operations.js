@@ -12,6 +12,9 @@ import {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+  getResponseGoogleRequest,
+  getResponseGoogleSuccess,
+  getResponseGoogleError,
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
