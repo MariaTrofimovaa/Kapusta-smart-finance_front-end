@@ -33,7 +33,9 @@ const transactionsReducer = createReducer([], {
                                                  // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
   },
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
-    return state.filter(({ _id }) => _id !== payload.transaction._id);
+
+    return state.filter(({ _id }) => _id !== payload._id);
+
   },
 
   // [actions.deleteProductSuccess]: (state, { payload }) => ({
@@ -57,14 +59,28 @@ const transactionsReducer = createReducer([], {
 });
 
 const brief = createReducer(
-  { income: [], expense: [] },
+  { income: [], expense: [], currentYear: "" },
   {
-    // [actions.fetchBriefRequest]: () => false,
     [actions.fetchBriefSuccess]: (state, { payload }) => ({
       ...state,
       ...payload,
     }),
 
+    [actions.addTransactionSuccess]: (state, { payload }) => {
+      if (state.currentYear === +payload.date.slice(6))
+        state[payload.transactionType].push(payload);
+    },
+
+    [actions.deleteTransactionSuccess]: (state, { payload }) => {
+      if (state.currentYear === +payload.date.slice(6))
+        state[payload.transactionType].filter(({ _id }) => _id !== payload._id);
+    },
+
+    [actions.changeActualYearForBrief]: (_, { payload }) => ({
+      income: [],
+      expense: [],
+      currentYear: payload,
+    }),
     // [actions.fetchBriefError]: () => false,
   }
 );
@@ -73,14 +89,14 @@ const expenseOfDay = createReducer([], {
   [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
   [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload.addedTransaction],
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload.transaction._id),
+    state.filter(({ _id }) => _id !== payload._id),
 });
 
 const incomeOfDay = createReducer([], {
   [actions.getIncomeOfDaySuccess]: (state, { payload }) => payload.data,
   [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload.addedTransaction],
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload.transaction._id),
+    state.filter(({ _id }) => _id !== payload._id),
 });
 
 export default combineReducers({
