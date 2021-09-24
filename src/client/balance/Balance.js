@@ -23,10 +23,6 @@ console.log(balanceFromStore);
       inputValue.replace(/[^\d.-]/g, "").replace(/^0+(?!$)/g, "") + " UAH"; // при редактировании баланса мы убираем все введенные нецифровые символы и добавляем UAH
   };
 
-  useEffect(() => {
-    dispatch(balanceOperations.getBalanceOperation());
-  }, [dispatch]);
-
   // эта функция отвечает за отправку нового баланса на бекенд
   const updateBalance = (e) => {
     e.preventDefault();

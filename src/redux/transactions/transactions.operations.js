@@ -117,9 +117,11 @@ const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
 const deleteTransaction = (id) => (dispatch) => {
   dispatch(transactionsActions.deleteTransactionRequest());
 
+
   deleteTransactionApi(id)
-    .then(() => {
-      dispatch(transactionsActions.deleteTransactionSuccess(id));
+    .then(({data}) => {
+     console.log('delete transaction operation, payload:', data)
+      dispatch(transactionsActions.deleteTransactionSuccess(data.data));
     })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))

@@ -4,6 +4,7 @@ import TableTransactionsExpense from "./TableTransactionsExpense";
 import TableTransactionsIncome from "./TableTransactionsIncome";
 
 const TableTransactions = () => {
+
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
   // console.log(activeCheck);

@@ -51,7 +51,7 @@ export const addTransactionApi = async (transaction) => {
 export const deleteTransactionApi = (id) => {
   return axios
     .delete(`transactions/${id}`)
-    .then()
+    .then(({data})=>(data))
     .catch((error) => {
       throw error;
     });

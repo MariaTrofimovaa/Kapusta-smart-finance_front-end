@@ -1,23 +1,26 @@
 import { createAction } from "@reduxjs/toolkit";
 
 const getAllForMonthExpenseRequest = createAction(
-  "transactions/getAllForMonthExpenseRequest"
+  "report/getAllForMonthExpenseRequest"
 );
 const getAllForMonthExpenseSuccess = createAction(
-  "transactions/getAllForMonthExpenseSuccess"
+  "report/getAllForMonthExpenseSuccess"
 );
 const getAllForMonthExpenseError = createAction(
-  "transactions/getAllForMonthExpenseError"
+  "report/getAllForMonthExpenseError"
 );
 
 const getAllForMonthIncomeRequest = createAction(
-  "transactions/getAllForMonthIncomeRequest"
+  "report/getAllForMonthIncomeRequest"
 );
 const getAllForMonthIncomeSuccess = createAction(
-  "transactions/getAllForMonthIncomeSuccess"
+  "report/getAllForMonthIncomeSuccess"
 );
 const getAllForMonthIncomeError = createAction(
-  "transactions/getAllForMonthIncomeError"
+  "report/getAllForMonthIncomeError"
+);
+const setActiveAction = createAction(
+  "report/setActive"
 );
 
 export {
@@ -27,4 +30,5 @@ export {
   getAllForMonthIncomeRequest,
   getAllForMonthIncomeSuccess,
   getAllForMonthIncomeError,
+  setActiveAction
 };

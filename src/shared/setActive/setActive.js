@@ -1,33 +1,40 @@
 const setActive = (array, curCategory) => {
-  return array.map((obj) => {
+  const setAllFalse = array.map((obj) => {
     if (obj.isActive) {
       return {
         category: obj.category,
-        categorySum: obj.amount,
+        categorySum: obj.categorySum,
         isActive: false,
-        types: [
-          {
-            description: obj.description,
-            amount: obj.amount,
-          },
-        ],
-      };
-    }
-    if (obj.category === curCategory) {
-      return {
-        category: obj.category,
-        categorySum: obj.amount,
-        isActive: true,
-        types: [
-          {
-            description: obj.description,
-            amount: obj.amount,
-          },
-        ],
+        types: obj.types,
       };
     }
     return obj;
   });
+
+  const setCategoriFalse = setAllFalse.map((obj) => {
+    if (obj.category !== curCategory) {
+      return {
+        category: obj.category,
+        categorySum: obj.categorySum,
+        isActive: false,
+        types: obj.types,
+      };
+    }
+    return obj;
+  });
+  const setCurrentTrue = setCategoriFalse.map((obj) => {
+    if (obj.category === curCategory) {
+      return {
+        category: obj.category,
+        categorySum: obj.categorySum,
+        isActive: true,
+        types: obj.types,
+      };
+    }
+    return obj;
+  });
+
+  return setCurrentTrue;
 };
 
 export default setActive;
