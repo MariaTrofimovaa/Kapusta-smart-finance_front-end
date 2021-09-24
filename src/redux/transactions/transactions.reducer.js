@@ -30,15 +30,14 @@ const transactionsReducer = createReducer([], {
     return state;
   },
   [actions.addTransactionSuccess]: (state, { payload }) => {
-    return [...state, payload.addedTransaction]; // Света: так как после обновления транзакции в payload к нам приходят и транзакция и обновленный баланс, 
-                                                 // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
+    console.log(">>>>", payload);
+    return [...state, payload.addedTransaction]; // Света: так как после обновления транзакции в payload к нам приходят и транзакция и обновленный баланс,
+    // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
   },
   // transactions: payload.transactions.brief.expense.data,
 
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
-
     return state.filter(({ _id }) => _id !== payload._id);
-
   },
 
   // [actions.deleteProductSuccess]: (state, { payload }) => ({
@@ -89,22 +88,27 @@ const brief = createReducer(
 );
 
 const expenseOfDay = createReducer([], {
-  [actions.getExpenseOfDaySuccess]: (state, { payload }) => 
-        payload.data,
-  [actions.addTransactionSuccess]: (state, { payload }) => 
-        [...state, payload.addedTransaction],
+  [actions.addTransactionSuccess]: (state, { payload }) => [
+    ...state,
+    payload,
+    console.log(">>>>>", payload.addedTransaction),
+  ],
+  [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
+
   [balanceActions.setBalanceSuccess]: (state, { payload }) => 
         (payload.addedTransaction.transactionType === 'expense') ? [...state, payload.addedTransaction] : [...state],
+
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
         state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 const incomeOfDay = createReducer([], {
+  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
   [actions.getIncomeOfDaySuccess]: (state, { payload }) => payload.data,
-  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload.addedTransaction],
   [balanceActions.setBalanceSuccess]: (state, { payload }) => {
         console.log('incomeOfDay',payload);
         return (payload.addedTransaction.transactionType === 'income') ? [...state, payload.addedTransaction] : [...state]},
+
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
     state.filter(({ _id }) => _id !== payload.transaction._id),
 });

@@ -44,6 +44,7 @@ export const fethcBriefApi = (filter) => {
 export const addTransactionApi = async (transaction) => {
   const { data } = await axios.post("transactions/", transaction);
   // console.log("data :>> ", data.data.addedTransaction);
+
   return data.data; // Света: бекенд нам будет присылать как добавленную транзакцию, так и данные по балансу, которые нужно будет передать в баланс редюсер. Потому апи должен возвращать весь ответ от сервера, а разбирать его уже будем в конкретных редюсерах
 };
 
@@ -51,7 +52,7 @@ export const addTransactionApi = async (transaction) => {
 export const deleteTransactionApi = (id) => {
   return axios
     .delete(`transactions/${id}`)
-    .then(({data})=>(data))
+    .then(({ data }) => data)
     .catch((error) => {
       throw error;
     });
