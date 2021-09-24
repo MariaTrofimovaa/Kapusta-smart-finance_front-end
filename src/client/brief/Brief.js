@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import sprite from "../../assets/icons/sprite_categories.svg";
 
@@ -17,7 +17,8 @@ import {
 
 const Brief = () => {
   const dispatch = useDispatch();
-  const location = useLocation().pathname;
+  // const location = useLocation().pathname;
+  const { transType } = useParams();
 
   const date = new Date();
 
@@ -25,7 +26,7 @@ const Brief = () => {
   const [monthsTotal, setMonthes] = useState([]);
 
   const filter = {
-    type: location.slice(1),
+    type: transType,
     year: currentYear,
   };
 
@@ -33,20 +34,13 @@ const Brief = () => {
 
   const stateYear = useSelector(getYear);
 
-
   useEffect(() => {
     dispatch(action.changeActualYearForBrief(currentYear));
   }, [dispatch, currentYear]);
 
   useEffect(() => {
-    if (
-      (filter.type === "income" && !transactions.length) ||
-      (filter.type === "expense" && !transactions.length)
-    )
-      dispatch(operation.fetchBrief(filter));
+    !transactions.length && dispatch(operation.fetchBrief(filter));
   }, [dispatch, stateYear]);
-
-
 
   useEffect(() => {
     let month = new Date();
@@ -77,7 +71,6 @@ const Brief = () => {
 
     setMonthes(monthesSum);
   }, [transactions]);
-
 
   return (
     <div className={styles.container}>

@@ -15,7 +15,7 @@ function Balance() {
 
   const dispatch = useDispatch();
   let balanceFromStore = useSelector(balanceSelectors.getBalance); // эта переменная получает баланс из стора
-console.log(balanceFromStore);
+
   const onBalanceInputChange = (e) => {
     let inputValue = e.target.value;
 

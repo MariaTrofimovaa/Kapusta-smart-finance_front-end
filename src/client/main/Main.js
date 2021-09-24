@@ -9,6 +9,11 @@ import PublicRoutes from "../../routes/PublicRoutes";
 import styles from "./Main.module.scss";
 
 const Main = (props) => {
+  // console.log(props)
+  // сюда приходит undefined
+  //  isAuth={props.isAuth}
+  //  isMobile={props.isMobile}
+
   const location = useLocation();
   const isRegisterPage = location.pathname === "/";
   const classes = isRegisterPage ? styles.registerWrapper : styles.mainWrapper;
@@ -16,14 +21,16 @@ const Main = (props) => {
   return (
     <>
       {/* <div className={styles.mainWrapper}> */}
-        <div className={classes}>
+      <div className={classes}>
         <Suspense fallback={<AppLoader />}>
           <Switch>
             {mainRoutes.map((route) =>
               route.isPrivate ? (
                 <PrivateRoutes
                   {...route}
+                  // props={props}
                   isAuth={props.isAuth}
+                  isMobile={props.isMobile}
                   key={route.name}
                 />
               ) : (

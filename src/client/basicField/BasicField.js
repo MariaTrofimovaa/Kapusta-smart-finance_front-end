@@ -14,8 +14,8 @@ const BasicField = () => {
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
 
-  const location = useLocation().pathname;
-  // const { transType } = useParams();
+  // const location = useLocation().pathname;
+  const { transType } = useParams();
 
   return (
     <>
@@ -28,8 +28,8 @@ const BasicField = () => {
           <div className={styles.dataField}>
             <div className={styles.dataWrapper}>
               <Calendar />
-              {/* <EnterForm transType={transType} /> */}
-              <EnterForm transType={location} />
+              <EnterForm transType={transType} />
+              {/* <EnterForm transType={location} /> */}
             </div>
             <div className={styles.dataWrapper}>
               <TableTransactions />
@@ -46,8 +46,8 @@ const BasicField = () => {
           </div>
           <div className={styles.dataField}>
             <Calendar />
-            {/* <EnterForm transType={transType} /> */}
-            <EnterForm transType={location} />
+            <EnterForm transType={transType} />
+            {/* <EnterForm transType={location} /> */}
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
@@ -55,7 +55,7 @@ const BasicField = () => {
           <Brief />
         </div>
       )}
-      {isPageWideMobile && (
+      {/* {isPageWideMobile && (
         <div>
           <div className={styles.btnWrapper}>
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
@@ -63,44 +63,14 @@ const BasicField = () => {
           </div>
           <div className={styles.dataField}>
             <Calendar />
-            {/* <EnterForm transType={transType} /> */}
-            <EnterForm transType={location} />
+            <EnterForm transType={transType} />
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
           </div>
           <Brief />
         </div>
-      )}
-
-      {/* Алена. Пробное размещене компонента формы на моб.разрешении */}
-      {isPageWideMobile && (
-        <div>
-          {/* <div className={styles.btnWrapper}>
-            <BasicFieldTab
-              text={"Расход"}
-              active={true}
-              link={"/expense"}
-              key="Расход"
-            />
-            <BasicFieldTab
-              text={"Доход"}
-              active={false}
-              link={"/income"}
-              key="Доход"
-            />
-          </div> */}
-          <div className={styles.dataField}>
-            {/* <Calendar /> */}
-            {/* <EnterForm transType={transType} /> */}
-            <EnterForm transType={location} />
-            {/* <div className={styles.dataWrapper}>
-              <TableTransactions />
-            </div> */}
-          </div>
-          {/* <Brief /> */}
-        </div>
-      )}
+      )} */}
     </>
   );
 };
