@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import actions from "./transactions.actions";
+import balanceActions from "../balance/balance.actions";
 
 import { logoutSuccess } from "../auth/auth.actions";
 
@@ -77,6 +78,7 @@ const brief = createReducer(
       state[payload.transactionType] = state[payload.transactionType].filter(
         ({ _id }) => _id !== payload._id
       );
+
     },
 
     [actions.changeActualYearForBrief]: (_, { payload }) => ({
@@ -95,23 +97,30 @@ const brief = createReducer(
 );
 
 const expenseOfDay = createReducer([], {
-  [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
   [actions.addTransactionSuccess]: (state, { payload }) => [
     ...state,
-    payload.addedTransaction,
+    payload,
+    console.log(">>>>>", payload.addedTransaction),
   ],
+  [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
+
+  [balanceActions.setBalanceSuccess]: (state, { payload }) => 
+        (payload.addedTransaction.transactionType === 'expense') ? [...state, payload.addedTransaction] : [...state],
+
+
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload._id),
+        state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 const incomeOfDay = createReducer([], {
+  [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
   [actions.getIncomeOfDaySuccess]: (state, { payload }) => payload.data,
-  [actions.addTransactionSuccess]: (state, { payload }) => [
-    ...state,
-    payload.addedTransaction,
-  ],
+  [balanceActions.setBalanceSuccess]: (state, { payload }) => {
+        console.log('incomeOfDay',payload);
+        return (payload.addedTransaction.transactionType === 'income') ? [...state, payload.addedTransaction] : [...state]},
+
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload._id),
+    state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 export default combineReducers({

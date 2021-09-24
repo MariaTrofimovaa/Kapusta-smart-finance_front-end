@@ -12,10 +12,6 @@ const TableTransactionsIncome = () => {
   const date = useSelector(getSelectedDate);
   const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
 
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllIncomeOfDate(date));
-  }, [date]);
-
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleModalClose = (e) => {
@@ -25,6 +21,9 @@ const TableTransactionsIncome = () => {
   const handleModalOpen = () => {
     setModalOpen(true);
   };
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllIncomeOfDate(date));
+  }, [date]);
 
   return tableTransactionsIncome.map((item) => (
     <tr key={item._id} className={styles.tableTr}>

@@ -12,19 +12,18 @@ const TableTransactionsExpense = () => {
   const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  }, [date]);
-
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalClose = (e) => {
+  const handleModalClose = () => {
     setModalOpen(false);
   };
 
   const handleModalOpen = () => {
     setModalOpen(true);
   };
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  }, [date]);
 
   return tableTransactionsExpense.map((item) => (
     <tr key={item._id} className={styles.tableTr}>

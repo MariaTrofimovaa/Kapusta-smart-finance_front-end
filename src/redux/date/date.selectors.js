@@ -1,3 +1,1 @@
-const getSelectedDate = (state) => state.selectedDate.selectedDate;
-
-export { getSelectedDate };
+export const getSelectedDate = (state) => state.selectedDate.selectedDate;

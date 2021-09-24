@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const getSelectedDate = createAction("date/getSelectedDate");
+const setSelectedDate = createAction("date/setSelectedDate");
 
-export default getSelectedDate;
+export default setSelectedDate;
