@@ -4,35 +4,44 @@ import { ReactComponent as CalendarLogo } from "../../../assets/icons/calendar.s
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./Calendar.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import getSelectedDate from "../../../redux/date/date.actions";
+import setSelectedDate from "../../../redux/date/date.actions";
+import { getSelectedDate } from "../../../redux/date/date.selectors";
 
 const Calendar = () => {
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
 
-  useEffect(() => {
-    dispatch(
-      getSelectedDate(
-        startDate.toISOString().slice(0, 10).split("-").reverse().join(".")
-      )
-    );
-  }, [dispatch, startDate]);
+  // useEffect(() => {
+  //   dispatch(
+  //     setSelectedDate(
+  //       startDate.toISOString().slice(0, 10).split("-").reverse().join(".")
+  //     )
+  //   );
+  // }, [dispatch, startDate]);
 
   // Сохранение даты при переходе на другую страницу
-  // const date = useSelector(getSelectedDate);
+  const date = useSelector(getSelectedDate);
 
   // useEffect(() => {
   //   setStartDate(date);
   // }, [date]);
+  console.log(new Date());
+  console.log(date);
+
+  const handleChangeDate = (date) => {
+    dispatch(setSelectedDate(date.toISOString().slice(0, 10)));
+  };
 
   return (
     <div className={styles.box}>
-      <CalendarLogo className={styles.datePickerLogo} />
+      <div className={styles.datePickerLogo}>
+        <CalendarLogo />
+      </div>
       <DatePicker
         className={styles.datePicker}
-        selected={startDate}
+        selected={date ? new Date(date) : new Date()}
         dateFormat="dd.MM.yyyy"
-        onChange={(date) => setStartDate(date)}
+        onChange={handleChangeDate}
         // openToDate={new Date("1993/09/28")}
       />
     </div>
