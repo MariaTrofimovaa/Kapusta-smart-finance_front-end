@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthToken } from "../../../redux/auth/auth.selectors";
 import { getSelectedDate } from "../../../redux/date/date.selectors";
 
-// texts
-
 const EnterForm = ({ transType }) => {
   const token = useSelector(getAuthToken);
   const selectedDate = useSelector(getSelectedDate);
@@ -34,6 +32,7 @@ const EnterForm = ({ transType }) => {
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
+
       .get(`http://localhost:4000/api/v1/categories/${transType}`)
       .then(({ data }) => {
         // console.log(data.data.result);

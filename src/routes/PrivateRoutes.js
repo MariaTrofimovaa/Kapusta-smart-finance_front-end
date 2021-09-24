@@ -10,6 +10,7 @@ const PrivateRoute = ({
   ...routeProps
 }) => {
   const isAuth = useSelector(getIsAuth); // возможно поменяется селектор. Обратить внимание
+  console.log(routeProps);
 
   return (
     <Route

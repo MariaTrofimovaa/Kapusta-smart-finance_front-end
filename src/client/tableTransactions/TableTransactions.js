@@ -7,7 +7,7 @@ const TableTransactions = () => {
 
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
-  console.log(activeCheck);
+  // console.log(activeCheck);
 
   // const getTransaction = () => {
   //   if (activeCheck === "/expences")

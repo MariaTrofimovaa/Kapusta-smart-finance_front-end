@@ -23,6 +23,10 @@ const ReportIncomes = lazy(() =>
 const ReportPage = () => {
   const match = useRouteMatch();
   const location = useLocation();
+
+  const activeLocation = location.pathname;
+  console.log(activeLocation);
+
   return (
     <div>
       <GoBack />

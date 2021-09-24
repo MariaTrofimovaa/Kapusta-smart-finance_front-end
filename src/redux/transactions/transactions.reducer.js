@@ -32,6 +32,8 @@ const transactionsReducer = createReducer([], {
     return [...state, payload.addedTransaction]; // Света: так как после обновления транзакции в payload к нам приходят и транзакция и обновленный баланс, 
                                                  // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
   },
+  // transactions: payload.transactions.brief.expense.data,
+
   [actions.deleteTransactionSuccess]: (state, { payload }) => {
 
     return state.filter(({ _id }) => _id !== payload._id);
