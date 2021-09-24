@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import actions from "./transactions.actions";
+import balanceActions from "../balance/balance.actions";
 
 // const transactionsReducer = createReducer([], {
 //   [actions.addTransactionSuccess]: (state, { payload }) => {
@@ -73,8 +74,8 @@ const brief = createReducer(
     },
 
     [actions.deleteTransactionSuccess]: (state, { payload }) => {
-      if (state.currentYear === +payload.date.slice(6))
-        state[payload.transactionType].filter(({ _id }) => _id !== payload._id);
+      if (state.currentYear === +payload.transaction.date.slice(6))
+        state[payload.transaction.transactionType].filter(({ _id }) => _id !== payload.transaction._id);
     },
 
     [actions.changeActualYearForBrief]: (_, { payload }) => ({
@@ -93,15 +94,23 @@ const expenseOfDay = createReducer([], {
     console.log(">>>>>", payload.addedTransaction),
   ],
   [actions.getExpenseOfDaySuccess]: (state, { payload }) => payload.data,
+
+  [balanceActions.setBalanceSuccess]: (state, { payload }) => 
+        (payload.addedTransaction.transactionType === 'expense') ? [...state, payload.addedTransaction] : [...state],
+
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload._id),
+        state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 const incomeOfDay = createReducer([], {
   [actions.addTransactionSuccess]: (state, { payload }) => [...state, payload],
   [actions.getIncomeOfDaySuccess]: (state, { payload }) => payload.data,
+  [balanceActions.setBalanceSuccess]: (state, { payload }) => {
+        console.log('incomeOfDay',payload);
+        return (payload.addedTransaction.transactionType === 'income') ? [...state, payload.addedTransaction] : [...state]},
+
   [actions.deleteTransactionSuccess]: (state, { payload }) =>
-    state.filter(({ _id }) => _id !== payload._id),
+    state.filter(({ _id }) => _id !== payload.transaction._id),
 });
 
 export default combineReducers({

@@ -58,15 +58,15 @@ export const deleteTransactionApi = (id) => {
     });
 };
 
-// Баланс - Света (это набросок)
-// export const fetchBalanceApi = (balance) => {
-//   axios
-//     .patch(`/user`, { balance: balance })
-//     .then(({ data }) => ({ [data]: data.balance }))
-//     .catch((error) => {
-//       throw error;
-//     });
-// };
+
+export const setBalanceApi = (balance) => {
+  return axios
+    .patch(`/user/balance`, { balance: balance })
+    .then(({ data }) => (data))
+    .catch((error) => {
+      throw error;
+    });
+};
 
 // export const getBalanceOperationApi = () => {}
 
