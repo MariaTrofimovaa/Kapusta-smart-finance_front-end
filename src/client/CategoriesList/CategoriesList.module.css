@@ -6,14 +6,6 @@
   margin: 0 auto;
 }
 
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100px;
-  height: 140px;
-}
-
 .title_message {
   font-family: Roboto;
   font-weight: 700;
@@ -23,6 +15,16 @@
   color: #52555f;
   padding-bottom: 30px;
 }
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  height: 140px;
+}
+
+
 
 .text {
   font-family: Roboto;
@@ -59,8 +61,7 @@
   left: 50%;
   transform: translateX(-50%);
   transform: translateX(-50%);
-  /* width: 84px;
-  height: 56px; */
+  z-index: 10;
 }
 
 .icon:hover {
@@ -74,9 +75,7 @@
   transform: translateX(-50%);
   transform: translateX(-50%);
   fill: #ff751d;
-
-  /* width: 84px;
-  height: 56px; */
+  z-index: 10;
 }
 .svg_boxActive {
   width: 59px;
@@ -111,3 +110,4 @@
     margin: 0 10px 0 0;
   }
 }
+
