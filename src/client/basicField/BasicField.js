@@ -45,17 +45,10 @@ const BasicField = () => {
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
           <div className={styles.dataField}>
-<<<<<<< HEAD
             <Calendar />
             <EnterForm transType={transType} />
             {/* <EnterForm transType={location} /> */}
-=======
-            <div className={styles.enterFormWrapper}>
-              <Calendar />
-              {/* <EnterForm transType={transType} /> */}
-              <EnterForm transType={location} />
-            </div>
->>>>>>> 88d5b5531cfd10256c3c802a95db974f6be85fa9
+
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
@@ -78,11 +71,10 @@ const BasicField = () => {
           </div>
           <Brief />
         </div>
-<<<<<<< HEAD
+
       )} */}
-=======
-      )}
->>>>>>> 88d5b5531cfd10256c3c802a95db974f6be85fa9
+
+      {/* )} */}
     </>
   );
 };

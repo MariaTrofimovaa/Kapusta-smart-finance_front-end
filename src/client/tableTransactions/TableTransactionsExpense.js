@@ -10,6 +10,7 @@ import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 const TableTransactionsExpense = () => {
   const date = useSelector(getSelectedDate);
   const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
+
   const dispatch = useDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
