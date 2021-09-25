@@ -1,3 +1,4 @@
+import MobileTransactions from "./MobileTransactions";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import styles from "./TableTransactions.module.css";
@@ -11,7 +12,14 @@ import { getSelectedDate } from "../../redux/date/date.selectors";
 import { useEffect } from "react";
 import transactionsOperations from "../../redux/transactions/transactions.operations";
 
+
 const TableTransactions = () => {
+  const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
+  const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
+  const tableTransaction = [
+    ...tableTransactionsExpense,
+    ...tableTransactionsIncome,
+  ];
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
   // console.log(activeCheck);
@@ -30,16 +38,28 @@ const TableTransactions = () => {
   // console.log("inc", tableTransactionsInc);
 
   return (
-    <div>
-      <table className={styles.table}>
-        <thead className={styles.tableHead}>
-          <tr className={styles.tableHeadTr}>
-            <th>Дата</th>
-            <th>Описание</th>
-            <th>Категория</th>
-            <th>Сумма</th>
-          </tr>
-        </thead>
+    <>
+      <div className={styles.tablDeskWrapper}>
+        <table className={styles.table}>
+          <thead className={styles.tableHead}>
+            <tr className={styles.tableHeadTr}>
+              <th>Дата</th>
+              <th>Описание</th>
+              <th>Категория</th>
+              <th>Сумма</th>
+            </tr>
+          </thead>
+           {/* <tbody className={styles.tableBody}>
+             {activeCheck === "/expense" ? (
+              <TableTransactionsExpense
+                tableTransactionsExpense={tableTransactionsExpense}
+              />
+            ) : (
+              <TableTransactionsIncome
+                tableTransactionsIncome={tableTransactionsIncome}
+              />
+            )}
+          </tbody> */}
         <tbody className={styles.tableBody}>
           {activeCheck === "/expense"
             ? tableTransactionsEx.map((item) => (
@@ -49,8 +69,12 @@ const TableTransactions = () => {
                 <TableTransactionsIncome key={item._id} item={item} date />
               ))}
         </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+      <div className={styles.mobileWrapper}>
+        <MobileTransactions tableTransaction={tableTransaction} />
+      </div>
+    </>
   );
 };
 
