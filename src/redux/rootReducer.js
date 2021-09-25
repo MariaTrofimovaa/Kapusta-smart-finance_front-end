@@ -14,6 +14,7 @@ import selectedDateReducer from "./date/dateReducer";
 // ================ !!!!!!! Проверить что чье. Строка ниже вроде не Алены
 import transactions from "./transactions/transactions.reducer";
 import changeMonthReducer from "./monthDate/monthReducer";
+import screenWidth from "./screenWidth/screenWidth.reducer";
 
 const persistConfig = {
   key: "auth",
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   transactions,
   selectedDate: selectedDateReducer,
   changeMonth: changeMonthReducer,
+  screenWidth,
 });
 
 export default rootReducer;
