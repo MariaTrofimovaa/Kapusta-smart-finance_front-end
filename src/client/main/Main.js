@@ -5,7 +5,7 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import AppLoader from "../../shared/components/loader/Loader";
 import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
-// import { useMediaQuery } from "../../shared/hooks/mediaRulesHook";
+import { useMediaQuery } from "../../shared/hooks/mediaRulesHook";
 import styles from "./Main.module.scss";
 import { useDispatch } from "react-redux";
 // import { useDispatch } from "react-redux";
@@ -25,9 +25,10 @@ const Main = () => {
   const isRegisterPage = location.pathname === "/";
   const classes = isRegisterPage ? styles.registerWrapper : styles.mainWrapper;
 
-  // const isMobileMedia = useMediaQuery("(max-width: 767px)");
+  const isMobileMedia = useMediaQuery("(max-width: 767px)");
   // const isMobileMedia = window.screen.availWidth < 767;
-  // console.log("isMobileMedia", isMobileMedia);
+  console.log("isMobileMedia", isMobileMedia);
+
   const dispatch = useDispatch();
 
   // const dispatch = useDispatch();

@@ -12,6 +12,7 @@ const PublicRoute = ({
 }) => {
   const isAuth = useSelector(getIsAuth);
   const isMobileMedia = window.screen.availWidth < 767;
+  console.log('isMobileMedia :>> ', isMobileMedia);
 
   return (
     <Route
