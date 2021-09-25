@@ -7,7 +7,7 @@ import {
 
 import { useWindowSize } from "../../shared/windowSize/windowSize";
 import {
-  Area,
+  // Area,
   BarChart,
   ComposedChart,
   Bar,
@@ -15,11 +15,10 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend,
+  // Tooltip,
+  // Legend,
   ResponsiveContainer,
   LabelList,
-  Line,
 } from "recharts";
 
 import css from "./Rechart.module.css";
@@ -74,21 +73,10 @@ const Rechart = () => {
       >{`${value} грн`}</text>
     );
   };
-  const BarLabelMobyle = ({ payload, x, y, width, height, value,  }) => {
+  const BarLabelMobyle = ({ payload, x, y, width, height, value }) => {
     return (
       <text
         x={x + width / 1.09}
-        y={y}
-        className={css.text}
-        textAnchor="middle"
-        dy={-10}
-      >{`${value} грн`}</text>
-    );
-  };
-  const BarTitleMobyle = ({ payload, x, y, width, height, value }) => {
-    return (
-      <text
-        x={x + width / 1.5}
         y={y}
         className={css.text}
         textAnchor="middle"
@@ -147,7 +135,7 @@ const Rechart = () => {
             left: 10,
           }}
         >
-          <XAxis type="number" hide={true} label={BarTitleMobyle}  />
+          <XAxis type="number" hide={true} label={BarTitleMobyle} />
           <YAxis
             dataKey="description"
             type="category"
@@ -159,7 +147,6 @@ const Rechart = () => {
             barSize={18}
             radius={[0, 10, 10, 0]}
             label={BarLabelMobyle}
-            
           >
             {data.map((entry, index) => (
               <Cell
@@ -167,43 +154,14 @@ const Rechart = () => {
                 fill={index % 3 ? "#FFDAC0" : "#ff751d"}
               />
             ))}
-            <LabelList dataKey="description" position="insideLeft" fill="#52555F"  />
+            <LabelList
+              dataKey="description"
+              position="insideLeft"
+              fill="#52555F"
+            />
           </Bar>
         </ComposedChart>
       </ResponsiveContainer>
-      {/* <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart
-          layout="vertical"
-          data={data}
-          margin={{
-            top: 20,
-            right: 20,
-            bottom: 20,
-            left: 20,
-          }}
-        >
-          <Bar
-            dataKey="amount"
-            barSize={15}
-            radius={[0, 10, 10, 0]}
-            // label={BarLabelMobyle}
-          >
-            <YAxis
-              dataKey="description"
-              type="category"
-              scale="band"
-              axisLine={false}
-              tickLine={false}
-            />{" "}
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={index % 3 ? "#FFDAC0" : "#ff751d"}
-              />
-            ))}
-          </Bar>
-        </ComposedChart>
-      </ResponsiveContainer>{" "} */}
     </div>
   );
 };
