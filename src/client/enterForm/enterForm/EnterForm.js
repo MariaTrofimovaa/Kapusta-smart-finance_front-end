@@ -129,9 +129,9 @@ const EnterForm = ({ transType }) => {
           onClick={searchCategories}
           required
         />
-
+        <ArrowDown className={styles.arrowDown} />
         <ul className={styles.productResultList} id="categories">
-          {!categories.length && <ArrowDown className={styles.arrowDown} />}
+          {/* {!categories.length && <ArrowDown className={styles.arrowDown} />} */}
           {!!categories.length &&
             categories.map((item) => (
               <li
@@ -153,17 +153,17 @@ const EnterForm = ({ transType }) => {
             ))}
         </ul>
         <div className={styles.productAmountLabelBox}>
-          <label className={styles.productAmountLabel}>
-            <input
-              className={styles.productAmountInput}
-              placeholder="00.00 UAH"
-              type="number"
-              name="amount"
-              value={fields.amount}
-              onChange={handleChange}
-              required
-            />
-          </label>
+          {/* <label className={styles.productAmountLabel}> */}
+          <input
+            className={styles.productAmountInput}
+            placeholder="0.00"
+            type="number"
+            name="amount"
+            value={fields.amount}
+            onChange={handleChange}
+            required
+          />
+          {/* </label> */}
           <div className={styles.calculatorLogoContainer}>
             <CalculatorLogo className={styles.calculatorLogo} />
           </div>
