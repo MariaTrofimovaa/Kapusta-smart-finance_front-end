@@ -135,7 +135,7 @@ const Rechart = () => {
             left: 10,
           }}
         >
-          <XAxis type="number" hide={true} label={BarTitleMobyle} />
+          <XAxis type="number" hide={true} />
           <YAxis
             dataKey="description"
             type="category"
