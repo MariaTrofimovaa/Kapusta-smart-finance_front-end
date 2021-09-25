@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Switch } from "react-router";
 import { useLocation } from "react-router-dom";
 import { mainRoutes } from "../../routes/mainRoutes";
@@ -7,6 +7,9 @@ import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
 // import { useMediaQuery } from "../../shared/hooks/mediaRulesHook";
 import styles from "./Main.module.scss";
+import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import setSelectedDate from "../../redux/date/date.actions";
 
 const Main = () => {
   // console.log("props", props.isAuth);
@@ -25,6 +28,18 @@ const Main = () => {
   // const isMobileMedia = useMediaQuery("(max-width: 767px)");
   // const isMobileMedia = window.screen.availWidth < 767;
   // console.log("isMobileMedia", isMobileMedia);
+  const dispatch = useDispatch();
+
+  // const dispatch = useDispatch();
+
+  useEffect(() => {
+    const refreshDate = new Date();
+    dispatch(
+      setSelectedDate(
+        refreshDate.toISOString().slice(0, 10).split("-").reverse().join(".")
+      )
+    );
+  }, []);
 
   return (
     <>
@@ -38,7 +53,7 @@ const Main = () => {
               // console.log(isMobileMedia === route.isMobile);
               // console.log(route.isPrivate);
               // isMobileMedia === route.isMobile &&
-               route.isPrivate ? (
+              route.isPrivate ? (
                 // && route.isPrivate
                 <PrivateRoutes
                   {...route}

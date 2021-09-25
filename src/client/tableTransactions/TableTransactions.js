@@ -25,9 +25,9 @@ const TableTransactions = () => {
   }, [dispatch, date]);
 
   const tableTransactionsEx = useSelector(getExpenseOfDaySelector);
-  console.log("ex", tableTransactionsEx);
+  // console.log("ex", tableTransactionsEx);
   const tableTransactionsInc = useSelector(getIncomeOfDaySelector);
-  console.log("inc", tableTransactionsInc);
+  // console.log("inc", tableTransactionsInc);
 
   return (
     <div>

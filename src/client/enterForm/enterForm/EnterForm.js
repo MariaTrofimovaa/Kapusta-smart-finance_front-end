@@ -30,7 +30,7 @@ const EnterForm = ({ transType }) => {
     }));
 
   const searchCategories = () => {
-    console.log(transType);
+    // console.log(transType);
     // if (event.target.value.length > 0) {
     // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
