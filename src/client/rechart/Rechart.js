@@ -19,6 +19,7 @@ import {
   Legend,
   ResponsiveContainer,
   LabelList,
+  Line,
 } from "recharts";
 
 import css from "./Rechart.module.css";
@@ -73,10 +74,21 @@ const Rechart = () => {
       >{`${value} грн`}</text>
     );
   };
-  const BarLabelMobyle = ({ payload, x, y, width, height, value }) => {
+  const BarLabelMobyle = ({ payload, x, y, width, height, value,  }) => {
     return (
       <text
-        x={x + width / 2}
+        x={x + width / 1.09}
+        y={y}
+        className={css.text}
+        textAnchor="middle"
+        dy={-10}
+      >{`${value} грн`}</text>
+    );
+  };
+  const BarTitleMobyle = ({ payload, x, y, width, height, value }) => {
+    return (
+      <text
+        x={x + width / 1.5}
         y={y}
         className={css.text}
         textAnchor="middle"
@@ -87,7 +99,7 @@ const Rechart = () => {
   ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
   return width >= 768 ? (
     <div className={css.chart_box}>
-      <ResponsiveContainer width="100%" height={422}>
+      <ResponsiveContainer width="80%" height={422}>
         <BarChart
           data={data}
           margin={{
@@ -110,37 +122,58 @@ const Rechart = () => {
                 fill={index % 3 ? "#FFDAC0" : "#ff751d"}
               />
             ))}
-            {/* <LabelList
-              dataKey="amount"
-              position="top"
-              className={css.labelList}
-              tickLine={(amount) => `$${amount} грн`}
-            /> */}
           </Bar>
           <XAxis
             dataKey="description"
             axisLine={false}
             tickLine={false}
             tickCount={9}
+            minTickGap={5}
           />
-          {/* <YAxis axisLine={false} tickLine={false} tickCount={9} interval="preserveEnd"  /> */}
-          {/* <Tooltip/>​ */}
-          <CartesianGrid
-            vertical={false}
-            horizontal={false}
-            opacity={0.2}
-          />{" "}
-          *// убрать горизонт. линию *//
+          <CartesianGrid vertical={false} horizontal={false} opacity={0.2} />{" "}
         </BarChart>
       </ResponsiveContainer>
     </div>
   ) : (
-    <div>
-      <ResponsiveContainer width={320} height={500}>
+    <div className={css.mobile_box}>
+      <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           layout="vertical"
-          width={500}
-          height={400}
+          data={data}
+          margin={{
+            top: 20,
+            right: 5,
+            bottom: 10,
+            left: 10,
+          }}
+        >
+          <XAxis type="number" hide={true} label={BarTitleMobyle}  />
+          <YAxis
+            dataKey="description"
+            type="category"
+            scale="band"
+            hide={true}
+          />
+          <Bar
+            dataKey="amount"
+            barSize={18}
+            radius={[0, 10, 10, 0]}
+            label={BarLabelMobyle}
+            
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={index % 3 ? "#FFDAC0" : "#ff751d"}
+              />
+            ))}
+            <LabelList dataKey="description" position="insideLeft" fill="#52555F"  />
+          </Bar>
+        </ComposedChart>
+      </ResponsiveContainer>
+      {/* <ResponsiveContainer width="100%" height="100%">
+        <ComposedChart
+          layout="vertical"
           data={data}
           margin={{
             top: 20,
@@ -149,20 +182,19 @@ const Rechart = () => {
             left: 20,
           }}
         >
-          <YAxis
-            dataKey="description"
-            type="category"
-            scale="band"
-            axisLine={false}
-            tickLine={false}
-          />
           <Bar
             dataKey="amount"
             barSize={15}
             radius={[0, 10, 10, 0]}
-            label={BarLabelMobyle}
+            // label={BarLabelMobyle}
           >
-            {" "}
+            <YAxis
+              dataKey="description"
+              type="category"
+              scale="band"
+              axisLine={false}
+              tickLine={false}
+            />{" "}
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
@@ -171,7 +203,7 @@ const Rechart = () => {
             ))}
           </Bar>
         </ComposedChart>
-      </ResponsiveContainer>{" "}
+      </ResponsiveContainer>{" "} */}
     </div>
   );
 };
