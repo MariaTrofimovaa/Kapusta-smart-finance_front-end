@@ -1,9 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllExpenseOfMonth,
-  setActiveCategori,
-} from "../../redux/report/report.operations";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
   allexpenseOfMonth,
@@ -12,7 +7,7 @@ import {
 
 import { useWindowSize } from "../../shared/windowSize/windowSize";
 import {
-  // Area,
+  Area,
   BarChart,
   ComposedChart,
   Bar,
@@ -20,57 +15,15 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  // Tooltip,
-  // Legend,
+  Tooltip,
+  Legend,
   ResponsiveContainer,
   LabelList,
 } from "recharts";
+
 import css from "./Rechart.module.css";
 
-const data = [
-  {
-    name: "Свинина",
-    coast: 4000,
-  },
-  {
-    name: "Говядина",
-    coast: 3000,
-  },
-  {
-    name: "Говядина",
-    coast: 3000,
-  },
-  {
-    name: "Курица",
-    coast: 2000,
-  },
-  {
-    name: "Индейка",
-    coast: 2780,
-  },
-  {
-    name: "Говядина",
-    coast: 3000,
-  },
-  {
-    name: "Говядина",
-    coast: 3000,
-  },
-  {
-    name: "Курица",
-    coast: 2000,
-  },
-  {
-    name: "Индейка",
-    coast: 2780,
-  },
-  {
-    name: "Индейка",
-    coast: 2780,
-  },
-];
-
-const Rechart = ({ chartData }) => {
+const Rechart = () => {
   const currentLocation = useLocation();
   const curLocation = currentLocation.pathname;
   const expenses = useSelector(allexpenseOfMonth);
@@ -83,95 +36,142 @@ const Rechart = ({ chartData }) => {
       ? curTypeOfPage.find((obj) => obj.isActive).types
       : [];
 
-  // function byField(field) {
-  //   return (a, b) => (a[field] < b[field] ? 1 : -1);
-  // }
-  // console.log(data.sort(byField("coast")));
-  // console.log(activeData.sort(byField("amount")));
+  function byField(field) {
+    return (a, b) => (a[field] < b[field] ? 1 : -1);
+  }
 
-  // console.log(activeData);
+  const data = activeData
+    .reduce((acc, { description, amount }) => {
+      const descriptionNew =
+        description[0].toUpperCase() + description.slice(1).toLowerCase();
+      const desc = acc.find((el) => el.description === descriptionNew);
+      if (!desc) {
+        acc.push({
+          description: descriptionNew,
+          amount,
+        });
+        return acc;
+      }
+      if (desc) {
+        const idx = acc.findIndex((el) => el.description === descriptionNew);
+        acc[idx].amount += amount;
+        return acc;
+      }
 
-  // const awdadw = activeData.reduce((acc, { description, amount }) => {
-  //   const desc = acc.find((el) => el.description === amount);
-  //   if (!desc) {
-  //     acc.push({ description, amount });
-  //     return acc;
-  //   }
-  //   if (desc) {
-  //     const idx = acc.findIndex((el) => el.description === amount);
-  //     acc[idx].description = description;
-  //     acc[idx].amount += amount;
-  //     return acc;
-  //   }
-
-  //   return acc;
-  // }, []);
-  // console.log(awdadw);
-
+      return acc;
+    }, [])
+    .sort(byField("amount"));
+  ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
+  const BarLabelStyle = ({ payload, x, y, width, height, value }) => {
+    return (
+      <text
+        x={x + width / 2}
+        y={y}
+        className={css.text}
+        textAnchor="middle"
+        dy={-10}
+      >{`${value} грн`}</text>
+    );
+  };
+  const BarLabelMobyle = ({ payload, x, y, width, height, value }) => {
+    return (
+      <text
+        x={x + width / 2}
+        y={y}
+        className={css.text}
+        textAnchor="middle"
+        dy={-10}
+      >{`${value} грн`}</text>
+    );
+  };
+  ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
   return width >= 768 ? (
-    <div className={css.box}>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={activeData} className={css.barChart} minPointSize={5}>
-          <Bar dataKey="amount" barSize={35} radius={[10, 10, 0, 0]}>
+    <div className={css.chart_box}>
+      <ResponsiveContainer width="100%" height={422}>
+        <BarChart
+          data={data}
+          margin={{
+            top: 30,
+            right: 15,
+            bottom: 20,
+            left: 15,
+          }}
+          className={css.text}
+        >
+          <Bar
+            dataKey="amount"
+            barSize={38}
+            radius={[10, 10, 0, 0]}
+            label={BarLabelStyle}
+          >
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={index % 3 ? "#FFDAC0" : "#ff751d"}
               />
             ))}
-            <LabelList
+            {/* <LabelList
               dataKey="amount"
               position="top"
               className={css.labelList}
-            />
+              tickLine={(amount) => `$${amount} грн`}
+            /> */}
           </Bar>
           <XAxis
             dataKey="description"
             axisLine={false}
             tickLine={false}
-            className={css.x}
+            tickCount={9}
           />
-          {/* <YAxis
-              dataKey={false}
-              axisLine={false}
-              tickLine={false}
-              tickCount={9}
-            /> */}
-          ​
-          <CartesianGrid vertical={false} opacity={0.3} />
+          {/* <YAxis axisLine={false} tickLine={false} tickCount={9} interval="preserveEnd"  /> */}
+          {/* <Tooltip/>​ */}
+          <CartesianGrid
+            vertical={false}
+            horizontal={false}
+            opacity={0.2}
+          />{" "}
+          *// убрать горизонт. линию *//
         </BarChart>
       </ResponsiveContainer>
     </div>
   ) : (
-    <div className={css.box}>
-      <ResponsiveContainer width="100%" height="100%">
+    <div>
+      <ResponsiveContainer width={320} height={500}>
         <ComposedChart
           layout="vertical"
+          width={500}
+          height={400}
           data={data}
           margin={{
             top: 20,
-            right: 50,
+            right: 20,
             bottom: 20,
             left: 20,
           }}
         >
-          <XAxis type="number" axisLine={false} tickLine={false} />
-          <YAxis dataKey="name" type="category" scale="band" />
-          <Bar dataKey="coast" barSize={15} label="right">
+          <YAxis
+            dataKey="description"
+            type="category"
+            scale="band"
+            axisLine={false}
+            tickLine={false}
+          />
+          <Bar
+            dataKey="amount"
+            barSize={15}
+            radius={[0, 10, 10, 0]}
+            label={BarLabelMobyle}
+          >
+            {" "}
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={index % 2 ? "#ff751d" : "#FFDAC0"}
+                fill={index % 3 ? "#FFDAC0" : "#ff751d"}
               />
             ))}
-            <LabelList
-              dataKey="coast"
-              position="right"
-              className={css.labelList}
-            />
           </Bar>
         </ComposedChart>
-      </ResponsiveContainer>
+      </ResponsiveContainer>{" "}
     </div>
   );
 };

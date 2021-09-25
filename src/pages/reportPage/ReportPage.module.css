@@ -34,6 +34,7 @@
 
 @media screen and (min-width: 768px) {
   .list_wraper {
+    width: 666px;
     padding-top: 20px;
     padding-left: 43px;
     padding-right: 43px;
@@ -41,10 +42,20 @@
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 30px;
   }
+  .chart_wraper {
+    background: #ffffff;
+    margin: 0 auto;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+  }
 }
 @media screen and (min-width: 1280px) {
   .list_wraper {
-    padding-left: 228px;
-    padding-right: 228px;
+    width: 1060px;
+    margin: 0 auto 30px;
+  }
+  .chart_wraper {
+    width: 1060px;
+    margin: 0 auto 30px;
   }
 }
