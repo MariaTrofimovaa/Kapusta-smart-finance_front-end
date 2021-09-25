@@ -200,16 +200,17 @@
       width: 175px;
       max-height: 300px;
       position: absolute;
-      top: 44px;
+      top: 43px;
       left: 169px;
       background: #ffffff;
       overflow-y: scroll;
       border: 2px solid #f5f6fb;
-      padding-left: 20px;
+      border-top: transparent;
     }
 
-    @include tablet {
-      width: 188px;
+    @include desktop {
+      width: 177px;
+      left: 270px;
     }
   }
 
@@ -233,11 +234,6 @@
     }
   }
 
-  // &AmountLabel {
-  //   margin-right: 0;
-  //   margin-left: 0;
-  // }
-
   &AmountInput {
     border: 2px solid #ffffff;
     background-color: transparent;
@@ -249,6 +245,7 @@
     padding-right: 15px;
     margin-right: 0;
     margin-left: 0;
+    text-align: right;
 
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -257,7 +254,7 @@
       color: #000000;
 
       font-weight: 700;
-      text-align: right;
+
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
@@ -299,7 +296,8 @@
       flex-wrap: nowrap;
 
       margin-right: 0 !important;
-      width: 893px;
+      width: 870px;
+      margin-left: 0 !important;
     }
   }
 }
@@ -313,6 +311,12 @@
     position: absolute;
     top: 20px;
     left: 310px;
+  }
+
+  @include desktop {
+    position: absolute;
+    top: 20px;
+    left: 420px;
   }
 }
 

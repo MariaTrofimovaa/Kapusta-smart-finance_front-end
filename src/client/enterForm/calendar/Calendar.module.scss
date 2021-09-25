@@ -46,6 +46,10 @@
   @include tablet {
     padding-left: 10px;
   }
+
+  @include desktop {
+    padding-left: 0;
+  }
 }
 
 /* .datePickerLogo {

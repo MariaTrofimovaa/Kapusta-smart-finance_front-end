@@ -26,7 +26,7 @@ const BasicField = () => {
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
           <div className={styles.dataField}>
-            <div className={styles.dataWrapper}>
+            <div className={styles.enterFormWrapper}>
               <Calendar />
               {/* <EnterForm transType={transType} /> */}
               <EnterForm transType={location} />
