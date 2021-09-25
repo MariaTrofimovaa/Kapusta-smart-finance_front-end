@@ -6,26 +6,28 @@ import IconDelete from "../../shared/iconDelete/IconDelete";
 import { getSelectedDate } from "../../redux/date/date.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
-const TableTransactionsExpense = ({ tableTransactionsExpense }) => {
-  const date = useSelector(getSelectedDate);
+const TableTransactionsExpense = ({item, date}) => {
+  // const date = useSelector(getSelectedDate);
+  // const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
 
   const dispatch = useDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalClose = () => {
-    setModalOpen(false);
+  // const handleModalClose = () => {
+  //   setModalOpen(false);
+  // };
+
+  // const handleModalOpen = () => {
+  //   setModalOpen(true);
+  // };
+
+   const toggleModal = (e) => {
+     setModalOpen(!isModalOpen);
   };
 
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
 
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  }, [date]);
-
-  return tableTransactionsExpense.map((item) => (
+  return (
     <tr key={item._id} className={styles.tableTr}>
       <td className={styles.tableDate}>{item.date}</td>
       <td className={styles.tableDescription}>{item.description}</td>
@@ -35,14 +37,14 @@ const TableTransactionsExpense = ({ tableTransactionsExpense }) => {
         <button
           className={styles.deleteBtn}
           type="button"
-          onClick={handleModalOpen}
+          onClick={()=> {toggleModal()}}
         >
           <IconDelete />
         </button>
         {isModalOpen && (
           <ModalWindow
             text={"Вы уверены?"}
-            onCancel={handleModalClose}
+            onCancel={toggleModal}
             onSubmit={() => {
               dispatch(transactionsOperations.deleteTransaction(item._id));
             }}
@@ -50,7 +52,7 @@ const TableTransactionsExpense = ({ tableTransactionsExpense }) => {
         )}
       </td>
     </tr>
-  ));
+  );
 };
 
 export default TableTransactionsExpense;

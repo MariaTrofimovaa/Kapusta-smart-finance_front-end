@@ -8,18 +8,9 @@ export const mainRoutes = [
     exact: true,
     isPrivate: false,
     redirectTo: "/expense",
+    // redirectToMob: "/mob",
+    // isMobile: false,
     isRestricted: true,
-  },
-
-  {
-    name: "MobileHomePage",
-    path: "/mob",
-    component: lazy(() => import("../pages/mobileHomePage/MobileHomePage")),
-    exact: true,
-    isPrivate: true,
-    isMobile: true,
-    redirectTo: "/mob",
-    // isRestricted: true,
   },
 
   {
@@ -29,6 +20,17 @@ export const mainRoutes = [
     // redirectTo: "/expense",
     exact: false,
     isPrivate: true,
+    // isMobile: false,
+    // isRestricted: true,
+  },
+  {
+    name: "MobileHomePage",
+    path: "/main",
+    component: lazy(() => import("../pages/mobileHomePage/MobileHomePage")),
+    // exact: true,
+    isPrivate: true,
+    isMobile: true,
+    // redirectTo: "/mob",
     // isRestricted: true,
   },
 
@@ -38,6 +40,7 @@ export const mainRoutes = [
     component: lazy(() => import("../pages/homePage/HomePage")),
     exact: false,
     isPrivate: true,
+    isMobile: false,
     // redirectTo: "/expense",
     // isRestricted: true,
   },

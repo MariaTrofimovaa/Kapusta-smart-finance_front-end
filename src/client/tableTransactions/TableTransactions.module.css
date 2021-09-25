@@ -14,12 +14,14 @@
     margin: 0 auto;
     font-style: normal;
     font-weight: 700;
+
     font-size: 12px;
     line-height: 14px;
     align-items: center;
     letter-spacing: 0.04em;
     color: #52555f;
   }
+
 
   .mobileList {
     width: 100%;
