@@ -49,17 +49,17 @@ const TableTransactions = () => {
               <th>Сумма</th>
             </tr>
           </thead>
-//           <tbody className={styles.tableBody}>
-//             {activeCheck === "/expense" ? (
-//               <TableTransactionsExpense
-//                 tableTransactionsExpense={tableTransactionsExpense}
-//               />
-//             ) : (
-//               <TableTransactionsIncome
-//                 tableTransactionsIncome={tableTransactionsIncome}
-//               />
-//             )}
-//           </tbody>
+           {/* <tbody className={styles.tableBody}>
+             {activeCheck === "/expense" ? (
+              <TableTransactionsExpense
+                tableTransactionsExpense={tableTransactionsExpense}
+              />
+            ) : (
+              <TableTransactionsIncome
+                tableTransactionsIncome={tableTransactionsIncome}
+              />
+            )}
+          </tbody> */}
         <tbody className={styles.tableBody}>
           {activeCheck === "/expense"
             ? tableTransactionsEx.map((item) => (
