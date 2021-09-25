@@ -12,9 +12,6 @@ import {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
-  getResponseGoogleRequest,
-  getResponseGoogleSuccess,
-  getResponseGoogleError,
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
@@ -40,7 +37,7 @@ const register = (registrationObject) => async (dispatch) => {
 
     // Вызываем функцию registerAPI и передаем в нее registrationObject
     // const user = await registerAPI(registrationObject); - импортировать из services/api
-//     const { data } = await axios.post("/auth/signup", registrationObject);
+    //     const { data } = await axios.post("/auth/signup", registrationObject);
 
     dispatch(registerSuccess(data));
     // dispatch(registerSuccess(user));
@@ -55,6 +52,8 @@ const register = (registrationObject) => async (dispatch) => {
 
 const login = (loginObject) => async (dispatch, getState) => {
   dispatch(loginRequest());
+
+  console.log("loginObject", loginObject);
   const authToken = getState().auth.token;
 
   try {

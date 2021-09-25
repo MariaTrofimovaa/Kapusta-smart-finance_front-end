@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import css from "./AuthForm.module.css";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
+import { loginSuccess } from "../../redux/auth/auth.actions";
 
 const initialForm = { email: "", password: "" };
 
@@ -68,6 +69,8 @@ export default function AuthForm() {
       data: { tokenId: response.tokenId },
     }).then((response) => {
       console.log("Google login success", response);
+      dispatch(loginSuccess(response.data.user));
+      console.log("loginSuccess", response);
     });
   };
   const responseErrorGoogle = (response) => {
