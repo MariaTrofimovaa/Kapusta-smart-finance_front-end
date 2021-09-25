@@ -1,30 +1,42 @@
 import React from "react";
-// import Balance from "../../client/balance/Balance";
-// import BasicField from "../../client/basicField/BasicField";
-// import EnterForm from "../../client/enterForm/enterForm/EnterForm";
-// import Calendar from "../../client/enterForm/calendar/Calendar";
-// import TableTransactions from "../../client/tableTransactions/TableTransactions";
+import { Route } from "react-router";
+import Balance from "../../client/balance/Balance";
+import EnterForm from "../../client/enterForm/enterForm/EnterForm";
+import Calendar from "../../client/enterForm/calendar/Calendar";
+import TableTransactions from "../../client/tableTransactions/TableTransactions";
+import BasicFieldTab from "../../client/basicField/BasicFieldTab";
+// import { useLocation, useParams } from "react-router-dom";
 
 import styles from "./MobileHomePage.module.css";
-// import BasicFieldTab from "../../client/basicField/BasicFieldTab";
 
-const MobileHomePage = () => {
+// const MobileHomePage = ( { match }) => {
+const MobileHomePage = ( props) => {
+  console.log(props);
+  console.log(props.match.path);
+
+  // const location = useLocation().pathname;
+  // const mainLocaiton = location.pathname === "/mob";
+  // const enterFormLocation = location.pathname === "/:transType";
+
   return (
     <div>
       <div className={styles.inputFormMobile}>
-        {/* <Balance /> */}
-        {/* <BasicField /> */}
-
-        {/* <div className={styles.dataFieldMobile}>
-          <div className={styles.btnWrapper}>
+        <Route path={props.match.path}>
+        {/* <Route path={mainLocaiton}> */}
+          <div className={styles.dataFieldMobile}>
+            <Balance />
+            <Calendar />
+            <TableTransactions />
+          </div>
+          <div className={styles.btnWrapperMobile}>
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
-          <Balance />
-          <Calendar />
+        </Route>
+        <Route path={props.match.path + ":transType"}>
+        {/* <Route path={enterFormLocation}> */}
           <EnterForm />
-          <TableTransactions />
-        </div> */}
+        </Route>
       </div>
     </div>
   );

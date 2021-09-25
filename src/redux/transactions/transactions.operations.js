@@ -121,7 +121,8 @@ const deleteTransaction = (id) => (dispatch) => {
 
   deleteTransactionApi(id)
     .then(({ data }) => {
-      dispatch(transactionsActions.deleteTransactionSuccess(data));
+      console.log(data)
+      dispatch(transactionsActions.deleteTransactionSuccess(data.transaction));
     })
     .catch((error) =>
       dispatch(transactionsActions.deleteTransactionError(error.message))

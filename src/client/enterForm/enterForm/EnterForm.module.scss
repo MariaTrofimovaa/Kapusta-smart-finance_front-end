@@ -98,6 +98,10 @@
     // margin-bottom: 48px;
   }
 
+  @include desktop {
+    width: 850px;
+  }
+
   &Description {
     border: 2px solid #ffffff;
     background-color: transparent;
@@ -125,7 +129,11 @@
 
       border-radius: 16px 0px 0px 0px;
       width: 170px;
-      height: 40px;
+      height: 44px;
+    }
+
+    @include desktop {
+      width: 287px;
     }
   }
 
@@ -157,28 +165,53 @@
     @include tablet {
       border: 2px solid #f5f6fb;
       border-right: transparent;
+      // border-radius: 0px 0px 16px 16px;
 
       width: 170px;
-      height: 40px;
+      height: 44px;
       padding-left: 20px;
       margin-right: 0;
       margin-left: 0;
       margin-bottom: 0px;
+
+      margin-bottom: 30px;
+    }
+
+    @include desktop {
+      width: 188px;
     }
   }
 
   // Выпадающий список
   &ResultList {
-    position: relative;
     width: 282px;
     max-height: 300px;
+    position: relative;
     position: absolute;
-    top: 86px;
-    left: 0;
+    top: 80px;
+    left: 3px;
     background: #f5f6fb;
     overflow-y: scroll;
     border: 2px solid #ffffff;
     padding-left: 20px;
+
+    @include tablet {
+      position: relative;
+      width: 175px;
+      max-height: 300px;
+      position: absolute;
+      top: 43px;
+      left: 169px;
+      background: #ffffff;
+      overflow-y: scroll;
+      border: 2px solid #f5f6fb;
+      border-top: transparent;
+    }
+
+    @include desktop {
+      width: 177px;
+      left: 270px;
+    }
   }
 
   &ResultListItem {
@@ -195,11 +228,10 @@
 
   &ResultListItem:hover {
     background-color: #ffffff;
-  }
 
-  &AmountLabel {
-    margin-right: 0;
-    margin-left: 0;
+    @include tablet {
+      color: #c7ccdc;
+    }
   }
 
   &AmountInput {
@@ -213,6 +245,7 @@
     padding-right: 15px;
     margin-right: 0;
     margin-left: 0;
+    text-align: right;
 
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -221,37 +254,70 @@
       color: #000000;
 
       font-weight: 700;
-      text-align: right;
+
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
 
     @include tablet {
-      border: transparent;
+      border: 2px solid #f5f6fb;
+      background-color: transparent;
+      border-right: transparent;
+
+      border-radius: 0px 0px 0px 0px;
+
       font-weight: 400;
       font-size: 12px;
       line-height: 14px;
       letter-spacing: 0.02em;
-      height: 40px;
+      height: 44px;
       background-color: transparent;
+      width: 55px;
+      padding-right: 0;
+
+      margin-bottom: 30px;
     }
   }
 
   &Form {
     position: relative;
+
     @include tablet {
       display: flex;
       flex-wrap: wrap;
       margin-left: 33px;
+      margin-right: 0 !important;
+      width: 450px;
+    }
 
-      width: 600px;
+    @include desktop {
+      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+
+      margin-right: 0 !important;
+      width: 870px;
+      margin-left: 0 !important;
     }
   }
 }
 
 .arrowDown {
   position: absolute;
-  top: 30px;
+  top: 20px;
+  left: 310px;
+
+  @include tablet {
+    position: absolute;
+    top: 20px;
+    left: 310px;
+  }
+
+  @include desktop {
+    position: absolute;
+    top: 20px;
+    left: 420px;
+  }
 }
 
 .productAmountLabelBox {
@@ -262,6 +328,10 @@
 
   @include tablet {
     padding-left: 0;
+    // border: 2px solid #f5f6fb;
+    // background-color: transparent;
+
+    // border-radius: 0px 16px 16px 0px;
   }
 }
 
@@ -277,6 +347,18 @@
   margin-right: 0 !important;
   margin-left: 0 !important;
   padding-top: 10px;
+
+  @include tablet {
+    width: 51px;
+    border: 2px solid #f5f6fb;
+
+    border-left: transparent;
+    margin-bottom: 30px;
+  }
+
+  @include desktop {
+    width: 82px;
+  }
 }
 
 // .calculatorLogo {
@@ -295,6 +377,7 @@
   width: 125px;
   height: 44px;
   background-color: #ff751d;
+  color: #ffffff !important;
 
   color: var(--white-color);
   border-radius: 16px;
@@ -306,6 +389,10 @@
 
   &:hover {
     box-shadow: 1px 3px 5px rgba(255, 107, 8, 0.35);
+  }
+
+  @include tablet {
+    margin-left: 30px;
   }
 }
 
@@ -325,6 +412,11 @@
 
   &:hover {
     box-shadow: 1px 2px 5px rgba(42, 60, 102, 0.4) !important;
+  }
+
+  @include tablet {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 }
 
