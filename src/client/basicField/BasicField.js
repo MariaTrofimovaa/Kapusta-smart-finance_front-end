@@ -20,18 +20,16 @@ const BasicField = () => {
 
   return (
     <>
-      {isPageWideMobile ? (
+      {/* {isPageWideMobile ? (
         <div>
           <div className={styles.returnLinkWrapper}>
-            <Link to={"/mob"} className={styles.returnLink}>
+            <Link to={"/main"} className={styles.returnLink}>
               <Arrow className={styles.returnLink} />
             </Link>
           </div>
-          {/* <div className={styles.dataField}> */}
           <EnterForm transType={transType} />
-          {/* </div> */}
         </div>
-      ) : (
+      ) : ( */}
         <div>
           <div className={styles.btnWrapper}>
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
@@ -63,38 +61,34 @@ const BasicField = () => {
               <Brief />
             </>
           )}
-
-//           <div className={styles.dataField}>
-//             <div className={styles.enterFormWrapper}>
-//               <Calendar />
-//               <EnterForm transType={transType} />
-//               {/* <EnterForm transType={location} /> */}
-//             </div>
-//             <div className={styles.dataWrapper}>
-//               <TableTransactions />
-//             </div>
-
-//             <Brief />
-//           </div>
-//         </div>
-//       )}
-//       {isPageWideMobile && (
-//         <div>
-//           <div className={styles.btnWrapper}>
-//             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
-//             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
-//           </div>
-//           <div className={styles.dataField}>
-//             <Calendar />
-//             <EnterForm transType={transType} />
-//             <div className={styles.dataWrapper}>
-//               <TableTransactions />
-//             </div>
-//           </div>
-//           <Brief />
-
+          {/* <div className={styles.dataField}>
+               <Calendar />
+               <EnterForm transType={transType} />
+             <div className={styles.enterFormWrapper}>
+             </div>
+             <div className={styles.dataWrapper}>
+               <TableTransactions />
+             </div>
+             <Brief />
+           </div> */}
         </div>
-      )}
+      )
+      {/* {isPageWideMobile && (
+         <div>
+           <div className={styles.btnWrapper}>
+             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
+             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
+           </div>           <div className={styles.dataField}>
+             <Calendar />
+             <EnterForm transType={transType} />
+             <div className={styles.dataWrapper}>
+               <TableTransactions />
+             </div>
+           </div>
+           <Brief />
+
+         </div>
+      )} */}
     </>
   );
 };
