@@ -81,7 +81,7 @@ const EnterForm = ({ transType }) => {
     setFields({ description: "", amount: "", category: "" });
     setCategories([]);
     setSelected(null);
-    history.push("/main");
+    // history.push("/main");
   };
 
   return (
