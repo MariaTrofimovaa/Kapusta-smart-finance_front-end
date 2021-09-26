@@ -62,16 +62,27 @@ const TableTransactions = () => {
           <tbody className={styles.tableBody}>
             {activeCheck === "/expense"
               ? tableTransactionsEx.map((item) => (
-                  <TableTransactionsExpense key={item._id} item={item} date />
+                  <TableTransactionsExpense key={item._id} item={item} />
                 ))
               : tableTransactionsInc.map((item) => (
-                  <TableTransactionsIncome key={item._id} item={item} date />
+                  <TableTransactionsIncome key={item._id} item={item} />
+
                 ))}
           </tbody>
         </table>
       </div>
       <div className={styles.mobileWrapper}>
-        <MobileTransactions tableTransaction={tableTransaction} />
+        <div className={styles.listWrapper}>
+          <ul className={styles.mobileList}>
+            {tableTransaction.map((item) => (
+              <MobileTransactions
+                tableTransaction={tableTransaction}
+                key={item._id}
+                item={item}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
