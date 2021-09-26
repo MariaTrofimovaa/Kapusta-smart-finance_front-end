@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { allIncomeOfMonth, allexpenseOfMonth } from "../../redux/report/report.selectors";
-import css from "./UserMount.module.css";
+import scss from "./UserMount.module.scss";
 import Line from "../../assets/images/line.png";
 
 const UserMount = () =>  {
@@ -18,16 +18,20 @@ const userIncome = income.reduce((acc, { categorySum }) => {
 }, 0);
 
 return (
-    <div className={css.userMount}>
-        <p  className={css.expense} >
-            Расходы :
-        </p>
-        <span className={css.userExpense}>{userExpense}</span>
-    <img className={css.Line} src={Line} alt="line" width="2" height="32" />
-        <p  className={css.income} >
-            Доходы :
-        </p>
-        <span className={css.userIncome}>{userIncome}</span>
+    <div className={scss.userMount}>
+        <div>
+            <p  className={scss.expense} >
+                Расходы :
+            </p>
+            <span className={scss.userExpense}>-{userExpense}грн.</span>
+        </div>
+    <img className={scss.Line} src={Line} alt="line" width="2" height="32" />
+        <div>
+            <p  className={scss.income} >
+                Доходы :
+            </p>
+            <span className={scss.userIncome}>+{userIncome}грн.</span>
+        </div>
     </div>
 );
 }

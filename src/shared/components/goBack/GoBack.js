@@ -1,5 +1,5 @@
 import {ReactComponent as Arrow} from "../../../assets/icons/goBack.svg";
-import css from "./GoBack.module.css";
+import scss from "./GoBack.module.scss";
 import { useHistory } from 'react-router';
 
 
@@ -9,9 +9,9 @@ const GoBack = () => {
   history.push("/");
   };
   return (
-    <button type="button" className={css.goBack} onClick={handleGoBack}>
-      <Arrow className={css.arrowSvg}/>
-       <p className = {css.arrowText}>Вернуться на главную</p>
+    <button type="button" className={scss.goBack} onClick={handleGoBack}>
+      <Arrow className={scss.arrowSvg}/>
+       <p className = {scss.arrowText}>Вернуться на главную</p>
     </button>
   );
 }

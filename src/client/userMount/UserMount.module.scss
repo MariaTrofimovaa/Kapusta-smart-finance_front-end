@@ -1,0 +1,63 @@
+@import "../../stylesheet/base";
+
+.userMount {
+    @include flex(space-between, center);
+    position: relative;
+    width: 282px;
+    height: 85px;
+    padding: 0 15px;
+    background-color: white;
+    border-radius: 25px;
+    // margin-right:50px;
+    // margin-left: auto;
+    top:273px;
+
+
+    .expense {
+        font-style: "Roboto";
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+    }
+    .userExpense{
+        color:red;
+    }
+    .userIncome{
+        color:green;
+    }
+    .income {
+        font-style: "Roboto";
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .Line {
+        margin-right: 0 0;
+    }
+}
+
+
+// @media screen and (min-width: 768px) {
+// .userMount {
+// padding: 0;
+// margin-right: 50px;
+// background-color: transparent;
+// }
+// }
+// @media screen and (min-width: 1280px) {
+// .userMount {
+// max-height: 100%;
+// background-color: #f0f1f3;
+// }
+// .expense {
+// margin-right: 22px;
+// }
+// .income {
+//     margin-right: 22px;
+//     }
+// .Line {
+// margin-right: 22px;
+// }
+// }
