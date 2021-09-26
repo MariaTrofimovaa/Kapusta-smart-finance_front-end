@@ -16,9 +16,9 @@ const getCurrentUserRequest = createAction("auth/getCurrentUserRequest");
 const getCurrentUserSuccess = createAction("auth/getCurrentUserSuccess");
 const getCurrentUserError = createAction("auth/getCurrentUserError");
 
-const getResponseGoogleRequest = createAction("auth/getResponseGoogleRequest");
-const getResponseGoogleSuccess = createAction("auth/getResponseGoogleSuccess");
-const getResponseGoogleError = createAction("auth/getResponseGoogleError");
+// const googleAuthRequest = createAction("auth/ googleAuthRequest");
+// const googleAuthSuccess = createAction("auth/googleAuthSuccessSuccess");
+// const googleAuthError = createAction("auth/googleAuthError");
 
 export {
   registerRequest,
@@ -33,7 +33,7 @@ export {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
-  getResponseGoogleRequest,
-  getResponseGoogleSuccess,
-  getResponseGoogleError,
+  // googleAuthRequest,
+  // googleAuthSuccess,
+  // googleAuthError,
 };

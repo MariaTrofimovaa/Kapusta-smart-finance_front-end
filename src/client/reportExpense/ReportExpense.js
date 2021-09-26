@@ -6,7 +6,7 @@ import {
 } from "../../redux/report/report.operations";
 
 import { allexpenseOfMonth } from "../../redux/report/report.selectors";
-import CategoriesList from "../CategoriesList/CategoriesList";
+import CategoriesList from "../categoriesList/CategoriesList";
 import setActive from "../../shared/setActive/setActive";
 
 const ReportExpense = () => {

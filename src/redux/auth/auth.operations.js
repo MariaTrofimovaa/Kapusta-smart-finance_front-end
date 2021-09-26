@@ -12,9 +12,6 @@ import {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
-  getResponseGoogleRequest,
-  getResponseGoogleSuccess,
-  getResponseGoogleError,
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
@@ -55,6 +52,8 @@ const register = (registrationObject) => async (dispatch) => {
 
 const login = (loginObject) => async (dispatch, getState) => {
   dispatch(loginRequest());
+
+  console.log("loginObject", loginObject);
   const authToken = getState().auth.token;
 
   try {

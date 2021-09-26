@@ -58,11 +58,10 @@ export const deleteTransactionApi = (id) => {
     });
 };
 
-
 export const setBalanceApi = (balance) => {
   return axios
     .patch(`/user/balance`, { balance: balance })
-    .then(({ data }) => (data))
+    .then(({ data }) => data)
     .catch((error) => {
       throw error;
     });

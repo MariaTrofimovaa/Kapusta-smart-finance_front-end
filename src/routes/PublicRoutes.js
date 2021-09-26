@@ -8,27 +8,19 @@ const PublicRoute = ({
   redirectTo,
   redirectToMob,
   isAuthenticated,
+  isMobileMedia,
   ...routeProps
 }) => {
   const isAuth = useSelector(getIsAuth);
-  const isMobileMedia = window.screen.availWidth < 767;
-  
   return (
     <Route
       {...routeProps}
-      render={
-        (props) =>
-          isAuth && routeProps.isRestricted ? (
-            // <Redirect to={redirectTo} />
-            isMobileMedia ? (
-              <Redirect to={redirectToMob} />
-            ) : (
-              <Redirect to={redirectTo} />
-            )
-          ) : (
-            <Component {...props} />
-          )
-        //         isAuth ? <Redirect to="/expense" /> : <Component {...props} />
+      render={(props) =>
+        isAuth ? (
+          <Redirect to={isMobileMedia ? "/main" : "/expense"} />
+        ) : (
+          <Component {...props} />
+        )
       }
     />
   );

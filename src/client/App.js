@@ -7,28 +7,39 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Header from "./header/Header";
 import Main from "./main/Main";
+import { withSize } from "react-sizeme";
+import { setScreenWidth } from "../redux/screenWidth/screenWidth.action";
 
 import "../stylesheet/main.scss";
 
-export default function App() {
+const App = ({ size: { width } }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCurrentUser());
+    dispatch(setScreenWidth(width));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(setScreenWidth(width));
+  }, [width]);
+
   return (
-    <div className="mainContainer">
-      <Header />
-      <Main />
-      <ToastContainer
-        transition={Zoom}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+    <div>
+      <div className="mainContainer">
+        <Header />
+        <Main />
+        <ToastContainer
+          transition={Zoom}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
     </div>
   );
-}
+};
+
+export default withSize()(App);

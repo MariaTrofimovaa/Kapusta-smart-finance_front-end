@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import css from "./AuthForm.module.css";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
+import { loginSuccess } from "../../redux/auth/auth.actions";
 
 const initialForm = { email: "", password: "" };
 
@@ -26,6 +27,7 @@ const validationSchema = Yup.object().shape({
 export const FormControl = ({ label, ...props }) => {
   const id = useMemo(() => Math.floor(Math.random() * 99999).toString(), []);
   const [field, meta] = useField(props);
+  
   return (
     <div className={css.form_control_container}>
       <label className={css.label} htmlFor={id}>
@@ -68,6 +70,8 @@ export default function AuthForm() {
       data: { tokenId: response.tokenId },
     }).then((response) => {
       console.log("Google login success", response);
+      dispatch(loginSuccess(response.data.user));
+      console.log("loginSuccess", response);
     });
   };
   const responseErrorGoogle = (response) => {

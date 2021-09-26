@@ -3,11 +3,12 @@ import styles from "./TableTransactions.module.css";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
+
 // import { getSelectedDate } from "../../redux/date/date.selectors";
 // import { getIncomeOfDaySelector } from "../../redux/transactions/transactions.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
-const TableTransactionsIncome = ({ item, date }) => {
+const TableTransactionsIncome = ({ item }) => {
   // console.log(item, date);
 
   const dispatch = useDispatch();
