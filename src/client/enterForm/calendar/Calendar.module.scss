@@ -1,12 +1,5 @@
 @import "../../../stylesheet/base";
 
-// .сalendar {
-//   display: flex;
-//   /* flex-direction: row;
-//   align-items: center;
-//   position: relative; */
-// }
-
 .box {
   display: flex;
   margin-left: 10px;
@@ -49,11 +42,9 @@
 }
 
 .datePickerLogo {
-  // width: 20px;
   padding-top: 10px;
   margin-right: 10px;
   margin-bottom: 0 !important;
-  // margin-left: 95px;
 
   @include tablet {
     padding-left: 10px;
@@ -63,10 +54,3 @@
     padding-left: 0;
   }
 }
-
-/* .datePickerLogo {
-  align-items: center;
-  position: absolute;
-  top: 4px;
-  left: 125px;
-} */
