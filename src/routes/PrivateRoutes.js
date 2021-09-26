@@ -7,12 +7,26 @@ const PrivateRoute = ({
   // isAuthenticated,
   component: Component,
   redirectTo,
+  redirectToMob,
   isMobile,
+  isMobileMedia,
   ...routeProps
 }) => {
   const isAuth = useSelector(getIsAuth);
 
-  return (
+  // return (
+  //   <Route
+  //     {...routeProps}
+  //     render={(props) =>
+  //       isAuth ? <Component {...props} /> : <Redirect to={redirectTo} />
+  //     }
+  //   />
+  // );
+  // console.log(' isMobile === isMobileMedia :>> ', isMobile === isMobileMedia);
+  // console.log('isMobile :>> ', isMobile);
+  // console.log("isMobileMedia :>> ", isMobileMedia);
+  
+  return isMobile === isMobileMedia || isMobile === undefined ? (
     <Route
       {...routeProps}
       render={(props) => {
@@ -26,7 +40,7 @@ const PrivateRoute = ({
         return isAuth ? <Component {...props} /> : <Redirect to={redirectTo} />;
       }}
     />
-  );
+  ) : null;
   // return (
   //   isMobile && (
   //     <Route
