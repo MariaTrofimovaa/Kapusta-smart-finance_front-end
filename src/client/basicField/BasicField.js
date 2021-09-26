@@ -45,15 +45,17 @@ const BasicField = () => {
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
           <div className={styles.dataField}>
-            <Calendar />
-            <EnterForm transType={transType} />
-            {/* <EnterForm transType={location} /> */}
-
+            <div className={styles.enterFormWrapper}>
+              <Calendar />
+              <EnterForm transType={transType} />
+              {/* <EnterForm transType={location} /> */}
+            </div>
             <div className={styles.dataWrapper}>
               <TableTransactions />
             </div>
+
+            <Brief />
           </div>
-          <Brief />
         </div>
       )}
       {isPageWideMobile && (
