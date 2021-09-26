@@ -1,5 +1,7 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ReactComponent as Arrow } from "../../assets/icons/goBack.svg";
+
 import Calendar from "../enterForm/calendar/Calendar";
 import TableTransactions from "../tableTransactions/TableTransactions";
 import Brief from "../brief/Brief";
@@ -14,67 +16,54 @@ const BasicField = () => {
   const isPageWideMobile = useMediaQuery("(max-width: 767px)");
   const isPageWideTablet = !isPageWideLaptop && !isPageWideMobile;
 
-  // const location = useLocation().pathname;
   const { transType } = useParams();
 
   return (
     <>
-      {isPageWideLaptop && (
+      {isPageWideMobile ? (
+        <div>
+          <div className={styles.returnLinkWrapper}>
+            <Link to={"/mob"} className={styles.returnLink}>
+              <Arrow className={styles.returnLink} />
+            </Link>
+          </div>
+          {/* <div className={styles.dataField}> */}
+          <EnterForm transType={transType} />
+          {/* </div> */}
+        </div>
+      ) : (
         <div>
           <div className={styles.btnWrapper}>
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
-          <div className={styles.dataField}>
-            <div className={styles.enterFormWrapper}>
-              <Calendar />
-              <EnterForm transType={transType} />
-              {/* <EnterForm transType={location} /> */}
+          {isPageWideLaptop && (
+            <div className={styles.dataField}>
+              <div className={styles.enterFormWrapper}>
+                <Calendar />
+                <EnterForm transType={transType} />
+              </div>
+              <div className={styles.dataWrapper}>
+                <TableTransactions />
+                <Brief />
+              </div>
             </div>
-            <div className={styles.dataWrapper}>
-              <TableTransactions />
+          )}
+          {isPageWideTablet && (
+            <>
+              <div className={styles.dataField}>
+                <Calendar />
+                <EnterForm transType={transType} />
+
+                <div className={styles.dataWrapper}>
+                  <TableTransactions />
+                </div>
+              </div>
               <Brief />
-            </div>
-          </div>
+            </>
+          )}
         </div>
       )}
-      {isPageWideTablet && (
-        <div>
-          <div className={styles.btnWrapper}>
-            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
-            <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
-          </div>
-          <div className={styles.dataField}>
-            <Calendar />
-            <EnterForm transType={transType} />
-            {/* <EnterForm transType={location} /> */}
-
-            <div className={styles.dataWrapper}>
-              <TableTransactions />
-            </div>
-          </div>
-          <Brief />
-        </div>
-      )}
-      {/* {isPageWideMobile && (
-        <div>
-          <div className={styles.btnWrapper}>
-            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
-            <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
-          </div>
-          <div className={styles.dataField}>
-            <Calendar />
-            <EnterForm transType={transType} />
-            <div className={styles.dataWrapper}>
-              <TableTransactions />
-            </div>
-          </div>
-          <Brief />
-        </div>
-
-      )} */}
-
-      {/* )} */}
     </>
   );
 };
