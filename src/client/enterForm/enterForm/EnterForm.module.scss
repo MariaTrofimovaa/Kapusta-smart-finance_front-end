@@ -1,82 +1,3 @@
-/* @media (min-width: 320px) {
-  .productInput {
-    width: 290px;
-    border-color: transparent;
-    color: #9b9faa;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-
-    margin-bottom: 30px;
-    padding-bottom: 10px;
-  }
-
-  .weightInput {
-    border: transparent;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 19px;
-    width: 104px;
-    text-align: left;
-    color: #9b9faa;
-    width: 290px;
-
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-    margin-bottom: 30px;
-  }
-
-  .productForm {
-    display: block;
-  }
-
-  .formButton {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #fc842d;
-    border: 2px solid #fc842d;
-    color: #fff;
-    font-size: 32px;
-    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  }
-
-  .formAddButton {
-    background: #fc842d;
-    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-    border-radius: 30px;
-    border: none;
-    width: 176px;
-    height: 44px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-    text-transform: capitalize;
-    color: white;
-  }
-}
-
-.productResultList {
-  width: 295px;
-  max-height: 300px;
-  position: absolute;
-  background: white;
-  overflow-y: scroll;
-}
-.productResultListItem {
-  padding: 10px;
-  border-bottom: 1px solid gray;
-}
-.productResultListItem:hover {
-  background-color: dimgray;
-} */
-
 @import "../../../stylesheet/base";
 
 .product {
@@ -95,7 +16,6 @@
     padding-left: 0px;
     padding-right: 0px;
     text-align: center;
-    // margin-bottom: 48px;
   }
 
   @include desktop {
@@ -142,7 +62,6 @@
     background-color: transparent;
 
     border-top: transparent;
-    // border-radius: 0px 0px 16px 16px;
 
     width: 282px;
     height: 44px;
@@ -165,7 +84,6 @@
     @include tablet {
       border: 2px solid #f5f6fb;
       border-right: transparent;
-      // border-radius: 0px 0px 16px 16px;
 
       width: 170px;
       height: 44px;
@@ -218,7 +136,6 @@
   &ResultListItem {
     height: 32px;
     padding-top: 10px;
-    // border-bottom: 1px solid gray;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
@@ -342,15 +259,10 @@
   @include tablet {
     padding-left: 0;
     margin-left: 0;
-    // border: 2px solid #f5f6fb;
-    // background-color: transparent;
-
-    // border-radius: 0px 16px 16px 0px;
   }
 }
 
 .calculatorLogoContainer {
-  // position: relative;
   border: 2px solid #ffffff;
   background-color: transparent;
 
@@ -374,12 +286,6 @@
     width: 42px;
   }
 }
-
-// .calculatorLogo {
-//   position: absolute;
-//   top: 10px;
-//   left: 17px;
-// }
 
 .btnSubmit {
   margin-right: 15px;
@@ -451,116 +357,3 @@
     display: none;
   }
 }
-
-// @media (min-width: 768px) {
-// }
-// .productDescription {
-//   border: 2px solid #f5f6fb;
-//   border-right: transparent;
-
-//   border-radius: 16px 0px 0px 0px;
-//   width: 170px;
-//   height: 40px;
-//   padding-left: 20px;
-//   margin-right: 0;
-//   margin-left: 0;
-
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 14px;
-//   letter-spacing: 0.02em;
-
-//   color: #c7ccdc;
-// }
-
-// .productCategory {
-//   border: 2px solid #f5f6fb;
-//   border-right: transparent;
-
-//   width: 170px;
-//   height: 40px;
-//   padding-left: 20px;
-//   margin-right: 0;
-//   margin-left: 0;
-
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 14px;
-//   letter-spacing: 0.02em;
-
-//   color: #c7ccdc;
-// }
-
-// .productAmountLabel {
-//   border: 2px solid #f5f6fb;
-//   border-right: transparent;
-//   border-radius: 0px 16px 16px 0px;
-
-//   width: 74px;
-//   height: 40px;
-//   padding-left: 20px;
-//   margin-right: 0;
-//   margin-left: 0;
-
-//   color: #c7ccdc;
-// }
-
-// .productAmountInput {
-//   border: transparent;
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 14px;
-//   letter-spacing: 0.02em;
-//   height: 40px;
-//   background-color: transparent;
-// }
-
-// .productForm {
-//   display: flex;
-//   flex-wrap: wrap;
-// }
-
-// .productForm {
-//   @include flex(space-between, center) // display: flex;
-// flex-wrap: wrap;
-// ;
-//   }
-
-// .btnSubmit {
-//   padding-right: 35px;
-//   padding-left: 35px;
-//   padding-top: 15px;
-//   padding-bottom: 14px;
-//   width: 125px;
-//   height: 44px;
-//   background-color: var(--accent-color-orange);
-//   color: var(--white-color);
-//   border-radius: 16px;
-//   border: var(--accent-color-orange);
-//   font-size: 12px;
-
-//   outline: none;
-//   text-transform: uppercase;
-// }
-
-/* 
-  Кнопка "очистить"
-  Кнопка "нет" 
-  */
-
-// .btnClear {
-//   padding: 12px 25px 12px 25px;
-
-//   width: 125px;
-//   height: 44px;
-//   background-color: var(--white-color);
-//   color: var(--primary-color-text);
-//   border-radius: 17px;
-//   border: none;
-//   font-size: 12px;
-//   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-//   border-radius: 0px 30px 30px 30px;
-
-//   outline: none;
-//   text-transform: uppercase;
-// }
