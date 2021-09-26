@@ -37,6 +37,7 @@ const BasicField = () => {
             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
           </div>
+
           {isPageWideLaptop && (
             <div className={styles.dataField}>
               <div className={styles.enterFormWrapper}>
@@ -62,6 +63,36 @@ const BasicField = () => {
               <Brief />
             </>
           )}
+
+//           <div className={styles.dataField}>
+//             <div className={styles.enterFormWrapper}>
+//               <Calendar />
+//               <EnterForm transType={transType} />
+//               {/* <EnterForm transType={location} /> */}
+//             </div>
+//             <div className={styles.dataWrapper}>
+//               <TableTransactions />
+//             </div>
+
+//             <Brief />
+//           </div>
+//         </div>
+//       )}
+//       {isPageWideMobile && (
+//         <div>
+//           <div className={styles.btnWrapper}>
+//             <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
+//             <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
+//           </div>
+//           <div className={styles.dataField}>
+//             <Calendar />
+//             <EnterForm transType={transType} />
+//             <div className={styles.dataWrapper}>
+//               <TableTransactions />
+//             </div>
+//           </div>
+//           <Brief />
+
         </div>
       )}
     </>
