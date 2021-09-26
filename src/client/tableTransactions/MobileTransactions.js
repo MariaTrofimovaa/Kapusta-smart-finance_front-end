@@ -16,12 +16,12 @@ const MobileTransactions = ({ item }) => {
     setModalOpen(!isModalOpen);
   };
 
-  // const date = useSelector(getSelectedDate);
+  const date = useSelector(getSelectedDate);
 
-  // useEffect(() => {
-  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
-  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  // }, [dispatch, date]);
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllIncomeOfDate(date));
+    dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  }, [dispatch, date]);
 
   return (
     <li className={styles.mobileListItem} key={item._id}>
