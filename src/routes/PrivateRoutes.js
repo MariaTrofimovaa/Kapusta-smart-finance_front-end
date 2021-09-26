@@ -29,9 +29,16 @@ const PrivateRoute = ({
   return isMobile === isMobileMedia || isMobile === undefined ? (
     <Route
       {...routeProps}
-      render={(props) =>
-        isAuth ? <Component {...props} /> : <Redirect to={redirectTo} />
-      }
+      render={(props) => {
+        if (isMobile) {
+          return isAuth ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={redirectTo} />
+          );
+        }
+        return isAuth ? <Component {...props} /> : <Redirect to={redirectTo} />;
+      }}
     />
   ) : null;
   // return (

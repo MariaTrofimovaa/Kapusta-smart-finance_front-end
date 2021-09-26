@@ -20,28 +20,28 @@ const UserLogout = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalClose = (e) => {
-    setModalOpen(false);
-  };
+  // const handleModalClose = (e) => {
+  //   setModalOpen(false);
+  // };
 
-  const handleModalOpen = () => {
-    setModalOpen(true);
+  // const handleModalOpen = () => {
+  //   setModalOpen(true);
+  // };
+
+  const toggleModal = (e) => {
+    setModalOpen(!isModalOpen);
   };
 
   return (
     <>
-      <button
-        type="button"
-        className={styles.logoutBtn}
-        onClick={handleModalOpen}
-      >
+      <button type="button" className={styles.logoutBtn} onClick={toggleModal}>
         <LogoutSvg className={styles.logoutSvg} />
         <p className={styles.logoutText}>Выйти</p>
       </button>
       {isModalOpen && (
         <ModalWindow
           text={"Вы действительно хотите выйти?"}
-          onCancel={handleModalClose}
+          onCancel={toggleModal}
           onSubmit={handleLogout}
         />
       )}
