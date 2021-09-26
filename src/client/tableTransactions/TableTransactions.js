@@ -12,7 +12,6 @@ import { getSelectedDate } from "../../redux/date/date.selectors";
 import { useEffect } from "react";
 import transactionsOperations from "../../redux/transactions/transactions.operations";
 
-
 const TableTransactions = () => {
   const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
   const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
@@ -49,7 +48,7 @@ const TableTransactions = () => {
               <th>Сумма</th>
             </tr>
           </thead>
-           {/* <tbody className={styles.tableBody}>
+          {/* <tbody className={styles.tableBody}>
              {activeCheck === "/expense" ? (
               <TableTransactionsExpense
                 tableTransactionsExpense={tableTransactionsExpense}
@@ -60,19 +59,29 @@ const TableTransactions = () => {
               />
             )}
           </tbody> */}
-        <tbody className={styles.tableBody}>
-          {activeCheck === "/expense"
-            ? tableTransactionsEx.map((item) => (
-                <TableTransactionsExpense key={item._id} item={item} date />
-              ))
-            : tableTransactionsInc.map((item) => (
-                <TableTransactionsIncome key={item._id} item={item} date />
-              ))}
-        </tbody>
+          <tbody className={styles.tableBody}>
+            {activeCheck === "/expense"
+              ? tableTransactionsEx.map((item) => (
+                  <TableTransactionsExpense key={item._id} item={item} />
+                ))
+              : tableTransactionsInc.map((item) => (
+                  <TableTransactionsIncome key={item._id} item={item} />
+                ))}
+          </tbody>
         </table>
       </div>
       <div className={styles.mobileWrapper}>
-        <MobileTransactions tableTransaction={tableTransaction} />
+        <div className={styles.listWrapper}>
+          <ul className={styles.mobileList}>
+            {tableTransaction.map((item) => (
+              <MobileTransactions
+                tableTransaction={tableTransaction}
+                key={item._id}
+                item={item}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );

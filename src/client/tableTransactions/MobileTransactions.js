@@ -7,72 +7,61 @@ import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
-const MobileTransactions = ({ tableTransaction }) => {
+const MobileTransactions = ({ item }) => {
   const dispatch = useDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalClose = () => {
-    setModalOpen(false);
+  const toggleModal = (e) => {
+    setModalOpen(!isModalOpen);
   };
 
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
-  const date = useSelector(getSelectedDate);
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  }, [date]);
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllIncomeOfDate(date));
-  }, [date]);
+  // const date = useSelector(getSelectedDate);
+
+  // useEffect(() => {
+  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
+  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  // }, [dispatch, date]);
 
   return (
-    <div className={styles.listWrapper}>
-      <ul className={styles.mobileList}>
-        {tableTransaction.map((item) => (
-          <li className={styles.mobileListItem} key={item._id}>
-            <div className={styles.listWrapperItem}>
-              <p className={styles.textDescMob}>{item.description}</p>
-              <div className={styles.listWrapperItem2}>
-                <p className={styles.dateMob}>{item.date}</p>
-                <p className={styles.categoryMob}>{item.category}</p>
-              </div>
-            </div>
-            <p
-              className={
-                item.transactionType === "expense"
-                  ? styles.amountMob
-                  : styles.amountMobGreen
-              }
-            >
-              {item.transactionType === "expense" ? -item.amount : item.amount}{" "}
-              грн.
-            </p>
-            <div className={styles.btnWrapper}>
-              <button
-                className={styles.deleteBtn}
-                type="button"
-                onClick={handleModalOpen}
-              >
-                <IconDelete />
-              </button>
-              {isModalOpen && (
-                <ModalWindow
-                  text={"Вы уверены?"}
-                  onCancel={handleModalClose}
-                  onSubmit={() => {
-                    dispatch(
-                      transactionsOperations.deleteTransaction(item._id)
-                    );
-                  }}
-                />
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <li className={styles.mobileListItem} key={item._id}>
+      <div className={styles.listWrapperItem}>
+        <p className={styles.textDescMob}>{item.description}</p>
+        <div className={styles.listWrapperItem2}>
+          <p className={styles.dateMob}>{item.date}</p>
+          <p className={styles.categoryMob}>{item.category}</p>
+        </div>
+      </div>
+      <p
+        className={
+          item.transactionType === "expense"
+            ? styles.amountMob
+            : styles.amountMobGreen
+        }
+      >
+        {item.transactionType === "expense" ? -item.amount : item.amount} грн.
+      </p>
+      <div className={styles.btnWrapper}>
+        <button
+          className={styles.deleteBtn}
+          type="button"
+          onClick={() => {
+            toggleModal();
+          }}
+        >
+          <IconDelete />
+        </button>
+        {isModalOpen && (
+          <ModalWindow
+            text={"Вы уверены?"}
+            onCancel={toggleModal}
+            onSubmit={() => {
+              dispatch(transactionsOperations.deleteTransaction(item._id));
+            }}
+          />
+        )}
+      </div>
+    </li>
   );
 };
 

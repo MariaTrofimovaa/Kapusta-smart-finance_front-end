@@ -8,7 +8,7 @@ import IconDelete from "../../shared/iconDelete/IconDelete";
 // import { getIncomeOfDaySelector } from "../../redux/transactions/transactions.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
-const TableTransactionsIncome = ({ item, date }) => {
+const TableTransactionsIncome = ({ item }) => {
   // console.log(item, date);
 
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ const TableTransactionsIncome = ({ item, date }) => {
 
   const toggleModal = (e) => {
     setModalOpen(!isModalOpen);
-
   };
 
   // const handleModalOpen = () => {
