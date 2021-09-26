@@ -8,10 +8,14 @@ import { getSelectedDate } from "../../../redux/date/date.selectors";
 import { ReactComponent as CalculatorLogo } from "../../../assets/icons/calculator.svg";
 import { ReactComponent as ArrowDown } from "../../../assets/icons/Arrow-down.svg";
 import { useHistory } from "react-router";
+import { getIsMobileMedia } from "../../../redux/screenWidth/screenWidth.selector";
+import { useParams } from "react-router-dom";
 
-const EnterForm = ({ transType }) => {
+const EnterForm = () => {
   const token = useSelector(getAuthToken);
   const selectedDate = useSelector(getSelectedDate);
+  const isMobileMedia = useSelector(getIsMobileMedia);
+  const { transType } = useParams();
 
   const [fields, setFields] = useState({
     description: "",
@@ -81,7 +85,10 @@ const EnterForm = ({ transType }) => {
     setFields({ description: "", amount: "", category: "" });
     setCategories([]);
     setSelected(null);
-    history.push("/main");
+
+    if (isMobileMedia) {
+      history.push("/main");
+    }
   };
 
   return (
