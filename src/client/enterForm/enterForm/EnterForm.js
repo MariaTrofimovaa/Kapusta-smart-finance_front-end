@@ -7,10 +7,15 @@ import { getAuthToken } from "../../../redux/auth/auth.selectors";
 import { getSelectedDate } from "../../../redux/date/date.selectors";
 import { ReactComponent as CalculatorLogo } from "../../../assets/icons/calculator.svg";
 import { ReactComponent as ArrowDown } from "../../../assets/icons/Arrow-down.svg";
+import { useHistory } from "react-router";
+import { getIsMobileMedia } from "../../../redux/screenWidth/screenWidth.selector";
+import { useParams } from "react-router-dom";
 
-const EnterForm = ({ transType }) => {
+const EnterForm = () => {
   const token = useSelector(getAuthToken);
   const selectedDate = useSelector(getSelectedDate);
+  const isMobileMedia = useSelector(getIsMobileMedia);
+  const { transType } = useParams();
 
   const [fields, setFields] = useState({
     description: "",
@@ -29,15 +34,17 @@ const EnterForm = ({ transType }) => {
       [event.target.name]: event.target.value,
     }));
 
+  let history = useHistory();
+
+  const goBackHome = () => {
+    history.push("/main");
+  };
+
   const searchCategories = () => {
-    // console.log(transType);
-    // if (event.target.value.length > 0) {
-    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     axios
 
       .get(`http://localhost:4000/api/v1/categories/${transType}`)
       .then(({ data }) => {
-        // console.log(data.data.result);
         setCategories(() => {
           return data.data.result;
         });
@@ -78,29 +85,28 @@ const EnterForm = ({ transType }) => {
     setFields({ description: "", amount: "", category: "" });
     setCategories([]);
     setSelected(null);
+
+    if (isMobileMedia) {
+      history.push("/main");
+    }
   };
-
-  /* Проверить с Таней или Светой  onFormSubmit и саму функцию - дублирование*/
-
-  // const onFormSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const transactionData = {
-  //     date: new  Intl.DateTimeFormat('en-GB').format(new Date()), // пока данные календаря недоступны в редакс сторе - будем ставить текущую дату
-  //     category: e.target.category.value,
-  //     description: e.target.description.value,
-  //     amount: e.target.cost.value,
-  //     transactionType: "expense"
-  //   }
-
-  //   dispatch(transactionsOperations.addBalanceOperation(transactionData));
-
-  // }
 
   return (
     <div className={styles.product}>
-      {/* <img src="../../assets/icons/arrow-left.svg" alt="Кот" width="18" /> */}
-
+      <button type="button" className={styles.arrowBack} onClick={goBackHome}>
+        <svg
+          width="18"
+          height="12"
+          viewBox="0 0 18 12"
+          fill="#FF751D"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 5H3.83L7.41 1.41L6 0L0 6L6 12L7.41 10.59L3.83 7H18V5Z"
+            fill="#FF751D"
+          />
+        </svg>
+      </button>
       <form
         ref={catMenu}
         className={styles.productForm}
@@ -127,11 +133,10 @@ const EnterForm = ({ transType }) => {
           autoFocus
           value={fields.category}
           onClick={searchCategories}
-          required
+          // required
         />
         <ArrowDown className={styles.arrowDown} />
         <ul className={styles.productResultList} id="categories">
-          {/* {!categories.length && <ArrowDown className={styles.arrowDown} />} */}
           {!!categories.length &&
             categories.map((item) => (
               <li
@@ -153,7 +158,6 @@ const EnterForm = ({ transType }) => {
             ))}
         </ul>
         <div className={styles.productAmountLabelBox}>
-          {/* <label className={styles.productAmountLabel}> */}
           <input
             className={styles.productAmountInput}
             placeholder="0.00"
@@ -163,7 +167,6 @@ const EnterForm = ({ transType }) => {
             onChange={handleChange}
             required
           />
-          {/* </label> */}
           <div className={styles.calculatorLogoContainer}>
             <CalculatorLogo className={styles.calculatorLogo} />
           </div>

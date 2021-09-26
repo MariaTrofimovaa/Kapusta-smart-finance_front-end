@@ -8,9 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./header/Header";
 import Main from "./main/Main";
 import { withSize } from "react-sizeme";
+import { setScreenWidth } from "../redux/screenWidth/screenWidth.action";
 
 import "../stylesheet/main.scss";
-import { setScreenWidth } from "../redux/screenWidth/screenWidth.action";
 
 const App = ({ size: { width } }) => {
   const dispatch = useDispatch();

@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllIncomeOfMonth, setActiveCategori } from "../../redux/report/report.operations";
+import {
+  getAllIncomeOfMonth,
+  setActiveCategori,
+} from "../../redux/report/report.operations";
 
 import { allIncomeOfMonth } from "../../redux/report/report.selectors";
-import CategoriesList from "../CategoriesList/CategoriesList";
+import CategoriesList from "../categoriesList/CategoriesList";
 import setActive from "../../shared/setActive/setActive";
-
 
 const ReportIncomes = () => {
   const dispatch = useDispatch();

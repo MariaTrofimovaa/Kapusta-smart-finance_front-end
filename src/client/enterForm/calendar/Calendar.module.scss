@@ -1,24 +1,28 @@
 @import "../../../stylesheet/base";
 
-// .сalendar {
-//   display: flex;
-//   /* flex-direction: row;
-//   align-items: center;
-//   position: relative; */
-// }
-
 .box {
+  display: flex;
+  margin-left: 10px;
+  justify-content: center;
+  margin-bottom: 42px;
+  margin-left: 95px;
+
   @include tablet {
     margin-left: 0 !important;
     margin-right: 0 !important;
     display: flex;
     margin-left: 10px;
+    margin-left: 0;
   }
 }
 
 .datePicker {
+  background-color: transparent;
+  margin-left: 0;
+
   text-align: left;
   border-color: transparent;
+
   width: 80px;
   height: 40px;
   font-weight: 900;
@@ -38,7 +42,6 @@
 }
 
 .datePickerLogo {
-  // width: 20px;
   padding-top: 10px;
   margin-right: 10px;
   margin-bottom: 0 !important;
@@ -51,10 +54,3 @@
     padding-left: 0;
   }
 }
-
-/* .datePickerLogo {
-  align-items: center;
-  position: absolute;
-  top: 4px;
-  left: 125px;
-} */
