@@ -3,7 +3,7 @@
     display: none;
   }
   .mobileWrapper {
-    margin-top: 110px;
+    margin-top: 140px;
     min-height: calc(100vh - 422px);
     margin-bottom: 10px;
   }
@@ -41,21 +41,25 @@
   }
 
   .listWrapperItem {
+    white-space: pre-wrap;
+    max-width: 150px;
     display: flex;
     flex-direction: column;
   }
 
   .textDescMob {
-    /* width: 162px; */
-    height: 20px;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+    white-space: pre-line;
+    max-height: 40px;
     margin: 0;
-    white-space: nowrap;
     overflow: hidden;
   }
 
   .listWrapperItem2 {
     display: flex;
     flex-direction: row;
+    margin-top: 8px;
   }
 
   .dateMob {
@@ -130,6 +134,7 @@
     line-height: 14px;
     align-items: center;
     letter-spacing: 0.04em;
+    padding-top: 48px;
   }
   .mobileWrapper {
     display: none;
@@ -178,18 +183,18 @@
 
   .tableDate {
     padding-left: 20px;
-    text-align: left;
+    text-align: center;
     width: 20%;
   }
 
   .tableDescription {
-    padding-left: 20px;
-    text-align: left;
+    padding-left: 0;
+    text-align: center;
     width: 30%;
   }
 
   .tableCategory {
-    padding-left: 20px;
+    padding-left: 30px;
     width: 20%;
     text-align: center;
   }
@@ -228,5 +233,6 @@
 @media screen and (min-width: 1280px) {
   .table {
     width: 760px;
+    padding-top: 0;
   }
 }
