@@ -5,59 +5,71 @@
     position: relative;
     width: 282px;
     height: 85px;
-    padding: 0 15px;
     background-color: white;
     border-radius: 25px;
-    // margin-right:50px;
-    // margin-left: auto;
-    top:273px;
+    font-style: "Roboto";
+    font-weight: 700;
+    font-size: 14px;
+    top:152px;
+    @include tablet{
+        top: 60px;
+        width: 668px;
+        height: 50px;
+    }
+    @include desktop{
+        width: 1060px;
+    }
 
+    .expenseContainer{
+        @include tablet{
+            @include flex;
+                padding-left: 100px;
+        }
+        @include desktop{
+            padding-left: 300px;
+        }
 
-    .expense {
-        font-style: "Roboto";
-        font-weight: 700;
-        font-size: 14px;
-        text-align: center;
+        .expenseText {
+            position: relative;
+            margin-bottom: 5px;
+                @include tablet{
+                    margin-right: 15px;
+                }
+            }
+
+        .userExpense{
+            color:red;
+        }
     }
-    .userExpense{
-        color:red;
-    }
-    .userIncome{
-        color:green;
-    }
-    .income {
-        font-style: "Roboto";
-        font-weight: 700;
-        font-size: 14px;
-        margin-right: auto;
-        text-align: center;
+
+    .incomeContainer{
+        @include tablet{
+            @include flex;
+                padding-right: 100px;
+        }
+        @include desktop{
+            padding-right: 300px;
+        }
+
+        .incomeText {
+            position: relative;
+            margin-bottom: 5px;
+                @include tablet{
+                    margin-right: 15px;
+                }
+            }
+        .userIncome{
+            color:green;
+        }
     }
 
     .Line {
         margin-right: 0 0;
+        height:75px;
+        @include tablet{
+            height:35px;
+        }
     }
 }
 
 
-// @media screen and (min-width: 768px) {
-// .userMount {
-// padding: 0;
-// margin-right: 50px;
-// background-color: transparent;
-// }
-// }
-// @media screen and (min-width: 1280px) {
-// .userMount {
-// max-height: 100%;
-// background-color: #f0f1f3;
-// }
-// .expense {
-// margin-right: 22px;
-// }
-// .income {
-//     margin-right: 22px;
-//     }
-// .Line {
-// margin-right: 22px;
-// }
-// }

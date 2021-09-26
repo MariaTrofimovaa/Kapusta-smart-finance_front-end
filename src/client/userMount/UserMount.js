@@ -19,18 +19,18 @@ const userIncome = income.reduce((acc, { categorySum }) => {
 
 return (
     <div className={scss.userMount}>
-        <div>
-            <p  className={scss.expense} >
+        <div className={scss.expenseContainer}>
+            <p  className={scss.expenseText} >
                 Расходы :
             </p>
-            <span className={scss.userExpense}>-{userExpense}грн.</span>
+            <span className={scss.userExpense}>-&nbsp;{userExpense.toFixed(2)}&nbsp;грн.</span>
         </div>
     <img className={scss.Line} src={Line} alt="line" width="2" height="32" />
-        <div>
-            <p  className={scss.income} >
+        <div className={scss.incomeContainer}>
+            <p  className={scss.incomeText} >
                 Доходы :
             </p>
-            <span className={scss.userIncome}>+{userIncome}грн.</span>
+            <span className={scss.userIncome}>+&nbsp;{userIncome.toFixed(2)}&nbsp;грн.</span>
         </div>
     </div>
 );
