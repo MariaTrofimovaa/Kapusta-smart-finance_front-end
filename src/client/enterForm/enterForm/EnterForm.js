@@ -120,11 +120,6 @@ const EnterForm = () => {
           autoComplete="off"
           autoFocus
           value={fields.description}
-<<<<<<< HEAD
-          // defaultValue={fields.description}
-=======
-          defaultValue={fields.description}
->>>>>>> 2b2af9965b846fe27ea67e0879a356ffd8188c7b
           onChange={handleChange}
           required
         />
@@ -137,12 +132,9 @@ const EnterForm = () => {
           autoComplete="off"
           autoFocus
           value={fields.category}
-<<<<<<< HEAD
           onChange={()=> {}} // КОСТЫЛЬ! ПЕРЕДЕЛАТЬ НА СЕЛЕКТ
           // defaultValue={fields.category}
-=======
-          defaultValue={fields.category}
->>>>>>> 2b2af9965b846fe27ea67e0879a356ffd8188c7b
+
           onClick={searchCategories}
           required
         />
@@ -175,11 +167,7 @@ const EnterForm = () => {
             type="number"
             name="amount"
             value={fields.amount}
-<<<<<<< HEAD
-            // defaultValue={fields.amount}
-=======
             defaultValue={fields.amount}
->>>>>>> 2b2af9965b846fe27ea67e0879a356ffd8188c7b
             onChange={handleChange}
             required
           />

@@ -13,7 +13,8 @@ function Balance() {
   let balanceFromStore = useSelector(balanceSelectors.getBalance);
 
   const location = useLocation();
-  const isReportPage = location.pathname === "/report";
+  const isReportPage =
+    location.pathname === "/report" || location.pathname === "/report/incomes";
 
   const updateBalance = (e) => {
     e.preventDefault();
