@@ -7,7 +7,6 @@ import balanceReducer from "./balance/balance.reducers";
 import reportReducer from "./report/report.reducer";
 import selectedDateReducer from "./date/dateReducer";
 import transactions from "./transactions/transactions.reducer";
-import changeMonthReducer from "./monthDate/monthReducer";
 import screenWidth from "./screenWidth/screenWidth.reducer";
 
 const persistConfig = {
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   report: reportReducer,
   transactions,
   selectedDate: selectedDateReducer,
-  changeMonth: changeMonthReducer,
   screenWidth,
 });
 
