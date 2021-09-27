@@ -3,7 +3,7 @@
     display: none;
   }
   .mobileWrapper {
-    margin-top: 140px;
+    /* margin-top: 40px; */
     min-height: calc(100vh - 422px);
     margin-bottom: 10px;
   }
@@ -12,15 +12,28 @@
     display: flex;
     flex-wrap: wrap;
     width: 282px;
+    max-height: 200px;
     margin: 0 auto;
     font-style: normal;
     font-weight: 700;
-
+    overflow: scroll;
     font-size: 12px;
     line-height: 14px;
     align-items: center;
     letter-spacing: 0.04em;
     color: #52555f;
+  }
+
+  .listWrapper::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 4px;
+    background: transparent;
+  }
+
+  .listWrapper::-webkit-scrollbar-thumb {
+    background-color: #fc842d;
+    border-radius: 4px;
+    height: 15px;
   }
 
   .mobileList {
@@ -117,7 +130,7 @@
     background-color: transparent;
   }
   .deleteBtn:hover {
-    background-color: #f5f6fb;
+    background-color: #e9e9e9;
   }
 }
 
@@ -157,6 +170,21 @@
     color: #000;
   }
 
+  .tableTransThDate {
+    margin-left: 20px;
+  }
+  .tableTransThDescr {
+    margin-left: 22px;
+  }
+
+  .tableTransThCategory {
+    margin-left: 94px;
+  }
+
+  .tableTransThAmount {
+    margin-right: 66px;
+  }
+
   .tableTr {
     width: 100%;
     height: 43px;
@@ -173,6 +201,18 @@
     overflow-y: scroll;
   }
 
+  .tableBody::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 4px;
+    background: transparent;
+  }
+
+  .tableBody::-webkit-scrollbar-thumb {
+    background-color: #fc842d;
+    border-radius: 4px;
+    height: 15px;
+  }
+
   .tableTr {
     width: 100%;
     height: 43px;
@@ -183,18 +223,17 @@
 
   .tableDate {
     padding-left: 20px;
-    text-align: center;
+    text-align: left;
     width: 20%;
   }
 
   .tableDescription {
     padding-left: 0;
-    text-align: center;
+    text-align: left;
     width: 30%;
   }
 
   .tableCategory {
-    padding-left: 30px;
     width: 20%;
     text-align: center;
   }
@@ -216,7 +255,6 @@
   }
 
   .tableDelete {
-    padding-left: 20px;
     width: 10%;
     text-align: center;
   }
@@ -228,11 +266,25 @@
     border-radius: 50%;
     background-color: transparent;
   }
+  .deleteBtn:hover {
+    background-color: #f5f6fb;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .table {
     width: 760px;
     padding-top: 0;
+  }
+
+  .tableTransThDescr {
+    margin-left: 28px;
+  }
+
+  .tableTransThCategory {
+    margin-left: 132px;
+  }
+  .tableTransThAmount {
+    margin-right: 80px;
   }
 }
