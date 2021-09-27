@@ -7,8 +7,10 @@ import {
   getAllForMonthIncomeRequest,
   getAllForMonthIncomeSuccess,
   getAllForMonthIncomeError,
-  setActiveAction,
+  setActiveExpenseAction,
+  setActiveIncomeAction,
 } from "./report.actions";
+import { logoutSuccess } from "../auth/auth.actions";
 
 const handleError = (_, action) => action.payload.message;
 const clearError = () => null;
@@ -21,7 +23,8 @@ const error = createReducer(null, {
 });
 
 const expenseOfMonth = createReducer([], {
-  [setActiveAction]: (state, { payload }) => payload,
+  [setActiveExpenseAction]: (state, { payload }) => payload,
+  [logoutSuccess]: () => [],
   [getAllForMonthExpenseSuccess]: (state, { payload }) =>
     payload.data.reduce((acc, { category, description, amount }) => {
       const curCategory = acc.find((el) => el.category === category);
@@ -67,7 +70,8 @@ const expenseOfMonth = createReducer([], {
     }, []),
 });
 const incomeOfMonth = createReducer([], {
-  [setActiveAction]: (state, { payload }) => payload,
+  [setActiveIncomeAction]: (state, { payload }) => payload,
+  [logoutSuccess]: () => [],
   [getAllForMonthIncomeSuccess]: (state, { payload }) =>
     payload.data.reduce((acc, { category, description, amount }) => {
       const curCategory = acc.find((el) => el.category === category);
@@ -109,7 +113,6 @@ const incomeOfMonth = createReducer([], {
         });
         return acc;
       }
-
 
       // if (curCategory) {
       //   const idx = acc.findIndex((el) => el.category === category);

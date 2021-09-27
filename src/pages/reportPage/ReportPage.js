@@ -21,12 +21,12 @@ const ReportIncomes = lazy(() =>
   import("../../client/reportIncomes/ReportIncomes")
 );
 
+
 const ReportPage = () => {
   const match = useRouteMatch();
   const location = useLocation();
 
   const activeLocation = location.pathname;
-  console.log(activeLocation);
 
   return (
     <div>
@@ -44,7 +44,7 @@ const ReportPage = () => {
             </Link>
           </li>
           <li className={css.item}>
-            {location.pathname === "/report" ? (
+            {activeLocation === "/report" ? (
               <h3 className={css.title}>Расходы</h3>
             ) : (
               <h3 className={css.title}>Доходы</h3>
