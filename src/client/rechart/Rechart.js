@@ -59,6 +59,7 @@ const Rechart = () => {
     }, [])
     .sort(byField("amount"));
   const dataChart = data.length ? data : [0];
+
   ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
   const BarLabelStyle = ({ payload, x, y, width, height, value }) => {
     return (
@@ -82,6 +83,8 @@ const Rechart = () => {
       >{`${value} грн`}</text>
     );
   };
+
+
 
   ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
   return width >= 768 ? (
@@ -117,9 +120,8 @@ const Rechart = () => {
             tickCount={9}
             minTickGap={50}
             ////////////
-            allowDataOverflow={true}
             type="category"
-            className={css.xaxis}
+            // className={css.xaxis}
           />
           <CartesianGrid vertical={false} horizontal={false} opacity={0.2} />{" "}
         </BarChart>

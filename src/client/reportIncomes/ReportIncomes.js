@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveCategori } from "../../redux/report/report.operations";
+import { setActiveIncomeAction } from "../../redux/report/report.actions";
 
 import { allIncomeOfMonth } from "../../redux/report/report.selectors";
 import CategoriesList from "../categoriesList/CategoriesList";
@@ -12,7 +12,7 @@ const ReportIncomes = () => {
 
   const handleOnClick = (category) => {
     const newIncomes = setActive(incomes, category);
-    dispatch(setActiveCategori(newIncomes));
+    dispatch(setActiveIncomeAction(newIncomes));
   };
 
   return <CategoriesList transactionType={incomes} onClick={handleOnClick} />;
