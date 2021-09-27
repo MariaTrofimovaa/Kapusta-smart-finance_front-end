@@ -8,9 +8,9 @@ import {
 } from "../../redux/transactions/transactions.selectors";
 import TableTransactionsExpense from "./TableTransactionsExpense";
 import TableTransactionsIncome from "./TableTransactionsIncome";
-import { getSelectedDate } from "../../redux/date/date.selectors";
-import { useEffect } from "react";
-import transactionsOperations from "../../redux/transactions/transactions.operations";
+// import { getSelectedDate } from "../../redux/date/date.selectors";
+// import { useEffect } from "react";
+// import transactionsOperations from "../../redux/transactions/transactions.operations";
 
 const TableTransactions = () => {
   const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
@@ -22,13 +22,13 @@ const TableTransactions = () => {
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const date = useSelector(getSelectedDate);
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllIncomeOfDate(date));
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  }, [dispatch, date]);
+  // const date = useSelector(getSelectedDate);
+  // useEffect(() => {
+  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
+  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  // }, [dispatch, date]);
 
   return (
     <>

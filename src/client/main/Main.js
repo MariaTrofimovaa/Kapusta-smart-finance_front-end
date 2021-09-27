@@ -9,7 +9,12 @@ import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
 
 import setSelectedDate from "../../redux/date/date.actions";
+import action from "../../redux/transactions/transactions.actions";
+
+import transactionsOperations from "../../redux/transactions/transactions.operations";
+
 import { getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
+import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import styles from "./Main.module.scss";
 const Main = () => {
@@ -21,14 +26,25 @@ const Main = () => {
 
   const dispatch = useDispatch();
 
+  const refreshDate = new Date();
+
   useEffect(() => {
-    const refreshDate = new Date();
     dispatch(
       setSelectedDate(
         refreshDate.toISOString().slice(0, 10).split("-").reverse().join(".")
       )
     );
   }, []);
+
+  useEffect(() => {
+    dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
+  }, []);
+
+  const date = useSelector(getSelectedDate);
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllIncomeOfDate(date));
+    dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  }, [date]);
 
   useEffect(() => {
     isMobileMedia ? history.push("/main") : history.push("/expense");
