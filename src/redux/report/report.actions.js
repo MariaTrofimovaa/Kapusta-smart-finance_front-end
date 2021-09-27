@@ -19,9 +19,8 @@ const getAllForMonthIncomeSuccess = createAction(
 const getAllForMonthIncomeError = createAction(
   "report/getAllForMonthIncomeError"
 );
-const setActiveAction = createAction(
-  "report/setActive"
-);
+const setActiveExpenseAction = createAction("report/setActiveExpenses");
+const setActiveIncomeAction = createAction("report/setActiveIncomes");
 
 export {
   getAllForMonthExpenseRequest,
@@ -30,5 +29,6 @@ export {
   getAllForMonthIncomeRequest,
   getAllForMonthIncomeSuccess,
   getAllForMonthIncomeError,
-  setActiveAction
+  setActiveExpenseAction,
+  setActiveIncomeAction,
 };
