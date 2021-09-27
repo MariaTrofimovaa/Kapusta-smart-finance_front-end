@@ -167,7 +167,7 @@ const EnterForm = () => {
             type="number"
             name="amount"
             value={fields.amount}
-            defaultValue={fields.amount}
+           
             onChange={handleChange}
             required
           />

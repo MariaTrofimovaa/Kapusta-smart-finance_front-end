@@ -13,7 +13,10 @@ import action from "../../redux/transactions/transactions.actions";
 
 import transactionsOperations from "../../redux/transactions/transactions.operations";
 
-import { getCurrLocation, getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
+import {
+  getCurrLocation,
+  getIsMobileMedia,
+} from "../../redux/screenWidth/screenWidth.selector";
 import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import styles from "./Main.module.scss";
@@ -30,32 +33,21 @@ const Main = () => {
 
   const refreshDate = new Date();
 
-  // useEffect(() => {
-  //   dispatch(
-  //     setSelectedDate(
-  //       refreshDate.toISOString().slice(0, 10).split("-").reverse().join(".")
-  //     )
-  //   );
-  // }, []);
-
   useEffect(() => {
     dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
   }, []);
 
   const date = useSelector(getSelectedDate);
-    const currLocation = useSelector(getCurrLocation);
-  
+  const currLocation = useSelector(getCurrLocation);
+
   useEffect(() => {
     dispatch(transactionsOperations.getAllIncomeOfDate(date));
     dispatch(transactionsOperations.getAllExpenseOfDate(date));
   }, [date]);
 
   useEffect(() => {
-     if (currLocation?.includes("/report")) return console.log("retur :>> ");
+    if (currLocation?.includes("/report")) return;
 
-    // if (url === "/report" || url === "/report/incomes")
-    //   return console.log("report :>> ");
-    // console.log("isMobileMedia :>> ", isMobileMedia);
     isMobileMedia ? history.push("/main") : history.push("/expense");
     // eslint-disable-next-line
   }, [isMobileMedia]);
