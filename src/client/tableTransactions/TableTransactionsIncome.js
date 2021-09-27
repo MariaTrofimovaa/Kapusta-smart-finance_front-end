@@ -33,7 +33,7 @@ const TableTransactionsIncome = ({ item }) => {
       <td className={styles.tableDate}>{item.date}</td>
       <td className={styles.tableDescription}>{item.description}</td>
       <td className={styles.tableCategory}>{item.category}</td>
-      <td className={styles.tableAmountIncome}>{item.amount}</td>
+      <td className={styles.tableAmountIncome}>{item.amount}.00 грн.</td>
       <td className={styles.tableDelete}>
         <button
           className={styles.deleteBtn}
