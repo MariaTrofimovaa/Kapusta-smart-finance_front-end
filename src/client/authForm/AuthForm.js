@@ -52,7 +52,7 @@ export const FormControl = ({ label, ...props }) => {
 
 export default function AuthForm() {
   const [action, setAction] = useState("");
-  console.log(action);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
@@ -63,15 +63,12 @@ export default function AuthForm() {
     }
   };
   const responseSuccessGoogle = (response) => {
-    console.log(response);
     axios({
       method: "POST",
       url: "http://localhost:4000/api/v1/auth/googlelogin",
       data: { tokenId: response.tokenId },
     }).then((response) => {
-      console.log("Google login success", response);
       dispatch(loginSuccess(response.data.user));
-      console.log("loginSuccess", response);
     });
   };
   const responseErrorGoogle = (response) => {
