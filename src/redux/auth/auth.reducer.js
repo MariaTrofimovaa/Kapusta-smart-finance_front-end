@@ -9,7 +9,6 @@ import {
   logoutError,
   getCurrentUserSuccess,
   getCurrentUserError,
-  
 } from "./auth.actions";
 
 const initialUserState = {
@@ -28,20 +27,20 @@ const user = createReducer(initialUserState, {
     id: payload.id,
     token: payload.token,
   }),
- 
+  [getCurrentUserSuccess]: (state, { payload }) => ({
+    ...state,
+    ...payload,
+  }),
   [logoutSuccess]: () => initialUserState,
-  [getCurrentUserSuccess]: (_, { payload }) => payload,
 });
 
 const token = createReducer(null, {
- 
   [registerSuccess]: () => null,
   [loginSuccess]: (_, { payload }) => payload.token,
   [logoutSuccess]: () => null,
 });
 
 const loading = createReducer(false, {
- 
   [loginSuccess]: () => false,
   [loginError]: () => false,
   [logoutSuccess]: () => false,
@@ -53,7 +52,6 @@ const loading = createReducer(false, {
 });
 
 const error = createReducer(null, {
-  
   [registerError]: (_, { payload }) => payload,
   [loginError]: (_, { payload }) => payload,
   [logoutError]: (_, { payload }) => payload,
@@ -64,10 +62,7 @@ const isRegistrated = createReducer(false, {
   [registerSuccess]: () => true,
 });
 
-
-
 const isAuthenticated = createReducer(false, {
-
   [isRegistrated]: () => true,
   [loginSuccess]: () => true,
   [getCurrentUserSuccess]: () => true,
