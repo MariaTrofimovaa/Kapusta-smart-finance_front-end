@@ -23,6 +23,7 @@ const EnterForm = () => {
     category: "",
     transactionType: "",
   });
+  
   const [selected, setSelected] = useState(null);
   const [categories, setCategories] = useState([]);
 
@@ -118,8 +119,8 @@ const EnterForm = () => {
           className={styles.productDescription}
           autoComplete="off"
           autoFocus
-          // value={fields.description}
-          defaultValue={fields.description}
+          value={fields.description}
+          // defaultValue={fields.description}
           onChange={handleChange}
           required
         />
@@ -131,8 +132,8 @@ const EnterForm = () => {
           className={styles.productCategory}
           autoComplete="off"
           autoFocus
-          // value={fields.category}
-          defaultValue={fields.category}
+          value={fields.category}
+          // defaultValue={fields.category}
           onClick={searchCategories}
           required
         />
@@ -164,8 +165,8 @@ const EnterForm = () => {
             placeholder="0.00"
             type="number"
             name="amount"
-            // value={fields.amount}
-            defaultValue={fields.amount}
+            value={fields.amount}
+            // defaultValue={fields.amount}
             onChange={handleChange}
             required
           />
