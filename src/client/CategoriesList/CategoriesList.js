@@ -1,5 +1,5 @@
 import sprite from "../../assets/icons/sprite_categories.svg";
-import css from "./CategoriesList.module.css";
+import css from "./CategoriesList.module.scss";
 
 const CategoriesList = ({ transactionType, onClick }) => {
   return (

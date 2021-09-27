@@ -1,26 +1,14 @@
 import transactionsOperations from "../../redux/transactions/transactions.operations";
-import styles from "./TableTransactions.module.css";
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
-import { getSelectedDate } from "../../redux/date/date.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
+import styles from "./TableTransactions.module.scss";
 
 const TableTransactionsExpense = ({ item }) => {
-  // const date = useSelector(getSelectedDate);
-  // const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
-
   const dispatch = useDispatch();
 
   const [isModalOpen, setModalOpen] = useState(false);
-
-  // const handleModalClose = () => {
-  //   setModalOpen(false);
-  // };
-
-  // const handleModalOpen = () => {
-  //   setModalOpen(true);
-  // };
 
   const toggleModal = (e) => {
     setModalOpen(!isModalOpen);

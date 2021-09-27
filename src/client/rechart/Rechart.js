@@ -18,7 +18,7 @@ import {
   LabelList,
 } from "recharts";
 
-import css from "./Rechart.module.css";
+import css from "./Rechart.module.scss";
 
 const Rechart = () => {
   const currentLocation = useLocation();

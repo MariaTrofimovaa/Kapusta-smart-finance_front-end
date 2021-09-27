@@ -1,32 +1,18 @@
 import transactionsOperations from "../../redux/transactions/transactions.operations";
-import styles from "./TableTransactions.module.css";
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
-
-// import { getSelectedDate } from "../../redux/date/date.selectors";
-// import { getIncomeOfDaySelector } from "../../redux/transactions/transactions.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
+import styles from "./TableTransactions.module.scss";
 
 const TableTransactionsIncome = ({ item }) => {
-  // console.log(item, date);
-
   const dispatch = useDispatch();
-  // const date = useSelector(getSelectedDate);
-  // const tableTransactionsIncome = useSelector(getIncomeOfDaySelector);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = (e) => {
     setModalOpen(!isModalOpen);
   };
-
-  // const handleModalOpen = () => {
-  //   setModalOpen(true);
-  // };
-  // useEffect(() => {
-  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
-  // }, [date]);
 
   return (
     <tr key={item._id} className={styles.tableTr}>
@@ -39,7 +25,6 @@ const TableTransactionsIncome = ({ item }) => {
           className={styles.deleteBtn}
           type="button"
           onClick={() => {
-            // console.log("button id", item._id);
             toggleModal();
           }}
         >
@@ -50,7 +35,6 @@ const TableTransactionsIncome = ({ item }) => {
             text={"Вы уверены?"}
             onCancel={toggleModal}
             onSubmit={() => {
-              // console.log("modal id", item._id);
               dispatch(transactionsOperations.deleteTransaction(item._id));
             }}
           />

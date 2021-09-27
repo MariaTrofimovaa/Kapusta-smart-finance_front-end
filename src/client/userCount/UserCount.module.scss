@@ -3,19 +3,13 @@
 .dataContainer {
   margin: 16px auto 30px auto;
   @include flex(space-between, center);
-  // position: relative;
-  // top: 16px;
-  // background-color: transparent;
-  // margin: 0 0;
+
   flex-direction: column;
   font-style: "Roboto";
   @include tablet {
-    //   top: 26px;
-    //   left: 248px;
   }
   @include desktop {
     margin: 0;
-    // left: 450px;
   }
 
   .countText {

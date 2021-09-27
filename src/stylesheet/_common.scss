@@ -22,18 +22,11 @@ html {
   max-width: 320px;
   padding: 0;
 
-  border: 1px solid #e53935;
-  // background-color: #7588e6;
-
   @include tablet() {
     max-width: 768px;
-
-    border: 1px solid #2a36b6;
   }
 
   @include desktop() {
     max-width: 1280px;
-
-    border: 1px solid #31c153;
   }
 }

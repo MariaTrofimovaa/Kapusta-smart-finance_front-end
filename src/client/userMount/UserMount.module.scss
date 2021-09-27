@@ -2,25 +2,20 @@
 
 .userMount {
   @include flex(space-between, center);
-  // position: relative;
   width: 282px;
   height: 85px;
   margin-top: 30px;
   margin-bottom: 40px;
   background-color: white;
   border-radius: 25px;
-  // font-style: "Roboto";
   font-weight: 700;
   font-size: 14px;
   box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
 
-  // top: 152px;
   @include tablet {
     margin: 0 auto 30px;
-    // top: 60px;
     width: 666px;
     height: 50px;
-    // margin-bottom: 30px;
   }
   @include desktop {
     width: 1060px;
@@ -40,11 +35,9 @@
   @include tablet {
     flex-direction: row;
 
-    //   @include flex;
     padding-left: 90px;
   }
   @include desktop {
-    // display: inline-block;
     padding-left: 300px;
   }
 }
@@ -58,18 +51,14 @@
   @include tablet {
     flex-direction: row;
 
-    //   @include flex;
     padding-right: 90px;
   }
   @include desktop {
-    // display: inline-block;
     padding-right: 300px;
   }
 }
 
 .expenseText {
-  // display: inline;
-  // position: relative;
   margin-bottom: 5px;
   @include tablet {
     margin-right: 15px;
@@ -78,14 +67,10 @@
 }
 
 .userExpense {
-  // display: inline;
   color: red;
-  // margin-right: 21px;
 }
 
 .incomeText {
-  // display: inline;
-  // position: relative;
   margin-bottom: 5px;
   @include tablet {
     margin-right: 15px;
@@ -93,9 +78,7 @@
   }
 }
 .userIncome {
-  // display: inline;
   color: green;
-  // margin-right: 21px;
 }
 
 .Line {
