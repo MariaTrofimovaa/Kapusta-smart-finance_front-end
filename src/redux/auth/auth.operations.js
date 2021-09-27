@@ -33,14 +33,9 @@ const register = (registrationObject) => async (dispatch) => {
     const {
       data: { data },
     } = await axios.post("/auth/signup", registrationObject);
-    console.log(data);
-
-    // Вызываем функцию registerAPI и передаем в нее registrationObject
-    // const user = await registerAPI(registrationObject); - импортировать из services/api
-    //     const { data } = await axios.post("/auth/signup", registrationObject);
 
     dispatch(registerSuccess(data));
-    // dispatch(registerSuccess(user));
+
     alertSuccess("Регистрация прошла успешно. Войдите в свою учетную запись.");
   } catch (error) {
     if (error.response?.status === 409) {
@@ -53,12 +48,9 @@ const register = (registrationObject) => async (dispatch) => {
 const login = (loginObject) => async (dispatch, getState) => {
   dispatch(loginRequest());
 
-  console.log("loginObject", loginObject);
   const authToken = getState().auth.token;
 
   try {
-    // const { email, password } = loginObject;
-    // const data = await api.logInApi({ email, password }); - импортировать из services/api
     const {
       data: { data },
     } = await axios.post("/auth/signin", loginObject);
@@ -81,7 +73,7 @@ const logOut = () => async (dispatch) => {
 
   try {
     resetParams();
-    // await logoutApi(); - импортировать из services/api
+
     await axios.get("/auth/logout");
     token.unset();
 
@@ -105,7 +97,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.get("/auth/current");
-    console.log("getcurrentuserdata", data);
+
     dispatch(getCurrentUserSuccess(data));
   } catch (error) {
     if (error.response.status === 401) {
