@@ -72,7 +72,7 @@ const BasicField = () => {
              <Brief />
            </div> */}
       </div>
-      )
+      {/* ) */}
       {/* {isPageWideMobile && (
          <div>
            <div className={styles.btnWrapper}>
