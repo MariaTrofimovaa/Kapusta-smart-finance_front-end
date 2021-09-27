@@ -26,6 +26,7 @@ const user = createReducer(initialUserState, {
     email: payload.email,
     id: payload.id,
     token: payload.token,
+    
   }),
   [getCurrentUserSuccess]: (state, { payload }) => ({
     ...state,
