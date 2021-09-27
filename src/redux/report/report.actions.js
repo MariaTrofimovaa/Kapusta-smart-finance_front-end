@@ -22,6 +22,8 @@ const getAllForMonthIncomeError = createAction(
 const setActiveExpenseAction = createAction("report/setActiveExpenses");
 const setActiveIncomeAction = createAction("report/setActiveIncomes");
 
+const refreshExpenses = createAction("report/refreshExpenses");
+
 export {
   getAllForMonthExpenseRequest,
   getAllForMonthExpenseSuccess,
@@ -31,4 +33,5 @@ export {
   getAllForMonthIncomeError,
   setActiveExpenseAction,
   setActiveIncomeAction,
+  refreshExpenses,
 };

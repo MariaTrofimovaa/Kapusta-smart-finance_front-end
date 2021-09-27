@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from "react";
-import { Switch, useHistory } from "react-router";
+import { Switch, useHistory, useRouteMatch } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,25 +8,27 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
 
-// import setSelectedDate from "../../redux/date/date.actions";
-// import action from "../../redux/transactions/transactions.actions";
+import setSelectedDate from "../../redux/date/date.actions";
+import action from "../../redux/transactions/transactions.actions";
 
-// import transactionsOperations from "../../redux/transactions/transactions.operations";
+import transactionsOperations from "../../redux/transactions/transactions.operations";
 
-import { getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
-// import { getSelectedDate } from "../../redux/date/date.selectors";
+import { getCurrLocation, getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
+import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import styles from "./Main.module.scss";
+
 const Main = () => {
   const isMobileMedia = useSelector(getIsMobileMedia);
   const location = useLocation();
   const history = useHistory();
+  const { url } = useRouteMatch();
   const isRegisterPage = location.pathname === "/";
   const classes = isRegisterPage ? styles.registerWrapper : styles.mainWrapper;
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const refreshDate = new Date();
+  const refreshDate = new Date();
 
   // useEffect(() => {
   //   dispatch(
@@ -36,18 +38,26 @@ const Main = () => {
   //   );
   // }, []);
 
-  // useEffect(() => {
-  //   dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
-  // }, []);
+  useEffect(() => {
+    dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
+  }, []);
 
-  // const date = useSelector(getSelectedDate);
-  // useEffect(() => {
-  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
-  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  // }, [date]);
+  const date = useSelector(getSelectedDate);
+    const currLocation = useSelector(getCurrLocation);
+  
+  useEffect(() => {
+    dispatch(transactionsOperations.getAllIncomeOfDate(date));
+    dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  }, [date]);
 
   useEffect(() => {
+     if (currLocation?.includes("/report")) return console.log("retur :>> ");
+
+    // if (url === "/report" || url === "/report/incomes")
+    //   return console.log("report :>> ");
+    // console.log("isMobileMedia :>> ", isMobileMedia);
     isMobileMedia ? history.push("/main") : history.push("/expense");
+    // eslint-disable-next-line
   }, [isMobileMedia]);
 
   return (
@@ -59,14 +69,14 @@ const Main = () => {
               route.isPrivate ? (
                 <PrivateRoutes
                   {...route}
-                  redirectTo
+                  redirectTo={route.redirectTo}
                   isMobileMedia={isMobileMedia}
                   key={route.name}
                 />
               ) : (
                 <PublicRoutes
                   {...route}
-                  redirectTo
+                  redirectTo={route.redirectTo}
                   isMobileMedia={isMobileMedia}
                   key={route.name}
                 />

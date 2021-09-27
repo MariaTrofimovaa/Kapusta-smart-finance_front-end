@@ -18,10 +18,12 @@ const App = ({ size: { width } }) => {
   useEffect(() => {
     dispatch(getCurrentUser());
     dispatch(setScreenWidth(width));
+    // eslint-disable-next-line
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(setScreenWidth(width));
+    // eslint-disable-next-line
   }, [width]);
 
   return (

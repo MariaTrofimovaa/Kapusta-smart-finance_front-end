@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, useEffect } from "react";
 import Rechart from "../../client/rechart/Rechart";
 import {
   Route,
@@ -13,6 +13,12 @@ import UserCount from "../../client/userCount/UserCount";
 import GoBack from "../../shared/components/goBack/GoBack";
 import UserMount from "../../client/userMount/UserMount";
 import Balance from "../../client/balance/Balance";
+import { useDispatch } from "react-redux";
+import { setCurrentLocation } from "../../redux/screenWidth/screenWidth.action";
+import { useSelector } from "react-redux";
+import { getCurrLocation } from "../../redux/screenWidth/screenWidth.selector";
+// import { useSelector } from "react-redux";
+// import {getIsMobileMedia} from "../../redux/screenWidth/screenWidth.selector";
 
 const ReportExpense = lazy(() =>
   import("../../client/reportExpense/ReportExpense")
@@ -21,10 +27,16 @@ const ReportIncomes = lazy(() =>
   import("../../client/reportIncomes/ReportIncomes")
 );
 
-
 const ReportPage = () => {
+  // const isMobile = useSelector(getIsMobileMedia);
   const match = useRouteMatch();
   const location = useLocation();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCurrentLocation(location));
+  }, []);
 
   const activeLocation = location.pathname;
 

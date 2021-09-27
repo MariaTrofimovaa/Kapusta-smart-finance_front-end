@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Switch } from "react-router";
+import React, { useEffect } from "react";
+import { Route, Switch, useLocation } from "react-router";
 import Balance from "../../client/balance/Balance";
 import EnterForm from "../../client/enterForm/enterForm/EnterForm";
 import Calendar from "../../client/enterForm/calendar/Calendar";
@@ -7,8 +7,17 @@ import TableTransactions from "../../client/tableTransactions/TableTransactions"
 import BasicFieldTab from "../../client/basicField/BasicFieldTab";
 
 import styles from "./MobileHomePage.module.css";
+import { useDispatch } from "react-redux";
+import { setCurrentLocation } from "../../redux/screenWidth/screenWidth.action";
 
 const MobileHomePage = (props) => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    dispatch(setCurrentLocation(location));
+  }, []);
+
   return (
     <div>
       <div className={styles.inputFormMobile}>

@@ -16,6 +16,7 @@ export const mainRoutes = [
     path: "/report",
     component: lazy(() => import("../pages/reportPage/ReportPage")),
     exact: false,
+    redirectTo: "/report",
     isPrivate: true,
   },
   {
@@ -23,6 +24,7 @@ export const mainRoutes = [
     path: "/main",
     component: lazy(() => import("../pages/mobileHomePage/MobileHomePage")),
     isPrivate: true,
+    redirectTo: "/",
     isMobile: true,
   },
 
@@ -32,6 +34,7 @@ export const mainRoutes = [
     component: lazy(() => import("../pages/homePage/HomePage")),
     exact: false,
     isPrivate: true,
+    redirectTo: "/",
     isMobile: false,
   },
 
@@ -40,6 +43,7 @@ export const mainRoutes = [
     path: "",
     component: lazy(() => import("../pages/notFound/NotFound")),
     exact: true,
+    redirectTo: null,
     isPrivate: false,
   },
 ];

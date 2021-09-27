@@ -11,10 +11,12 @@ const [date, setDate] = useState(new Date());
 const monthes = moment(date).format('MM.YYYY');
 
 useEffect(() => {
-    dispatch(getAllExpenseOfMonth(monthes));
+  dispatch(getAllExpenseOfMonth(monthes));
+  // eslint-disable-next-line
 }, [date]);
 useEffect(() => {
-    dispatch(getAllIncomeOfMonth(monthes));
+  dispatch(getAllIncomeOfMonth(monthes));
+  // eslint-disable-next-line
 }, [date]);
 
 const changeMonth = (action) => {

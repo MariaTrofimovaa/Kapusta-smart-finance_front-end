@@ -1,8 +1,15 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { setScreenWidth } from "./screenWidth.action";
+import { createReducer, combineReducers } from "@reduxjs/toolkit";
+import { setCurrentLocation, setScreenWidth } from "./screenWidth.action";
 
- const screenWidthReducer = createReducer(0, {
+const screenWidthReducer = createReducer(0, {
   [setScreenWidth]: (state, { payload }) => payload,
 });
 
-export default screenWidthReducer;
+const currLocationReducer = createReducer("", {
+  [setCurrentLocation]: (state, { payload }) => payload,
+});
+
+export default combineReducers({
+  width: screenWidthReducer,
+  location: currLocationReducer,
+});

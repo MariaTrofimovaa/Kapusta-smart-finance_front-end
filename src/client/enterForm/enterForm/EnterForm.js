@@ -23,7 +23,7 @@ const EnterForm = () => {
     category: "",
     transactionType: "",
   });
-  
+
   const [selected, setSelected] = useState(null);
   const [categories, setCategories] = useState([]);
 
@@ -133,6 +133,7 @@ const EnterForm = () => {
           autoComplete="off"
           autoFocus
           value={fields.category}
+          onChange={()=> {}} // КОСТЫЛЬ! ПЕРЕДЕЛАТЬ НА СЕЛЕКТ
           // defaultValue={fields.category}
           onClick={searchCategories}
           required

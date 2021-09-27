@@ -15,7 +15,17 @@ const persistConfig = {
   whitelist: ["token"],
 };
 
+const screenWidthPersistConfig = {
+  key: "screenWidth",
+  storage,
+  whitelist: ["location"],
+};
+
 const persistAuthReducer = persistReducer(persistConfig, authReducer);
+const persistScreenWidthReducer = persistReducer(
+  screenWidthPersistConfig,
+  screenWidth
+);
 
 const rootReducer = combineReducers({
   auth: persistAuthReducer,
@@ -23,7 +33,7 @@ const rootReducer = combineReducers({
   report: reportReducer,
   transactions,
   selectedDate: selectedDateReducer,
-  screenWidth,
+  screenWidth: persistScreenWidthReducer,
 });
 
 export default rootReducer;

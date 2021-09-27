@@ -48,7 +48,7 @@ const getAllExpenseOfDate = (date) => async (dispatch, getState) => {
     );
     dispatch(transactionsActions.getExpenseOfDaySuccess(data));
   } catch (error) {
-    dispatch(transactionsActions.getExpenseOfDayError(error));
+    dispatch(transactionsActions.getExpenseOfDayError(error.message));
   }
 };
 
@@ -62,7 +62,7 @@ const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
     );
     dispatch(transactionsActions.getIncomeOfDaySuccess(data));
   } catch (error) {
-    dispatch(transactionsActions.getIncomeOfDayError(error));
+    dispatch(transactionsActions.getIncomeOfDayError(error.message));
   }
 };
 
