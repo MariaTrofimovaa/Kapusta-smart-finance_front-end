@@ -32,9 +32,9 @@ const Brief = () => {
 
   const transactions = useSelector(getBrief)[filter.type];
 
-  useEffect(() => {
-    dispatch(action.changeActualYearForBrief(date.getFullYear()));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(action.changeActualYearForBrief(date.getFullYear()));
+  // }, []);
 
   useEffect(() => {
     !transactions.length && stateYear && dispatch(operation.fetchBrief(filter));
