@@ -1,12 +1,10 @@
 @import "../../stylesheet/base.scss";
 
-// .report {
-//   display: none;
-// }
 .reportsLink {
   display: flex;
+
   align-items: flex-end;
-  font-family: Roboto;
+  font-family: "Roboto";
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
@@ -24,17 +22,18 @@
 }
 
 .container {
-  position: relative;
+  // position: relative;
   width: 320px;
   margin: 0 auto;
   padding-top: 35px;
   padding-left: 19px;
   padding-right: 19px;
   text-align: center;
+  margin-bottom: 40px;
 }
-.formContainer {
-  margin: 0 auto;
-}
+// .formContainer {
+//   margin: 0 auto;
+// }
 
 .inputButtonContainer {
   display: flex;
@@ -110,6 +109,7 @@
 @media screen and (max-width: 767px) {
   .container {
     position: static;
+    margin-bottom: 30px;
   }
 
   .formContainer {
@@ -118,11 +118,14 @@
   }
 
   .balanceContainer {
-    padding-top: 35px;
+    padding-top: 30px;
   }
 
   .inputField {
     border-right: 0;
+  }
+  .reportsLink {
+    align-items: flex-end;
   }
 }
 
@@ -141,7 +144,7 @@
     flex-direction: row-reverse;
     align-items: baseline;
     width: 634px;
-    margin: 0 auto;
+    // margin: 0 auto;
   }
   .balanceContainer {
     display: flex;
@@ -163,6 +166,7 @@
 @media screen and (min-width: 1280px) {
   .container {
     width: 1280px;
+    margin-bottom: 9px;
     /* padding-left: 375px; */
   }
   .formContainer {
@@ -170,7 +174,7 @@
     align-items: baseline;
     flex-direction: row-reverse;
     width: 700px;
-    margin: 0 auto;
+    // margin: 0 auto;
   }
   .submitBtn {
     margin-right: 205px;

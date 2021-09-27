@@ -1,7 +1,8 @@
-import React from 'react';
-import Loader from 'react-loader-spinner';
-import styles from './Loader.module.css';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import React from "react";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+import styles from "./Loader.module.scss";
 
 const AppLoader = () => {
   return (

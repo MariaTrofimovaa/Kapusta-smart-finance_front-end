@@ -39,9 +39,8 @@
     letter-spacing: 0.02em;
 
     &::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: #c7ccdc;
-      opacity: 1; /* Firefox */
+      opacity: 1;
     }
     @include tablet {
       border: 2px solid #f5f6fb;
@@ -76,9 +75,8 @@
     letter-spacing: 0.02em;
 
     &::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: #c7ccdc;
-      opacity: 1; /* Firefox */
+      opacity: 1;
     }
 
     @include tablet {
@@ -101,7 +99,6 @@
     }
   }
 
-  // Выпадающий список
   &ResultList {
     width: 282px;
     max-height: 300px;
@@ -168,9 +165,7 @@
     text-align: right;
 
     &::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
-
-      opacity: 1; /* Firefox */
+      opacity: 1;
       color: #000000;
 
       font-weight: 700;
@@ -199,9 +194,7 @@
       margin-left: 0;
 
       &::placeholder {
-        /* Chrome, Firefox, Opera, Safari 10.1+ */
-
-        opacity: 1; /* Firefox */
+        opacity: 1;
         color: #c7ccdc;
       }
     }
@@ -306,7 +299,7 @@
 
   color: var(--white-color);
   border-radius: 16px;
-  border: var(--accent-color-orange);
+  border: $accent-color-orange;
   font-size: 12px;
 
   outline: none;

@@ -5,12 +5,7 @@
   width: 24px;
   height: 24px;
   margin: 15px 0;
-  /* content: "";
-  background-image: url(../../assets/images/return-link.png); */
 }
-/* .returnLink::after {
-  background-image: url(../../assets/images/return-link.png);
-} */
 
 .returnLinkWrapper {
   padding: 15px 19px;
@@ -23,7 +18,6 @@
     flex-direction: column;
     justify-content: space-between;
     width: 665px;
-    /* height: 580px; */
     padding: 30px 20px 40px;
     background-color: #fff;
 
@@ -35,8 +29,6 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    /* Добавила margin-top, чтобы оттолкнуться от баланса */
-    margin-top: 93px;
   }
 
   .dataWrapper {

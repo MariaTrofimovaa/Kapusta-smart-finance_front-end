@@ -6,56 +6,6 @@ import {
 import transactionsActions from "./transactions.actions";
 import axios from "axios";
 
-// const url = "http://localhost:4000/api/v1/transactions";
-
-// const url = "http://localhost:3001/api/v1/transactions";
-// const token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDMzMzUwZDNiNWFlNDJkNDFiMTU5YyIsImlhdCI6MTYzMTgwMjkwM30.RvxVmRp4BNM-mK-svSOrQii667zLI_51iGLlQNdLozs";
-
-// axios.defaults.baseURL = url;
-
-// const addBalanceOperation = (transactionData) => (dispatch) => {
-//   //const token=store.getState().auth.token;
-
-//   dispatch(transactionsActions.addBalanceRequest());
-
-//   const addTransactionEndpoint =
-//     transactionData.transactionType === "income" ? "income" : "expense";
-
-//   axios
-//     .post(`${url}/${addTransactionEndpoint}`, transactionData, {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//     .then(({ data }) => {
-//       dispatch(transactionsActions.addBalanceSuccess(data));
-//     })
-//     .catch((error) => {
-//       dispatch(transactionsActions.addBalanceError(error));
-//     });
-// };
-
-// const getBalanceOperation = (date) => (dispatch) => {
-//   //const token=store.getState().auth.token;
-
-//   dispatch(transactionsActions.getBalanceRequest());
-//   axios
-//     .get(`${url}/user`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//     .then(({ data }) => {
-//       dispatch(transactionsActions.getBalanceSuccess(data));
-//     })
-//     .catch((error) => {
-//       dispatch(transactionsActions.getBalanceError(error));
-//     });
-// };
-
 const addTransaction =
   (date, description, amount, category, transactionType) => (dispatch) => {
     const transaction = {
@@ -121,7 +71,7 @@ const deleteTransaction = (id) => (dispatch) => {
 
   deleteTransactionApi(id)
     .then(({ data }) => {
-      console.log(data)
+      console.log(data);
       dispatch(transactionsActions.deleteTransactionSuccess(data.transaction));
     })
     .catch((error) =>
@@ -146,8 +96,6 @@ const fetchBrief = (filter) => (dispatch, getState) => {
 
 const transactionsOperations = {
   deleteTransaction,
-  // addBalanceOperation,
-  // getBalanceOperation,
   addTransaction,
   fetchBrief,
   getAllExpenseOfDate,

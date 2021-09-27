@@ -5,33 +5,19 @@ import EnterForm from "../../client/enterForm/enterForm/EnterForm";
 import Calendar from "../../client/enterForm/calendar/Calendar";
 import TableTransactions from "../../client/tableTransactions/TableTransactions";
 import BasicFieldTab from "../../client/basicField/BasicFieldTab";
-// import { useLocation, useParams } from "react-router-dom";
-// import { getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
 
 import styles from "./MobileHomePage.module.css";
-import { useSelector } from "react-redux";
-import { getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
-import { SwishSpinner } from "react-spinners-kit";
 
-// const MobileHomePage = ( { match }) => {
 const MobileHomePage = (props) => {
-  const isMobileMedia = useSelector(getIsMobileMedia);
-
-  // const location = useLocation().pathname;
-  // const mainLocaiton = location.pathname === "/mob";
-  // const enterFormLocation = location.pathname === "/:transType";
-
   return (
     <div>
       <div className={styles.inputFormMobile}>
         <Switch>
           <Route path={props.match.path + "/:transType"}>
-            {/* <Route path={enterFormLocation}> */}
             <EnterForm />
           </Route>
 
           <Route path={props.match.path}>
-            {/* <Route path={mainLocaiton}> */}
             <div className={styles.dataFieldMobile}>
               <Balance />
               <Calendar />
@@ -57,5 +43,3 @@ const MobileHomePage = (props) => {
 };
 
 export default MobileHomePage;
-
-// Здесь рендерятся компоненты только для мобильной версии залогиненого пользователя
