@@ -118,7 +118,7 @@ const EnterForm = () => {
           className={styles.productDescription}
           autoComplete="off"
           autoFocus
-          // value={fields.description}
+          value={fields.description}
           defaultValue={fields.description}
           onChange={handleChange}
           required
@@ -131,7 +131,7 @@ const EnterForm = () => {
           className={styles.productCategory}
           autoComplete="off"
           autoFocus
-          // value={fields.category}
+          value={fields.category}
           defaultValue={fields.category}
           onClick={searchCategories}
           required
@@ -164,7 +164,7 @@ const EnterForm = () => {
             placeholder="0.00"
             type="number"
             name="amount"
-            // value={fields.amount}
+            value={fields.amount}
             defaultValue={fields.amount}
             onChange={handleChange}
             required

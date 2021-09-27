@@ -1,36 +1,38 @@
 @import "../../../stylesheet/base";
 
 .goBack {
-  position: relative;
+  // position: relative;
+  display: flex;
   align-items: center;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin: 0;
+  margin: 21px 0 0 0;
   padding: 0;
-  top: 23px;
-  left: -39px;
+  // top: 23px;
+  // left: -39px;
 
-  @include tablet{
-    @include flex();
-    top: 56px;
-    left: 53px;
-}
-  @include desktop{
-    left: 113px;
+  @include tablet {
+    margin: 0;
+    //     @include flex();
+    //     top: 56px;
+    //     left: 53px;
+  }
+  @include desktop {
+    // left: 113px;
   }
 }
 .arrowSvg {
   @include flex(space-between, center);
   width: 18px;
   height: 12px;
-  @include tablet{
+  @include tablet {
     margin-right: 18px;
   }
 }
 .arrowText {
   visibility: hidden;
-  @include tablet{
+  @include tablet {
     visibility: visible;
     font-family: "Roboto";
     font-size: 14px;
@@ -39,4 +41,3 @@
     color: $primary-text-color;
   }
 }
-

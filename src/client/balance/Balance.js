@@ -21,10 +21,14 @@ function Balance() {
     dispatch(balanceOperations.setBalanceOperation(newBalance));
   };
   return (
-    <div className={styles.container}>
-      <div className={styles.formContainer}>
+    <div className={!isReportPage ? styles.container : styles.containerReport}>
+      <div
+        className={
+          !isReportPage ? styles.formContainer : styles.formContainerReport
+        }
+      >
         {!isReportPage && (
-          <div>
+          <div className={styles.linkContainer}>
             <Link to="/report" className={styles.reportsLink}>
               Перейти к отчетам
             </Link>
@@ -35,7 +39,9 @@ function Balance() {
           <div className={styles.inputButtonContainer}>
             <div key={balanceFromStore}>
               <input
-                className={styles.inputField}
+                className={
+                  !isReportPage ? styles.inputField : styles.inputFieldReport
+                }
                 name="balance"
                 type="text"
                 defaultValue={
@@ -48,7 +54,12 @@ function Balance() {
               />
               {!balanceFromStore ? <Tooltip /> : ""}
             </div>
-            <button type="submit" className={styles.submitBtn}>
+            <button
+              type="submit"
+              className={
+                !isReportPage ? styles.submitBtn : styles.submitBtnReport
+              }
+            >
               Подтвердить
             </button>
           </div>
