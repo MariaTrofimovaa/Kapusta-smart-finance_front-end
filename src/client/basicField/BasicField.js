@@ -30,38 +30,38 @@ const BasicField = () => {
           <EnterForm transType={transType} />
         </div>
       ) : ( */}
-        <div>
-          <div className={styles.btnWrapper}>
-            <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
-            <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
-          </div>
+      <div>
+        <div className={styles.btnWrapper}>
+          <BasicFieldTab text={"Расход"} link={"/expense"} key="Расход" />
+          <BasicFieldTab text={"Доход"} link={"/income"} key="Доход" />
+        </div>
 
-          {isPageWideLaptop && (
+        {isPageWideLaptop && (
+          <div className={styles.dataField}>
+            <div className={styles.enterFormWrapper}>
+              <Calendar />
+              <EnterForm />
+            </div>
+            <div className={styles.dataWrapper}>
+              <TableTransactions />
+              <Brief />
+            </div>
+          </div>
+        )}
+        {isPageWideTablet && (
+          <>
             <div className={styles.dataField}>
-              <div className={styles.enterFormWrapper}>
-                <Calendar />
-                <EnterForm transType={transType} />
-              </div>
+              <Calendar />
+              <EnterForm />
+
               <div className={styles.dataWrapper}>
                 <TableTransactions />
-                <Brief />
               </div>
             </div>
-          )}
-          {isPageWideTablet && (
-            <>
-              <div className={styles.dataField}>
-                <Calendar />
-                <EnterForm transType={transType} />
-
-                <div className={styles.dataWrapper}>
-                  <TableTransactions />
-                </div>
-              </div>
-              <Brief />
-            </>
-          )}
-          {/* <div className={styles.dataField}>
+            <Brief />
+          </>
+        )}
+        {/* <div className={styles.dataField}>
                <Calendar />
                <EnterForm transType={transType} />
              <div className={styles.enterFormWrapper}>
@@ -71,8 +71,8 @@ const BasicField = () => {
              </div>
              <Brief />
            </div> */}
-        </div>
-      )
+      </div>
+      {/* ) */}
       {/* {isPageWideMobile && (
          <div>
            <div className={styles.btnWrapper}>

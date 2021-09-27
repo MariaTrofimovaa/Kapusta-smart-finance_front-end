@@ -12,6 +12,7 @@ import css from "./ReportPage.module.css";
 import UserCount from "../../client/userCount/UserCount";
 import GoBack from "../../shared/components/goBack/GoBack";
 import UserMount from "../../client/userMount/UserMount";
+import Balance from "../../client/balance/Balance";
 
 const ReportExpense = lazy(() =>
   import("../../client/reportExpense/ReportExpense")
@@ -31,6 +32,7 @@ const ReportPage = () => {
     <div>
       <GoBack />
       <UserCount />
+      <Balance />
       <UserMount />
       <div className={css.list_wraper}>
         <ul className={css.list}>

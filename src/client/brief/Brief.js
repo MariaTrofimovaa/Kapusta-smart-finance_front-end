@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import sprite from "../../assets/icons/sprite_categories.svg";
 
@@ -17,40 +17,39 @@ import {
 
 const Brief = () => {
   const dispatch = useDispatch();
-  // const location = useLocation().pathname;
   const { transType } = useParams();
 
   const date = new Date();
 
-  const [currentYear, setYear] = useState(date.getFullYear());
   const [monthsTotal, setMonthes] = useState([]);
+
+  const stateYear = useSelector(getYear);
 
   const filter = {
     type: transType,
-    year: currentYear,
+    year: stateYear,
   };
 
   const transactions = useSelector(getBrief)[filter.type];
 
-  const stateYear = useSelector(getYear);
+  useEffect(() => {
+    dispatch(action.changeActualYearForBrief(date.getFullYear()));
+  }, []);
 
   useEffect(() => {
-    dispatch(action.changeActualYearForBrief(currentYear));
-  }, [dispatch, currentYear]);
+    !transactions.length && stateYear && dispatch(operation.fetchBrief(filter));
+  }, [dispatch, stateYear, transType]);
 
   useEffect(() => {
-    !transactions.length && dispatch(operation.fetchBrief(filter));
-  }, [dispatch, stateYear]);
-
-  useEffect(() => {
-    let month = new Date();
-
     if (!transactions.length) {
       const monthesSum = [];
       setMonthes(monthesSum);
       return;
     }
-    const monthesSum = Array(date.getMonth() + 1)
+    const monthCuantity =
+      date.getFullYear() === stateYear ? date.getMonth() + 1 : 12;
+
+    const monthesSum = Array(monthCuantity)
       .fill("")
       .map((_, idx) => ({
         currentMonth: idx,
@@ -65,8 +64,13 @@ const Brief = () => {
       }));
 
     monthesSum.forEach((data) => {
-      month.setMonth(data.currentMonth);
-      data.currentMonth = month.toLocaleDateString("ru", { month: "long" });
+      date.setMonth(data.currentMonth);
+      data.currentMonth = date.toLocaleDateString("ru", { month: "long" });
+
+      let formatter = new Intl.NumberFormat("ru", {
+        minimumFractionDigits: 2,
+      });
+      data.currentAmount = formatter.format(data.currentAmount);
     });
 
     setMonthes(monthesSum);
@@ -76,33 +80,36 @@ const Brief = () => {
     <div className={styles.container}>
       <div className={styles.titleBlock}>
         <div className={styles.titleCont}>
-          <button
-            className={styles.btn}
-            onClick={() => {
-              setYear(currentYear - 1);
-            }}
-          >
-            <svg width="10" height="15">
-              <use xlinkHref={`${sprite}#icon-arrow-left`} />
-            </svg>
-          </button>
-          <div>
-            Сводка
-            <p>{currentYear}</p>
-          </div>
-
-          {currentYear < date.getFullYear() && (
+          <div className={styles.btnBlock}>
             <button
               className={styles.btn}
               onClick={() => {
-                setYear(currentYear + 1);
+                dispatch(action.changeActualYearForBrief(stateYear - 1));
               }}
             >
               <svg width="10" height="15">
-                <use xlinkHref={`${sprite}#icon-arrow-right`} />
+                <use xlinkHref={`${sprite}#icon-arrow-left`} />
               </svg>
             </button>
-          )}
+          </div>
+          <div>
+            Сводка
+            <p>{stateYear}</p>
+          </div>
+          <div className={styles.btnBlock}>
+            {stateYear < date.getFullYear() && (
+              <button
+                className={styles.btn}
+                onClick={() => {
+                  dispatch(action.changeActualYearForBrief(stateYear + 1));
+                }}
+              >
+                <svg width="10" height="15">
+                  <use xlinkHref={`${sprite}#icon-arrow-right`} />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
       </div>
 

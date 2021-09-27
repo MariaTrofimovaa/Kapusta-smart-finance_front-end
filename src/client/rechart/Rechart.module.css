@@ -53,6 +53,16 @@
   );
 }
 
+/* .xaxis {
+width: 40px;
+overflow:hidden;
+
+}
+tspan {
+  width: 40px;
+  overflow:visible;
+} */
+
 .text {
   font-weight: normal;
   font-size: 12px;
@@ -74,12 +84,13 @@
   .chart_box {
     border-radius: 30px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-
   }
 }
 
 @media (min-width: 1280px) {
   .chart_box {
     width: 758px;
+    border-radius: 0;
+    box-shadow: none;
   }
 }

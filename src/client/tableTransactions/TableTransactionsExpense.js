@@ -6,7 +6,7 @@ import IconDelete from "../../shared/iconDelete/IconDelete";
 import { getSelectedDate } from "../../redux/date/date.selectors";
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
-const TableTransactionsExpense = ({item, date}) => {
+const TableTransactionsExpense = ({ item }) => {
   // const date = useSelector(getSelectedDate);
   // const tableTransactionsExpense = useSelector(getExpenseOfDaySelector);
 
@@ -22,10 +22,9 @@ const TableTransactionsExpense = ({item, date}) => {
   //   setModalOpen(true);
   // };
 
-   const toggleModal = (e) => {
-     setModalOpen(!isModalOpen);
+  const toggleModal = (e) => {
+    setModalOpen(!isModalOpen);
   };
-
 
   return (
     <tr key={item._id} className={styles.tableTr}>
@@ -37,7 +36,9 @@ const TableTransactionsExpense = ({item, date}) => {
         <button
           className={styles.deleteBtn}
           type="button"
-          onClick={()=> {toggleModal()}}
+          onClick={() => {
+            toggleModal();
+          }}
         >
           <IconDelete />
         </button>
