@@ -7,7 +7,6 @@ import {
 
 import { useWindowSize } from "../../shared/windowSize/windowSize";
 import {
-  // Area,
   BarChart,
   ComposedChart,
   Bar,
@@ -15,8 +14,6 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  // Tooltip,
-  // Legend,
   ResponsiveContainer,
   LabelList,
 } from "recharts";
@@ -61,6 +58,7 @@ const Rechart = () => {
       return acc;
     }, [])
     .sort(byField("amount"));
+  const dataChart = data.length ? data : [0];
   ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
   const BarLabelStyle = ({ payload, x, y, width, height, value }) => {
     return (
@@ -76,7 +74,7 @@ const Rechart = () => {
   const BarLabelMobyle = ({ payload, x, y, width, height, value }) => {
     return (
       <text
-        x={x + width / 1.09}
+        x={x + width / 1.11}
         y={y}
         className={css.text}
         textAnchor="middle"
@@ -84,12 +82,13 @@ const Rechart = () => {
       >{`${value} грн`}</text>
     );
   };
+
   ///////////////////////////////////////////////////////// стили графика /////////////////////////////////////////////////////////
   return width >= 768 ? (
     <div className={css.chart_box}>
-      <ResponsiveContainer width="80%" height={422}>
+      <ResponsiveContainer width="100%" height={422}>
         <BarChart
-          data={data}
+          data={dataChart}
           margin={{
             top: 30,
             right: 15,
@@ -104,7 +103,7 @@ const Rechart = () => {
             radius={[10, 10, 0, 0]}
             label={BarLabelStyle}
           >
-            {data.map((entry, index) => (
+            {dataChart.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={index % 3 ? "#FFDAC0" : "#ff751d"}
@@ -116,7 +115,11 @@ const Rechart = () => {
             axisLine={false}
             tickLine={false}
             tickCount={9}
-            minTickGap={5}
+            minTickGap={50}
+            ////////////
+            allowDataOverflow={true}
+            type="category"
+            className={css.xaxis}
           />
           <CartesianGrid vertical={false} horizontal={false} opacity={0.2} />{" "}
         </BarChart>
@@ -124,10 +127,10 @@ const Rechart = () => {
     </div>
   ) : (
     <div className={css.mobile_box}>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={500}>
         <ComposedChart
           layout="vertical"
-          data={data}
+          data={dataChart}
           margin={{
             top: 20,
             right: 5,
@@ -148,7 +151,7 @@ const Rechart = () => {
             radius={[0, 10, 10, 0]}
             label={BarLabelMobyle}
           >
-            {data.map((entry, index) => (
+            {dataChart.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={index % 3 ? "#FFDAC0" : "#ff751d"}
