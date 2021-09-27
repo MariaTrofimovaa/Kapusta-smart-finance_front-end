@@ -23,23 +23,6 @@
   }
 }
 
-// .headerContainer {
-//   display: flex;
-//   justify-content: space-between;
-
-//   padding: 0 20px;
-
-//   @include tablet() {
-//     width: 768px;
-//     padding: 0 26px;
-//   }
-
-//   @include desktop() {
-//     width: 1280px;
-//     padding: 0 44px 0 26px;
-//   }
-// }
-
 .logoLink,
 .logoImg {
   margin: 0;
@@ -54,29 +37,8 @@
   align-self: center;
 
   @include flex(space-between, center);
-  // display: flex;
-  // justify-content: space-between;
 
   @include tablet {
     width: fit-content;
-    // justify-content: space-between;
   }
 }
-
-// @media (min-width: 768px) {
-//   .headerContainer {
-//     padding: 0 26px;
-//   }
-
-//   .userInfo {
-//     width: fit-content;
-//     justify-content: space-between;
-//   }
-// }
-
-// @media (min-width: 1280px) {
-//   .headerContainer {
-//     /* max-width: 1280px; */
-//     padding: 0 44px 0 26px;
-//   }
-// }

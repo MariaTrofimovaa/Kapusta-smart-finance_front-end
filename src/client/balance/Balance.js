@@ -2,11 +2,12 @@ import React, {useEffect} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 
 import {useSelector, useDispatch} from 'react-redux';
-import styles from './Balance.module.css';
 import Tooltip from '../../shared/components/tooltip/Tooltip';
 
 import balanceOperations from '../../redux/balance/balance.operations';
 import balanceSelectors from '../../redux/balance/balance.selectors';
+
+import styles from './Balance.module.scss';
 
 function Balance() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function Balance() {
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
-        <div>
+        <div className={styles.report}>
           <Link to="/report" className={styles.reportsLink}>
             Перейти к отчетам
           </Link>
@@ -40,13 +41,13 @@ function Balance() {
                 type="text"
                 defaultValue={
                   parseFloat(
-                    balanceFromStore && typeof balanceFromStore === 'number'
+                    balanceFromStore && typeof balanceFromStore === "number"
                       ? balanceFromStore
                       : 0
-                  ).toFixed(2) + ' UAH'
+                  ).toFixed(2) + " UAH"
                 }
               />
-              {!balanceFromStore ? <Tooltip /> : ''}
+              {!balanceFromStore ? <Tooltip /> : ""}
             </div>
             <button type="submit" className={styles.submitBtn}>
               Подтвердить
