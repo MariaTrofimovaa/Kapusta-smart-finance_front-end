@@ -133,7 +133,7 @@ const EnterForm = () => {
           autoFocus
           value={fields.category}
           onClick={searchCategories}
-          // required
+          required
         />
         <ArrowDown className={styles.arrowDown} />
         <ul className={styles.productResultList} id="categories">
