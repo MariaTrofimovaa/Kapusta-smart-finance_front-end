@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActiveCategori } from "../../redux/report/report.operations";
 
 import { allexpenseOfMonth } from "../../redux/report/report.selectors";
-import CategoriesList from "../../client/CategoriesList/CategoriesList";
+import CategoriesList from "../categoriesList/CategoriesList";
 import setActive from "../../shared/setActive/setActive";
 
 const ReportExpense = () => {
