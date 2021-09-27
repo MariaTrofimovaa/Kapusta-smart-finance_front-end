@@ -1,6 +1,61 @@
 @import "../../stylesheet/base.scss";
 
+.container {
+  // position: relative;
+  // @include mobile {
+  // position: static;
+  // margin-bottom: 30px;
+  // }
+
+  width: 320px;
+  margin: 0 auto;
+  padding-top: 35px;
+  padding-left: 19px;
+  padding-right: 19px;
+  text-align: center;
+  // margin-bottom: 40px;
+
+  @include tablet {
+    top: 60px;
+    width: 768px;
+    /* margin: 0 auto;  */
+
+    /* padding: 40px 20px 58px 20px;  */
+    /* Изменила нижний паддинг, чтобы отодвинуть блок от basicFields */
+    padding: 40px 20px 0px 20px;
+  }
+  @include desktop {
+    width: 1280px;
+    margin-bottom: 9px;
+    padding-left: 110px;
+    padding-right: 110px;
+  }
+}
+// .formContainer {
+//   margin: 0 auto;
+// }
+
+.containerReport {
+  width: 282px;
+  display: flex;
+  @include desktop {
+    width: 707px;
+  }
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 43px;
+}
+
 .reportsLink {
+  @include mobile {
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
   display: flex;
 
   align-items: flex-end;
@@ -8,43 +63,72 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
-  text-align: right;
+  // text-align: right;
   letter-spacing: 0.04em;
   color: rgba(82, 85, 95, 0.7);
   margin: 0;
-}
-.reportsLink::after {
-  content: "";
-  background-image: url(../../assets/icons/bar-chart.svg);
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
+
+  &::after {
+    content: "";
+    background-image: url(../../assets/icons/bar-chart.svg);
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+  }
 }
 
-.container {
-  // position: relative;
-  width: 320px;
-  margin: 0 auto;
-  padding-top: 35px;
-  padding-left: 19px;
-  padding-right: 19px;
-  text-align: center;
-  margin-bottom: 40px;
+.formContainer {
+  @include mobile {
+    width: 282px;
+    margin: 0 auto;
+  }
+  @include tablet {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    width: 634px;
+  }
+  @include desktop {
+    margin: 0 0 0 auto;
+    // display: flex;
+    // align-items: baseline;
+    // flex-direction: row-reverse;
+    width: 700px;
+    // margin: 0 auto;
+  }
 }
-// .formContainer {
-//   margin: 0 auto;
-// }
+
+.formContainerReport {
+  composes: formContainer;
+  margin-top: -5px;
+  @include desktop {
+    margin-left: 165px;
+    // width: 325px;
+  }
+}
+
+.balanceContainer {
+  @include mobile {
+    padding-top: 30px;
+  }
+  @include tablet {
+    display: flex;
+    align-items: center;
+  }
+}
 
 .inputButtonContainer {
+  margin: 0 auto;
   display: flex;
-  position: relative;
+  justify-content: center;
+  // position: relative;
 }
 
 .balanceName {
   margin: auto;
   margin-bottom: 6px;
-  font-family: Roboto;
-  font-style: normal;
+  font-family: "Roboto";
+  font-style: 400;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16;
@@ -52,12 +136,20 @@
   text-align: center;
   letter-spacing: 0.02em;
   color: rgba(82, 85, 95, 0.7);
+  @include tablet {
+    margin: auto;
+    margin-right: 21px;
+  }
 }
 .inputField {
+  @include mobile {
+    border-right: 0;
+  }
   width: 125px;
   height: 44px;
   padding: 0px 17px 0px 0px;
-  font-family: Roboto;
+  margin: 0 0 0 auto;
+  font-family: "Roboto";
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
@@ -73,18 +165,32 @@
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  @include tablet {
+    margin-right: 15px;
+    border-radius: 16px;
+  }
+
+  // &::before {
+  //   margin: 0;
+  // }
+  &::placeholder {
+    color: rgb(0, 0, 0);
+  }
 }
-.inputField::before {
-  margin: 0;
+
+.inputFieldReport {
+  composes: inputField;
+  width: 183px;
+  border-radius: 22px;
+  text-align: center;
 }
-.inputField::placeholder {
-  color: rgb(0, 0, 0);
-}
+
 .submitBtn {
   width: 125px;
   height: 44px;
+  margin: 0 auto 0 0;
 
-  font-family: Roboto;
+  font-family: "Roboto";
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -99,84 +205,102 @@
   background-color: transparent;
   cursor: pointer;
   outline: none;
-}
 
-.submitBtn:hover {
-  color: #fff;
-  background-color: $accent-color-orange;
-}
-
-@media screen and (max-width: 767px) {
-  .container {
-    position: static;
-    margin-bottom: 30px;
-  }
-
-  .formContainer {
-    width: 282px;
-    margin: 0 auto;
-  }
-
-  .balanceContainer {
-    padding-top: 30px;
-  }
-
-  .inputField {
-    border-right: 0;
-  }
-  .reportsLink {
-    align-items: flex-end;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    top: 60px;
-    width: 768px;
-    /* margin: 0 auto;  */
-
-    /* padding: 40px 20px 58px 20px;  */
-    /* Изменила нижний паддинг, чтобы отодвинуть блок от basicFields */
-    padding: 40px 20px 0px 20px;
-  }
-  .formContainer {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: baseline;
-    width: 634px;
-    // margin: 0 auto;
-  }
-  .balanceContainer {
-    display: flex;
-    align-items: center;
-  }
-  .balanceName {
-    margin: auto;
-    margin-right: 21px;
-  }
-  .inputField {
-    margin-right: 15px;
-    border-radius: 16px;
-  }
-  .submitBtn {
+  @include tablet {
     margin-right: 111px;
     border-radius: 16px;
   }
-}
-@media screen and (min-width: 1280px) {
-  .container {
-    width: 1280px;
-    margin-bottom: 9px;
-    /* padding-left: 375px; */
-  }
-  .formContainer {
-    display: flex;
-    align-items: baseline;
-    flex-direction: row-reverse;
-    width: 700px;
-    // margin: 0 auto;
-  }
-  .submitBtn {
+
+  @include desktop {
     margin-right: 205px;
   }
+
+  &:hover {
+    color: #fff;
+    background-color: $accent-color-orange;
+  }
+}
+
+.submitBtnReport {
+  display: none;
+
+  @include desktop {
+    composes: submitBtn;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  // .container {
+  //   position: static;
+  //   margin-bottom: 30px;
+  // }
+
+  // .formContainer {
+  //   width: 282px;
+  //   margin: 0 auto;
+  // }
+
+  // .balanceContainer {
+  //   padding-top: 30px;
+  // }
+
+  // .inputField {
+  //   border-right: 0;
+  // }
+  // .reportsLink {
+  //   align-items: flex-end;
+  // }
+}
+
+@media screen and (min-width: 768px) {
+  // .container {
+  //   top: 60px;
+  //   width: 768px;
+  //   /* margin: 0 auto;  */
+
+  //   /* padding: 40px 20px 58px 20px;  */
+  //   /* Изменила нижний паддинг, чтобы отодвинуть блок от basicFields */
+  //   padding: 40px 20px 0px 20px;
+  // }
+  // .formContainer {
+  //   display: flex;
+  //   flex-direction: row-reverse;
+  //   align-items: baseline;
+  //   width: 634px;
+  //   // margin: 0 auto;
+  // }
+  // .balanceContainer {
+  //   display: flex;
+  //   align-items: center;
+  // }
+  // .balanceName {
+  //   margin: auto;
+  //   margin-right: 21px;
+  // }
+  // .inputField {
+  //   margin-right: 15px;
+  //   border-radius: 16px;
+  // }
+  // .submitBtn {
+  //   margin-right: 111px;
+  //   border-radius: 16px;
+  // }
+}
+@media screen and (min-width: 1280px) {
+  // .container {
+  //   width: 1280px;
+  //   margin-bottom: 9px;
+  //   /* padding-left: 375px; */
+  // }
+  // .formContainer {
+  //   display: flex;
+  //   align-items: baseline;
+  //   flex-direction: row-reverse;
+  //   width: 700px;
+  //   // margin: 0 auto;
+  // }
+  // .submitBtn {
+  //   margin-right: 205px;
+  // }
 }

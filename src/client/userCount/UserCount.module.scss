@@ -1,19 +1,21 @@
 @import "../../stylesheet/base";
 
 .dataContainer {
+  margin: 16px auto 30px auto;
   @include flex(space-between, center);
-  position: relative;
-  top: 16px;
-  background-color:transparent;
-  margin: 0 0;
+  // position: relative;
+  // top: 16px;
+  // background-color: transparent;
+  // margin: 0 0;
   flex-direction: column;
   font-style: "Roboto";
-  @include tablet{
-    top: 26px;
-    left: 248px;
+  @include tablet {
+    //   top: 26px;
+    //   left: 248px;
   }
-  @include desktop{
-    left: 450px;
+  @include desktop {
+    margin: 0;
+    // left: 450px;
   }
 
   .countText {
@@ -28,13 +30,12 @@
     font-size: 14px;
     color: $icon-dark;
     text-transform: uppercase;
-  
-    .button{
-    margin-right: 15px;
+
+    .button {
+      margin-right: 15px;
     }
-    .button1{
-    margin-left: 15px;
+    .button1 {
+      margin-left: 15px;
     }
   }
 }
-

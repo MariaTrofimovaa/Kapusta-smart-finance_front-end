@@ -1,3 +1,5 @@
+@import "../../stylesheet/_base.scss";
+
 .list_wraper {
   display: block;
   width: 100%;
@@ -11,12 +13,38 @@
   margin: 0 0 20px 0;
 }
 
+.list_topContainer {
+  width: 282px;
+  @include tablet {
+    width: 666px;
+    height: 114px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  @include desktop {
+    width: 1060px;
+  }
+}
+
+.list_topContainerBalance {
+  @include tablet {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  @include desktop {
+    // width: 666px;
+  }
+}
+
 .item {
   margin: 0;
 }
 
 .title {
-  font-family: Roboto;
+  font-family: "Roboto";
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
