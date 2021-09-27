@@ -2,11 +2,11 @@ import React, { useMemo, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { login, register } from "../../redux/auth/auth.operations";
-// import logo from "../../assets/images/logo_google.png";
+
 ///////////////////////////////Formik, YUP /////////////////////////////////////////////////
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
-import css from "./AuthForm.module.css";
+import css from "./AuthForm.module.scss";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
 import { loginSuccess } from "../../redux/auth/auth.actions";
@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
 export const FormControl = ({ label, ...props }) => {
   const id = useMemo(() => Math.floor(Math.random() * 99999).toString(), []);
   const [field, meta] = useField(props);
-  
+
   return (
     <div className={css.form_control_container}>
       <label className={css.label} htmlFor={id}>
@@ -86,30 +86,26 @@ export default function AuthForm() {
         onSubmit={handleSubmit}
       >
         <Form className={css.form} autoComplete="off">
-          {/* <p className={css.form_google_paragraph}>
-            Вы можете авторизироваться с помощью <br />
-            Google Account:
-          </p> */}
+          <div className={css.form_google_paragraph_container}>
+            <p className={css.form_google_paragraph}>
+              Вы можете авторизироваться с помощью <br />
+              Google Account:
+            </p>
+          </div>
           <GoogleLogin
             clientId="98081212290-o5ci4422o4omppgvkqc2q6e9jd13ioso.apps.googleusercontent.com"
-            buttonText="Login"
+            buttonText="Google"
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
             className={css.form_google_container}
           />
-          {/* <a className={css.form_google_link} href={url}>
-            <img
-              className={css.form_google_logo}
-              src={logo}
-              alt="logo_google"
-            />
-            Google
-          </a>
-          <p className={css.form_paragraph}>
-            Или зайти в приложение с помощью e-mail и пароля, <br />
-            сперва зарегистрировавшись:
-          </p> */}
+          <div className={css.form_paragraph_container}>
+            <p className={css.form_paragraph}>
+              Или зайти с помощью e-mail и пароля, <br />
+              предварительно зарегистрировавшись:
+            </p>
+          </div>
           <div className={css.form_input_area}>
             <FormControl label="Электронная почта*" name="email" type="email" />
             <FormControl label="Пароль*" type="password" name="password" />
