@@ -10,10 +10,7 @@ import UserLogout from "./userLogout/UserLogout";
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  // Селекторы авторизации
-  // Селектор модалки
   const isAuth = useSelector(getIsAuth);
-  // const isModalLogout = useSelector((state) => state.global.isModalLogout);
 
   return (
     <header className={styles.header}>
@@ -26,7 +23,6 @@ const Header = () => {
           <div className={styles.userInfo}>
             <UserInfo />
             <UserLogout />
-            {/* {isModalLogout && <LogoutModal />} Подключить компонент Сергея */}
           </div>
         )}
       </div>

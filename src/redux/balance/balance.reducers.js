@@ -25,16 +25,11 @@ const balanceReducer = createReducer(initState, {
     payload.transactionType === "expense"
       ? (state.balance = state.balance - payload.amount)
       : (state.balance = state.balance + payload.amount);
-
-    // return { ...state, balance: payload.updatedBalance};
   },
   [transactionsActions.deleteTransactionSuccess]: (state, { payload }) => {
-    // console.log("balance reducer, delete transaction. Payload:", payload);
     payload.transactionType === "expense"
       ? (state.balance = state.balance + payload.amount)
       : (state.balance = state.balance - payload.amount);
-
-    // return { ...state, balance: payload.updatedBalance };
   },
 
   [logoutSuccess]: (_, __) => initState,

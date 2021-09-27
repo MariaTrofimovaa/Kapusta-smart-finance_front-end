@@ -35,25 +35,6 @@ export const mainRoutes = [
     isMobile: false,
   },
 
-  // {
-  //   name: "Expense",
-  //   path: "/expense",
-  //   component: lazy(() => import("../pages/homePage/HomePage")),
-  //   exact: true,
-  //   isPrivate: true,
-  //   // redirectTo: "/expense",
-  //   // isRestricted: true,
-  // },
-
-  // {
-  //   name: "Income",
-  //   path: "/income",
-  //   component: lazy(() => import("../pages/homePage/HomePage")),
-  //   exact: true,
-  //   isPrivate: true,
-  //   // isRestricted: true,
-  // },
-
   {
     name: "NotFound",
     path: "",

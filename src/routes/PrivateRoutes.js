@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 import { getIsAuth } from "../redux/auth/auth.selectors";
 
 const PrivateRoute = ({
-  // isAuthenticated,
   component: Component,
   redirectTo,
-  redirectToMob,
   isMobile,
   isMobileMedia,
   ...routeProps

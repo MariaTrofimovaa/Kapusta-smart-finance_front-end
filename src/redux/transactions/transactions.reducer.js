@@ -4,23 +4,6 @@ import actions from "./transactions.actions";
 import balanceActions from "../balance/balance.actions";
 import { logoutSuccess } from "../auth/auth.actions";
 
-// ?? Кто его использует?
-// const transactionsReducer = createReducer([], {
-//   [actions.addTransactionRequest]: (state) => {
-//     return state;
-//   },
-//   [actions.addTransactionSuccess]: (state, { payload }) => {
-//     return [...state, payload.addedTransaction]; // Света: так как после обновления транзакции в payload к нам приходят и транзакция и обновленный баланс,
-//     // то здесь нам нужно брать только данные по транзакции (payload.addedTransaction)
-//   },
-//   // transactions: payload.transactions.brief.expense.data,
-
-//   [actions.deleteTransactionSuccess]: (state, { payload }) => {
-//     // console.log(payload);
-//     return state.filter(({ _id }) => _id !== payload._id);
-//   },
-// });
-
 const brief = createReducer(
   { income: [], expense: [], currentYear: "" },
   {
@@ -51,7 +34,6 @@ const brief = createReducer(
       expense: [],
       currentYear: "",
     }),
-    // [actions.fetchBriefError]: () => false,
   }
 );
 
@@ -79,7 +61,6 @@ const incomeOfDay = createReducer([], {
   [actions.getIncomeOfDaySuccess]: (_, { payload }) => payload.data,
 
   [balanceActions.setBalanceSuccess]: (state, { payload }) => {
-    // console.log("incomeOfDay", payload);
     return payload.addedTransaction.transactionType === "income"
       ? [...state, payload.addedTransaction]
       : [...state];
@@ -90,8 +71,6 @@ const incomeOfDay = createReducer([], {
 });
 
 export default combineReducers({
-  // balanceReducer,
-  // list: transactionsReducer,
   brief,
   expenseOfDay,
   incomeOfDay,

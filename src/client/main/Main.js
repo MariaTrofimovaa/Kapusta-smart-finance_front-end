@@ -8,13 +8,13 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
 
-import setSelectedDate from "../../redux/date/date.actions";
-import action from "../../redux/transactions/transactions.actions";
+// import setSelectedDate from "../../redux/date/date.actions";
+// import action from "../../redux/transactions/transactions.actions";
 
-import transactionsOperations from "../../redux/transactions/transactions.operations";
+// import transactionsOperations from "../../redux/transactions/transactions.operations";
 
 import { getIsMobileMedia } from "../../redux/screenWidth/screenWidth.selector";
-import { getSelectedDate } from "../../redux/date/date.selectors";
+// import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import styles from "./Main.module.scss";
 const Main = () => {
@@ -24,27 +24,27 @@ const Main = () => {
   const isRegisterPage = location.pathname === "/";
   const classes = isRegisterPage ? styles.registerWrapper : styles.mainWrapper;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const refreshDate = new Date();
+  // const refreshDate = new Date();
 
-  useEffect(() => {
-    dispatch(
-      setSelectedDate(
-        refreshDate.toISOString().slice(0, 10).split("-").reverse().join(".")
-      )
-    );
-  }, []);
+  // useEffect(() => {
+  //   dispatch(
+  //     setSelectedDate(
+  //       refreshDate.toISOString().slice(0, 10).split("-").reverse().join(".")
+  //     )
+  //   );
+  // }, []);
 
-  useEffect(() => {
-    dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
+  // }, []);
 
-  const date = useSelector(getSelectedDate);
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllIncomeOfDate(date));
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  }, [date]);
+  // const date = useSelector(getSelectedDate);
+  // useEffect(() => {
+  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
+  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  // }, [date]);
 
   useEffect(() => {
     isMobileMedia ? history.push("/main") : history.push("/expense");
@@ -52,7 +52,6 @@ const Main = () => {
 
   return (
     <>
-      {/* <div className={styles.mainWrapper}> */}
       <div className={classes}>
         <Suspense fallback={<AppLoader />}>
           <Switch>
@@ -60,12 +59,14 @@ const Main = () => {
               route.isPrivate ? (
                 <PrivateRoutes
                   {...route}
+                  redirectTo
                   isMobileMedia={isMobileMedia}
                   key={route.name}
                 />
               ) : (
                 <PublicRoutes
                   {...route}
+                  redirectTo
                   isMobileMedia={isMobileMedia}
                   key={route.name}
                 />

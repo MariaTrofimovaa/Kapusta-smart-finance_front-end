@@ -31,5 +31,3 @@ const CategoriesList = ({ transactionType, onClick }) => {
 };
 
 export default CategoriesList;
-
-// {obj.isActive   (className={css.svg_box} ):className={css.svg_box}}

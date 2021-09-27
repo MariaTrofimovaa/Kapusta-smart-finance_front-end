@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import AdditionalBtn from "../buttons/AdditionalBtn";
-import styles from "./ModalWindow.module.css";
-// import closeIcon from "../../../assets/icons/close-icon.svg";
+
+import styles from "./ModalWindow.module.scss";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -37,9 +37,7 @@ class ModalWindow extends Component {
               type="button"
               onClick={onCancel}
               className={styles.CloseModalBtn}
-            >
-              {/* <img src={closeIcon} alt="close icon" /> */}
-            </button>
+            ></button>
           </div>
           <div className={styles.ModalContentWrapper}>
             <p className={styles.ModalText}>{text}</p>
