@@ -15,9 +15,6 @@ import { SwishSpinner } from "react-spinners-kit";
 
 // const MobileHomePage = ( { match }) => {
 const MobileHomePage = (props) => {
-  console.log(props);
-  console.log(props.match.path);
-
   const isMobileMedia = useSelector(getIsMobileMedia);
 
   // const location = useLocation().pathname;
@@ -32,7 +29,7 @@ const MobileHomePage = (props) => {
             {/* <Route path={enterFormLocation}> */}
             <EnterForm />
           </Route>
-          
+
           <Route path={props.match.path}>
             {/* <Route path={mainLocaiton}> */}
             <div className={styles.dataFieldMobile}>
