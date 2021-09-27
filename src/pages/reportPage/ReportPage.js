@@ -8,7 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import sprite from "../../assets/icons/sprite_categories.svg";
-import css from "./ReportPage.module.css";
+import css from "./ReportPage.module.scss";
 import UserCount from "../../client/userCount/UserCount";
 import GoBack from "../../shared/components/goBack/GoBack";
 import UserMount from "../../client/userMount/UserMount";
@@ -30,9 +30,14 @@ const ReportPage = () => {
 
   return (
     <div>
-      <GoBack />
-      <UserCount />
-      <Balance />
+      <div className={css.list_topContainer}>
+        <GoBack />
+        <div className={css.list_topContainerBalance}>
+          <UserCount />
+          <Balance />
+        </div>
+      </div>
+
       <UserMount />
       <div className={css.list_wraper}>
         <ul className={css.list}>
