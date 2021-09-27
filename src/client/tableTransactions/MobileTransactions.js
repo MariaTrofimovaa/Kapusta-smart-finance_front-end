@@ -3,7 +3,7 @@ import styles from "./TableTransactions.module.css";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import IconDelete from "../../shared/iconDelete/IconDelete";
-import { getSelectedDate } from "../../redux/date/date.selectors";
+// import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import ModalWindow from "../../shared/components/modalWindow/ModalWindow";
 
@@ -16,12 +16,12 @@ const MobileTransactions = ({ item }) => {
     setModalOpen(!isModalOpen);
   };
 
-  const date = useSelector(getSelectedDate);
+  // const date = useSelector(getSelectedDate);
 
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllIncomeOfDate(date));
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-  }, [dispatch, date]);
+  // useEffect(() => {
+  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
+  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  // }, [dispatch, date]);
 
   return (
     <li className={styles.mobileListItem} key={item._id}>

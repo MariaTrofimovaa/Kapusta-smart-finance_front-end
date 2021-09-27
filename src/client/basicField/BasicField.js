@@ -51,9 +51,10 @@ const BasicField = () => {
         {isPageWideTablet && (
           <>
             <div className={styles.dataField}>
-              <Calendar />
-              <EnterForm />
-
+              <div className={styles.enterFormWrapper}>
+                <Calendar />
+                <EnterForm />
+              </div>
               <div className={styles.dataWrapper}>
                 <TableTransactions />
               </div>
