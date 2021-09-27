@@ -36,10 +36,10 @@ const TableTransactions = () => {
         <table className={styles.table}>
           <thead className={styles.tableHead}>
             <tr className={styles.tableHeadTr}>
-              <th>Дата</th>
-              <th>Описание</th>
-              <th>Категория</th>
-              <th>Сумма</th>
+              <th className={styles.tableTransThDate}>Дата</th>
+              <th className={styles.tableTransThDescr}>Описание</th>
+              <th className={styles.tableTransThCategory}>Категория</th>
+              <th className={styles.tableTransThAmount}>Сумма</th>
             </tr>
           </thead>
 

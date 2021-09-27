@@ -39,7 +39,8 @@ const MobileTransactions = ({ item }) => {
             : styles.amountMobGreen
         }
       >
-        {item.transactionType === "expense" ? -item.amount : item.amount} грн.
+        {item.transactionType === "expense" ? -item.amount : item.amount}.00
+        грн.
       </p>
       <div className={styles.btnWrapper}>
         <button
