@@ -10,13 +10,13 @@ import PublicRoutes from "../../routes/PublicRoutes";
 
 import action from "../../redux/transactions/transactions.actions";
 
-import transactionsOperations from "../../redux/transactions/transactions.operations";
+// import transactionsOperations from "../../redux/transactions/transactions.operations";
 
 import {
   getCurrLocation,
   getIsMobileMedia,
 } from "../../redux/screenWidth/screenWidth.selector";
-import { getSelectedDate } from "../../redux/date/date.selectors";
+// import { getSelectedDate } from "../../redux/date/date.selectors";
 
 import styles from "./Main.module.scss";
 
@@ -36,7 +36,7 @@ const Main = () => {
     // eslint-disable-next-line
   }, []);
 
-  const date = useSelector(getSelectedDate);
+  // const date = useSelector(getSelectedDate);
   const currLocation = useSelector(getCurrLocation);
 
   // useEffect(() => {
