@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from "react";
-import { Switch, useHistory, useRouteMatch } from "react-router";
+import { Switch, useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,7 +24,6 @@ const Main = () => {
   const isMobileMedia = useSelector(getIsMobileMedia);
   const location = useLocation();
   const history = useHistory();
-  const { url } = useRouteMatch();
   const isRegisterPage = location.pathname === "/";
   const classes = isRegisterPage ? styles.registerWrapper : styles.mainWrapper;
 

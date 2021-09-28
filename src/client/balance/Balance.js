@@ -23,7 +23,7 @@ function Balance() {
 
   const updateBalance = (e) => {
     e.preventDefault();
-    const newBalance = e.target.balance.value.split(" ")[0]; // отрежем UAH и вообще все что после первого пробела. валидация в принципе не нужна, т.к. в onBalanceInputChange мы убеждаемся, что значение баланса всегда будет "цифра UAH"
+    const newBalance = e.target.balance.value.split(" ")[0]; 
     dispatch(balanceOperations.setBalanceOperation(newBalance));
   };
   return (
