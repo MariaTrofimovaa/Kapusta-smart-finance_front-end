@@ -39,11 +39,11 @@ const Main = () => {
   const date = useSelector(getSelectedDate);
   const currLocation = useSelector(getCurrLocation);
 
-  useEffect(() => {
-    dispatch(transactionsOperations.getAllIncomeOfDate(date));
-    dispatch(transactionsOperations.getAllExpenseOfDate(date));
-    // eslint-disable-next-line
-  }, [date]);
+  // useEffect(() => {
+  //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
+  //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
+  //   // eslint-disable-next-line
+  // }, [date]);
 
   useEffect(() => {
     if (currLocation?.includes("/report")) return;

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/pages/mobileHomePage/MobileHomePage.module.css"],"names":[],"mappings":"AAAA,wCACE,YAAa,CACb,6BACF","file":"13.d91e1566.chunk.css","sourcesContent":[".btnWrapperMobile {\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n"]}

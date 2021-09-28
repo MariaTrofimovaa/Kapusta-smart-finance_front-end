@@ -19,6 +19,13 @@ const TableTransactions = () => {
   const currentLocation = useLocation();
   const activeCheck = currentLocation.pathname;
 
+    // const date = useSelector(getSelectedDate);
+    // useEffect(() => {
+    //   dispatch(transactionsOperations.getAllIncomeOfDate(date));
+    //   dispatch(transactionsOperations.getAllExpenseOfDate(date));
+    // }, [date]);
+  
+
   return (
     <>
       <div className={styles.tablDeskWrapper}>

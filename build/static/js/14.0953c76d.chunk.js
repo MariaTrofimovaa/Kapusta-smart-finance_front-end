@@ -1,0 +1,2 @@
+(this["webpackJsonpkapusta-finance"]=this["webpackJsonpkapusta-finance"]||[]).push([[14],{563:function(t,n,e){t.exports={title:"NotFound_title__14YEA",text:"NotFound_text__34nmv",container:"NotFound_container__2gy-X"}},586:function(t,n,e){"use strict";e.r(n);e(0);var a=e(563),o=e.n(a),s=e(2);n.default=function(){return Object(s.jsxs)("div",{className:o.a.container,children:[Object(s.jsx)("h2",{className:o.a.title,children:"404 Not Found"}),Object(s.jsx)("p",{className:o.a.text,children:"Whoops... Something went wrong!"})]})}}}]);
+//# sourceMappingURL=14.0953c76d.chunk.js.map
