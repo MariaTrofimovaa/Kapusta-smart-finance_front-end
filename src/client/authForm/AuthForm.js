@@ -95,7 +95,7 @@ export default function AuthForm() {
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
-            className={css.form_google_container}
+            className={css.googleButton}
           />
           <div className={css.form_paragraph_container}>
             <p className={css.form_paragraph}>
