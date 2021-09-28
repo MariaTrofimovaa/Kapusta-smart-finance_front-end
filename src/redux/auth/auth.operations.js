@@ -15,7 +15,7 @@ import {
 } from "./auth.actions";
 import { alertError, alertSuccess } from "../../shared/reactAlert";
 
-axios.defaults.baseURL = "http://localhost:4000/api/v1/";
+axios.defaults.baseURL = "https://kapusta-smart-finance.herokuapp.com/api/v1/";
 
 const token = {
   set(token) {

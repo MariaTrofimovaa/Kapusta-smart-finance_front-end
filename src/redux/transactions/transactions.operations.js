@@ -58,7 +58,7 @@ const getAllIncomeOfDate = (date) => async (dispatch, getState) => {
   try {
     token.set(authToken);
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/day/income/${date}`
+      `https://kapusta-smart-finance.herokuapp.com/api/v1/transactions/day/income/${date}`
     );
     dispatch(transactionsActions.getIncomeOfDaySuccess(data));
   } catch (error) {
