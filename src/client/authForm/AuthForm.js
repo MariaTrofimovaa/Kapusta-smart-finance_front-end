@@ -90,7 +90,7 @@ export default function AuthForm() {
             </p>
           </div>
           <GoogleLogin
-            clientId="98081212290-o5ci4422o4omppgvkqc2q6e9jd13ioso.apps.googleusercontent.com"
+            clientId="516350701159-h40lcnb8kgtv81mnomi4ugrhobi0a9gb.apps.googleusercontent.com"
             buttonText="Google"
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}

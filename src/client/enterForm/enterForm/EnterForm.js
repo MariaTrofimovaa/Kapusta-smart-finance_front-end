@@ -134,7 +134,7 @@ const EnterForm = () => {
           autoComplete="off"
           autoFocus
           value={fields.category}
-          onChange={()=> {}} // КОСТЫЛЬ! ПЕРЕДЕЛАТЬ НА СЕЛЕКТ
+          onChange={() => {}} // КОСТЫЛЬ! ПЕРЕДЕЛАТЬ НА СЕЛЕКТ
           // defaultValue={fields.category}
 
           onClick={searchCategories}
@@ -169,7 +169,6 @@ const EnterForm = () => {
             type="number"
             name="amount"
             value={fields.amount}
-           
             onChange={handleChange}
             required
           />

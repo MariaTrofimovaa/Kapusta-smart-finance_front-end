@@ -8,7 +8,6 @@ import {
   getAllForMonthIncomeError,
 } from "./report.actions";
 
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
