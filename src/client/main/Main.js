@@ -8,7 +8,6 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import PrivateRoutes from "../../routes/PrivateRoutes";
 import PublicRoutes from "../../routes/PublicRoutes";
 
-import setSelectedDate from "../../redux/date/date.actions";
 import action from "../../redux/transactions/transactions.actions";
 
 import transactionsOperations from "../../redux/transactions/transactions.operations";
@@ -35,6 +34,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(action.changeActualYearForBrief(refreshDate.getFullYear()));
+    // eslint-disable-next-line
   }, []);
 
   const date = useSelector(getSelectedDate);
@@ -43,6 +43,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(transactionsOperations.getAllIncomeOfDate(date));
     dispatch(transactionsOperations.getAllExpenseOfDate(date));
+    // eslint-disable-next-line
   }, [date]);
 
   useEffect(() => {
