@@ -65,7 +65,7 @@ export default function AuthForm() {
   const responseSuccessGoogle = (response) => {
     axios({
       method: "POST",
-      url: "http://localhost:4000/api/v1/auth/googlelogin",
+      url: "https://kapusta-smart-finance.herokuapp.com/api/v1/auth/googlelogin",
       data: { tokenId: response.tokenId },
     }).then((response) => {
       dispatch(loginSuccess(response.data.user));

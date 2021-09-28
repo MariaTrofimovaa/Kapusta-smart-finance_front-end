@@ -24,7 +24,7 @@ const getAllExpenseOfMonth = (month) => async (dispatch, getState) => {
   try {
     token.set(authToken); /// когда будет готов аутх
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/expense/${month}`
+      `https://kapusta-smart-finance.herokuapp.com/api/v1/transactions/expense/${month}`
     );
     dispatch(getAllForMonthExpenseSuccess(data));
   } catch (error) {
@@ -38,7 +38,7 @@ const getAllIncomeOfMonth = (month) => async (dispatch, getState) => {
   try {
     token.set(authToken); /// когда будет готов аутх
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/income/${month}`
+      `https://kapusta-smart-finance.herokuapp.com/api/v1/transactions/income/${month}`
     );
     dispatch(getAllForMonthIncomeSuccess(data));
   } catch (error) {

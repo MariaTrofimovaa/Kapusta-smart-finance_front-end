@@ -24,7 +24,6 @@ const UserCount = () => {
 
   const changeMonth = (action) => {
     const value = action === "prev" ? -1 : 1;
-    console.log("object :>> ");
     setDate((prevDate) => {
       const newDate = new Date(prevDate.getTime());
       const month = newDate.getMonth();

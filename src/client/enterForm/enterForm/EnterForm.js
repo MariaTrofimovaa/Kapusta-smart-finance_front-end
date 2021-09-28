@@ -44,7 +44,9 @@ const EnterForm = () => {
   const searchCategories = () => {
     axios
 
-      .get(`http://localhost:4000/api/v1/categories/${transType}`)
+      .get(
+        `https://kapusta-smart-finance.herokuapp.com/api/v1/categories/${transType}`
+      )
       .then(({ data }) => {
         setCategories(() => {
           return data.data.result;
