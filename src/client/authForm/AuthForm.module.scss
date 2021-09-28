@@ -22,18 +22,26 @@
   }
 }
 
-.form_google_container {
+.googleButton {
+  width: 130px;
+  height: 55px;
   align-items: center;
-  margin-left: 89px;
+  margin-left: 80px;
   margin-top: 27px;
   margin-bottom: 27px;
+  border-radius: 25px !important; // No result reported
+  box-shadow: none !important; // No result reported
+  border: 1px grey solid !important; // No result reported
+
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
 
   &.button {
     border-radius: 1px;
   }
 
   @media screen and (min-width: 768px) {
-    margin-left: 157px;
+    margin-left: 140spx;
   }
 }
 
