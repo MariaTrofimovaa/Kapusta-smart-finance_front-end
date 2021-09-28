@@ -8,7 +8,6 @@ import {
   getAllForMonthIncomeError,
 } from "./report.actions";
 
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -24,7 +23,7 @@ const getAllExpenseOfMonth = (month) => async (dispatch, getState) => {
   try {
     token.set(authToken); /// когда будет готов аутх
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/expense/${month}`
+      `https://kapusta-smart-finance.herokuapp.com/api/v1/transactions/expense/${month}`
     );
     dispatch(getAllForMonthExpenseSuccess(data));
   } catch (error) {

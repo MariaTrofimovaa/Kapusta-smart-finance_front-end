@@ -44,7 +44,7 @@ const getAllExpenseOfDate = (date) => async (dispatch, getState) => {
   try {
     token.set(authToken);
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/transactions/day/expense/${date}`
+      `https://kapusta-smart-finance.herokuapp.com/api/v1/transactions/day/expense/${date}`
     );
     dispatch(transactionsActions.getExpenseOfDaySuccess(data));
   } catch (error) {
@@ -71,7 +71,6 @@ const deleteTransaction = (id) => (dispatch) => {
 
   deleteTransactionApi(id)
     .then(({ data }) => {
-      
       dispatch(transactionsActions.deleteTransactionSuccess(data.transaction));
     })
     .catch((error) =>
