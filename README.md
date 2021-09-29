@@ -1,5 +1,8 @@
 ## Рабочая ссылка проекта:
- *** https://kapusta-smart-finance-app.netlify.app/ ***
+https://kapusta-smart-finance-app.netlify.app/
+
+## Ссылка на документацию эндпонтов:
+https://kapusta-smart-finance.herokuapp.com/api-docs/#/Auth
 
 ## Перед началом работы
 Один раз на проект установить все зависимости.
